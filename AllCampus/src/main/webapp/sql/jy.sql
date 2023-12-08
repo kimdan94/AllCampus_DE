@@ -30,4 +30,47 @@ create table all_member_detail(
  constraint all_member_detail_pk1 primary key (mem_num),
  constraint all_member_detail_fk1 foreign key (mem_num) references all_member (mem_num),
  constraint all_member_detail_fk2 foreign key (univ_num) references all_member_univ (univ_num)
-); 
+);
+
+create table all_secondhand(
+ secondhand_num number not null,
+ secondhand_name varchar2(120) not null,
+ secondhand_writer varchar2(60) not null,
+ secondhand_company varchar2(30) not null,
+ secondhand_content clob not null,
+ secondhand_price number(6) not null,
+ secondhand_way varchar2(16) not null,
+ secondhand_status varchar2(3) not null,
+ secondhand_filename varchar2(150) not null,
+ secondhand_openchat varchar2(200) not null,
+ secondhand_complaint number(9) default 0 not null,
+ secondhand_show number(1) default 2 not null, -- 표시 여부 : 1 미표시, 2 표시
+ secondhand_reg_date date default sysdate not null,
+ secondhand_modifydae date,
+ secondhand_sell number(1) default 2 not null, -- 표시 여부 : 1 미표시, 2 표시
+ constraint all_secondhand_pk1 primary key (secondhand_num)
+);
+
+create sequence all_secondhand_seq;
+
+create table all_secondhand_reply(
+ secondhand_num number not null,
+ mem_num number not null,
+ reply_num number not null,
+ reply_content varchar2(900) not null,
+ reply_date date default sysdate not null,
+ repy_modifydate date,
+ reply_ip varchar2(40) not null,
+ constraint all_secondhand_reply_fk1 foreign key (secondhand_num) references all_secondhand (secondhand_num),
+ constraint all_secondhand_reply_fk2 foreign key (mem_num) references all_member (mem_num),
+ constraint all_secondhand_reply_pk1 primary key (reply_num)
+);
+
+create sequence all_resecondhand_seq;
+
+create table all_secondhand_warn(
+ secondhand_num number not null,
+ mem_num number not null,
+ constraint all_secondhand_warn_fk1 foreign key (secondhand_num) references all_secondhand (secondhand_num),
+ constraint all_secondhand_warn_fk2 foreign key (mem_num) references all_member (mem_num)
+);
