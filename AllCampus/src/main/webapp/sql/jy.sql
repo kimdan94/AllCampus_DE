@@ -5,6 +5,7 @@ create table all_member(
  mem_nick varchar2(36) not null unique,
  constraint all_member_pk1 primary key (mem_num)
 );
+
 create sequence all_member_seq;
 
 create table all_member_univ(
@@ -12,6 +13,7 @@ create table all_member_univ(
  univ_name varchar2(60) not null,
  constraint all_member_univ_pk1 primary key (univ_num)
 );
+
 create sequence all_univ_seq;
 
 create table all_member_detail(
