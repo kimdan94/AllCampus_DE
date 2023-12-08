@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>테스트테스트테스틑ㅌ</title>
+<title>테스트여요</title>
 </head>
 <body>
-test중이여요
+TEST 여요
 </body>
 </html>
