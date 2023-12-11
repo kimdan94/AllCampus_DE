@@ -1,8 +1,8 @@
 package kr.member.vo;
 
 public class MemberUnivVO {
-	private int univ_num;
-	private String univ_name;
+	private int univ_num;//학교번호
+	private String univ_name;//학교 이름
 	
 	public int getUniv_num() {
 		return univ_num;

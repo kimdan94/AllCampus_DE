@@ -3,7 +3,7 @@ package kr.member.vo;
 import java.sql.Date;
 
 public class MemberVO {
-	private int mem_num;//회원 번호
+	private int mem_num;//회원번호
 	private String mem_id;//회원 id
 	private int mem_auth;//회원 등급
 	private String mem_nick;//회원 닉네임
@@ -15,7 +15,7 @@ public class MemberVO {
 	private Date mem_reg_date;//회원 가입일
 	private Date mem_certify;//회원 학교 인증일
 	private String mem_photo;//회원 프로필사진
-	private int univ_num;//학교 번호
+	private int univ_num;//학교번호
 	private String univ_name;//학교 이름
 	
 	//비밀번호 일치 여부 체크
