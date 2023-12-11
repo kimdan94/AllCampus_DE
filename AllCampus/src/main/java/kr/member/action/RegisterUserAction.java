@@ -14,6 +14,7 @@ public class RegisterUserAction implements Action{
 		
 		//전송된 데이터 인코딩 처리
 		request.setCharacterEncoding("utf-8");
+		
 		//자바빈(VO) 생성
 		MemberVO vo = new MemberVO();
 		vo.setUniv_num(Integer.parseInt(request.getParameter("univ")));
