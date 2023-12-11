@@ -6,10 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>게시판 상세 정보</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/jiwonstyle.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/board.fav.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/board.reply.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/board.scrap.js"></script>
 </head>
 <body>
 <div class="page-main">
@@ -67,11 +68,11 @@
 		</c:if>
 		<ul>
 			<li>
-			<img src="${pageContext.request.contextPath}/images/fav_image.png" width="20">
+			<img src="${pageContext.request.contextPath}/images/favj_image.png" width="20">
 			<span id="output_board_fcount"></span>
 			
-			<img src="${pageContext.request.contextPath}/images/star_icon.png" width="20">
-			<span id="output_boardscrapcount"></span>
+			<img src="${pageContext.request.contextPath}/images/star_icon1.png" width="20">
+			<span id="output_board_scrapcount"></span>
 			</li>
 		</ul>
 		<div>
