@@ -1,11 +1,12 @@
+-- 회원 기본 정보
 create table all_member(
  mem_num number not null,
  mem_id varchar2(12) not null unique,
- mem_auth number(1) default 1 not null,-- 회원 등급 : 0 탈퇴, 1 비인증, 2 인증, 3 정지, 9 관리
+ mem_auth number(1) default 2 not null,-- 회원 등급 : 0 탈퇴, 1 정지, 2 비인증, 3 인증, 9 관리
  mem_nick varchar2(36) not null unique,
  constraint all_member_pk1 primary key (mem_num)
 );
-
+-- 학교
 create sequence all_member_seq;
 
 create table all_member_univ(
@@ -16,14 +17,15 @@ create table all_member_univ(
 
 create sequence all_univ_seq;
 
+-- 회원 상세 정보
 create table all_member_detail(
  mem_num number not null,
  mem_name varchar2(18) not null,
  mem_passwd varchar2(20) not null,
  mem_email varchar2(30) not null unique,
  univ_num number not null,
- mem_univNum number(7),
- mem_major varchar2(100),
+ mem_univNum number(9) not null,
+ mem_major varchar2(100) not null,
  mem_reg_date date default sysdate not null,
  mem_certify date,
  mem_photo varchar2(150),
@@ -32,6 +34,7 @@ create table all_member_detail(
  constraint all_member_detail_fk2 foreign key (univ_num) references all_member_univ (univ_num)
 );
 
+-- 중고 거래
 create table all_secondhand(
  secondhand_num number not null,
  secondhand_name varchar2(120) not null,
@@ -53,6 +56,7 @@ create table all_secondhand(
 
 create sequence all_secondhand_seq;
 
+-- 중고 거래 댓글
 create table all_secondhand_reply(
  secondhand_num number not null,
  mem_num number not null,
@@ -68,6 +72,7 @@ create table all_secondhand_reply(
 
 create sequence all_resecondhand_seq;
 
+-- 중고 거래 신고
 create table all_secondhand_warn(
  secondhand_num number not null,
  mem_num number not null,
