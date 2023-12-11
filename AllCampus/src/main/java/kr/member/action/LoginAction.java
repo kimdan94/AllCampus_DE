@@ -41,6 +41,7 @@ public class LoginAction implements Action{
 			//메인으로 리다이렉트
 			return "redirect:/main/home.do";
 		}
+		
 		//인증 실패
 		return "/WEB-INF/views/member/login.jsp";
 	}
