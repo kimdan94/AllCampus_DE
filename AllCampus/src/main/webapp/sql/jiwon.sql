@@ -1,4 +1,4 @@
---게시판
+--게시판1
 create table all_board(
  board_num number not null,    --PK
  board_title varchar2(150) not null,
