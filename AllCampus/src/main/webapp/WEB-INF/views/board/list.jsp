@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>자유게시판 목록</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/jiwonstyle.css">
 <script type="text/javascript">
 window.onload=function(){
 	let myForm = document.getElementById('search_form');
@@ -35,7 +35,6 @@ window.onload=function(){
 <body>
 <div class="main_page">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	
 	<div class="free_title">
 		
 		<form id="search_Form" action="list.do" method="get">
@@ -55,9 +54,10 @@ window.onload=function(){
 			</ul>
 		</form>
 		<div class="list-space align-right">
-			<input type="button" value="글쓰기" onclick="location.href='writeForm.do'">
-	<!-- 로그인 처리 되면 주석 지우고 button안에 넣기 -->			
-	<%-- <c:if test="${empty user_num}">disabled="disabled"</c:if> --%>
+			<input type="button" value="글쓰기" onclick="location.href='writeForm.do'"
+			<c:if test="${empty user_num}">disabled="disabled"</c:if>
+			>
+
 			
 		</div>
 	</div>
