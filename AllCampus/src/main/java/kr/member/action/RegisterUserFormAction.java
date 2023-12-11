@@ -13,7 +13,7 @@ public class RegisterUserFormAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		//학교 목록을 select하는 메서드 호출
+		//학교 목록을 select 하는 메서드 호출
 		MemberDAO dao = MemberDAO.getinstance();
 		List<MemberUnivVO> list = dao.univOption();
 		
