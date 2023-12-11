@@ -43,24 +43,24 @@ public class MemberDAO {
 			}
 			
 			//all_member 테이블
-			sql = "INSERT INTO all_member (mem_num,mem_id,mem_nick) VALUES (?,?,?)";
+			sql = "INSERT INTO all_member (mem_num,mem_id,mem_nick,mem_email) VALUES (?,?,?,?)";
 			pstmt2 = conn.prepareStatement(sql);
 			pstmt2.setInt(1, num);
 			pstmt2.setString(2, member.getMem_id());
 			pstmt2.setString(3, member.getMem_nick());
+			pstmt2.setString(4, member.getMem_email());
 			pstmt2.executeUpdate();
 			
 			//all_member_detail 테이블
-			sql = "INSERT INTO all_member_detail (mem_num,mem_name,mem_passwd,mem_email,"
-					+ "univ_num,mem_univNum,mem_major) VALUES (?,?,?,?,?,?,?)";
+			sql = "INSERT INTO all_member_detail (mem_num,mem_name,mem_passwd,"
+					+ "univ_num,mem_univNum,mem_major) VALUES (?,?,?,?,?,?)";
 			pstmt3 = conn.prepareStatement(sql);
 			pstmt3.setInt(1, num);
 			pstmt3.setString(2, member.getMem_name());
 			pstmt3.setString(3, member.getMem_passwd());
-			pstmt3.setString(4, member.getMem_email());
-			pstmt3.setInt(5, member.getUniv_num());
-			pstmt3.setInt(6, member.getMem_univNum());
-			pstmt3.setString(7, member.getMem_major());
+			pstmt3.setInt(4, member.getUniv_num());
+			pstmt3.setInt(5, member.getMem_univNum());
+			pstmt3.setString(6, member.getMem_major());
 			pstmt3.executeUpdate();
 			
 			//SQL문 실행 시 모두 성공하면 commit
@@ -169,11 +169,6 @@ public class MemberDAO {
 		}
 		return email;
 	}
-	//회원 상세 정보
-	//회원 정보 수정
-	//비밀번호 수정
-	//프로필 사진 수정
-	//회원 탈퇴(회원 정보 삭제)
 	
 	//학교 옵션값 불러오기
 	public List<MemberUnivVO> univOption()throws Exception{
@@ -206,4 +201,68 @@ public class MemberDAO {
 		}
 		return list;
 	}
+	
+	//아이디 찾기
+	public String checkId(String user_email)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		String user_id = null;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "SELECT mem_id FROM all_member LEFT OUTER JOIN all_member_detail "
+					+ "USING(mem_num) WHERE mem_email = ?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setString(1, user_email);
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				user_id = rs.getString("mem_id");
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return user_id;
+	}
+	//비밀번호 찾기
+	public String checkPw(String user_email, String user_id)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		String user_pw = null;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "SELECT mem_passwd FROM all_member LEFT OUTER JOIN all_member_detail "
+					+ "USING(mem_num) WHERE mem_email = ? AND mem_id=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setString(1, user_email);
+			pstmt.setString(2, user_id);
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				user_pw = rs.getString("mem_passwd");
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return user_pw;
+	}	
 }
+
+
