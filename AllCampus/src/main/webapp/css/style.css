@@ -195,6 +195,10 @@ input[type="number"]{
 	완전한 원이 됨*/
 	border-radius:50%;
 }
+.my-infor{
+	position:relative;
+	left:200px;
+}
 /* 공통 목록
 ------------------------------*/
 form#search_form{
@@ -351,8 +355,6 @@ input[type="number"].quantity-width{
 form[id="cart_order"]{
 	border:none;
 }
-
-
 
 
 
