@@ -15,12 +15,14 @@ public class WriteAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		/*
-		 * HttpSession session = request.getSession(); Integer user_num =
-		 * (Integer)session.getAttribute("user_num");
-		 * 
-		 * if(user_num==null) {//로그인이 되지 않은 경우 return "redirect:/member/loginForm.do"; }
-		 */
+		
+		HttpSession session = request.getSession(); 
+		Integer user_num =(Integer)session.getAttribute("user_num");
+		
+		if(user_num==null) {//로그인이 되지 않은 경우 
+			return "redirect:/member/loginForm.do"; 
+		}
+		 
 		//로그인 된 경우
 		MultipartRequest multi = FileUtil.createFile(request);
 		BoardVO board = new BoardVO();
@@ -30,9 +32,9 @@ public class WriteAction implements Action{
 		board.setBoard_filename(multi.getFilesystemName("board_filename"));
 		board.setBoard_anonymous(Integer.parseInt(multi.getParameter("board_anonymous")));
 		
-		//다음주에 이 구문으로 바꿔주기 
-		//board.setMem_num(user_num);
-		board.setMem_num(400);
+		
+		board.setMem_num(user_num);
+		
 		
 		
 		BoardDAO dao = BoardDAO.getInstance();

@@ -13,7 +13,7 @@
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<div class="content-main">
-		
+		<a href="${pageContext.request.contextPath}/board/list.do" style="padding:100px; display: block;">게시판 링크 테스트</a>
 	</div>
 </div>
 </body>

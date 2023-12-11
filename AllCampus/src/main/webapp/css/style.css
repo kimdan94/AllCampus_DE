@@ -192,6 +192,10 @@ input[type="number"]{
 	/*사각형의 모서리 둥근 정도를 지정하는 속성인데 50%를 지정하면 완전한 원이 됨*/
 	border-radius:50%;
 }
+.my-infor{
+	position:relative;
+	left:200px;
+}
 /* 공통 목록
 ------------------------------*/
 form#search_form{
