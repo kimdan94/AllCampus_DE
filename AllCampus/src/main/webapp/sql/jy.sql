@@ -4,7 +4,7 @@ create table all_member(
  mem_id varchar2(12) not null unique,
  mem_auth number(1) default 2 not null,-- 회원 등급 : 0 탈퇴, 1 정지, 2 비인증, 3 인증, 9 관리
  mem_nick varchar2(36) not null unique,
- mem_email varchar2(30) not null,
+ mem_email varchar2(30) not null unique,
  constraint all_member_pk1 primary key (mem_num)
 );
 -- 학교
