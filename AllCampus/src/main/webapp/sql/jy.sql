@@ -32,6 +32,7 @@ create table all_member_detail(
  constraint all_member_detail_pk1 primary key (mem_num),
  constraint all_member_detail_fk1 foreign key (mem_num) references all_member (mem_num),
  constraint all_member_detail_fk2 foreign key (univ_num) references all_member_univ (univ_num)
+<<<<<<< HEAD
 );
 
 -- 중고 거래
@@ -79,3 +80,4 @@ create table all_secondhand_warn(
  constraint all_secondhand_warn_fk1 foreign key (secondhand_num) references all_secondhand (secondhand_num),
  constraint all_secondhand_warn_fk2 foreign key (mem_num) references all_member (mem_num)
 );
+

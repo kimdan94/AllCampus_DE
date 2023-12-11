@@ -117,5 +117,3 @@ create table all_calculator(
  constraint all_calculator_fk2 foreign key (course_num)
                                   references all_course (course_num)
 );
-
-
