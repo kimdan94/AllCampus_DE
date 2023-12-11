@@ -17,10 +17,10 @@
 			<a href="${pageContext.request.contextPath}/course/course_list.do">시간표</a><!-- 시간표.do -->
 		</li>
 		<li>
-			<a href="#">강의평</a><!-- 강의평.do -->
+			<a href="${pageContext.request.contextPath}/courseeva/courseeva_list.do">강의평</a><!-- 강의평.do -->
 		</li>
 		<li>
-			<a href="#">학점 계산기</a><!-- 학점계산기.do -->
+			<a href="${pageContext.request.contextPath}/calculator/calculator_list.do">학점 계산기</a><!-- 학점계산기.do -->
 		</li>
 		<li>
 			<a href="${pageContext.request.contextPath}/secondhand/secondhand_list.do">책방</a>
