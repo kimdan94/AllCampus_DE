@@ -27,7 +27,7 @@ $(function(){
 <body>
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<div class="content-main align-center">
+	<div class="content-main">
 		<a href="${pageContext.request.contextPath}/main/main.do">
 		<img src="${pageContext.request.contextPath}/images/logo_symbol_231208.png" width="100" height="100">
 		</a>
