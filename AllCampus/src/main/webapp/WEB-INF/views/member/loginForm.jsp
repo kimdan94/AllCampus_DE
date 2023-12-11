@@ -48,7 +48,7 @@ $(function(){
 			</ul>
 			<input type="submit" value="올캠퍼스 로그인">
 			<br>
-			<a href="checkId.do">아이디/비밀번호 찾기</a>
+			<a href="checkIdForm.do">아이디/비밀번호 찾기</a>
 		</form>
 		<p>
 		올캠퍼스가 처음이신가요? 
