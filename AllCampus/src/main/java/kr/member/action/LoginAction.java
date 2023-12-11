@@ -38,7 +38,7 @@ public class LoginAction implements Action{
 			session.setAttribute("user_email", vo.getMem_email());
 			session.setAttribute("user_univ", vo.getUniv_num());
 			
-			//메인으로 리다이렉트
+			//홈으로 리다이렉트
 			return "redirect:/main/home.do";
 		}
 		
