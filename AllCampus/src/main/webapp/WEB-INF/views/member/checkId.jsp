@@ -27,6 +27,8 @@
 				[${user_email}]로 가입된 아이디는 [${user_id}]입니다.<br>
 				<input type="button" value="로그인하기"
 					onclick="location.href='${pageContext.request.contextPath}/member/loginForm.do'">
+				<input type="button" value="비밀번호 찾기"
+					onclick="location.href='${pageContext.request.contextPath}/member/checkPwForm.do'">	
 			</c:if>
 		</div>
 	</div>
