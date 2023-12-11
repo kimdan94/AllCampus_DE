@@ -21,7 +21,7 @@ $(function(){
 			return;
 		} 
 		//서버와 통신
-		$.ajax({
+	 	$.ajax({
 			url:'checkDuplicated.do',
 			type:'post',
 			data:{id:$('#id').val()},
@@ -220,7 +220,7 @@ $(function(){
 				</li>
 				<li>
 					<label for="univNum">학번</label>
-					<input type="text" name="univNum" id="univNum" maxlength="7"
+					<input type="text" name="univNum" id="univNum" maxlength="9"
 						size="25px" placeholder="학번을 정확히 입력해주세요." class="input-check">
 				</li>
 				<li>
