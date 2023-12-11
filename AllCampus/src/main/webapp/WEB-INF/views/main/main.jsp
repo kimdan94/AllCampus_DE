@@ -1,21 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>메인</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<title>올캠퍼스</title>
 </head>
 <body>
-<div class="page-main">
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<div class="content-main">
-		<h4>최신 상품</h4>
-	</div>
-</div>
+<!-- 올캠퍼스 사이트 소개 시작 -->
+<!-- 올캠퍼스 사이트 소개 끝 -->
+<!-- 수정 필요 -->
+<input type="button" value="회원가입"
+	onclick="location.href='${pageContext.request.contextPath}/member/registerUserForm.do'">
+<input type="button" value="로그인하기"
+	onclick="location.href='${pageContext.request.contextPath}/member/loginForm.do'">	
 </body>
 </html>
-
