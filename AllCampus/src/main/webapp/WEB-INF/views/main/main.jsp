@@ -6,9 +6,41 @@
 <meta charset="UTF-8">
 <title>올캠퍼스</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/jy.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
 </head>
 <body>
 <!-- 올캠퍼스 사이트 소개 시작 -->
+<div class="container carousel">
+	<div id="carouselExample" class="carousel slide" 
+	                          data-bs-ride="carousel">
+	     <div class="carousel-indicators">
+	     	<button type="button" data-bs-target="#carouselExample"
+	     	        data-bs-slide-to="0" class="active"></button>
+	     	<button type="button" data-bs-target="#carouselExample"
+	     	        data-bs-slide-to="1"></button>
+	     	<button type="button" data-bs-target="#carouselExample"
+	     	        data-bs-slide-to="2"></button>
+	     </div>
+	     <div class="carousel-inner">
+	     	<!-- 0 이미지 시작 -->
+	     	<div class="carousel-item active">
+	     		<img src="${pageContext.request.contextPath}/images/Jellyfish.jpg">
+	     	</div>
+	     	<!-- 0 이미지 끝 -->
+	     	<!-- 1 이미지 시작 -->
+	     	<div class="carousel-item">
+	     		<img src="${pageContext.request.contextPath}/images/Penguins.jpg">
+	     	</div>
+	     	<!-- 1 이미지 끝 -->
+	     	<!-- 2 이미지 시작 -->
+	     	<div class="carousel-item">
+	     		<img src="${pageContext.request.contextPath}/images/Koala.jpg">
+	     	</div>
+	     	<!-- 2 이미지 끝 -->
+	     </div><!-- end of .carousel-inner -->
+	</div>     
+</div>
 <!-- 올캠퍼스 사이트 소개 끝 -->
 <!-- 수정 필요 -->
 <div>
@@ -28,5 +60,6 @@
 <div>
 	copyright(c) 2023. 올캠퍼스. All rights reserved
 </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" type="text/javascript"></script>
 </body>
 </html>
