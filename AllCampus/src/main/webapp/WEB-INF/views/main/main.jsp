@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>올캠퍼스</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
 </head>
 <body>
 <!-- 올캠퍼스 사이트 소개 시작 -->

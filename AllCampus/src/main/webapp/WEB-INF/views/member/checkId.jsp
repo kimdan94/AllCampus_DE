@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>아이디 찾기 결과 - 올캠퍼스</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
 </head>
 <body>
 <div class="page-main">

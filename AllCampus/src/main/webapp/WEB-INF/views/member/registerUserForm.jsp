@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입 - 올캠퍼스</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(function(){
