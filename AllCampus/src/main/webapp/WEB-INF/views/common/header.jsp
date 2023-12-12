@@ -7,12 +7,10 @@
 	<ul>
 	<c:if test="${!empty user_num}">
 		<li>
-			<a href="${pageContext.request.contextPath}/main/main.do">
+			<a href="${pageContext.request.contextPath}/main/home.do">
 			<img src="${pageContext.request.contextPath}/images/logo_symbol_231208.png" width="60" height="60">
 			</a>
 			올캠퍼스
-			<br>
-			모두대학교
 		</li>
 		<li>
 			<a href="${pageContext.request.contextPath}/course/course_list.do">시간표</a>

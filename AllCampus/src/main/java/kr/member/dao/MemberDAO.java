@@ -18,6 +18,33 @@ public class MemberDAO {
 	}
 	private MemberDAO() {}
 	
+	//학교 header 명시
+	public String checkUniv(int uninNum)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		String univName = null;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "SELECT univ_name FROM all_member_univ WHERE univ_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				univName = rs.getString("univ_name");
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return univName;
+	}
 	//회원가입
 	public void insertMember(MemberVO member)throws Exception{
 		Connection conn = null;
