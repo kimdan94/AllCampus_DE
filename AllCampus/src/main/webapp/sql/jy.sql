@@ -28,6 +28,7 @@ create table all_member_detail(
  mem_major varchar2(100) not null,
  mem_reg_date date default sysdate not null,
  mem_certify date,
+ mem_certifyFilename varchar2(150),
  mem_photo varchar2(150),
  constraint all_member_detail_pk1 primary key (mem_num),
  constraint all_member_detail_fk1 foreign key (mem_num) references all_member (mem_num),
