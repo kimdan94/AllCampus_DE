@@ -13,14 +13,14 @@
 	align-items:center;
 	justify-content:center;
 }
-/* main.jsp
+/* 메인 : main.jsp
 ------------------------------*/
 .carousel{
 	float:left;
 	margin:30px 0 0 50px;
 }
 
-/* loginForm.jsp
+/* 로그인 : loginForm.jsp
 ------------------------------*/
 #login_form{
 	width:300px;
@@ -60,7 +60,7 @@
 	transform:scale(0.85) translateY(-0.5rem) translateX(-0.5rem);
 }
 
-/* checkIdForm.jsp
+/* 아이디 찾기 : checkIdForm.jsp
 ------------------------------*/
 #checkId_form{
 	width:300px;
@@ -99,7 +99,7 @@
 	opacity:0.65;
 	transform:scale(0.85) translateY(-0.5rem) translateX(-0.5rem);
 }
-/* checkPwForm.jsp
+/* 비밀번호 찾기 : checkPwForm.jsp
 ------------------------------*/
 #checkPw_form{
 	width:300px;
