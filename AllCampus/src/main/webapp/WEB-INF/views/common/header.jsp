@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="kr.member.dao.MemberDAO" %>
 <!-- header 시작 -->
 <div id="main_nav">
 	<ul>
@@ -14,13 +15,13 @@
 			모두대학교
 		</li>
 		<li>
-			<a href="${pageContext.request.contextPath}/course/course_list.do">시간표</a><!-- 시간표.do -->
+			<a href="${pageContext.request.contextPath}/course/course_list.do">시간표</a>
 		</li>
 		<li>
-			<a href="${pageContext.request.contextPath}/courseeva/courseeva_list.do">강의평</a><!-- 강의평.do --> 
+			<a href="${pageContext.request.contextPath}/courseeva/courseeva_list.do">강의평</a> 
 		</li>
 		<li>
-			<a href="${pageContext.request.contextPath}/calculator/calculator_list.do">학점 계산기</a><!-- 학점계산기.do -->
+			<a href="${pageContext.request.contextPath}/calculator/calculator_list.do">학점 계산기</a>
 		</li>
 		<li>
 			<a href="${pageContext.request.contextPath}/secondhand/secondhand_list.do">책방</a>
@@ -31,7 +32,7 @@
 		</li>
 		</c:if>
 		<li>
-			<a href="${pageContext.request.contextPath}/mymember/myPage.do">마이페이지<!-- 마이페이지.do -->
+			<a href="${pageContext.request.contextPath}/mymember/myPage.do">
 				<img src="${pageContext.request.contextPath}/images/face.png" width="50" height="50">
 			</a>
 		</li>
