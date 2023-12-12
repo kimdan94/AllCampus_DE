@@ -3,11 +3,11 @@
 /* 전체 레이아웃
 ------------------------------*/
 body {
-	width:1250px;
 	margin:0 auto;
 	background-color: #FFFFFF;
 }
 .page-main{
+	width:1250px;
 	background:#FFFFFF;
 	margin:40px 0;
 	min-height:850px;
@@ -27,9 +27,29 @@ body {
 .header-style {
 	height: 80px;
 	width: 100%;
+	margin:0;
+	padding:2px;
+	vertical-align:middle;
 }
-
-
+.header-style ul{
+	list-style:none;
+}
+.header-style li{
+	display:inline-block;
+	text-align:center;
+	vertical-align:middle;
+	margin-right:130px;
+	margin-bottom:15px;
+}
+.home-logo{
+	float:left;
+}
+.clear{
+	clear:both;
+}
+.myPage{
+	float:right;
+}
 /* 공통 등록, 수정 폼
 ------------------------------*/
 form{
