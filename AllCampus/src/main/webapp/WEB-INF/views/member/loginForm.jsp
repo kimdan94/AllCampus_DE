@@ -28,7 +28,7 @@ $(function(){
 <div class="page-main">
 	<div class="content-main align-center">
 		<a href="${pageContext.request.contextPath}/main/main.do">
-		<img src="${pageContext.request.contextPath}/images/logo_symbol_231208.png" width="100" height="100">
+		<img src="${pageContext.request.contextPath}/images/logo_symbol_231208.png" width="100">
 		</a>
 		<form id="login_form" action="login.do" method="post">
 			<ul>

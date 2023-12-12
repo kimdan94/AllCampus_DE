@@ -57,7 +57,7 @@
 	<a href="#">문의하기</a>
 	<a href="#">이용약관</a>
 </div>
-<div>
+<div class="copyright">
 	copyright(c) 2023. 올캠퍼스. All rights reserved
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" type="text/javascript"></script>

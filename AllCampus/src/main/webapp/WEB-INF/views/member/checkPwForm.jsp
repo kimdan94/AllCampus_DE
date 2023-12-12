@@ -29,7 +29,7 @@ $(function(){
 	<div class="content-main">
 		<div class="align-center">
 			<a href="${pageContext.request.contextPath}/main/main.do">
-			<img src="${pageContext.request.contextPath}/images/logo_symbol_231208.png" width="100" height="100">
+			<img src="${pageContext.request.contextPath}/images/logo_symbol_231208.png" width="100">
 			</a>
 		<div>
 			<a href="checkIdForm.do">아이디 찾기</a>
