@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>회원가입 완료</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/jy.css">
 </head>
 <body>
 <div class="page-main">

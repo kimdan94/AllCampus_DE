@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>비밀번호 찾기 결과 - 올캠퍼스</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/jy.css">
 </head>
 <body>
 <div class="page-main">
