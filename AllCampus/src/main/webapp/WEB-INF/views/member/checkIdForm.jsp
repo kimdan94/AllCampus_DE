@@ -33,11 +33,11 @@ $(function(){
 		</div>
 		<form id="checkId_form" action="checkId.do" method="post">
 			<ul>
-				<li>
-					<label for="email">이메일</label>
+				<li class="floating-label">
 					<input type="email" placeholder="가입된 이메일" 
-						name="email" id="email"
+						name="email" id="email" class="form-input"
 						maxlength="30" autocomplete="off">
+					<label for="email">가입된 이메일</label>	
 				</li>
 			</ul>
 			<input type="submit" value="아이디 찾기">
