@@ -1,0 +1,79 @@
+/* 공통 style */
+
+/* 전체 레이아웃
+------------------------------*/
+body {
+	width:1250px;
+	margin:0 auto;
+	background-color: #FFFFFF;
+}
+.page-main{
+	background:#FFFFFF;
+	margin:40px 0;
+	min-height:850px;
+}
+
+/* 공통 정렬
+------------------------------*/
+.align-center{
+	text-align:center;
+}
+.align-right{
+	text-align:right;
+}
+
+/* 헤더
+------------------------------*/
+.header-style {
+	height: 80px;
+	width: 100%;
+}
+
+
+/* 공통 등록, 수정 폼
+------------------------------*/
+form{
+	width:1000px;
+	margin:0 auto;
+	padding:10px;
+}
+.form-clear {
+	clear:both;
+}
+.form-float {
+	width:130px;
+	float:left;
+}
+ul{
+	list-style:none;
+}
+input{
+	margin-top:4px;
+}
+
+
+/* 버튼
+------------------------------*/
+.all-btn {
+	background-color: #6699cc;
+}
+
+/* a 태그
+------------------------------*/
+a {
+	text-decoration-line: none;
+	color: black;
+}
+a:hover {
+	color: gray;
+}
+
+/* font 크기/색상
+------------------------------*/
+.font-style {
+	color:#000;
+	font-size:10pt;
+}
+h2 {
+	margin: 10px;
+}
