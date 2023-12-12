@@ -25,7 +25,7 @@
 		</li>
 		<c:if test="${!empty user_num && user_auth == 9}">
 		<li>
-			<a href="#">관리</a><!-- 관리자 페이지.do -->
+			<a href="${pageContext.request.contextPath}/admin/adminMenu.do">관리</a><!-- 관리자 페이지.do -->
 		</li>
 		</c:if>
 		<li>
