@@ -13,8 +13,58 @@
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-	<a href="${pageContext.request.contextPath}/board/list.do" style="padding:100px; display:block;">게시판 링크 테스트</a>
+	<div class="myInfo-div">
+		<table>
+			<tr>
+				<td>
+					<!-- 프로필 사진/기본 이미지로 처리 필요 -->
+					<img src="${pageContext.request.contextPath}/images/face.png">
+				</td>
+			</tr>
+			<tr>
+				<!-- 못 읽어오는데 처리 예정 -->
+				<td class="align-center">
+					${user_nick}
+				</td>
+			</tr>
+			<tr>
+				<td class="align-center">
+					${user_id}
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="home-div">
+		<h3>공지사항 <input type="button" value="더보기"
+			onclick="location.href='#'"></h3>
+		<table>
+			<tr>
+			</tr>
+		</table>
+		<h3>FAQ <input type="button" value="더보기"
+			onclick="location.href='#'"></h3>
+		<table>
+			<tr>
+			</tr>
+		</table>
+	</div>
+	<div class="home-div">	
+		<h3>HOT 게시판 <input type="button" value="더보기"
+			onclick="location.href='#'"></h3>
+		<table>
+			<tr>
+			</tr>
+		</table>
+		<h3>자유 게시판 <input type="button" value="더보기"
+			onclick="location.href='${pageContext.request.contextPath}/board/list.do'"></h3>
+		<table>
+			<tr>
+			</tr>
+		</table>
+	</div>
+	<div class="home-end"></div>
 </div>
+
 <div class="page-sub">
 <h2>${univ_name}</h2>
 	<a href="#">이용약관</a>

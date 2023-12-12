@@ -18,9 +18,8 @@ public class HomeAction implements Action{
 		}else if(user_num != null) {
 			//로그인이 된 경우 home.jsp에 출력할 학교명 구하기
 			Integer user_univ = (Integer)session.getAttribute("user_univ");
-			int univ_num = (int)user_univ;
 			MemberDAO dao = MemberDAO.getinstance();
-			String univ_name = dao.checkUniv(univ_num);
+			String univ_name = dao.checkUniv(user_univ);
 			
 			request.setAttribute("univ_name", univ_name);
 		}

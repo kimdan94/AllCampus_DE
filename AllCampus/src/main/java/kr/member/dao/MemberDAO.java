@@ -132,6 +132,8 @@ public class MemberDAO {
 				member.setMem_passwd(rs.getString("mem_passwd"));
 				member.setMem_photo(rs.getString("mem_photo"));
 				member.setMem_email(rs.getString("mem_email"));
+				member.setMem_univNum(rs.getInt("univ_num"));
+				member.setMem_nick(rs.getString("mem_nick"));
 			}
 		}catch(Exception e) {
 			throw new Exception(e);

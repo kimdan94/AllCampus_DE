@@ -23,7 +23,32 @@
 	float:left;
 	margin:30px 0 0 50px;
 }
-
+/* 홈 : home.jsp
+------------------------------*/
+.home-div{
+	width:36%;
+	float:left;
+	padding:5px;
+	margin:70px -390px 0 400px;
+}
+.home-end{
+	clear:both;
+}
+.myInfo-div{
+	width:13%;
+	height:220px;
+	float:left;
+	margin:70px -300px 0 150px;
+	border-radius:10px;
+	background:#f5f7f7;
+}
+.myInfo-div img{
+	width:70px;
+	border-radius:50%;
+	object-fit:cover;
+	object-position:top;
+	margin:20px 42px 10px 42px;
+}
 /* 로그인 : loginForm.jsp
 ------------------------------*/
 #login_form{
