@@ -11,7 +11,7 @@
 <!-- 올캠퍼스 사이트 소개 끝 -->
 <!-- 수정 필요 -->
 <div>
-	<img src="${pageContext.request.contextPath}/images/logo_symbol_231208.png" width="100" height="100">
+	<img src="${pageContext.request.contextPath}/images/logo_symbol_231208.png" width="100">
 </div>
 <input type="button" value="로그인하기"
 	onclick="location.href='${pageContext.request.contextPath}/member/loginForm.do'">	
