@@ -19,7 +19,7 @@ public class MemberDAO {
 	private MemberDAO() {}
 	
 	//학교 header 명시
-	public String checkUniv(int uninNum)throws Exception{
+	public String checkUniv(int univNum)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -33,6 +33,8 @@ public class MemberDAO {
 			sql = "SELECT univ_name FROM all_member_univ WHERE univ_num=?";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, univNum);
 			//SQL문 실행
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
