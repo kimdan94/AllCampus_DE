@@ -1,7 +1,7 @@
 package kr.notice.vo;
 
 import java.sql.Date;
-
+ 
 public class NoticeVO {
 	private int notice_num;
 	private String notice_filename;

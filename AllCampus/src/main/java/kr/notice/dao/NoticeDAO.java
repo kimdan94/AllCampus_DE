@@ -14,7 +14,7 @@ public class NoticeDAO {
 		return instance;
 	}
 	private NoticeDAO() {}
-	
+	 
 	//글 등록
 	public void insertNotice(NoticeVO notice)throws Exception{
 		Connection conn = null;

@@ -31,5 +31,5 @@ create table all_question(
  constraint all_question_pk1 primary key (mem_num),
  constraint all_question_fk1 foreign key (mem_num) references all_question (mem_num)
  );
-
+ 
  create sequence all_question_seq;
