@@ -1,4 +1,4 @@
--- 공지사항
+-- 공지사항 
 create table all_notice(
  notice_num number not null,
  notice_filename varchar2(150) not null,
