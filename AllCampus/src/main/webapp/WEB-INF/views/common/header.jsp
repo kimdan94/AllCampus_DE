@@ -31,7 +31,7 @@
 		</li>
 		</c:if>
 		<li>
-			<a href="${pageContext.request.contextPath}/member/myPage.do"><!-- 마이페이지.do -->
+			<a href="${pageContext.request.contextPath}/mymember/myPage.do">마이페이지<!-- 마이페이지.do -->
 				<img src="${pageContext.request.contextPath}/images/face.png" width="50" height="50">
 			</a>
 		</li>
