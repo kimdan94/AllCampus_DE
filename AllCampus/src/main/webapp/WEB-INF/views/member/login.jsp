@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/jy.css">
 </head>
 <body>
-<div class="page-main">
+<div class="page-main align-center">
 	<div class="content-main">
 		<div class="result-display">
 			<div class="align-center">

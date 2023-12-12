@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/jy.css">
 </head>
 <body>
-<div class="page-main">
+<div class="page-main align-center">
 	<a href="${pageContext.request.contextPath}/main/main.do">
 		<img src="${pageContext.request.contextPath}/images/logo_symbol_231208.png" width="100">
 	</a>
