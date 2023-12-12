@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 
 import kr.notice.vo.NoticeVO;
 import kr.util.DBUtil;
-
+  
 public class NoticeDAO {
 	//싱글턴 패턴
 	private static NoticeDAO instance = new NoticeDAO();
