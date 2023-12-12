@@ -11,7 +11,7 @@ import kr.controller.Action;
 import kr.notice.dao.NoticeDAO;
 import kr.notice.vo.NoticeVO;
 import kr.util.FileUtil;
-
+  
 public class WriteAction implements Action{
  
 	@Override
