@@ -13,6 +13,10 @@
 	align-items:center;
 	justify-content:center;
 }
+.page-sub{
+	text-align:center;
+	font-size:12px;
+}
 /* 메인 : main.jsp
 ------------------------------*/
 .carousel{

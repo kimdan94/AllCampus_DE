@@ -17,11 +17,11 @@
 		<a href="${pageContext.request.contextPath}/board/list.do" style="padding:100px; display:block;">게시판 링크 테스트</a>
 	</div>
 </div>
-<div>
+<div class="page-sub">
 	<a href="#">이용약관</a>
-</div>
-<div class="copyright">
-	copyright(c) 2023. 올캠퍼스. All rights reserved
+	<div class="copyright">
+		copyright(c) 2023. 올캠퍼스. All rights reserved
+	</div>
 </div>
 </body>
 </html>
