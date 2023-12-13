@@ -7,11 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>마이페이지</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript">
-
-</script>
 </head>
 <body>
 <div class="page-main">
@@ -20,17 +17,16 @@
 		<h3>내 정보</h3>
 		<ul>
 			<li>
-				<c:if test="${empty member.mem_photo}">
+				<c:if test="${empty mymember.mem_photo}">
 				<img src="${pageContext.request.contextPath}/images/face.jpeg"
 				width="100" height="100" class="my-photo">
 				</c:if>
-				<c:if test="${!empty member.mem_photo}">
-				<img src="${pageContext.request.contextPath}/upload/${member.mem_photo}"
+				<c:if test="${!empty mymember.mem_photo}">
+				<img src="${pageContext.request.contextPath}/upload/${mymember.mem_photo}"
 				width="100" height="100" class="my-photo">
 				</c:if>
 				<div class="my-infor">
 				${member.mem_name} / ${member.mem_nick} <br>
-				${member.univ_name}<br>
 				${member.mem_major}
 				</div>
 			</li>
@@ -42,8 +38,8 @@
 			 <h2>계정</h2>
 			 아이디 ${member.mem_id}<p>
 			 <a href="${pageContext.request.contextPath}/mymember/certifyForm.do">학교 인증</a><p>
-			 <a href="${pageContext.request.contextPath}/mymember/modifyMyPage.do">내 정보 변경</a><p>
-			 <a href="${pageContext.request.contextPath}/mymember/modifyPassword.do">비밀번호 변경</a>
+			 <a href="${pageContext.request.contextPath}/mymember/modifyUserForm.do">내 정보 변경</a><p>
+			 <a href="${pageContext.request.contextPath}/mymember/modifyPasswordForm.do">비밀번호 변경</a>
 			</div>
 		
 			<div>
@@ -55,7 +51,7 @@
 			
 			<div>
 			<h2>기타</h2>
-			<a href="${pageContext.request.contextPath}/">회원탈퇴</a><p>
+			<a href="${pageContext.request.contextPath}/mymember/deleteForm.do">회원탈퇴</a><p>
 			<a href="${pageContext.request.contextPath}/mymember/termForm.do">서비스 이용 약관</a>
 			</div>
 			</ul>
