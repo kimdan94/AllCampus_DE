@@ -12,11 +12,123 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+<c:if test="${user_auth >= 3}">
 <div class="page-main">
-	<a href="${pageContext.request.contextPath}/board/list.do" style="padding:100px; display:block;">게시판 링크 테스트</a>
+<h3 class="univName-style">[${univ_name}]</h3>
+	<div class="myInfo-div">
+		<table>
+			<tr>
+				<td>
+					<c:if test="${empty user_photo}">
+						<img src="${pageContext.request.contextPath}/images/face.png">
+					</c:if>
+					<c:if test="${!empty user_photo}">
+						<img src="${pageContext.request.contextPath}/upload/${user_photo}">
+					</c:if>
+				</td>
+			</tr>
+			<tr>
+				<td class="align-center">
+					<b>${user_nick}</b>
+				</td>
+			</tr>
+			<tr>
+				<td class="align-center" style="font-size:12px;">
+					${user_id}
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="home-div">
+		<h3>공지사항 <input type="button" value="더보기"
+			onclick="location.href='#'"></h3>
+		<table>
+			<tr>
+			</tr>
+		</table>
+		<h3>FAQ <input type="button" value="더보기"
+			onclick="location.href='#'"></h3>
+		<table>
+			<tr>
+			</tr>
+		</table>
+	</div>
+	<div class="home-div">	
+		<h3>HOT 게시판 <input type="button" value="더보기"
+			onclick="location.href='#'"></h3>
+		<table>
+			<tr>
+			</tr>
+		</table>
+		<h3>자유 게시판 <input type="button" value="더보기"
+			onclick="location.href='${pageContext.request.contextPath}/board/list.do'"></h3>
+		<table>
+			<tr>
+			</tr>
+		</table>
+	</div>
+	<div class="home-end"></div>
 </div>
+</c:if>
+<c:if test="${user_auth < 3}">
+<div class="page-main">
+<h3 class="univName-style">[${univ_name}]</h3>
+	<div class="myInfo-div">
+		<table>
+			<tr>
+				<td>
+					<c:if test="${empty user_photo}">
+						<img src="${pageContext.request.contextPath}/images/face.png">
+					</c:if>
+					<c:if test="${!empty user_photo}">
+						<img src="${pageContext.request.contextPath}/upload/${user_photo}">
+					</c:if>
+				</td>
+			</tr>
+			<tr>
+				<td class="align-center">
+					<b>${user_nick}</b>
+				</td>
+			</tr>
+			<tr>
+				<td class="align-center" style="font-size:12px;">
+					${user_id}
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="home-div">
+		<h3>공지사항 <input type="button" value="더보기"
+			onclick="location.href='#'"></h3>
+		<table>
+			<tr>
+			</tr>
+		</table>
+		<h3>FAQ <input type="button" value="더보기"
+			onclick="location.href='#'"></h3>
+		<table>
+			<tr>
+			</tr>
+		</table>
+	</div>
+	<div class="home-div">	
+		<h3>HOT 게시판</h3>
+		<div class="align-center">
+			학교 인증을 한 학생들만 이용할 수 있어요!<br>
+			<input type="button" value="학교 인증"
+				onclick="location.href='${pageContext.request.contextPath}/mymember/certifyForm.do'">
+		</div>	
+		<h3>자유 게시판</h3>
+		<div class="align-center">
+			학교 인증을 한 학생들만 이용할 수 있어요!<br>
+			<input type="button" value="학교 인증"
+				onclick="location.href='${pageContext.request.contextPath}/mymember/certifyForm.do'">
+		</div>	
+	</div>
+	<div class="home-end"></div>
+</div>
+</c:if>
 <div class="page-sub">
-<h2>${univ_name}</h2>
 	<a href="#">이용약관</a>
 	<div class="copyright">
 		copyright(c) 2023. 올캠퍼스. All rights reserved
@@ -24,5 +136,4 @@
 </div>
 </body>
 </html>
-
  
