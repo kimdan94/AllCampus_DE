@@ -43,7 +43,7 @@ $(function(){
 			<input type="submit" value="아이디 찾기">
 		</form>
 		<p>
-		올캠퍼스가 처음이신가요?
+		올캠퍼스가 처음이신가요? 
 		<a href="registerUserForm.do">회원가입</a>
 	</div>
 <div class="page-sub">
