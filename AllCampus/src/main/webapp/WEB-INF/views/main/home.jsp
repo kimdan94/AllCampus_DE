@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,8 +44,12 @@
 		<h3>공지사항 <input type="button" value="더보기"
 			onclick="location.href='#'"></h3>
 		<table>
+			<c:forEach var="notice" items="${noticeList}">
 			<tr>
+				<td><a href="${pageContext.request.contextPath}/notice/detail.do?notice_num=${notice.notice_num}">${notice.notice_title}</a></td>
+				<td><fmt:formatDate value="${notice.notice_reg_date}" pattern="MM/dd HH:mm"/></td>
 			</tr>
+			</c:forEach>
 		</table>
 		<h3>FAQ <input type="button" value="더보기"
 			onclick="location.href='#'"></h3>
@@ -63,8 +68,12 @@
 		<h3>자유 게시판 <input type="button" value="더보기"
 			onclick="location.href='${pageContext.request.contextPath}/board/list.do'"></h3>
 		<table>
+			<c:forEach var="board" items="${boardList}">
 			<tr>
+				<td><a href="${pageContext.request.contextPath}/board/detail.do?board_num=${board.board_num}">${board.board_title}</a></td>
+				<td><fmt:formatDate value="${board.board_reg_date}" pattern="MM/dd HH:mm"/></td>
 			</tr>
+			</c:forEach>	
 		</table>
 	</div>
 	<div class="home-end"></div>

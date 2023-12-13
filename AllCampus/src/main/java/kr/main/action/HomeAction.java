@@ -1,11 +1,16 @@
 package kr.main.action;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import kr.board.vo.BoardVO;
 import kr.controller.Action;
+import kr.main.dao.HomeDAO;
 import kr.member.dao.MemberDAO;
+import kr.notice.vo.NoticeVO;
 
 public class HomeAction implements Action{
 
@@ -24,6 +29,20 @@ public class HomeAction implements Action{
 		String univ_name = dao.checkUniv(univ_num);
 		
 		request.setAttribute("univ_name", univ_name);
+		
+
+		HomeDAO homeDao = HomeDAO.getInstance();
+		//공지사항 목록
+		List<NoticeVO> noticeList = homeDao.getListNotice(1, 5);
+		request.setAttribute("noticeList", noticeList);
+		
+		//FAQ 목록
+		
+		//HOT게시판 목록
+		
+		//자유게시판 목록
+		List<BoardVO> boardList = homeDao.getListBoard(1, 5);
+		request.setAttribute("boardList", boardList);
 
 		//JSP 경로 반환
 		return "/WEB-INF/views/main/home.jsp";
