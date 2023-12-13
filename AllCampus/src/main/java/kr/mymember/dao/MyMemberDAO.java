@@ -87,6 +87,7 @@ public class MyMemberDAO {
 	
 	//닉네임 중복 체크
 	public MyMemberVO checkMember (String mem_nick)throws Exception{
+		System.out.println(mem_nick);
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>이용약관</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>

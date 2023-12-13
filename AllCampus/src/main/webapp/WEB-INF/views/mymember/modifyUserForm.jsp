@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>내 정보 변경</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -19,9 +19,9 @@ $(function(){
 		}
 		//서버와 통신
 		$.ajax({
-			url:'checkDuplicatedNick.do',
+			url:'modifyMyPage.do',
 			type:'post',
-			data:{id:$('#mem_nick').val()},
+			data:{mem_nick:$('#mem_nick').val()},
 			dataType:'json',
 			success:function(param){
 				if(param.result == 'nickNotFound'){
