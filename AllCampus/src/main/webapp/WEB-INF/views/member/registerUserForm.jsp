@@ -204,103 +204,101 @@ $(function(){
 </head>
 <body>
 <div class="page-main">
-	<div class="content-main">
-		<img src="${pageContext.request.contextPath}/images/logo_typo_231208.png" width="250">
-		<hr size="1" noshade="noshade" width="100%">
-		<form id="register_form" action="registerUser.do" method="post">
-			<ul>
-				<li>
-					<label for="univ">학교 선택</label>
-					<select name="univ" size="1">
-						<c:forEach var="univName" items="${list}">
-							<option value="${univName.univ_num}">${univName.univ_name}</option>
-						</c:forEach>
-					</select>
-					<label for="major">학과 입력</label>
-					<input type="text" name="major" id="major" maxlength="33" class="input-check"
-						size="40px" autocomplete="off" placeholder="하나만 입력해주세요.">
-				</li>
-				<li>
-					<label for="univNum">학번</label>
-					<input type="text" name="univNum" id="univNum" maxlength="9"
-						size="25px" placeholder="학번을 정확히 입력해주세요." class="input-check">
-				</li>
-				<li>
-					<label for="name">이름</label>
-					<input type="text" name="name" id="name" maxlength="6" class="input-check">
-				</li>
-				<li>
-					<label for="id">아이디</label>
-					<input type="text" name="id" id="id" maxlength="12" class="input-check">
-					<input type="button" value="아이디 중복 체크" id="id_check">
-					<div class="form-notice">* 4~12자 영문, 숫자</div>	
-				</li>
-				<li>
-					<label for="passwd">비밀번호</label>
-					<input type="password" name="passwd" id="passwd" 
-						size="25px" maxlength="20" class="input-check">
-					<div class="form-notice">* 8~20자 영문, 숫자</div>	
-				</li>
-				<li>
-					<label for="cpasswd">비밀번호 확인</label>
-					<input type="password" name="cpasswd" id="cpasswd" maxlength="20" 
-						size="25px" placeholder = "비밀번호를 재입력해주세요." class="input-check">
-				</li>
-				<li>
-					<label for="email">이메일</label>
-					<input type="email" name="email" id="email" maxlength="30" class="input-check">
-					<input type="button" value="이메일 중복 체크" id="email_check">
-				</li>
-				<li>
-					<label for="nick">닉네임</label>
-					<input type="text" name="nick" id="nick" maxlength="12" class="input-check">
-					<input type="button" value="닉네임 중복 체크" id="nick_check">
-					<div class="form-notice">* 4~12자 한글, 영문, 숫자</div>	
-				</li>
-				<li>
-					<label for="agree">약관 동의 (필수)</label>
-					<input type="checkbox" value="동의" 
-						name="agree" id="check_agree">아래 약관에 모두 동의합니다.
-					<div style="overflow:auto;width:400px;height:150px;border:1px solid black;" >
-						<b>수집하는 개인정보의 항목</b>
-						<br>
-						회사는 서비스 제공을 위해, 회원가입 시점에 다음에 해당하는 개인정보를 수집합니다.<br>
-						1. 학교, 아이디, 비밀번호, 이메일, 이름, 입학연도, 닉네임, 학과<br>
-						<b>수집한 개인정보의 처리 목적</b>
-						<br>
-						회원가입 시점에 수집된 개인정보는 다음의 목적에 한해 이용됩니다.<br>
-						1. 가입 및 탈퇴 의사 확인, 회원 식별 및 관리, 재학생 및 졸업생 확인<br>
-						2. 개인정보 및 관심에 기반한 이용자 친화적 서비스 제공 및 기존, 신규 시스템 개발, 유지, 개선<br>
-						3. 불법, 약관 위반 게시물 게시와 같은 부정행위 방지를 위한 운영 시스템 개발, 유지, 개선<br>
-						4. 문의, 제휴 문의, 광고 문의, 게시 요청, 교내단체 게시판 개설 요청 관련 응대 및 처리<br>
-						5. 회원 관리, 서비스 운영 및 유지보수를 위한 통계 자료 도출<br>
-						<b>수집한 개인정보의 보관 및 파기</b>
-						<br>
-						회사는 서비스를 제공하는 동안 개인정보 처리방침 및 관련법에 의거하여 회원의 개인정보를 지속적으로 관리 및 보관합니다.<br>
-						1. 회원 탈퇴 시 ID, 닉네임을 제외한 개인정보는 즉시 파기합니다. (ID, 닉네임 : 3년간 보관)<br>
-						<b>부모님 친구 등 타인의 명의로 가입할 수 없습니다.</b>
-						<br>
-						올캠퍼스는 철저한 학교 인증과 안전한 익명 커뮤니티를 제공하기 위해,<br>
-						가입 시 본인 인증 수단을 통해 본인 여부를 확인하고, 커뮤니티 이용 시 증명 자료 제출을 통해<br>
-						재학 여부를 확인합니다. 두 정보가 일치하지 않을 경우 서비스를 이용하실 수 없습니다.
-						<br>
-						<b>만 14세 이상입니다.</b>
-						<br>
-						올캠퍼스는 국내 대학생을 위한 서비스이며, 본인 인증을 통해 만 14세 이상만 가입할 수 있습니다.
-					</div>
-				</li>
-			</ul>
-			<input type="submit" value="올캠퍼스 가입하기">
-			<input type="button" value="처음으로"
-				onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
-		</form>
-	</div>
-	<div class="page-sub">
-	<a href="#">문의하기</a>
-	<a href="#">이용약관</a>
+	<img src="${pageContext.request.contextPath}/images/logo_typo_231208.png" width="250">
+	<hr size="1" noshade="noshade" width="100%">
+	<form id="register_form" action="registerUser.do" method="post">
+		<ul>
+			<li>
+				<label for="univ">학교 선택</label>
+				<select name="univ" size="1">
+					<c:forEach var="univName" items="${list}">
+						<option value="${univName.univ_num}">${univName.univ_name}</option>
+					</c:forEach>
+				</select>
+				<label for="major">학과 입력</label>
+				<input type="text" name="major" id="major" maxlength="33" class="input-check"
+					size="40px" autocomplete="off" placeholder="하나만 입력해주세요.">
+			</li>
+			<li>
+				<label for="univNum">학번</label>
+				<input type="text" name="univNum" id="univNum" maxlength="9"
+					size="25px" placeholder="학번을 정확히 입력해주세요." class="input-check">
+			</li>
+			<li>
+				<label for="name">이름</label>
+				<input type="text" name="name" id="name" maxlength="6" class="input-check">
+			</li>
+			<li>
+				<label for="id">아이디</label>
+				<input type="text" name="id" id="id" maxlength="12" class="input-check">
+				<input type="button" value="아이디 중복 체크" id="id_check" class="check-btn">
+				<div class="form-notice">* 4~12자 영문, 숫자</div>	
+			</li>
+			<li>
+				<label for="passwd">비밀번호</label>
+				<input type="password" name="passwd" id="passwd" 
+					size="25px" maxlength="20" class="input-check">
+				<div class="form-notice">* 8~20자 영문, 숫자</div>	
+			</li>
+			<li>
+				<label for="cpasswd">비밀번호 확인</label>
+				<input type="password" name="cpasswd" id="cpasswd" maxlength="20" 
+					size="25px" placeholder = "비밀번호를 재입력해주세요." class="input-check">
+			</li>
+			<li>
+				<label for="email">이메일</label>
+				<input type="email" name="email" id="email" maxlength="30" class="input-check">
+				<input type="button" value="이메일 중복 체크" id="email_check" class="check-btn">
+			</li>
+			<li>
+				<label for="nick">닉네임</label>
+				<input type="text" name="nick" id="nick" maxlength="12" class="input-check">
+				<input type="button" value="닉네임 중복 체크" id="nick_check" class="check-btn">
+				<div class="form-notice">* 4~12자 한글, 영문, 숫자</div>	
+			</li>
+			<li>
+				<label for="agree">약관 동의 (필수)</label>
+				<input type="checkbox" value="동의" 
+					name="agree" id="check_agree">아래 약관에 모두 동의합니다.
+				<div class="agree-div">
+					<b>수집하는 개인정보의 항목</b>
+					<br>
+					회사는 서비스 제공을 위해, 회원가입 시점에 다음에 해당하는 개인정보를 수집합니다.<br>
+					1. 학교, 아이디, 비밀번호, 이메일, 이름, 입학연도, 닉네임, 학과<br>
+					<b>수집한 개인정보의 처리 목적</b>
+					<br>
+					회원가입 시점에 수집된 개인정보는 다음의 목적에 한해 이용됩니다.<br>
+					1. 가입 및 탈퇴 의사 확인, 회원 식별 및 관리, 재학생 및 졸업생 확인<br>
+					2. 개인정보 및 관심에 기반한 이용자 친화적 서비스 제공 및 기존, 신규 시스템 개발, 유지, 개선<br>
+					3. 불법, 약관 위반 게시물 게시와 같은 부정행위 방지를 위한 운영 시스템 개발, 유지, 개선<br>
+					4. 문의, 제휴 문의, 광고 문의, 게시 요청, 교내단체 게시판 개설 요청 관련 응대 및 처리<br>
+					5. 회원 관리, 서비스 운영 및 유지보수를 위한 통계 자료 도출<br>
+					<b>수집한 개인정보의 보관 및 파기</b>
+					<br>
+					회사는 서비스를 제공하는 동안 개인정보 처리방침 및 관련법에 의거하여 회원의 개인정보를 지속적으로 관리 및 보관합니다.<br>
+					1. 회원 탈퇴 시 ID, 닉네임을 제외한 개인정보는 즉시 파기합니다. (ID, 닉네임 : 3년간 보관)<br>
+					<b>부모님 친구 등 타인의 명의로 가입할 수 없습니다.</b>
+					<br>
+					올캠퍼스는 철저한 학교 인증과 안전한 익명 커뮤니티를 제공하기 위해,<br>
+					가입 시 본인 인증 수단을 통해 본인 여부를 확인하고, 커뮤니티 이용 시 증명 자료 제출을 통해<br>
+					재학 여부를 확인합니다. 두 정보가 일치하지 않을 경우 서비스를 이용하실 수 없습니다.
+					<br>
+					<b>만 14세 이상입니다.</b>
+					<br>
+					올캠퍼스는 국내 대학생을 위한 서비스이며, 본인 인증을 통해 만 14세 이상만 가입할 수 있습니다.
+				</div>
+			</li>
+		</ul>
+		<input type="submit" value="올캠퍼스 가입하기" class="input-button2" style="font-size:15px;">
+		<input type="button" value="처음으로" class="input-button1" style="font-size:15px;"
+			onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
+	</form>
+	<div style="margin-bottom:3px;">
+	<a href="#" class="bottom-style">문의하기</a>
+	<a href="#" class="bottom-style">이용약관</a>
 	<br>
 	<div class="copyright">copyright(c) 2023. 올캠퍼스. All rights reserved</div>
-</div>
+	</div>
 </div>
 </body>
 </html>

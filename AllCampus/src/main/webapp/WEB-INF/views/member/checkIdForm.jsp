@@ -21,15 +21,15 @@ $(function(){
 </script>
 </head>
 <body>
-<div class="page-main">
+<div class="page-main align-center">
 	<div class="member-style">
-		<div class="align-center">
+		<div>
 			<a href="${pageContext.request.contextPath}/main/main.do">
 			<img src="${pageContext.request.contextPath}/images/logo_symbol_231208.png" width="100">
 			</a>
 		<div>
-			<a href="checkIdForm.do">아이디 찾기</a>
-			<a href="checkPwForm.do">비밀번호 찾기</a>
+			<a href="checkIdForm.do" class="find-link">아이디 찾기</a>
+			<a href="checkPwForm.do" class="find-link">비밀번호 찾기</a>	
 		</div>
 		<form id="checkId_form" action="checkId.do" method="post">
 			<ul>
@@ -40,15 +40,15 @@ $(function(){
 					<label for="email">가입된 이메일</label>	
 				</li>
 			</ul>
-			<input type="submit" value="아이디 찾기">
+			<input type="submit" value="아이디 찾기" class="input-button2" style="font-size:15px;">
 		</form>
 		<p>
 		올캠퍼스가 처음이신가요? 
 		<a href="registerUserForm.do">회원가입</a>
 	</div>
-<div class="page-sub">
-	<a href="#">문의하기</a>
-	<a href="#">이용약관</a>
+<div style="margin-bottom:3px;">
+	<a href="#" class="bottom-style">문의하기</a>
+	<a href="#" class="bottom-style">이용약관</a>
 	<br>
 	<div class="copyright">copyright(c) 2023. 올캠퍼스. All rights reserved</div>
 </div>

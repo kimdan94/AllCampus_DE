@@ -46,16 +46,16 @@ $(function(){
 				<label for="passwd">비밀번호</label>
 			</li> 
 		</ul>
-		<input type="submit" value="올캠퍼스 로그인">
+		<input type="submit" value="올캠퍼스 로그인" class="input-button2" style="font-size:15px;">
 		<br>
-		<a href="checkIdForm.do">아이디/비밀번호 찾기</a>
+		<a href="checkIdForm.do" class="a-style">아이디/비밀번호 찾기</a>
 	</form>
 	<p>
 	올캠퍼스가 처음이신가요? 
 	<a href="registerUserForm.do">회원가입</a>
-<div class="page-sub">
-	<a href="#">문의하기</a>
-	<a href="#">이용약관</a>
+<div style="margin-bottom:3px;">
+	<a href="#" class="bottom-style">문의하기</a>
+	<a href="#" class="bottom-style">이용약관</a>
 	<br>
 	<div class="copyright">copyright(c) 2023. 올캠퍼스. All rights reserved</div>
 </div>
