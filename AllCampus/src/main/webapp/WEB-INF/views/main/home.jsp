@@ -41,21 +41,21 @@
 		</table>
 	</div>
 	<div class="home-div">
-		<div class="list-div">
 		<h3>공지사항 <input type="button" value="더보기"
 			onclick="location.href='#'"></h3>
+		<div class="list-div">
 		<table>
 			<c:forEach var="notice" items="${noticeList}">
 			<tr>
 				<td><a href="${pageContext.request.contextPath}/notice/detail.do?notice_num=${notice.notice_num}">${notice.notice_title}</a></td>
-				<td><fmt:formatDate value="${notice.notice_reg_date}" pattern="MM/dd HH:mm"/></td>
+				<td class="list-margin"><fmt:formatDate value="${notice.notice_reg_date}" pattern="MM/dd HH:mm"/></td>
 			</tr>
 			</c:forEach>
 		</table>
 		</div>
-		<div class="list-div">
 		<h3>FAQ <input type="button" value="더보기"
 			onclick="location.href='#'"></h3>
+		<div class="list-div">
 		<table>
 			<tr>
 			</tr>
@@ -63,22 +63,22 @@
 		</div>
 	</div>
 	<div class="home-div">
-		<div class="list-div">	
 		<h3>HOT 게시판 <input type="button" value="더보기"
 			onclick="location.href='#'"></h3>
+		<div class="list-div">
 		<table>
 			<tr>
 			</tr>
 		</table>
 		</div>
-		<div class="list-div">
 		<h3>자유 게시판 <input type="button" value="더보기"
 			onclick="location.href='${pageContext.request.contextPath}/board/list.do'"></h3>
+		<div class="list-div">
 		<table>
 			<c:forEach var="board" items="${boardList}">
 			<tr>
 				<td><a href="${pageContext.request.contextPath}/board/detail.do?board_num=${board.board_num}">${board.board_title}</a></td>
-				<td><fmt:formatDate value="${board.board_reg_date}" pattern="MM/dd HH:mm"/></td>
+				<td class="list-margin"><fmt:formatDate value="${board.board_reg_date}" pattern="MM/dd HH:mm"/></td>
 			</tr>
 			</c:forEach>	
 		</table>

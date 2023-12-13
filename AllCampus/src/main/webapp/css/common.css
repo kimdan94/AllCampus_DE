@@ -25,13 +25,11 @@ body {
 /* 헤더
 ------------------------------*/
 .header-style {
-	display:flex;
 	height: 80px;
 	width: 1750px;
 	margin:0;
-	justify-content:space-around;
+	padding:2px;
 	vertical-align:middle;
-	border:1px solid black;
 }
 .header-style ul{
 	list-style:none;
@@ -40,10 +38,18 @@ body {
 	display:inline-block;
 	text-align:center;
 	vertical-align:middle;
-	margin-left:80px;	
+	margin-left:30px;
+	margin-right:83px;
+	margin-bottom:15px;
 }
-#logo_style{
-	margin-left:-10px;
+.home-logo{
+	float:left;
+}
+.clear{
+	clear:both;
+}
+.myPage{
+	float:right;
 }
 /* 공통 등록, 수정 폼
 ------------------------------*/

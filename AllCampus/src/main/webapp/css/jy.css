@@ -38,7 +38,7 @@
 	width:13%;
 	height:200px;
 	float:left;
-	margin:70px -300px 0 270px;
+	margin:70px -300px 0 230px;
 	border-radius:10px;
 	background:#f5f7f7;
 }
@@ -50,12 +50,19 @@
 	margin:25px 42px 10px 42px;
 }
 .univName-style{
-	margin:0 0 -50px 270px;
+	margin:0 0 -50px 230px;
 }
 .list-div{
 	height:200px;
 	background:#f5f7f7;
 	border-radius:15px;
+}
+.list-div table{
+	padding:35px 0 0 80px;
+}
+.list-margin{
+	padding-left:30px;
+	font-size:12px;
 }
 /* 로그인 : loginForm.jsp
 ------------------------------*/
