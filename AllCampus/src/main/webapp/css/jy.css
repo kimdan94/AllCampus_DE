@@ -49,6 +49,9 @@
 	object-position:top;
 	margin:20px 42px 10px 42px;
 }
+.univName-style{
+	margin:0 0 -50px 150px;
+}
 /* 로그인 : loginForm.jsp
 ------------------------------*/
 #login_form{

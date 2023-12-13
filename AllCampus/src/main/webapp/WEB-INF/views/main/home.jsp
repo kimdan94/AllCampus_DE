@@ -13,6 +13,7 @@
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
+<h3 class="univName-style">[${univ_name}]</h3>
 	<div class="myInfo-div">
 		<table>
 			<tr>
@@ -22,7 +23,6 @@
 				</td>
 			</tr>
 			<tr>
-				<!-- 못 읽어오는데 처리 예정 -->
 				<td class="align-center">
 					${user_nick}
 				</td>
@@ -66,7 +66,6 @@
 </div>
 
 <div class="page-sub">
-<h2>${univ_name}</h2>
 	<a href="#">이용약관</a>
 	<div class="copyright">
 		copyright(c) 2023. 올캠퍼스. All rights reserved
