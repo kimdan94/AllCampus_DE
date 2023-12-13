@@ -65,7 +65,7 @@ public class HomeDAO {
 	}
 	//FAQ 미리보기 - FAQ도 추후 작업 예정(자바빈 필요)
 	
-	//HOT게시판 미리보기 - hot은 추후 작업 예정(좋아요 작업 처리 완벽히 완료 시에 처리)
+	//HOT게시판 미리보기 - hot은 추후 작업 예정(좋아요 작업 완료 시에 처리)
 	
 	//자유게시판 미리보기
 	public List<BoardVO> getListBoard(int start, int end)throws Exception{

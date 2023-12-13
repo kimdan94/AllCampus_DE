@@ -123,13 +123,13 @@
 	<div class="home-div">	
 		<h3>HOT 게시판</h3>
 		<div class="align-center">
-			학교 인증을 한 학생들만 이용할 수 있어요!<br>
+			학교 인증을 마친 학생들만 이용할 수 있어요!<br>
 			<input type="button" value="학교 인증"
 				onclick="location.href='${pageContext.request.contextPath}/mymember/certifyForm.do'">
 		</div>	
 		<h3>자유 게시판</h3>
 		<div class="align-center">
-			학교 인증을 한 학생들만 이용할 수 있어요!<br>
+			학교 인증을 마친 학생들만 이용할 수 있어요!<br>
 			<input type="button" value="학교 인증"
 				onclick="location.href='${pageContext.request.contextPath}/mymember/certifyForm.do'">
 		</div>	
