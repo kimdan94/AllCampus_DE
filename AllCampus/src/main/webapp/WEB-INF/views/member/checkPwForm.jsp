@@ -27,7 +27,7 @@ $(function(){
 </head>
 <body>
 <div class="page-main">
-	<div class="content-main">
+	<div class="member-style">
 		<div class="align-center">
 			<a href="${pageContext.request.contextPath}/main/main.do">
 			<img src="${pageContext.request.contextPath}/images/logo_symbol_231208.png" width="100">
@@ -57,12 +57,12 @@ $(function(){
 		올캠퍼스가 처음이신가요?
 		<a href="registerUserForm.do">회원가입</a>
 	</div>
-</div>
 <div class="page-sub">
 	<a href="#">문의하기</a>
 	<a href="#">이용약관</a>
 	<br>
 	<div class="copyright">copyright(c) 2023. 올캠퍼스. All rights reserved</div>
+</div>
 </div>
 </div>
 </body>

@@ -13,7 +13,7 @@
 </head>
 <body>
 <div class="page-main align-center">
-	<div class="content-main">
+	<div class="member-style">
 		<div class="result-display">
 			<div class="align-center">
 				이용수칙 위반으로 정지된 계정입니다.<br>
