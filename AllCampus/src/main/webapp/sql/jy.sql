@@ -38,6 +38,7 @@ create table all_member_detail(
 -- 중고 거래
 create table all_secondhand(
  secondhand_num number not null,
+ mem_num number not null,
  secondhand_name varchar2(120) not null,
  secondhand_writer varchar2(60) not null,
  secondhand_company varchar2(30) not null,
@@ -50,9 +51,10 @@ create table all_secondhand(
  secondhand_complaint number(9) default 0 not null,
  secondhand_show number(1) default 2 not null, -- 표시 여부 : 1 미표시, 2 표시
  secondhand_reg_date date default sysdate not null,
- secondhand_modifydae date,
+ secondhand_modifydate date,
  secondhand_sell number(1) default 2 not null, -- 표시 여부 : 1 미표시, 2 표시
- constraint all_secondhand_pk1 primary key (secondhand_num)
+ constraint all_secondhand_pk1 primary key (secondhand_num),
+ constraint all_secondhand_fk1 foreign key (mem_num) references all_member (mem_num)
 );
 
 create sequence all_secondhand_seq;
