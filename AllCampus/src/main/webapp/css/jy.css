@@ -36,7 +36,7 @@
 }
 .myInfo-div{
 	width:13%;
-	height:220px;
+	height:200px;
 	float:left;
 	margin:70px -300px 0 150px;
 	border-radius:10px;
@@ -47,7 +47,7 @@
 	border-radius:50%;
 	object-fit:cover;
 	object-position:top;
-	margin:20px 42px 10px 42px;
+	margin:25px 42px 10px 42px;
 }
 .univName-style{
 	margin:0 0 -50px 150px;

@@ -18,17 +18,21 @@
 		<table>
 			<tr>
 				<td>
-					<!-- 프로필 사진/기본 이미지로 처리 필요 -->
-					<img src="${pageContext.request.contextPath}/images/face.png">
+					<c:if test="${empty user_photo}">
+						<img src="${pageContext.request.contextPath}/images/face.png">
+					</c:if>
+					<c:if test="${!empty user_photo}">
+						<img src="${pageContext.request.contextPath}/upload/${user_photo}">
+					</c:if>
 				</td>
 			</tr>
 			<tr>
 				<td class="align-center">
-					${user_nick}
+					<b>${user_nick}</b>
 				</td>
 			</tr>
 			<tr>
-				<td class="align-center">
+				<td class="align-center" style="font-size:12px;">
 					${user_id}
 				</td>
 			</tr>
