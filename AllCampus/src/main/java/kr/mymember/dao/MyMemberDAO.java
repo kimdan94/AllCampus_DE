@@ -137,7 +137,7 @@ public class MyMemberDAO {
 			if(rs.next()) {
 				member = new MyMemberVO();
 				member.setMem_nick(rs.getString("mem_nick"));
-				member.setMem_passwd(rs.getString("mem_passwd"));
+				
 			}
 		}catch(Exception e) {
 			throw new Exception(e);
