@@ -13,11 +13,22 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-window.onload=function(){
-
+$(function(){
+	/* $('.course_subject').on('click', (e) => {
+		$("#btn-course-subject").val(e.target.value);
+		var value = $('#btn-course-subject').val();
+		$('#span-course-subject').text(value);
+		//return false;
+	}); */
 	
-};
+	/* $('#course_submit_form').submit(funtion(){
+		console.log('클릭');
+		return false;
+	}) */
+	
+});
 </script>
 <style type="text/css">
 body {
@@ -34,35 +45,58 @@ body {
 </head>
 <body>
 	<h2>시간표 출력</h2>
- 	<!-- 필터링 -->
-
-	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal1">전공/영역:전체</button>
-	<!-- 전공/영역 --><!-- The Modal -->
+ 	<!-- 필터링 --><!-- value 값 넣어주기 -->
+	
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal1">
+	전공/영역:
+	<c:forEach var="course_subject" items="${course_subject}">
+	${course_subject}
+	</c:forEach>
+	
+	</button><!-- 구분 : 팝업창 radio -->
+	<!-- 전공/영역 --><!-- The Modal -------------------------------------->
 	<div class="modal" id="myModal1">
 		<div class="modal-dialog">
 			<div class="modal-content">
 
 				<!-- Modal Header -->
 				<div class="modal-header">
-					<h4 class="modal-title">전공/영역</h4>
+					<h4 class="modal-title">전공/영역</h4><!-- ~외 2개 -->
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
-				<form action="course_list.do" method="get"><!-- name이 전송됨 --><!-- name=value임 -->
+
+				<form id="course_submit_form" action="course_list.do" method="get"><!-- name이 전송됨 -->
+					<c:forEach var="course_subject" items="${course_subject}">
+					<input type="hidden" name="course_subject" value="${course_subject}">
+					</c:forEach>
+					<c:forEach var="course_category" items="${course_category}">
+					<input type="hidden" name="course_category" value="${course_category}">
+					</c:forEach>
+					<c:forEach var="course_credit" items="${course_credit}">
+					<input type="hidden" name="course_credit" value="${course_credit}">
+					</c:forEach>
 					<!-- Modal body -->
-					<div class="modal-body">
-						<input type="submit" id="course_subject" name="course_subject" value="교양"><br>
-						<input type="submit" id="course_subject" name="course_subject" value="소프트웨어학부"><br>
-						<input type="submit" id="course_subject" name="course_subject" value="컴퓨터공학부"><br>
-						<input type="submit" id="course_subject" name="course_subject" value="화학공학부"><br>
+						<div class="modal-body"><!-- 강의 구분(1:전필/2:전선/3:교필/4:교선/5:기타) -->
+						<input type="checkbox" id="course_subject1" class="course_subject" name="course_subject" value="교양">교양<br>
+						<input type="checkbox" id="course_subject2" class="course_subject" name="course_subject" value="소프트웨어학부">소프트웨어학부<br>
+						<input type="checkbox" id="course_subject3" class="course_subject" name="course_subject" value="컴퓨터공학부">컴퓨터공학부<br>
+						<input type="checkbox" id="course_subject4" class="course_subject" name="course_subject" value="화학공학부">화학공학부<br>
+					</div>
+
+					<!-- Modal footer -->
+					<div class="modal-footer">
+						<input type="submit" value="적용">
 					</div>
 				</form>
+				
 			</div>
 		</div>
 	</div>
 	
 	
-	<input type="search" class="search" data-toggle="modal" data-target="#myModal2" placeholder="강의명/교수명 입력">
-	<!-- 강의명/교수명 검색 --><!-- The Modal -->
+	<input type="search" class="search" data-toggle="modal" data-target="#myModal2" placeholder="강의명/교수명 입력" value="${param.keyword}"><!-- value에 값 넣어주기 -->
+	
+	<!-- 강의명/교수명 검색 --><!-- The Modal ------------------------------------>
 	<div class="modal" id="myModal2">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -74,6 +108,7 @@ body {
 				</div>
 				<form action="course_list.do" method="get"><!-- name이 전송됨 --><!-- name=value임 -->
 					<!-- Modal body -->
+					<input type="hidden" name="keyword_hidden" value="">
 					<div class="modal-body"><!-- 강의명/교수명 검색창 -->
 						<input type="search" name="keyword" id="keyword" value="${param.keyword}">
 						<input type="submit" value="검색">
@@ -84,7 +119,8 @@ body {
 	</div>
 	
 	
-	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal3">정렬:기본</button><!-- 정렬 : 팝업창 check box -->
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal3">정렬:</button><!-- 정렬 : 팝업창 check box -->
+	
 	<!-- 정렬 --><!-- The Modal -->
 	<div class="modal" id="myModal3">
 		<div class="modal-dialog">
@@ -97,6 +133,9 @@ body {
 				</div>
 				
 				<form action="course_list.do" method="get"><!-- name이 전송됨 -->
+				<c:forEach var="course_sort" items="${course_sort}">
+				<input type="hidden" name="course_sort" value="${course_sort}">
+				</c:forEach>
 					<!-- Modal body -->
 					<div class="modal-body">
 						<div class="modal-body">
@@ -106,7 +145,7 @@ body {
 						</div>
 					</div>
 
-					<!-- Modal footer -->
+					<!-- Modal footer ------------------------------------->
 					<div class="modal-footer">
 						<input type="submit" value="적용">
 					</div>
@@ -115,9 +154,15 @@ body {
 			</div>
 		</div>
 	</div>
-
 	
-	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal4">구분:전체</button><!-- 구분 : 팝업창 radio -->
+	
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal4">
+		구분:
+		<c:forEach var="course_category" items="${course_category}">
+		${course_category}
+		</c:forEach>
+	</button><!-- 구분 : 팝업창 radio -->
+		
 	<!-- 구분 -->	<!-- The Modal -->
 	<div class="modal" id="myModal4">
 		<div class="modal-dialog">
@@ -130,17 +175,25 @@ body {
 				</div>
 
 				<form action="course_list.do" method="get"><!-- name이 전송됨 -->
+					<c:forEach var="course_subject" items="${course_subject}">
+					<input type="hidden" name="course_subject" value="${course_subject}">
+					</c:forEach>
+					<c:forEach var="course_category" items="${course_category}">
+					<input type="hidden" name="course_category" value="${course_category}">
+					</c:forEach>
+					<c:forEach var="course_credit" items="${course_credit}">
+					<input type="hidden" name="course_credit" value="${course_credit}">
+					</c:forEach>
 					<!-- Modal body -->
-					<div class="modal-body"><!-- 강의 구분(1:전필/2:전선/3:교필/4:교선/5:기타) -->
-						<input type="checkbox" name="course_category" value="전필">전필<br>
-						<input type="checkbox" name="course_category" value="전선">전선<br>
-						<input type="checkbox" name="course_category" value="교필">교필<br>
-						<input type="checkbox" name="course_category" value="교선">교선<br>
-						<input type="checkbox" name="course_category" value="기타">기타<br>
+						<div class="modal-body"><!-- 강의 구분(1:전필/2:전선/3:교필/4:교선/5:기타) -->
+						<input type="checkbox" class="course_category" name="course_category" value="전필">전필<br>
+						<input type="checkbox" class="course_category" name="course_category" value="전선">전선<br>
+						<input type="checkbox" class="course_category" name="course_category" value="교필">교필<br>
+						<input type="checkbox" class="course_category" name="course_category" value="교선">교선<br>
 					</div>
 
 					<!-- Modal footer -->
-					<div class="modal-footer">
+					<div class="modal-footer">	
 						<input type="submit" value="적용">
 					</div>
 				</form>
@@ -150,8 +203,14 @@ body {
 	</div>
 	
 	
-	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal5">학점:전체</button><!-- 학점 : 팝업창 radio -->
-	<!-- 학점 -->	<!-- The Modal -->
+	<!-- 학점 -->	<!-- The Modal ------------------------------------->
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal5">
+		학점
+		<c:forEach var="course_credit" items="${course_credit}">
+		${course_credit}
+		</c:forEach>
+	</button><!-- 학점 : 팝업창 radio -->
+	
 	<div class="modal" id="myModal5">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -161,8 +220,17 @@ body {
 					<h4 class="modal-title">학점</h4><!-- ~외 2개 -->
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
-
 				<form action="course_list.do" method="get"><!-- name이 전송됨 -->
+				
+					<c:forEach var="course_subject" items="${course_subject}">
+					<input type="hidden" name="course_subject" value="${course_subject}">
+					</c:forEach>
+					<c:forEach var="course_category" items="${course_category}">
+					<input type="hidden" name="course_category" value="${course_category}">
+					</c:forEach>
+					<c:forEach var="course_credit" items="${course_credit}">
+					<input type="hidden" name="course_credit" value="${course_credit}">
+					</c:forEach>
 					<!-- Modal body -->
 					<div class="modal-body"><!-- course_credit -->
 						<input type="checkbox" name="course_credit" value="1">1학점<br>
@@ -180,10 +248,11 @@ body {
 			</div>
 		</div>
 	</div>
+	
 
 
 
-
+<!-- ------------------------------------------------------------------------------------------------------------------ -->
 
 
 	<!-- 모달 예시 -->
