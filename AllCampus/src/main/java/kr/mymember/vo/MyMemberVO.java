@@ -19,6 +19,7 @@ public class MyMemberVO {
 	private Date mem_reg_date;	//가입일
 	private Date mem_certify;	//학교 인증일
 	private String mem_photo;	//프로필 사진
+	private String mem_certifyfilename;//인증파일
 	
 	//비밀번호 일치 여부 체크
 	public boolean isCheckedPassword(String userPasswd) {
@@ -138,5 +139,13 @@ public class MyMemberVO {
 
 	public void setMem_photo(String mem_photo) {
 		this.mem_photo = mem_photo;
+	}
+
+	public String getMem_certifyfilename() {
+		return mem_certifyfilename;
+	}
+
+	public void setMem_certifyfilename(String mem_certifyfilename) {
+		this.mem_certifyfilename = mem_certifyfilename;
 	}
 }

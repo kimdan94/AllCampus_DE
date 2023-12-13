@@ -9,9 +9,6 @@
 <title>마이페이지</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript">
-
-</script>
 </head>
 <body>
 <div class="page-main">
@@ -42,8 +39,8 @@
 			 <h2>계정</h2>
 			 아이디 ${member.mem_id}<p>
 			 <a href="${pageContext.request.contextPath}/mymember/certifyForm.do">학교 인증</a><p>
-			 <a href="${pageContext.request.contextPath}/mymember/modifyMyPage.do">내 정보 변경</a><p>
-			 <a href="${pageContext.request.contextPath}/mymember/modifyPassword.do">비밀번호 변경</a>
+			 <a href="${pageContext.request.contextPath}/mymember/modifyUserForm.do">내 정보 변경</a><p>
+			 <a href="${pageContext.request.contextPath}/mymember/modifyPasswordForm.do">비밀번호 변경</a>
 			</div>
 		
 			<div>
@@ -55,7 +52,7 @@
 			
 			<div>
 			<h2>기타</h2>
-			<a href="${pageContext.request.contextPath}/">회원탈퇴</a><p>
+			<a href="${pageContext.request.contextPath}/mymember/deleteForm.do">회원탈퇴</a><p>
 			<a href="${pageContext.request.contextPath}/mymember/termForm.do">서비스 이용 약관</a>
 			</div>
 			</ul>

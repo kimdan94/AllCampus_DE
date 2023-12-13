@@ -107,6 +107,7 @@ public class MyMemberDAO {
 			if(rs.next()) {
 				member = new MyMemberVO();
 				member.setMem_nick(rs.getString("mem_nick"));
+				member.setMem_passwd(rs.getString("mem_passwd"));
 			}
 		}catch(Exception e) {
 			throw new Exception(e);
@@ -141,9 +142,68 @@ public class MyMemberDAO {
 		}
 	}
 	
+	//학교 인증 
+	public void insertFile(MyMemberVO mymember)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션을 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "UPDATE all_member_detail SET mem_certify=SYSDATE,mem_certifyfilename=? "
+					+ "WHERE mem_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setString(1, mymember.getMem_certifyfilename());
+			pstmt.setInt(2, mymember.getMem_num());
+			//SQL문 실행
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	
-	
-	
+	//회원탈퇴
+	public void deleteMember(int mem_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션을 할당
+			conn = DBUtil.getConnection();
+			//auto COMMIT 해제
+			conn.setAutoCommit(false);
+			
+			//all_member의 auth값 변경
+			sql = "UPDATE all_member SET auth=0 WHERE mem_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mem_num);
+			pstmt.executeUpdate();
+			
+			//all_member_detail의 레코드 삭제
+			sql = "DELETE FROM all_member_detail WHERE mem_num=?";
+			pstmt2 = conn.prepareStatement(sql);
+			pstmt2.setInt(1, mem_num);
+			pstmt2.executeUpdate();
+			
+			//전체 SQL문 실행이 성공하면
+			conn.commit();
+		}catch(Exception e) {
+			//SQL문이 하나라도 실패하면 ROLLBACK
+			conn.rollback();
+			throw new Exception(e);
+		}finally{
+			DBUtil.executeClose(null, pstmt2, conn);
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	
 	
 	
