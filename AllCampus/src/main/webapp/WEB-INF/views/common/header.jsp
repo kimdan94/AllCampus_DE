@@ -5,40 +5,40 @@
 <div class="header-style">
 	<ul>
 	<c:if test="${!empty user_num}">
-		<li class="home-logo">
+		<li id="logo_style">
 			<a href="${pageContext.request.contextPath}/main/home.do">
 			<img src="${pageContext.request.contextPath}/images/logo_symbol_231208.png" width="100" style="margin-top:-10px;">	
 			</a>
 			올캠퍼스
 		</li>
-		<li class="clear">
+		<li>
 			<h2>
 			<a href="${pageContext.request.contextPath}/course/course_list.do">시간표</a>
 			</h2>
 		</li>
-		<li class="clear">
+		<li>
 			<h2>
 			<a href="${pageContext.request.contextPath}/courseeva/courseeva_list.do">강의평</a>
 			</h2> 
 		</li>
-		<li class="clear">
+		<li>
 			<h2>
 			<a href="${pageContext.request.contextPath}/calculator/calculator_list.do">학점 계산기</a>
 			</h2>
 		</li>
-		<li class="clear">
+		<li>
 			<h2>
 			<a href="${pageContext.request.contextPath}/secondhand/secondhand_list.do">책방</a>
 			</h2>
 		</li>
 		<c:if test="${!empty user_num && user_auth == 9}">
-		<li class="clear">
+		<li>
 			<h2>
 			<a href="${pageContext.request.contextPath}/admin/adminMenu.do">관리</a>
 			</h2>
 		</li>
 		</c:if>	
-		<li class="myPage">
+		<li>
 			<a href="${pageContext.request.contextPath}/mymember/myPage.do">
 				<img src="${pageContext.request.contextPath}/images/face.png" width="40" height="40" style="margin-right:10px;margin-top:5px;">
 			</a>

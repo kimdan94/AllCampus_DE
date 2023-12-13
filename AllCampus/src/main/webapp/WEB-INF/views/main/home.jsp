@@ -41,6 +41,7 @@
 		</table>
 	</div>
 	<div class="home-div">
+		<div class="list-div">
 		<h3>공지사항 <input type="button" value="더보기"
 			onclick="location.href='#'"></h3>
 		<table>
@@ -51,20 +52,26 @@
 			</tr>
 			</c:forEach>
 		</table>
+		</div>
+		<div class="list-div">
 		<h3>FAQ <input type="button" value="더보기"
 			onclick="location.href='#'"></h3>
 		<table>
 			<tr>
 			</tr>
 		</table>
+		</div>
 	</div>
-	<div class="home-div">	
+	<div class="home-div">
+		<div class="list-div">	
 		<h3>HOT 게시판 <input type="button" value="더보기"
 			onclick="location.href='#'"></h3>
 		<table>
 			<tr>
 			</tr>
 		</table>
+		</div>
+		<div class="list-div">
 		<h3>자유 게시판 <input type="button" value="더보기"
 			onclick="location.href='${pageContext.request.contextPath}/board/list.do'"></h3>
 		<table>
@@ -75,6 +82,7 @@
 			</tr>
 			</c:forEach>	
 		</table>
+		</div>
 	</div>
 	<div class="home-end"></div>
 </div>
