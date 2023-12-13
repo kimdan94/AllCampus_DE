@@ -6,7 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>자유게시판 목록</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/jiwonstyle.css">
+
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
 <script type="text/javascript">
 window.onload=function(){
 	let myForm = document.getElementById('search_form');
@@ -33,10 +34,9 @@ window.onload=function(){
 </script>
 </head>
 <body>
-<div class="main_page">
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<div class="free_title">
-		
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+<div class="page-main">
+	<div class="content-main">
 		<form id="search_Form" action="list.do" method="get">
 				<ul class="search">
 				<li>
@@ -57,35 +57,34 @@ window.onload=function(){
 			<input type="button" value="글쓰기" onclick="location.href='writeForm.do'"
 			<c:if test="${empty user_num}">disabled="disabled"</c:if>
 			>
-
-			
 		</div>
-	</div>
-	<h1>자유게시판</h1>	
-	<c:if test="${count==0}">
-	<div class="result-display">
-		표시할 게시물이 없습니다.
-	</div>
-	</c:if>
-	<c:if test="${count > 0}">
-	<table>
-	<c:forEach var="board" items="${list}">
-		<tr data-href="detail.do?board_num=${board.board_num}">
-			<td>
-			<span style="font-weight:bold; font-size=10pt">${board.board_title}</span><br>
-			${board.board_content}<br>
+	
+		<h1>자유게시판</h1>	
+		<c:if test="${count==0}">
+		<div class="result-display">
+			표시할 게시물이 없습니다.
+		</div>
+		</c:if>
+		<c:if test="${count > 0}">
+		<table>
+		<c:forEach var="board" items="${list}">
+			<tr data-href="detail.do?board_num=${board.board_num}">
+				<td>
+				<span style="font-weight:bold; font-size=10pt">${board.board_title}</span><br>
+				${board.board_content}<br>
 			
-			<!-- !!!!!!!!!!!!!!!!!!!!!!      몇분전 형식으로 변경하기 !!!!!! -->
-			${board.board_reg_date} | 
-			<!-- 익명 여부  1: 익명X   2: 익명 -->
-			<c:if test="${board.board_anonymous ==1}">${board.mem_id}</c:if>
-			<c:if test="${board.board_anonymous ==2}">익명</c:if>
-			</td>
-		</tr>
-	</c:forEach>
-	</table>
-	<div class="align-center">${page}</div>
-	</c:if>
+				<!-- !!!!!!!!!!!!!!!!!!!!!!      몇분전 형식으로 변경하기 !!!!!! -->
+				${board.board_reg_date} | 
+				<!-- 익명 여부  1: 익명X   2: 익명 -->
+				<c:if test="${board.board_anonymous ==1}">${board.mem_id}</c:if>
+				<c:if test="${board.board_anonymous ==2}">익명</c:if>
+				</td>
+			</tr>
+		</c:forEach>
+		</table>
+		<div class="align-center">${page}</div>
+		</c:if>
+	</div>
 </div>
 </body>
 </html>

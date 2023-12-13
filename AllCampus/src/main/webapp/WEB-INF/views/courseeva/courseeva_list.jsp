@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>강의평 리스트</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/jiwonstyle.css">
 </head>
 <body>
@@ -17,8 +18,8 @@
 				<ul class="search">
 				<li>
 					<select name="keyfield">
-						<option value="1" <c:if test="${param.keyfield==1}">selected</c:if>>제목</option>
-						<option value="2" <c:if test="${param.keyfield==2}">selected</c:if>>내용</option>
+						<option value="1" <c:if test="${param.keyfield==1}">selected</c:if>>과목명</option>
+						<option value="2" <c:if test="${param.keyfield==2}">selected</c:if>>굣</option>
 					</select>
 				</li>
 				<li>
@@ -30,7 +31,7 @@
 			</ul>
 		</form>
 		<div class="list-space align-right">
-			<input type="button" value="강의평 작성" onclick="location.href='EvawriteForm.do'"
+			<input type="button" value="강의평 작성" onclick="location.href='courseevawriteForm.do'"
 			<c:if test="${empty user_num}">disabled="disabled"</c:if>
 			>
 

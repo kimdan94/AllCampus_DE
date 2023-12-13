@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>자유게시판 글 수정 폼</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/jiwonstyle.css">
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
     <script type="text/javascript">
@@ -23,8 +24,8 @@
     </script>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
     <div class="page-main">
-        <jsp:include page="/WEB-INF/views/common/header.jsp"/>
         <div>
             <h2>게시판 글수정</h2>
             <form id="update_Form" action="update.do" method="post" enctype="multipart/form-data">
