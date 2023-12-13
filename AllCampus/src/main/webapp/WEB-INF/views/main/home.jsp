@@ -117,30 +117,34 @@
 	<div class="home-div">
 		<h3>공지사항 <input type="button" value="더보기"
 			onclick="location.href='#'"></h3>
+		<div class="list-div">
 		<table>
 			<tr>
 			</tr>
 		</table>
+		</div>
 		<h3>FAQ <input type="button" value="더보기"
 			onclick="location.href='#'"></h3>
+		<div class="list-div">	
 		<table>
 			<tr>
 			</tr>
 		</table>
+		</div>
 	</div>
 	<div class="home-div">	
 		<h3>HOT 게시판</h3>
-		<div class="align-center">
+		<div class="list-div align-center" style="line-height:100px;">
 			학교 인증을 마친 학생들만 이용할 수 있어요!<br>
 			<input type="button" value="학교 인증"
 				onclick="location.href='${pageContext.request.contextPath}/mymember/certifyForm.do'">
-		</div>	
+		</div>
 		<h3>자유 게시판</h3>
-		<div class="align-center">
+		<div class="list-div align-center" style="line-height:100px;">
 			학교 인증을 마친 학생들만 이용할 수 있어요!<br>
 			<input type="button" value="학교 인증"
 				onclick="location.href='${pageContext.request.contextPath}/mymember/certifyForm.do'">
-		</div>	
+		</div>
 	</div>
 	<div class="home-end"></div>
 </div>
