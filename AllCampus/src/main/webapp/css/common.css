@@ -26,10 +26,11 @@ body {
 ------------------------------*/
 .header-style {
 	height: 80px;
-	width: 1920px;
+	width: 1750px;
 	margin:0;
 	padding:2px;
 	vertical-align:middle;
+	border:1px solid black;
 }
 .header-style ul{
 	list-style:none;
