@@ -27,7 +27,7 @@
 					onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
 			</c:if>
 			<c:if test="${!empty user_id}">
-				[${user_email}]로 가입된 아이디는 [${user_id}]입니다.<p>
+				[${user_email}]로 가입된 아이디는 [${user_id}]입니다.<p> 
 				<input type="button" value="로그인하기"
 					onclick="location.href='${pageContext.request.contextPath}/member/loginForm.do'">
 				<input type="button" value="비밀번호 찾기"

@@ -51,7 +51,7 @@ $(function(){
 		<a href="checkIdForm.do">아이디/비밀번호 찾기</a>
 	</form>
 	<p>
-	올캠퍼스가 처음이신가요? 
+	올캠퍼스가 처음이신가요?
 	<a href="registerUserForm.do">회원가입</a>
 <div class="page-sub">
 	<a href="#">문의하기</a>
