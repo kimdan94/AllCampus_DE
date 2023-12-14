@@ -47,12 +47,15 @@ public class CourseFormAction implements Action {
 		CourseDAO dao = CourseDAO.getInstance();
 		
 		List<CourseVO> list = null;
+		List<CourseVO> list2 = null;
 		List<CourseVO> course_list = null;
 		
 		list = dao.getListCourse(course_subject, keyword, course_category, course_credit);
+		list2 = dao.getRemoveDuplicateCourseList(course_subject, keyword, course_category, course_credit);
 		course_list = dao.getCourseList();
 		
 		request.setAttribute("list", list); // request.setAttribut("객체명", 객체);
+		request.setAttribute("list2", list2);
 		request.setAttribute("course_list", course_list);
 		request.setAttribute("course_subject", course_subject);
 		request.setAttribute("keyword", keyword);

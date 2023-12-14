@@ -286,190 +286,29 @@ body {
 	 		<th>시간 및 강의실</th>
 	 		<th>강의평</th>
 	 	</tr>
-	 	<c:forEach var="course" items="${list}">
+ 		<c:forEach var="inner" items="${list2}">
 		 	<tr>
-		 		<th>${course.course_name}</th>
-		 		<th>${course.course_prof}</th>
-		 		<th>${course.course_subject}</th>
-		 		<th>${course.course_start_time}</th>
-		 		<th>${course.course_end_time}</th>
+		 		<th>${inner.course_category}</th>
+				<th>${inner.course_code}</th>
+		 		<th>${inner.course_name}</th>
+		 		<th>${inner.course_prof}</th>
+		 		<th>${inner.course_credit}</th>
+			 	<c:forEach var="course" items="${list}">
+			 	<%-- <th>${course.course_name} ${course.course_code} </th> --%>
+				<c:if test="${course.course_code == inner.course_code}">
+					<th>${course.course_day} ${course.course_start_time} ${course.course_end_time}</th>
+				</c:if>
+		 		</c:forEach>
 		 	</tr>
 	 	</c:forEach>
 	 </table>
 	<br><br>
+	
+	
+	
+	
+	
 	<!-- ----------------------------------------------------------------------------------- -->
-	
-	<!-- 시간표 table -->
-	<table border="1">
-		<tr>
-			<th></th>
-			<th>월</th>
-			<th>화</th>
-			<th>수</th>
-			<th>목</th>
-			<th>금</th>
-		</tr>
-		<tr>
-			<td rowspan="2">오전9시</td>
-			<td>mon</td>
-			<td>tue</td>
-			<td>wed</td>
-			<td>thur</td>
-			<td>fri</td>
-		</tr>
-		<tr>
-			<td>mon</td>
-			<td>tue</td>
-			<td>wed</td>
-			<td>thur</td>
-			<td>fri</td>
-		</tr>
-		<tr>
-			<td rowspan="2">오전10시</td>
-			<td>mon</td>
-			<td>tue</td>
-			<td>wed</td>
-			<td>thur</td>
-			<td>fri</td>
-		</tr>
-		<tr>
-			<td>mon</td>
-			<td>tue</td>
-			<td>wed</td>
-			<td>thur</td>
-			<td>fri</td>
-		</tr>
-		<tr>
-			<td rowspan="2">오전11시</td>
-			<td>mon</td>
-			<td>tue</td>
-			<td>wed</td>
-			<td>thur</td>
-			<td>fri</td>
-		</tr>
-		<tr>
-			<td>mon</td>
-			<td>tue</td>
-			<td>wed</td>
-			<td>thur</td>
-			<td>fri</td>
-		</tr>
-		<tr>
-			<td rowspan="2">오후12시</td>
-			<td>mon</td>
-			<td>tue</td>
-			<td>wed</td>
-			<td>thur</td>
-			<td>fri</td>
-		</tr>
-		<tr>
-			<td>mon</td>
-			<td>tue</td>
-			<td>wed</td>
-			<td>thur</td>
-			<td>fri</td>
-		</tr>
-		<tr>
-			<td rowspan="2">오후1시</td>
-			<td>mon</td>
-			<td>tue</td>
-			<td>wed</td>
-			<td>thur</td>
-			<td>fri</td>
-		</tr>
-		<tr>
-			<td>mon</td>
-			<td>tue</td>
-			<td>wed</td>
-			<td>thur</td>
-			<td>fri</td>
-		</tr>
-		<tr>
-			<td rowspan="2">오후2시</td>
-			<td>mon</td>
-			<td>tue</td>
-			<td>wed</td>
-			<td>thur</td>
-			<td>fri</td>
-		</tr>
-		<tr>
-			<td>mon</td>
-			<td>tue</td>
-			<td>wed</td>
-			<td>thur</td>
-			<td>fri</td>
-		</tr>
-		<tr>
-			<td rowspan="2">오후3시</td>
-			<td>mon</td>
-			<td>tue</td>
-			<td>wed</td>
-			<td>thur</td>
-			<td>fri</td>
-		</tr>
-		<tr>
-			<td>mon</td>
-			<td>tue</td>
-			<td>wed</td>
-			<td>thur</td>
-			<td>fri</td>
-		</tr>
-		<tr>
-			<td rowspan="2">오후4시</td>
-			<td>mon</td>
-			<td>tue</td>
-			<td>wed</td>
-			<td>thur</td>
-			<td>fri</td>
-		</tr>
-		<tr>
-			<td>mon</td>
-			<td>tue</td>
-			<td>wed</td>
-			<td>thur</td>
-			<td>fri</td>
-		</tr>
-		<tr>
-			<td rowspan="2">오후5시</td>
-			<td>mon</td>
-			<td>tue</td>
-			<td>wed</td>
-			<td>thur</td>
-			<td>fri</td>
-		</tr>
-		<tr>
-			<td>mon</td>
-			<td>tue</td>
-			<td>wed</td>
-			<td>thur</td>
-			<td>fri</td>
-		</tr>
-		<tr>
-			<td rowspan="2">오후6시</td>
-			<td>mon</td>
-			<td>tue</td>
-			<td>wed</td>
-			<td>thur</td>
-			<td>fri</td>
-		</tr>
-		<tr>
-			<td>mon</td>
-			<td>tue</td>
-			<td>wed</td>
-			<td>thur</td>
-			<td>fri</td>
-		</tr>
-	</table>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	
