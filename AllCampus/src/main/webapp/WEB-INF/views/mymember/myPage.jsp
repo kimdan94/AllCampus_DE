@@ -17,12 +17,12 @@
 		<h3>내 정보</h3>
 		<ul>
 			<li>
-				<c:if test="${empty mymember.mem_photo}">
+				<c:if test="${empty member.mem_photo}">
 				<img src="${pageContext.request.contextPath}/images/face.jpeg"
 				width="100" height="100" class="my-photo">
 				</c:if>
-				<c:if test="${!empty mymember.mem_photo}">
-				<img src="${pageContext.request.contextPath}/upload/${mymember.mem_photo}"
+				<c:if test="${!empty member.mem_photo}">
+				<img src="${pageContext.request.contextPath}/upload/${member.mem_photo}"
 				width="100" height="100" class="my-photo">
 				</c:if>
 				<div class="my-infor">
@@ -44,7 +44,7 @@
 		
 			<div>
 			<h2>내 활동</h2>
-			<a href="${pageContext.request.contextPath}/">내가 쓴 글</a><p>
+			<a href="${pageContext.request.contextPath}/mymember/writeForm.do">내가 쓴 글</a><p>
 			<a href="${pageContext.request.contextPath}/">댓글 단 글</a><p>
 			<a href="${pageContext.request.contextPath}/">스크랩한 글</a>
 			</div>

@@ -3,10 +3,15 @@ package kr.mymember.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
+import kr.board.vo.BoardReplyVO;
+import kr.board.vo.BoardVO;
 import kr.member.vo.MemberVO;
 import kr.mymember.vo.MyMemberVO;
 import kr.util.DBUtil;
+import kr.util.StringUtil;
 
 public class MyMemberDAO {
 	//싱글턴 패턴
@@ -70,7 +75,7 @@ public class MyMemberDAO {
 			//커넥션풀로부터 커넥션을 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
-			sql = "UPDATE all_member_detail SET mem_photo=? WHERE mem_num";
+			sql = "UPDATE all_member_detail SET mem_photo=? WHERE mem_num=?";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
@@ -86,28 +91,39 @@ public class MyMemberDAO {
 		}
 	}
 	
-	//내 정보 변경(닉네임,전공)
-	public void updateMyMember(MyMemberVO member)throws Exception{
+	//내 정보 변경(닉네임&전공)
+	public void updateMyNick_Major(MyMemberVO member)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
 		String sql = null;
 		
 		try {
 			//커넥션풀로부터 커넥션을 할당
 			conn = DBUtil.getConnection();
+			conn.setAutoCommit(false);
 			//SQL문 작성
-			sql = "UPDATE all_member_detail JOIN all_member USING(mem_num) SET "
-				+ "mem_nick=?,mem_major=? WHERE mem_num=?";
+			sql = "UPDATE all_member SET mem_nick=? WHERE mem_num=?";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
 			pstmt.setString(1, member.getMem_nick());
-			pstmt.setString(2, member.getMem_major());
-			pstmt.setInt(3, member.getMem_num());
+			pstmt.setInt(2, member.getMem_num());
 			//SQL문 실행
 			pstmt.executeUpdate();
 			
+			sql = "UPDATE all_member_detail SET mem_major=? WHERE mem_num=?";
+			//PreparedStatement 객체 생성
+			pstmt2 = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt2.setString(1, member.getMem_major());
+			pstmt2.setInt(2, member.getMem_num());
+			//SQL문 실행
+			pstmt2.executeUpdate();
+			
+			conn.commit();
 		}catch(Exception e) {
+			conn.rollback();
 			throw new Exception(e);
 		}finally {
 			DBUtil.executeClose(null, pstmt, conn);
@@ -147,6 +163,40 @@ public class MyMemberDAO {
 		return member;
 	}
 	
+	//ID 체크
+	public MyMemberVO checkId(String mem_id)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		MyMemberVO member = null;
+		
+		try {
+			//커넥션풀로부터 커넥션을 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "SELECT * FROM all_member LEFT OUTER JOIN all_member_detail USING(mem_num) WHERE mem_id=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setString(1, mem_id);
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				member = new MyMemberVO();
+				member.setMem_num(rs.getInt("mem_num"));
+				member.setMem_id(rs.getString("mem_id"));
+				member.setMem_auth(rs.getInt("mem_auth"));
+				member.setMem_passwd(rs.getString("mem_passwd"));
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return member;
+	}
+	
 	//비밀번호 수정
 	public void updatePassword(String mem_passwd,int mem_num)throws Exception{
 		Connection conn = null;
@@ -172,15 +222,19 @@ public class MyMemberDAO {
 		}
 	}
 	
-	//학교 인증 
+	//학교 인증(auth변경)
 	public void insertFile(MyMemberVO mymember)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
 		String sql = null;
 		
 		try {
 			//커넥션풀로부터 커넥션을 할당
 			conn = DBUtil.getConnection();
+			conn.setAutoCommit(false);
+			
+			//인증파일,인증일 변경
 			//SQL문 작성
 			sql = "UPDATE all_member_detail SET mem_certify=SYSDATE,mem_certifyfilename=? "
 					+ "WHERE mem_num=?";
@@ -191,9 +245,22 @@ public class MyMemberDAO {
 			pstmt.setInt(2, mymember.getMem_num());
 			//SQL문 실행
 			pstmt.executeUpdate();
+			
+			//all_member의 auth값 변경
+			sql = "UPDATE all_member SET mem_auth=3 WHERE mem_num=?";
+			//PreparedStatement 객체 생성
+			pstmt2 = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt2.setInt(1, mymember.getMem_num());
+			//SQL문 실행
+			pstmt2.executeUpdate();
+			
+			conn.commit();
 		}catch(Exception e) {
+			conn.rollback();
 			throw new Exception(e);
 		}finally {
+			DBUtil.executeClose(null, pstmt2, null);
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
@@ -212,7 +279,7 @@ public class MyMemberDAO {
 			conn.setAutoCommit(false);
 			
 			//all_member의 auth값 변경
-			sql = "UPDATE all_member SET auth=0 WHERE mem_num=?";
+			sql = "UPDATE all_member SET mem_auth=0 WHERE mem_num=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, mem_num);
 			pstmt.executeUpdate();
@@ -234,6 +301,13 @@ public class MyMemberDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

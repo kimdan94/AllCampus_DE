@@ -13,9 +13,9 @@
 $(function(){
 	//인증 파일 첨부 여부
 	$('#certify_form').submit(function(){
-		if($('#mem_photo').val().trim()==''){
+		if($('#mem_certifyfilename').val().trim()==''){
 			alert('파일을 첨부해주세요');
-			$('#mem_photo').val('').focus();
+			$('#mem_certifyfilename').val('').focus();
 			return false;
 		}
 		//약관 동의 체크 여부

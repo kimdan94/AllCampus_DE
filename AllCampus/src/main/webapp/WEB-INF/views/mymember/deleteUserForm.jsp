@@ -8,7 +8,21 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-
+$(function(){
+	//비밀번호 유효성 체크
+	$('#delete_form').submit(function(){
+		if($('#passwd').val().trim()==''){
+			alert('비밀번호를 입력해주세요');
+			$('#passwd').val('').focus();
+			return false;
+		}
+		let choice = confirm('정말 탈퇴하시겠습니까?');
+		if(!choice){
+			return false;
+		}
+	});
+});
+	
 </script>
 </head>
 <body>
@@ -16,7 +30,7 @@
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<div class="content-main">
 		<h2>회원탈퇴</h2>
-		<form action="deleteUser.do" method="post" id="delete_form">
+		<form action="delete.do" method="post" id="delete_form">
 		<ul>
 			<li>
 				<h3>계정 비밀번호</h3>
