@@ -10,14 +10,18 @@ public class SecondhandVO {
 	private String secondhand_content;//내용
 	private int secondhand_price;//판매가
 	private String secondhand_way;//판매 방법
+	private String secondhand_ip;//아이피 주소
+	private String secondhand_status;//교재 상태
 	private String secondhand_filename;//판매 교재 이미지
 	private int secondhand_complaint;//신고수
 	private int secondhand_show;//게시글 표시 여부
 	private Date secondhand_reg_date;//등록일
 	private Date secondhand_modifydate;//수정일
 	private int secondhand_sell;//판매 여부
+	private String secondhand_openchat;//오픈 채팅방 경로
 	private int mem_num;//회원번호
 	private String mem_id;//아이디
+	private String secondhand_writerPlus;//외 지음
 	
 	public int getSecondhand_num() {
 		return secondhand_num;
@@ -61,6 +65,18 @@ public class SecondhandVO {
 	public void setSecondhand_way(String secondhand_way) {
 		this.secondhand_way = secondhand_way;
 	}
+	public String getSecondhand_ip() {
+		return secondhand_ip;
+	}
+	public void setSecondhand_ip(String secondhand_ip) {
+		this.secondhand_ip = secondhand_ip;
+	}
+	public String getSecondhand_status() {
+		return secondhand_status;
+	}
+	public void setSecondhand_status(String secondhand_status) {
+		this.secondhand_status = secondhand_status;
+	}
 	public String getSecondhand_filename() {
 		return secondhand_filename;
 	}
@@ -97,6 +113,12 @@ public class SecondhandVO {
 	public void setSecondhand_sell(int secondhand_sell) {
 		this.secondhand_sell = secondhand_sell;
 	}
+	public String getSecondhand_openchat() {
+		return secondhand_openchat;
+	}
+	public void setSecondhand_openchat(String secondhand_openchat) {
+		this.secondhand_openchat = secondhand_openchat;
+	}
 	public int getMem_num() {
 		return mem_num;
 	}
@@ -108,5 +130,11 @@ public class SecondhandVO {
 	}
 	public void setMem_id(String mem_id) {
 		this.mem_id = mem_id;
+	}
+	public String getSecondhand_writerPlus() {
+		return secondhand_writerPlus;
+	}
+	public void setSecondhand_writerPlus(String secondhand_writerPlus) {
+		this.secondhand_writerPlus = secondhand_writerPlus;
 	}
 }

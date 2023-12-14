@@ -45,6 +45,7 @@ create table all_secondhand(
  secondhand_content clob not null,
  secondhand_price number(6) not null,
  secondhand_way varchar2(16) not null,
+ secondhand_ip varchar2(40) not null,
  secondhand_status varchar2(3) not null,
  secondhand_filename varchar2(150) not null,
  secondhand_openchat varchar2(200) not null,

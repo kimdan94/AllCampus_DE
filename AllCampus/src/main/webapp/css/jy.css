@@ -52,6 +52,9 @@
 .find-link{
 	font-size:12px;
 }
+textarea{
+	resize:none;
+}
 /* 메인 : main.jsp
 ------------------------------*/
 .main-style{
@@ -234,4 +237,14 @@
 }
 form[id="register_form"] ul li{
 	margin-bottom:7px;
+}
+/* 책방 목록 : secondhand_list.jsp
+------------------------------*/
+.sc-btn{
+	border:1px solid #e1e6ed;
+	width:80px;
+	height:20px;
+	border-radius:5px;
+	color:black;
+	font-weight:bold;
 }
