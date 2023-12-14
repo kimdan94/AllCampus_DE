@@ -12,12 +12,42 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/board.fav.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/board.reply.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/board.scrap.js"></script>
+<script type="text/javascript">
+$(function(){
+	
+	$('#board_complaint_link').click(function(){
+		alert('신고하시겠습니까?');
+		
+		$.ajax({
+			url:'addComplaintCount.do',
+			type:'post',
+			data:{board_num: ${board.board_num}},
+			dataType:'json',
+			success:function(param){
+				if(param.result == 'success'){
+					alert("신고 완료되었습니다.");
+					location.href='detail.do?board_num=${board.board_num}';
+				}else{
+					alert("신고 처리 오류 발생");
+				}
+			},
+			error:function(){
+				alert('이미 신고되어 숨겨진 게시물입니다.');
+			}
+		});
+	});
+	
+});
+
+
+
+</script>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<h1>자유게시판</h1>	
+	<div class="board_detail_form">
+	<h2>자유게시판</h2>	
 	<div class="board-detail">
 		<ul class="detail-info">
 			<li>
@@ -43,19 +73,24 @@
 		
 		<!-- 글 게시자가 아니면 신고버튼, 글 게시자는 수정,삭제 버튼이 보이게 만들기   -->
 		<ul class="detail-actions">
-			<!-- if 문으로  신고 링크 넣기!!!!!!! -->
 			<li>
-			<a href="updateForm.do?board_num=${board.board_num}">수정</a>
-			|
-			<a href="#" id="delete_link_${board.board_num}" onclick="confirmDelete(${board.board_num})">삭제</a>
-			<script>
-			 	function confirmDelete(boardNum) {
-			        let choice = confirm('삭제하시겠습니까?');
-			        if (choice) {
-			            location.href = 'delete.do?board_num=' + boardNum;
-			        }
-			    }
-			</script>
+				<c:if test="${user_num != board.mem_num  && board.board_complaint <3}">
+				<a href="#" id="board_complaint_link">신고</a>
+				</c:if>
+				<%-- 로그인한 회원번호와 작성자 회원번호가 일치해야 수정,삭제 가능 --%>
+				<c:if test="${user_num == board.mem_num}">
+				<a href="updateForm.do?board_num=${board.board_num}">수정</a>
+				|
+				<a href="#" id="delete_link_${board.board_num}" onclick="confirmDelete(${board.board_num})">삭제</a>
+				<script>
+				 	function confirmDelete(boardNum) {
+				        let choice = confirm('삭제하시겠습니까?');
+			  	      if (choice) {
+			    	        location.href = 'delete.do?board_num=' + boardNum;
+			  	      }
+				    }
+				</script>
+				</c:if>
 			</li>
 		</ul>
 		<h2>${board.board_title}</h2>
@@ -119,6 +154,7 @@
 		
 		
 		
+	</div>
 	</div>
 </div>
 </body>

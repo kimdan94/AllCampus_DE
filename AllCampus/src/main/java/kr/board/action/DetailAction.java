@@ -12,6 +12,8 @@ public class DetailAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		
 		//글번호 반환
 		int board_num = Integer.parseInt(request.getParameter("board_num"));
 		

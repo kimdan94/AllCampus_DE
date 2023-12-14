@@ -31,7 +31,7 @@
 			</ul>
 		</form>
 		<div class="list-space align-right">
-			<input type="button" value="강의평 작성" onclick="location.href='courseevawriteForm.do'"
+			<input type="button" value="강의평 작성" onclick="location.href='evawriteForm.do'"
 			<c:if test="${empty user_num}">disabled="disabled"</c:if>
 			>
 

@@ -31,7 +31,7 @@
             $('#button').click(function () {
             	
                 $.ajax({
-                    url: 'evawriteForm.do',
+                    url: 'searchcoursename.do',
                     type: 'post',
                     data: { keyword: keyword.value },
                     dataType: 'json',

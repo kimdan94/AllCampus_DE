@@ -115,7 +115,7 @@ public class BoardDAO {
 				//SQL문 작성
 				sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
 					+ "(SELECT * FROM all_board JOIN all_member USING(mem_num) " + sub_sql
-					+ " ORDER BY board_num DESC)a) WHERE rnum >= ? AND rnum <= ?";
+					+ " ORDER BY board_num DESC)a) WHERE rnum >= ? AND rnum <= ? AND board_show=2";
 				//PreparedStatement 객체 생성
 				pstmt = conn.prepareStatement(sql);
 				if(keyword != null && !"".equals(keyword)) {
@@ -222,6 +222,58 @@ public class BoardDAO {
 				DBUtil.executeClose(null, pstmt, conn);
 			}
 		}
+		
+		
+		//신고 개수 업데이트(신고 클릭시 추가) 
+		public void addComplaintCount(int board_num)throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			String sql = null;
+			
+			try {
+				//커넥션풀로부터 커넥션 할당
+				conn = DBUtil.getConnection();
+				//SQL문 작성
+				sql = "UPDATE all_board SET board_complaint=board_complaint+1 WHERE board_num=?";//신고 클릭되면 확인창 후 1 증가
+				//PreparedStatement 객체 생성
+				pstmt = conn.prepareStatement(sql);
+				//?에 데이터 바인딩
+				pstmt.setInt(1, board_num);
+				//SQL문 실행
+				pstmt.executeUpdate();
+				
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(null, pstmt, conn);
+			}
+		}
+		
+		//신고 개수 3개이상 미표시 처리
+		public void complaintUpdateShow(int board_num)throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			String sql = null;
+			
+			try {
+				//커넥션풀로부터 커넥션 할당
+				conn = DBUtil.getConnection();
+				//SQL문 작성
+				sql = "UPDATE all_board SET board_show=1 WHERE board_complaint>=3 AND board_num=?";//신고 클릭되면 확인창 후 1 증가
+				//PreparedStatement 객체 생성
+				pstmt = conn.prepareStatement(sql);
+				//?에 데이터 바인딩
+				pstmt.setInt(1, board_num);
+				//SQL문 실행
+				pstmt.executeUpdate();
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(null, pstmt, conn);
+			}
+			
+		}
+		
 		
 		//파일 삭제
 		public void deleteFile(int board_num)throws Exception{
@@ -667,7 +719,6 @@ public class BoardDAO {
 			}
 			return list;
 		}
-		
 		
 		
 		//댓글 상세(댓글 수정,삭제시 작성자 회원번호 체크 용도로 사용)
