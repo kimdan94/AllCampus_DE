@@ -54,7 +54,7 @@
 		</table>
 		</div>
 		<h3>FAQ <input type="button" value="더보기"
-			onclick="location.href='#'"></h3>
+			onclick="location.href='#'"></h3><!-- 목록 처리 완료 시 update -->
 		<div class="list-div">
 		<table>
 			<tr>
@@ -64,11 +64,15 @@
 	</div>
 	<div class="home-div">
 		<h3>HOT 게시판 <input type="button" value="더보기"
-			onclick="location.href='#'"></h3>
+			onclick="location.href='#'"></h3><!-- 목록 처리 완료 시 update -->
 		<div class="list-div">
 		<table>
+			<c:forEach var="hot" items="${hotList}">
 			<tr>
+				<td><a href="${pageContext.request.contextPath}/board/detail.do?board_num=${board.board_num}">${hot.board_title}</a></td>
+				<td class="list-margin"><fmt:formatDate value="${hot.board_reg_date}" pattern="MM/dd HH:mm"/></td>
 			</tr>
+			</c:forEach>
 		</table>
 		</div>
 		<h3>자유 게시판 <input type="button" value="더보기"

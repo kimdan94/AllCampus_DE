@@ -65,8 +65,54 @@ public class HomeDAO {
 	}
 	//FAQ 미리보기 - FAQ도 추후 작업 예정(자바빈 필요)
 	
-	//HOT게시판 미리보기 - hot은 추후 작업 예정(좋아요 작업 완료 시에 처리)
-	
+	//HOT게시판 미리보기
+	public List<BoardVO> getListHot(int start, int end, int hit)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<BoardVO> list = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
+					+ "(SELECT * FROM all_board WHERE board_hit >= ? ORDER BY board_reg_date DESC)"
+					+ "a) WHERE rnum >= ? AND rnum <= ?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, hit);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			list = new ArrayList<BoardVO>();
+			while(rs.next()) {
+				BoardVO hot = new BoardVO();
+				hot.setBoard_num(rs.getInt("board_num"));
+				
+				//글제목 가공
+				if(rs.getString("board_title").length() >= 17) {
+					String title = rs.getString("board_title").substring(0, 10);
+					title += " ...";
+					hot.setBoard_title(title);
+				}else if(rs.getString("board_title").length() < 17){
+					hot.setBoard_title(rs.getString("board_title"));
+				}
+				
+				hot.setBoard_reg_date(rs.getDate("board_reg_date"));
+				
+				list.add(hot);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return list;
+	}
 	//자유게시판 미리보기
 	public List<BoardVO> getListBoard(int start, int end)throws Exception{
 		Connection conn = null;

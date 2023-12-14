@@ -38,7 +38,9 @@ public class HomeAction implements Action{
 		
 		//FAQ 목록
 		
-		//HOT 게시판 목록
+		//HOT 게시판 목록                             //추후 100으로 변경 예정
+		List<BoardVO> hotList = homeDao.getListHot(1, 5, 50);
+		request.setAttribute("hotList", hotList);
 		
 		//자유 게시판 목록
 		List<BoardVO> boardList = homeDao.getListBoard(1, 5);
