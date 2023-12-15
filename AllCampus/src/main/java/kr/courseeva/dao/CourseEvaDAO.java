@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import kr.course.vo.CourseVO;
 import kr.courseeva.vo.CourseEvaVO;
 import kr.util.DBUtil;
@@ -19,7 +20,7 @@ public class CourseEvaDAO {
 	
 	private CourseEvaDAO() {}
 	
-	//전체 레코드수/검색 레코드수
+	//강의평 등록 폼  검색  -  전체 레코드수/검색 레코드수
 	public int getCourseEvaCount(String keyword)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -146,7 +147,7 @@ public class CourseEvaDAO {
 		
 		return list1;
 	}	
-	 
+	
 	public void insertCourseEva(CourseEvaVO courseeva)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -175,7 +176,99 @@ public class CourseEvaDAO {
 		}
 	}
 	
+	//list 메인 -  전체 레코드수/검색 레코드 수 
+	public int getCourseEvaListCount(String keyfield,String keyword)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		String sub_sql = "";
+		int count = 0;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			if(keyword!=null && !"".equals(keyword)) {
+				//검색 처리
+				if(keyfield.equals("1")) sub_sql += "WHERE course_name LIKE ?";
+				else if(keyfield.equals("2")) sub_sql += "WHERE course_prof LIKE ?";
+			}	
+			//SQL문 작성
+			sql = "SELECT COUNT(*) FROM all_course_eva JOIN all_course USING(course_num) " + sub_sql;
+			//PreparedStatement 객체
+			pstmt = conn.prepareStatement(sql);
+			if(keyword != null && !"".equals(keyword)) {
+				pstmt.setString(1, "%"+keyword+"%");
+			}
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}	
+		return count;
+	}
 	
+	//list 메인   -  전체 글/검색 글 목록
+	public List<CourseEvaVO> getCourseEvaList(int start, int end,String keyfield, String keyword)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<CourseEvaVO> list = null;
+		String sql = null;
+		String sub_sql = "";
+		int cnt = 0;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			if(keyword!=null && !"".equals(keyword)) {
+				//검색 처리
+				if(keyfield.equals("1")) sub_sql += "WHERE course_name LIKE ?";
+				else if(keyfield.equals("2")) sub_sql += "WHERE course_prof LIKE ?";
+			}	
+			//SQL문 작성
+			sql = "SELECT * FROM (SELECT a.*,rownum rnum "
+				+ "FROM(SELECT * FROM all_course_eva JOIN all_course USING(course_num) " + sub_sql 
+				+ " ORDER BY eva_num DESC)a) WHERE rnum>=? AND rnum<=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			if(keyword != null && !"".equals(keyword)) {
+				pstmt.setString(++cnt, "%"+keyword+"%");
+			}
+			pstmt.setInt(++cnt, start);
+			pstmt.setInt(++cnt, end);
+			
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			list = new ArrayList<CourseEvaVO>();
+			while(rs.next()) {
+				CourseEvaVO courseeva = new CourseEvaVO();
+				courseeva.setEva_num(rs.getInt("eva_num"));
+				courseeva.setEva_star(rs.getDouble("eva_star"));
+				courseeva.setEva_content(rs.getString("eva_content"));
+				courseeva.setEva_semester(rs.getString("eva_semester"));
+				
+				//강의 정보를 담기 위해 CourseVO 객체 생성
+				CourseVO course = new CourseVO();
+				course.setCourse_name(rs.getString("course_name"));
+				course.setCourse_prof(rs.getString("course_prof"));
+				
+				courseeva.setCourseVO(course);
+				
+				list.add(courseeva);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return list;
+	}
 	
 	
 	/*

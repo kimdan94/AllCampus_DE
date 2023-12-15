@@ -1,5 +1,8 @@
 package kr.courseeva.vo;
 
+import kr.course.vo.CourseVO;
+
+
 public class CourseEvaVO {
 	private int eva_num;			//강의평 글번호	--PK
 	private int course_num;			//강의번호  	--FK
@@ -9,6 +12,8 @@ public class CourseEvaVO {
 	private int eva_complaint;		//강의평 게시글 신고수
 	private int eva_show;			//게시글 표시 여부     1 미표시, 2 표시
 	private String eva_semester;
+	
+	private CourseVO courseVO;
 	
 	public int getEva_num() {
 		return eva_num;
@@ -57,6 +62,12 @@ public class CourseEvaVO {
 	}
 	public void setEva_semester(String eva_semester) {
 		this.eva_semester = eva_semester;
+	}
+	public CourseVO getCourseVO() {
+		return courseVO;
+	}
+	public void setCourseVO(CourseVO courseVO) {
+		this.courseVO = courseVO;
 	}
 	
 }
