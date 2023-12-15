@@ -159,14 +159,52 @@ public class SecondhandDAO {
 		return list;
 	}
 	//글 상세
+	public SecondhandVO getsecondhand(int secondhand_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		SecondhandVO sc = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션을 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "SELECT * FROM all_secondhand JOIN all_member USING(mem_num) "
+					+ "LEFT OUTER JOIN all_member_detail USING(mem_num) "
+					+ "WHERE secondhand_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, secondhand_num);
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				sc = new SecondhandVO();
+				sc.setSecondhand_num(rs.getInt("secondhand_num"));
+				sc.setSecondhand_name(rs.getString("secondhand_name"));
+				sc.setSecondhand_writer(rs.getString("secondhand_writer"));
+				sc.setSecondhand_company(rs.getString("secondhand_company"));
+				sc.setSecondhand_reg_date(rs.getDate("secondhand_reg_date"));
+				sc.setSecondhand_modifydate(rs.getDate("secondhand_modifydate"));
+				sc.setSecondhand_price(rs.getInt("secondhand_price"));
+				sc.setSecondhand_content(rs.getString("secondhand_content"));
+				sc.setSecondhand_filename(rs.getString("secondhand_filename"));
+				sc.setSecondhand_status(rs.getString("secondhand_status"));
+				sc.setSecondhand_way(rs.getString("secondhand_way"));
+				sc.setSecondhand_openchat(rs.getString("secondhand_openchat"));
+				sc.setMem_num(rs.getInt("mem_num"));
+				sc.setMem_id(rs.getString("mem_id"));
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return sc;
+	}
 	//글 수정
 	//글 삭제
 	//물건 판매 여부 변경
 	//신고 수 변경
-	//댓글 등록
-	//댓글 개수
-	//댓글 목록
-	//댓글 상세(댓글 수정, 삭제 시 작성자 회원번호 체크 용도로 사용)
-	//댓글 수정
-	//댓글 삭제
 }

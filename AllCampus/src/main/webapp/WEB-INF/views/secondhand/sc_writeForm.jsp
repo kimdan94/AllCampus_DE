@@ -79,7 +79,7 @@ $(function(){
 					name="bookContent" id="bookContent"></textarea>
 			</li>
 			<li>
-				<label for="bookUrl">오픈카톡 경로</label>
+				<label for="bookUrl">오픈 카카오톡 URL</label>
 				<input type="url" name="bookUrl" id="bookUrl"
 					class="input-check">
 			</li>

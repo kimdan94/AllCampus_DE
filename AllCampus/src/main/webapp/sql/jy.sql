@@ -60,22 +60,6 @@ create table all_secondhand(
 
 create sequence all_secondhand_seq;
 
--- 중고 거래 댓글
-create table all_secondhand_reply(
- secondhand_num number not null,
- mem_num number not null,
- reply_num number not null,
- reply_content varchar2(900) not null,
- reply_date date default sysdate not null,
- repy_modifydate date,
- reply_ip varchar2(40) not null,
- constraint all_secondhand_reply_fk1 foreign key (secondhand_num) references all_secondhand (secondhand_num),
- constraint all_secondhand_reply_fk2 foreign key (mem_num) references all_member (mem_num),
- constraint all_secondhand_reply_pk1 primary key (reply_num)
-);
-
-create sequence all_resecondhand_seq;
-
 -- 중고 거래 신고
 create table all_secondhand_warn(
  secondhand_num number not null,
