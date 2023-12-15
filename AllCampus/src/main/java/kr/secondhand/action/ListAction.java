@@ -1,10 +1,15 @@
 package kr.secondhand.action;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
+import kr.secondhand.dao.SecondhandDAO;
+import kr.secondhand.vo.SecondhandVO;
+import kr.util.PageUtil;
 
 public class ListAction implements Action{
 
@@ -23,6 +28,27 @@ public class ListAction implements Action{
 			request.setAttribute("notice_url", request.getContextPath()+"/main/home.do");
 			return "/WEB-INF/views/common/alert_singleView.jsp";
 		}
+		
+		String pageNum = request.getParameter("pageNum");
+		if(pageNum == null) pageNum = "1";
+		
+		String keyfield = request.getParameter("keyfield");
+		String keyword = request.getParameter("keyword");
+		
+		SecondhandDAO dao = SecondhandDAO.getInstance();
+		int count = dao.getSecondhandCount(keyfield, keyword);
+		
+		//페이지 처리
+		PageUtil page = new PageUtil(keyfield,keyword,Integer.parseInt(pageNum),count,10,10,"secondhand_list.do");
+		
+		List<SecondhandVO> list = null;
+		if(count > 0) {
+			list = dao.getListSecondhand(page.getStartRow(), page.getEndRow(), keyfield, keyword);
+		}
+		
+		request.setAttribute("count", count);
+		request.setAttribute("list", list);
+		request.setAttribute("page", page.getPage());
 		
 		//JSP 경로 반환
 		return "/WEB-INF/views/secondhand/sc_list.jsp";

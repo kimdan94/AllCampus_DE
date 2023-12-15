@@ -37,6 +37,7 @@ $(function(){
 </script>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
 	<h2>판매하기</h2>
 	<form id="sell_form" action="secondhand_write.do" method="post"
