@@ -14,6 +14,7 @@
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/course.hover.js"></script>
 <script type="text/javascript">
 $(function(){
 	/* $('.course_subject').on('click', (e) => {
@@ -27,7 +28,40 @@ $(function(){
 		console.log('클릭');
 		return false;
 	}) */
+	/* $("#courseDBtable tr").find("tr").css({"color": "red"});
+	 
+
+	 const timetableHover = $("#courseDBtable").find("tr");
+	 const result = document.getElementById('result');
 	
+	 timetableHover.addEventListener('mouseover', (event) => {
+		  result.innerHTML+= '<div>mouseover</div>';
+	 }); */
+	
+	/*  $('#courseDBtable tr').on('mouseover', (e) => {
+		 console.log('mouseover');
+		 $("#courseDBtable tr").css({"color": "red"});
+	 });
+	  */
+	  
+	  /* var name = $('#courseDBtable tr'); */
+	  /* console.log(name[1]);
+	   */
+	  /*  for(let i=0; i<name.length; i++){
+	  $(name[i]).on('mouseover', (e) => {
+			 console.log('mouseover');
+			 $(name[i]).css({"color": "red"});
+			 console.log($(name[i]).prop("id"));
+			 $('#timetable').css({"color" : "yellow"});
+			 
+		 });
+	  $(name[i]).on('mouseout', (e) => {
+			 console.log('mouseoout');
+			 $(name[i]).css({"color": ""});
+			 $('#timetable').css({"color" : ""});
+		 });
+	   } */
+	 
 });
 </script>
 <style type="text/css">
@@ -41,12 +75,29 @@ body {
   th, td {
     border: 1px solid #444444;
   }
+  .banner{
+  width:100%; /*가로사이즈*/
+  height:100px; /*세로사이즈*/
+  background: blue; /*배경색*/
+  margin:0 auto; /*중앙정렬*/
+  }
+
+.banner:hover + .winner {
+  background:#e54737; /*변경할 배경색*/
+}
+.courseDBtable>tr:hover {
+	background-color: red;
+}
+/* #courseDBtable tr {
+	background-color: blue;
+} */
 </style>
 </head>
 <body>
 	<h2>시간표 출력</h2>
  	<!-- 필터링 --><!-- value 값 넣어주기 -->
-	
+	<div id='result'>
+</div>
 	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal1">
 	전공/영역:
 	<c:forEach var="course_subject" items="${course_subject}">
@@ -276,8 +327,8 @@ body {
 		2. 필터링된 시간표 출력
 	 -->
 	 
-	 <table>
-	 	<tr>
+	 <table id="courseDBtable">
+	 	<tr id="courseDBtable1">
 	 		<th>구분</th>
 	 		<th>학수번호</th>
 	 		<th>교과목명</th>
@@ -287,18 +338,21 @@ body {
 	 		<th>강의평</th>
 	 	</tr>
  		<c:forEach var="inner" items="${list2}">
-		 	<tr>
-		 		<th>${inner.course_category}</th>
-				<th>${inner.course_code}</th>
-		 		<th>${inner.course_name}</th>
-		 		<th>${inner.course_prof}</th>
-		 		<th>${inner.course_credit}</th>
+		 	<tr id="${inner.course_code}">
+		 	<!-- <tr> -->
+		 		<td>${inner.course_category}</td>
+				<td>${inner.course_code}</td>
+		 		<td>${inner.course_name}</td>
+		 		<td>${inner.course_prof}</td>
+		 		<td>${inner.course_credit}</td>
+			 	<td>
 			 	<c:forEach var="course" items="${list}">
-			 	<%-- <th>${course.course_name} ${course.course_code} </th> --%>
+			 	<%-- <td>${course.course_name} ${course.course_code} </td> --%>
 				<c:if test="${course.course_code == inner.course_code}">
-					<th>${course.course_day} ${course.course_start_time} ${course.course_end_time}</th>
+			 	${course.course_day} ${course.course_start_time} ${course.course_end_time}<br>
 				</c:if>
 		 		</c:forEach>
+		 		</td>
 		 	</tr>
 	 	</c:forEach>
 	 </table>
@@ -311,11 +365,47 @@ body {
 	<!-- ----------------------------------------------------------------------------------- -->
 	
 	
+	<!-- 시간표 table -->
+	<table id="timetable" border="1">
+		<tr>
+			<th></th>
+			<th>월</th>
+			<th>화</th>
+			<th>수</th>
+			<th>목</th>
+			<th>금</th>
+		</tr>
+		<c:forEach items="${timeList}" var="item">
+			<tr>
+				<th rowspan="2">${item}</th>
+				<th id="1_${item*60}">값</th>
+				<th id="2_${item*60}"></th>
+				<th id="3_${item*60}"></th>
+				<th id="4_${item*60}"></th>
+				<th id="5_${item*60}"></th>
+			</tr>
+			<tr>
+				<th id="1_${item*60+30}">값</th>
+				<th id="2_${item*60+30}"></th>
+				<th id="3_${item*60+30}"></th>
+				<th id="4_${item*60+30}"></th>
+				<th id="5_${item*60+30}"></th>
+			</tr>
+			
+		</c:forEach>
+		
+	</table>
 	
 	
+	
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	
 	<!-- ---------------------------------------------------------------------------------------- -->
 
+	<div class="banner">asdf
+	</div>
+	<div class="winner">qwer
+	</div>
 
 
 

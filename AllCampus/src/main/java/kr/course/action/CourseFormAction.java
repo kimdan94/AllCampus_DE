@@ -1,8 +1,12 @@
 package kr.course.action;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -49,6 +53,7 @@ public class CourseFormAction implements Action {
 		List<CourseVO> list = null;
 		List<CourseVO> list2 = null;
 		List<CourseVO> course_list = null;
+		int[] timeList = {9,10,11,12,13,14,15,16,17};
 		
 		list = dao.getListCourse(course_subject, keyword, course_category, course_credit);
 		list2 = dao.getRemoveDuplicateCourseList(course_subject, keyword, course_category, course_credit);
@@ -57,6 +62,7 @@ public class CourseFormAction implements Action {
 		request.setAttribute("list", list); // request.setAttribut("객체명", 객체);
 		request.setAttribute("list2", list2);
 		request.setAttribute("course_list", course_list);
+		request.setAttribute("timeList", timeList);
 		request.setAttribute("course_subject", course_subject);
 		request.setAttribute("keyword", keyword);
 		request.setAttribute("course_category", course_category);

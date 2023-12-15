@@ -340,7 +340,52 @@ public class CourseDAO {
 		return list;
 	}
 	
-	
+	//cours_code에 따른 요일 시간 필터링
+	public List<CourseVO> selectDay(String course_code) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<CourseVO> list = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+			// SQL문 작성
+			sql = "SELECT * FROM all_course WHERE course_code=?";
+			
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			
+			//?에 데이터 바인딩
+			pstmt.setString(1, course_code);
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			list = new ArrayList<CourseVO>();
+			
+			while(rs.next()) {
+				CourseVO course = new CourseVO();
+				course.setCourse_name(rs.getString("course_name"));
+				course.setCourse_prof(rs.getString("course_prof"));
+				course.setCourse_subject(rs.getString("course_subject"));
+				course.setCourse_code(rs.getString("course_code"));
+				course.setCourse_year(Integer.parseInt(rs.getString("course_year")));
+				course.setCourse_semester(Integer.parseInt(rs.getString("course_semester")));
+				course.setCourse_category(rs.getString("course_category"));
+				course.setCourse_credit(Integer.parseInt(rs.getString("course_credit")));
+				course.setCourse_day(rs.getInt("course_day"));
+				course.setCourse_start_time(rs.getString("course_start_time"));
+				course.setCourse_end_time(rs.getString("course_end_time"));
+				
+				list.add(course);
+			}
+		} catch(Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return list;
+	}
 	
 	
 	
