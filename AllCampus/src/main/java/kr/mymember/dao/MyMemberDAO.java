@@ -302,10 +302,229 @@ public class MyMemberDAO {
 		}
 	}
 	
+	//내가 쓴 글 전체 레코드 수&검색 레코드 수
+	public int getBoardCount(int mem_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int count = 0;
+		
+		try {
+			//커넥션풀로부터 커넥션을 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "SELECT COUNT(*) FROM all_board JOIN all_member USING(mem_num) WHERE mem_num=?"; 
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, mem_num);
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			if(rs.next()) {//전체 레코드에 페이지 처리
+				count = rs.getInt(1);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return count;
+	}
 	
+	//내가 쓴 글 전체 글&검색 글 목록
+	public List<BoardVO> getListBoard(int start,int end,int mem_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		List<BoardVO> list = null;
+		
+		try {
+			//커넥션풀로부터 커넥션을 할당
+			conn = DBUtil.getConnection();
+			
+			//SQL문 작성
+			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
+				+ "(SELECT * FROM "
+				+ "(SELECT 'all_board' board_name, board_num,board_title,board_content,board_reg_date,mem_num FROM all_board " 
+				+ " UNION ALL "
+				+ "SELECT 'all_secondhand' board_name, secondhand_num,secondhand_name,secondhand_content,secondhand_reg_date,mem_num FROM all_secondhand) "
+				+ " WHERE mem_num=? ORDER BY board_reg_date)a) WHERE rnum >=? AND rnum <=?";
+				//PreparedStatement 객체 생성
+				pstmt = conn.prepareStatement(sql);
+				//?에 데이터 바인딩
+				pstmt.setInt(1, mem_num);
+				pstmt.setInt(2, start);
+				pstmt.setInt(3, end);
+				//SQL문 실행
+				rs = pstmt.executeQuery();
+				list = new ArrayList<BoardVO>();
+				while(rs.next()) {
+					BoardVO board = new BoardVO();
+					board.setBoard_name(rs.getString("board_name"));
+					board.setBoard_num(rs.getInt("board_num"));
+					board.setBoard_title(StringUtil.useNoHtml(rs.getString("board_title")));
+					board.setBoard_content(StringUtil.useNoHtml(rs.getString("board_content")));
+					board.setBoard_reg_date(rs.getDate("board_reg_date"));
+					
+					list.add(board);
+				}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return list;
+	}
 	
-	
-	
+	//내 댓글 전체 글&검색 글 목록
+	public int getBoardReplyCount(int mem_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int count = 0;
+			
+		try {
+			//커넥션풀로부터 커넥션을 할당
+			conn = DBUtil.getConnection();
+				
+			//SQL문 작성
+			sql = "SELECT COUNT(*) FROM all_board_reply JOIN all_member USING(mem_num) WHERE mem_num=?"; 
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, mem_num);
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			if(rs.next()) {//전체 레코드에 페이지 처리
+				count = rs.getInt(1);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return count;
+	}
+		
+	//내가 댓글 단 글
+	public List<BoardVO> getListBoardReply(int start, int end, int mem_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		List<BoardVO> list = null;
+			
+		try {
+			//커넥션풀로부터 커넥션을 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
+				+ "(SELECT * FROM all_board JOIN all_member USING(mem_num) "
+				+ "JOIN all_board_reply f USING(board_num) WHERE f.mem_num=? "
+				+ "ORDER BY board_num DESC)a) WHERE rnum >=? AND rnum <= ?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, mem_num);
+			pstmt.setInt(2, start);
+			pstmt.setInt(2, end);
+			//SQL문 작성
+			rs = pstmt.executeQuery();
+			list = new ArrayList<BoardVO>();
+			while(rs.next()) {
+				BoardVO board = new BoardVO();
+				board.setBoard_num(rs.getInt("board_num"));
+				board.setBoard_title(StringUtil.useNoHtml(rs.getString("board_title")));
+				board.setBoard_content(StringUtil.useNoHtml(rs.getString("board_content")));
+				board.setBoard_reg_date(rs.getDate("board_reg_date"));
+				
+				list.add(board);
+			}
+				
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return list;
+	}
+		
+		//스크랩 전체 레코드 수&검색 레코드 수
+		public int getBoardScrapCount(int mem_num)throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = null;
+			int count = 0;
+					
+				try {
+					//커넥션풀로부터 커넥션을 할당
+					conn = DBUtil.getConnection();
+						
+					//SQL문 작성
+					sql = "SELECT COUNT(*) FROM all_board_scrap JOIN all_member USING(mem_num) WHERE mem_num=?"; 
+					//PreparedStatement 객체 생성
+					pstmt = conn.prepareStatement(sql);
+					//?에 데이터 바인딩
+					pstmt.setInt(1, mem_num);
+					//SQL문 실행
+					rs = pstmt.executeQuery();
+					if(rs.next()) {//전체 레코드에 페이지 처리
+						count = rs.getInt(1);
+					}
+				}catch(Exception e) {
+					throw new Exception(e);
+				}finally {
+					DBUtil.executeClose(rs, pstmt, conn);
+				}
+					return count;
+				}
+		
+		//내가 스크랩한 글
+		public List<BoardVO> getListScrapReply(int start, int end, int mem_num)throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = null;
+			List<BoardVO> list = null;
+			
+			try {
+				//커넥션풀로부터 커넥션을 할당
+				conn = DBUtil.getConnection();
+				//SQL문 작성
+				sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
+					+ "(SELECT * FROM all_board JOIN all_member USING(mem_num) "
+					+ "JOIN all_board_scrap f USING(board_num) WHERE f.mem_num=? "
+					+ "ORDER BY board_num DESC)a) WHERE rnum >=? AND rnum <= ?";
+				//PreparedStatement 객체 생성
+				pstmt = conn.prepareStatement(sql);
+				//?에 데이터 바인딩
+				pstmt.setInt(1, mem_num);
+				pstmt.setInt(2, start);
+				pstmt.setInt(3, end);
+				//SQL문 작성
+				rs = pstmt.executeQuery();
+				list = new ArrayList<BoardVO>();
+				while(rs.next()) {
+					BoardVO board = new BoardVO();
+					board.setBoard_num(rs.getInt("board_num"));
+					board.setBoard_title(StringUtil.useNoHtml(rs.getString("board_title")));
+					board.setBoard_content(StringUtil.useNoHtml(rs.getString("board_content")));
+					board.setBoard_reg_date(rs.getDate("board_reg_date"));
+					
+					list.add(board);
+				}
+				
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+			return list;
+		}
 	
 	
 	

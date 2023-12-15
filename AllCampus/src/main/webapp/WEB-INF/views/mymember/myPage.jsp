@@ -44,9 +44,9 @@
 		
 			<div>
 			<h2>내 활동</h2>
-			<a href="${pageContext.request.contextPath}/mymember/writeForm.do">내가 쓴 글</a><p>
-			<a href="${pageContext.request.contextPath}/">댓글 단 글</a><p>
-			<a href="${pageContext.request.contextPath}/">스크랩한 글</a>
+			<a href="${pageContext.request.contextPath}/mymember/list.do">내가 쓴 글</a><p>
+			<a href="${pageContext.request.contextPath}/mymember/listreply.do">댓글 단 글</a><p>
+			<a href="${pageContext.request.contextPath}/mymember/listscrap.do">스크랩한 글</a>
 			</div>
 			
 			<div>

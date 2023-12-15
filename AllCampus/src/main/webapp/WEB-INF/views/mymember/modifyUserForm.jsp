@@ -9,6 +9,9 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
+
+//닉네임
+
 $(function(){
 	let nickChecked = 0; //0은 중복체크 미실행 또는 중복, 1은 미중복
 	//닉네임 중복체크
@@ -50,7 +53,7 @@ $(function(){
 		$('#message_mem_nick').text('');
 	});//end of keydown
 	
-	//닉네임 유효성 체크
+	//닉네임,전공 유효성 체크
 	$('#modify_form').submit(function(){
 		if($('#mem_nick').val().trim()==''){
 			alert('닉네임을 입력해주세요');
@@ -61,15 +64,22 @@ $(function(){
 			alert('닉네임 중복체크는 필수입니다.');
 			return false;
 		}
+		if($('#mem_major').val().trim()==''){
+			alert('전공을 입력해주세요');
+			$('#mem_major').val('').focus();
+			return false;
+		}
 	});
 	
+//프로필 이미지
+
 	//프로필 이미지
 	$('#photo_btn').click(function(){
 		$('#photo_choice').show();
 		$(this).hide();//수정 버튼 감추기
 	});
 	
-	//이미지 미리 보기
+	//프로필 이미지 미리 보기
 	let photo_path = $('.my-photo').attr('src');//처음 화면에 보여지는 이미지 읽기
 	$('#mem_photo').change(function(){
 		let my_photo = this.files[0];
@@ -86,7 +96,7 @@ $(function(){
 			return;
 		}
 		
-		//화면에서 이미지 미리 보기
+		//화면에서 프로필 이미지 미리 보기
 		const reader = new FileReader();
 		reader.readAsDataURL(my_photo);
 		
@@ -97,7 +107,7 @@ $(function(){
 		
 	});//end of change
 	
-	//이미지 전송
+	//프로필 이미지 전송
 	$('#mem_photo_submit').click(function(){
 		if($('#mem_photo').val()==''){
 			alert('파일을 선택하세요!');
@@ -136,7 +146,7 @@ $(function(){
 		});
 	});	//end of click
 	
-	//이미지 미리보기 취소
+	//프로필 이미지 미리보기 취소
 	$('#mem_photo_reset').click(function(){
 		//초기 이미지 표시
 		//이미지 미리보기 전 이미지로 되돌리기
