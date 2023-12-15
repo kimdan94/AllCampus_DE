@@ -4,10 +4,12 @@ public class CourseEvaVO {
 	private int eva_num;			//강의평 글번호	--PK
 	private int course_num;			//강의번호  	--FK
 	private int mem_num;			//회원번호		--FK
-	private int eva_star;			//별점
+	private double eva_star;			//별점     //double로 받아오기
 	private String eva_content;		//강의평 내용
 	private int eva_complaint;		//강의평 게시글 신고수
 	private int eva_show;			//게시글 표시 여부     1 미표시, 2 표시
+	private String eva_semester;
+	
 	public int getEva_num() {
 		return eva_num;
 	}
@@ -26,10 +28,10 @@ public class CourseEvaVO {
 	public void setMem_num(int mem_num) {
 		this.mem_num = mem_num;
 	}
-	public int getEva_star() {
+	public double getEva_star() {
 		return eva_star;
 	}
-	public void setEva_star(int eva_star) {
+	public void setEva_star(double eva_star) {
 		this.eva_star = eva_star;
 	}
 	public String getEva_content() {
@@ -50,4 +52,11 @@ public class CourseEvaVO {
 	public void setEva_show(int eva_show) {
 		this.eva_show = eva_show;
 	}
+	public String getEva_semester() {
+		return eva_semester;
+	}
+	public void setEva_semester(String eva_semester) {
+		this.eva_semester = eva_semester;
+	}
+	
 }

@@ -72,10 +72,11 @@ create table all_course_eva(
  eva_num number not null,     --PK
  course_num number not null,   --FK
  mem_num number not null,   -- FK
- eva_star number(1) not null,
+ eva_star number(9,2) not null,
  eva_content clob not null,
  eva_complaint number(9) default 0 not null,
  eva_show number(1) default 2 not null,      -- 표시 여부 : 1 미표시, 2 표시
+ eva_semester varchar2(50) not null,
  constraint all_course_eva_pk primary key (eva_num),
  constraint all_course_eva_fk1 foreign key (course_num) references all_course (course_num),
  constraint all_course_eva_fk2 foreign key (mem_num) references all_member (mem_num)

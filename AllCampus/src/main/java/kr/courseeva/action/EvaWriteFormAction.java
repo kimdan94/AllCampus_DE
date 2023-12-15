@@ -1,18 +1,14 @@
 package kr.courseeva.action;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.codehaus.jackson.map.ObjectMapper;
-
 import kr.controller.Action;
-import kr.course.vo.CourseVO;
-import kr.courseeva.dao.CourseEvaDAO;
+
+
 
 public class EvaWriteFormAction implements Action{
 
@@ -25,6 +21,6 @@ public class EvaWriteFormAction implements Action{
 		}
 		
 		//로그인이 된 경우
-		return "/WEB-INF/views/courseeva/EvawriteForm.jsp";
+		return "/WEB-INF/views/courseeva/evawriteForm.jsp";
 	}
 }
