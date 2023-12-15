@@ -22,10 +22,7 @@ public class CourseHoverAction implements Action {
 		//전송된 데이터 번환
 		String course_code = request.getParameter("course_code");
 		
-		System.out.println("course_code " + course_code);
-		
 		Map<String, Object> mapAjax = new HashMap<String, Object>();
-		//mapAjax.put("result", course_code);
 		
 		CourseDAO dao = CourseDAO.getInstance();
 		List<CourseVO> listHover = dao.selectDay(course_code);

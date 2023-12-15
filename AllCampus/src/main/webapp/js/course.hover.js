@@ -1,75 +1,109 @@
-$(function(){
+$(function() {
 	var name = $('#courseDBtable tr');
 	//Hover 효과
-	for(let i=0; i<name.length; i++){
+	for (let i = 0; i < name.length; i++) {
 		//마우스 오버
 		$(name[i]).on('mouseover', (e) => {
 			console.log('mouseover');
-			$(name[i]).css({"color": "red"});
+			$(name[i]).css({ "color": "red" });
 			console.log($(name[i]).prop("id"));
 			$.ajax({
-				url:'courseHover.do',
-				type:'post',
-				data:{course_code:$(name[i]).prop("id")},
-				dataType:'json',
-				success:function(param){
-					alert($(name[i]).prop("id"));
-					hoverTime(param);
+				url: 'courseHover.do',
+				type: 'post',
+				data: { course_code: $(name[i]).prop("id") },
+				dataType: 'json',
+				success: function(param) {
+					mouseoverTime(param);
 				},
-				error:function(){
+				error: function() {
 					alert('네트워크 오류 발생');
 				}
 			});
-			
+
 		});
 		//마우스 아웃
 		$(name[i]).on('mouseout', (e) => {
 			console.log('mouseoout');
-			$(name[i]).css({"color": ""});
-			$('#timetable').css({"color" : ""});
-		 });
+			$(name[i]).css({ "color": "" });
+			$('#timetable').css({ "color": "" });
+			$.ajax({
+				url: 'courseHover.do',
+				type: 'post',
+				data: { course_code: $(name[i]).prop("id") },
+				dataType: 'json',
+				success: function(param) {
+					//hoverTime(param);
+					mouseoutTime(param);
+				},
+				error: function() {
+					alert('네트워크 오류 발생');
+				}
+			});
+		});
 	}
-	
-	function hoverTime(param){
+
+	function mouseoverTime(param) {
 		var standard_time = [];
-		for(var i=9; i<18; i++){
-			for(var j=0; j<2; j++){
-				standard_time.push(i*60 + j*30);
+		for (var i = 9; i < 18; i++) {
+			for (var j = 0; j < 2; j++) {
+				standard_time.push(i * 60 + j * 30);
 			}
 		}
-		$(param.listHover).each(function(index, item){
-			
+		$(param.listHover).each(function(index, item) {
 			console.log("standard " + standard_time);
 			var startList = item.course_start_time.split(':');
 			var startTime = Number(startList[0]) * 60 + Number(startList[1]);
 			var endList = item.course_end_time.split(':');
 			var endTime = Number(endList[0]) * 60 + Number(endList[1]);
-			
+
 			console.log("start_time " + item.course_start_time + " - " + startTime);
 			console.log("end_time " + item.course_end_time + " - " + endTime);
-			
-			for(var i=0; i<standard_time.length; i++){
-				if(standard_time[i] >= startTime && standard_time[i] < endTime){
+
+			for (var i = 0; i < standard_time.length; i++) {
+				if (standard_time[i] >= startTime && standard_time[i] < endTime) {
 					console.log("해당되는 값" + standard_time[i]);
-					console.log(item.course_day + "_" +  standard_time[i]);
-					
-					$("#" + item.course_day + "_" +  standard_time[i]).css({"background-color" : "blue"});
+					console.log(item.course_day + "_" + standard_time[i]);
+
+					$("#" + item.course_day + "_" + standard_time[i]).css({ "background-color": "blue" });
 				}
 			}
-			
-						
-			item.course_day + "" + 
-			$('#item.course_day')
-			
+
 			/*출력
 			item.course_day
 			item.course_start_time
 			item.course_end_time
 			*/
-			
-			
 		});
-		
+
+	}
+
+	function mouseoutTime(param) {
+		var standard_time = [];
+		for (var i = 9; i < 18; i++) {
+			for (var j = 0; j < 2; j++) {
+				standard_time.push(i * 60 + j * 30);
+			}
+		}
+		$(param.listHover).each(function(index, item) {
+			console.log("standard " + standard_time);
+			var startList = item.course_start_time.split(':');
+			var startTime = Number(startList[0]) * 60 + Number(startList[1]);
+			var endList = item.course_end_time.split(':');
+			var endTime = Number(endList[0]) * 60 + Number(endList[1]);
+
+			console.log("start_time " + item.course_start_time + " - " + startTime);
+			console.log("end_time " + item.course_end_time + " - " + endTime);
+
+			for (var i = 0; i < standard_time.length; i++) {
+				if (standard_time[i] >= startTime && standard_time[i] < endTime) {
+					console.log("해당되는 값" + standard_time[i]);
+					console.log(item.course_day + "_" + standard_time[i]);
+
+					$("#" + item.course_day + "_" + standard_time[i]).css({ "background-color": "" });
+				}
+			}
+		});
+
 	}
 
 });
