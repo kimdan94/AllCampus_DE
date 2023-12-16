@@ -9,6 +9,7 @@ import java.util.List;
 import kr.board.vo.BoardVO;
 import kr.secondhand.vo.SecondhandVO;
 import kr.util.DBUtil;
+import kr.util.StringUtil;
 
 public class SecondhandDAO {
 	//싱글턴 패턴
@@ -144,7 +145,7 @@ public class SecondhandDAO {
 				SecondhandVO sc = new SecondhandVO();
 				sc.setSecondhand_num(rs.getInt("secondhand_num"));
 				sc.setSecondhand_filename(rs.getString("secondhand_filename"));
-				sc.setSecondhand_name(rs.getString("secondhand_name"));
+				sc.setSecondhand_name(StringUtil.useNoHtml(rs.getString("secondhand_name")));
 				sc.setSecondhand_writer(rs.getString("secondhand_writer"));
 				sc.setSecondhand_company(rs.getString("secondhand_company"));
 				sc.setSecondhand_price(rs.getInt("secondhand_price"));

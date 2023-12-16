@@ -10,6 +10,7 @@ import kr.controller.Action;
 import kr.secondhand.dao.SecondhandDAO;
 import kr.secondhand.vo.SecondhandVO;
 import kr.util.PageUtil;
+import kr.util.StringUtil;
 
 public class ListAction implements Action{
 
