@@ -26,6 +26,9 @@ $(function(){
 				if(param.result == 'success'){
 					alert("신고 완료되었습니다.");
 					location.href='detail.do?board_num=${board.board_num}';
+				}else if(param.result == 'duplicated'){
+					alert('이미 신고 처리된 게시글입니다.');
+					location.href='detail.do?board_num=${board.board_num}';
 				}else{
 					alert("신고 처리 오류 발생");
 				}
@@ -35,7 +38,6 @@ $(function(){
 			}
 		});
 	});
-	
 });
 </script>
 </head>
@@ -70,7 +72,7 @@ $(function(){
 		<!-- 글 게시자가 아니면 신고버튼, 글 게시자는 수정,삭제 버튼이 보이게 만들기   -->
 		<ul class="detail-actions">
 			<li>
-				<c:if test="${user_num != board.mem_num  && board.board_complaint <3}">
+				<c:if test="${user_num != board.mem_num}">
 				<a href="#" id="board_complaint_link">신고</a>
 				</c:if>
 				<%-- 로그인한 회원번호와 작성자 회원번호가 일치해야 수정,삭제 가능 --%>
@@ -156,33 +158,6 @@ $(function(){
 </div>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

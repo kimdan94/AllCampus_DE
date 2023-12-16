@@ -17,7 +17,7 @@ public class WriteReplyAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-Map<String,String> mapAjax = new HashMap<String,String>();
+		Map<String,String> mapAjax = new HashMap<String,String>();
 		
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
