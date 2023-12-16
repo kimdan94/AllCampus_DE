@@ -337,8 +337,9 @@ public class BoardDAO {
 		public void deleteBoard(int board_num)throws Exception{
 			Connection conn = null;
 			PreparedStatement pstmt = null;   //좋아요 삭제
-			PreparedStatement pstmt2 = null; //댓글 삭제
-			PreparedStatement pstmt3 = null; //부모글 삭제
+			PreparedStatement pstmt2 = null; //스크랩 삭제 삭제
+			PreparedStatement pstmt3 = null; //댓글 삭제
+			PreparedStatement pstmt4 = null;//부모글 삭제
 			String sql = null;
 			
 			try {
@@ -347,22 +348,32 @@ public class BoardDAO {
 				//오토커밋 해제		3개의 문장을 삭제할거라 오토커밋
 				conn.setAutoCommit(false);
 				
-				/*
-				 * //좋아요 삭제 sql = "DELETE FROM all_board_fav WHERE board_num=?"; pstmt =
-				 * conn.prepareStatement(sql); pstmt.setInt(1, board_num);
-				 * pstmt.executeUpdate();
-				 * 
-				 * //댓글 삭제 //board_num을 넣어서 관련된 자식들을 다 지운다는 뜻 sql =
-				 * "DELETE FROM all_board_reply WHERE board_num=?"; pstmt2 =
-				 * conn.prepareStatement(sql); pstmt2.setInt(1, board_num);
-				 * pstmt2.executeUpdate();
-				 */
+				
+				//좋아요 삭제 
+				sql = "DELETE FROM all_board_fav WHERE board_num=?"; 
+				pstmt = conn.prepareStatement(sql); 
+				pstmt.setInt(1, board_num);
+				pstmt.executeUpdate();
+				
+				//스크랩 삭제 
+				sql = "DELETE FROM all_board_scrap WHERE board_num=?";
+				pstmt2 = conn.prepareStatement(sql); 
+				pstmt2.setInt(1, board_num);
+				pstmt2.executeUpdate();
+				
+				
+				//댓글 삭제 //board_num을 넣어서 관련된 자식들을 다 지운다는 뜻 
+				sql ="DELETE FROM all_board_reply WHERE board_num=?"; 
+				pstmt3 = conn.prepareStatement(sql); 
+				pstmt3.setInt(1, board_num);
+				pstmt3.executeUpdate();
+				
 				
 				//부모글 삭제
 				sql = "DELETE FROM all_board WHERE board_num=?";
-				pstmt3 = conn.prepareStatement(sql);
-				pstmt3.setInt(1, board_num);
-				pstmt3.executeUpdate();
+				pstmt4 = conn.prepareStatement(sql);
+				pstmt4.setInt(1, board_num);
+				pstmt4.executeUpdate();
 				
 				//모든 SQL문 실행이 성공하면 
 				conn.commit();
@@ -371,6 +382,7 @@ public class BoardDAO {
 				conn.rollback();
 				throw new Exception(e);
 			}finally {
+				DBUtil.executeClose(null, pstmt4, null);
 				DBUtil.executeClose(null, pstmt3, null);
 				DBUtil.executeClose(null, pstmt2, null);
 				DBUtil.executeClose(null, pstmt, conn);
@@ -607,14 +619,6 @@ public class BoardDAO {
 		}
 			
 		
-	
-		
-		
-		
-		
-		
-		
-		
 		//댓글 등록
 		public void insertReplyBoard(BoardReplyVO boardReply)throws Exception{
 			Connection conn = null;
@@ -625,15 +629,16 @@ public class BoardDAO {
 				//커넥션풀로부터 커넥션 할당
 				conn = DBUtil.getConnection();
 				//SQL문 작성
-				sql = "INSERT INTO zboard_reply (re_num,re_content,"
-					+ "re_ip,mem_num,board_num) VALUES (zreply_seq.nextval,?,?,?,?)";
+				sql = "INSERT INTO all_board_reply (re_num,re_content,"
+					+ "re_ip,re_anonymous,mem_num,board_num) VALUES (all_board_reply_seq.nextval,?,?,?,?,?)";
 				//PreparedStatement 객체 생성
 				pstmt = conn.prepareStatement(sql);
 				//?에 데이터 바인딩
 				pstmt.setString(1, boardReply.getRe_content());
 				pstmt.setString(2, boardReply.getRe_ip());
-				pstmt.setInt(3, boardReply.getMem_num());
-				pstmt.setInt(4, boardReply.getBoard_num());
+				pstmt.setInt(3, boardReply.getRe_anonymous());
+				pstmt.setInt(4, boardReply.getMem_num());
+				pstmt.setInt(5, boardReply.getBoard_num());
 				//SQL문 실행
 				pstmt.executeUpdate();
 			}catch(Exception e) {
@@ -706,6 +711,7 @@ public class BoardDAO {
 						reply.setRe_modifydate(DurationFromNow.getTimeDiffLabel(rs.getString("re_modifydate")));
 					}
 					reply.setRe_content(StringUtil.useBrNoHtml(rs.getString("re_content")));
+					reply.setRe_anonymous(rs.getInt("re_anonymous"));  //익명 여부
 					reply.setBoard_num(rs.getInt("board_num"));
 					reply.setMem_num(rs.getInt("mem_num"));
 					reply.setMem_id(rs.getString("mem_id"));

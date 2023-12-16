@@ -1,11 +1,11 @@
 $(function(){
-	let rowCount = 10;  //한화면에 10개가 보여지게
+	let rowCount = 10;
 	let currentPage;
 	let count;
-	
+
 	//댓글 목록
 	function selectList(pageNum){
-		currentPage = pageNum;  //pageNum을 currentpage에 보관함
+		currentPage = pageNum;
 		
 		//로딩 이미지 노출
 		$('#loading').show();
@@ -13,7 +13,8 @@ $(function(){
 		$.ajax({
 			url:'listReply.do',
 			type:'post',
-			data:{pageNum:pageNum,rowCount:rowCount,board_num:$('#board_num').val()},
+			data:{pageNum:pageNum,rowCount:rowCount,
+			                    board_num:$('#board_num').val()},
 			dataType:'json',
 			success:function(param){
 				//로딩 이미지 감추기
@@ -21,42 +22,49 @@ $(function(){
 				count = param.count;
 				
 				if(pageNum == 1){
-					//처음 호출시는 해당 Id의 div의 내부 내용물을 제거
+					//처음 호출시는 해당 ID의 div의 내부 내용물을 제거
 					$('#output').empty();
 				}
+				
 				$(param.list).each(function(index,item){
 					let output = '<div class="item">';
-					output += '<h4>' + item.id + '</h4>';
-					output +='<div class="sub-item">';
+					//댓글 작성자 익명 여부 출력
+					if(item.re_anonymous==1){
+						output += '<h4>' + item.mem_id + '</h4>';
+					}else if(item.re_anonymous==2){
+						output += '<h4>익명</h4>';
+					}else{
+						output += '<h4>오류</h4>';
+					}
+					output += '<div class="sub-item">';
 					output += '<p>' + item.re_content + '</p>';
 					
 					if(item.re_modifydate){
-						output += '<span class="modify-date">최근 수정일 : ' + item.re_modifydate + '</span>';			
+						output += '<span class="modify-date">최근 수정일 : ' + item.re_modifydate + '</span>';
 					}else{
 						output += '<span class="modify-date">등록일 : ' + item.re_date + '</span>';
-						
 					}
-					//로그인한 회원번호와 작성자의 회원번호 일치 여부 체크 
+					
+					//로그인한 회원번호와 작성자의 회원번호 일치 여부 체크
 					if(param.user_num == item.mem_num){//로그인한 회원번호와 작성자 회원번호 일치
-						output += ' <input type="button" data-renum="'+ item.re_num +'" value="수정" class="modify-btn">';					
-										//"'+ item.re_num +'"	==>	"" : HTML의 태그의 속성값  그 안의 ''는 자바스크립트의 문자열이다.
-						output += ' <input type="button" data-renum="'+ item.re_num +'" value="삭제" class="delete-btn">';	
+						output += ' <input type="button" data-renum="' + item.re_num + '" value="수정" class="modify-btn">';
+						output += ' <input type="button" data-renum="' + item.re_num + '" value="삭제" class="delete-btn">';
 					}
-					output+='<hr size="1" noshade width="100%">';
+					output += '<hr size="1" noshade width="100%">';
 					output += '</div>';
 					output += '</div>';
 					
-					//문서 객체에 추가 
-					$('#output').append(output);										
+					//문서 객체에 추가
+					$('#output').append(output);
 				});
-				//page button 처리 
+				//page button 처리
 				if(currentPage>=Math.ceil(count/rowCount)){
 					//다음 페이지가 없음
 					$('.paging-button').hide();
 				}else{
 					//다음 페이지가 존재
 					$('.paging-button').show();
-				}      //버튼이 보여지게 처리했으니 이벤트 연결 해야함(아래쪽에 있음)
+				}
 			},
 			error:function(){
 				//로딩 이미지 감추기
@@ -64,15 +72,15 @@ $(function(){
 				alert('네트워크 오류 발생');
 			}
 		});
-		
-		
-		
 	}
+
 	//페이지 처리 이벤트 연결(다음 댓글 보기 버튼 클릭시 데이터 추가)
 	$('.paging-button input').click(function(){
 		selectList(currentPage + 1);
 	});
 	
+	
+
 	//댓글 등록
 	$('#re_form').submit(function(event){
 		if($('#re_content').val().trim()==''){
@@ -80,10 +88,18 @@ $(function(){
 			$('#re_content').val('').focus();
 			return false;
 		}
-		
-		//form 이하의 태그에 입력한 데이터를 모두 읽어옴(쿼리 스트링 형식으로 읽어옴)
-		let form_data = $(this).serialize(); //한번에 읽어옴 //  form이 serialize기능을 가지고 있음
+		// 익명 체크박스가 체크되어 있으면 값을 2로, 체크되어 있지 않으면 값을 1로 설정
+        if ($('#re_anonymous').is(':checked')) {
+            $('#re_anonymous').val('2');
+        } else {
+            $('#re_anonymous').val('1');
+         // 체크가 되어 있지 않으면 hidden input에 값을 설정
+            $('#re_form').append('<input type="hidden" name="re_anonymous" value="1">');
+        }
 
+		//form 이하의 태그에 입력한 데이터를 모두 읽어옴(쿼리 스트링 형식으로 읽어옴)
+		let form_data = $(this).serialize();		
+		
 		//서버와 통신
 		$.ajax({
 			url:'writeReply.do',
@@ -93,10 +109,11 @@ $(function(){
 			success:function(param){
 				if(param.result == 'logout'){
 					alert('로그인해야 작성할 수 있습니다.');
-				}else if(param.result =='success'){
+				}else if(param.result == 'success'){
 					//폼 초기화
 					initForm();
-					//댓글 작성이 성공하면 새로 삽입한 글을 포함해서 첫번째 페이지의 게시글을 다시 호출함
+					//댓글 작성이 성공하면 새로 삽입한 글을 포함해서 첫번째
+					//페이지의 게시글을 다시 호출함
 					selectList(1);
 				}else{
 					alert('댓글 등록 오류 발생');
@@ -112,15 +129,16 @@ $(function(){
 	//댓글 작성 폼 초기화
 	function initForm(){
 		$('textarea').val('');
-		$('#re_first .letter-count').text('300/300'); //초기화 됬으니까 300/300으로 다시 고쳐놓음
+		$('#re_anonymous').prop('checked', false);      //이부분에 체크 해제되게 
+		$('#re_first .letter-count').text('300/300');
 	}
-	//textarea에 내용 입력시 글자수 체크             //수정하는 순간에 태그를 만들거임
+	//textarea에 내용 입력시 글자수 체크
 	$(document).on('keyup','textarea',function(){
 		//입력한 글자수 구함
 		let inputLength = $(this).val().length;
 		
 		if(inputLength > 300){//300자를 넘어선 경우
-			$(this).val($(this).val().substring(0,300)); //300자 넘어선거는 잘라냄
+			$(this).val($(this).val().substring(0,300));
 		}else{//300자 이하인 경우
 			let remain = 300 - inputLength;
 			remain += '/300';
@@ -128,7 +146,7 @@ $(function(){
 				//등록폼 글자수
 				$('#re_first .letter-count').text(remain);
 			}else{
-				//수정폼 글자수 
+				//수정폼 글자수
 				$('#mre_first .letter-count').text(remain);
 			}
 		}
@@ -137,29 +155,28 @@ $(function(){
 	$(document).on('click','.modify-btn',function(){
 		//댓글 번호
 		let re_num = $(this).attr('data-renum');
-		//댓글 내용			parent가 div ,  div의 p태그 가서 replace해주기
-		let content = $(this).parent().find('p').html().replace(/<br>/gi,'\n'); 
-												// g:지정문자열 모두, i:대소문자 무시
-												// <br>태그를 모두 찾아서 \n으로 바꾸라는 뜻
-		//댓글 수정폼 UI					
+		//댓글 내용
+		let content = $(this).parent().find('p').html().replace(/<br>/gi,'\n');
+		                                           //g:지정문자열 모두,i:대소문자 무시
+		//댓글 수정폼 UI
 		let modifyUI = '<form id="mre_form">';
-    	modifyUI += '<input type="hidden" name="re_num" id="mre_num" value="' + re_num + '">';
-   	    modifyUI += '<textarea rows="3" cols="50" name="re_content" id="mre_content" class="rep-content">' + content + '</textarea>';
-        modifyUI += '<div id="mre_first"><span class="letter-count">300/300</span></div>';
-        modifyUI += '<div id="mre_second" class="align-right">';
-        modifyUI += ' <input type="submit" value="수정">';
-        modifyUI += ' <input type="button" value="취소" class="re-reset">';
-        modifyUI += '</div>';
+		modifyUI += '<input type="hidden" name="re_num" id="mre_num" value="' + re_num + '">';
+		modifyUI += '<textarea rows="3" cols="50" name="re_content" id="mre_content" class="rep-content">' + content + '</textarea>';
+		modifyUI += '<div id="mre_first"><span class="letter-count">300/300</span></div>';
+		modifyUI += '<div id="mre_second" class="align-right">';
+		modifyUI += ' <input type="submit" value="수정">';
+		modifyUI += ' <input type="button" value="취소" class="re-reset">';
+		modifyUI += '</div>';
 		modifyUI += '<hr size="1" noshade width="96%">';
-        modifyUI += '</form>';
+		modifyUI += '</form>';
 		
-		//이전에 이미 수정하는 댓글이 있을 경우 수정버튼을 클릭하면 
-		//숨겨져 있는 div(class=sub-item)을 환원시키고 수정폼을 초기화함(제거)
-		initModifyForm();          //이전 데이터가 있을 수 있으니까 초기화
-				
+		//이전에 이미 수정하는 댓글이 있을 경우 수정버튼을 클릭하면
+		//숨겨져 있는 div(class=sub-item)을 환원시키고 수정폼을
+		//초기화함(제거)
+		initModifyForm();
+		
 		//지금 클릭해서 수정하고자 하는 데이터는 감추기
 		//수정버튼을 감싸고 있는 div
-				//parent는 div class="sub-item" 부분
 		$(this).parent().hide();
 		
 		//수정폼을 수정하고자 하는 데이터가 있는 div에 노출
@@ -172,20 +189,20 @@ $(function(){
 		
 		//문서 객체에 반영
 		$('#mre_first .letter-count').text(remain);
+		
 	});
-	//수정폼에서 취소버튼 클릭시 수정폼 초기화 
+	//수정폼에서 취소 버튼 클릭시 수정폼 초기화
 	$(document).on('click','.re-reset',function(){
 		initModifyForm();
 	});
-	
 	//댓글 수정폼 초기화
 	function initModifyForm(){
-		$('.sub-item').show();//전체 다 보여지게
-		$('#mre_form').remove();//폼을 삭제
+		$('.sub-item').show();
+		$('#mre_form').remove();
 	}
 	//댓글 수정
 	$(document).on('submit','#mre_form',function(event){
-		 if($('#mre_content').val().trim()==''){
+		if($('#mre_content').val().trim()==''){
 			alert('내용을 입력하세요!');
 			$('#mre_content').val('').focus();
 			return false;
@@ -203,11 +220,11 @@ $(function(){
 				if(param.result == 'logout'){
 					alert('로그인해야 수정할 수 있습니다.');
 				}else if(param.result == 'success'){
-					//댓글 내용		item의 p태그에    			 
+					//댓글 내용
 					$('#mre_form').parent().find('p').html($('#mre_content').val().replace(/</g,'&lt;').replace(/>/,'&gt;').replace(/\n/g,'<br>'));
-					//댓글 수정 시간  parent()는 item       item의 modify-date에 접근함
+					//댓글 수정 시간
 					$('#mre_form').parent().find('.modify-date').text('최근 수정일 : 5초미만');
-					//수정폼 삭제 및 초기화 
+					//수정폼 삭제 및 초기화
 					initModifyForm();
 				}else if(param.result == 'wrongAccess'){
 					alert('타인의 글을 수정할 수 없습니다.');
@@ -230,7 +247,7 @@ $(function(){
 		$.ajax({
 			url:'deleteReply.do',
 			type:'post',
-			data:{re_num:re_num}, //{key:value}
+			data:{re_num:re_num},
 			dataType:'json',
 			success:function(param){
 				if(param.result == 'logout'){
@@ -249,8 +266,9 @@ $(function(){
 			}
 		});
 	});
+	
 	//초기 데이터(목록) 호출
 	selectList(1);
+	
+	
 });
-
-

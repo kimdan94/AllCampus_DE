@@ -17,7 +17,7 @@ public class WriteReplyAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		Map<String,String> mapAjax = new HashMap<String,String>();
+Map<String,String> mapAjax = new HashMap<String,String>();
 		
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
@@ -31,12 +31,14 @@ public class WriteReplyAction implements Action{
 			reply.setMem_num(user_num);//회원번호(댓글 작성자)
 			reply.setRe_content(request.getParameter("re_content"));
 			reply.setRe_ip(request.getRemoteAddr());
-			reply.setBoard_num(Integer.parseInt(request.getParameter("board_num"))); 
+			reply.setRe_anonymous(Integer.parseInt(request.getParameter("re_anonymous"))); 
+			reply.setBoard_num(Integer.parseInt(
+					           request.getParameter("board_num")));
 			
 			BoardDAO dao = BoardDAO.getInstance();
 			dao.insertReplyBoard(reply);
 			
-			mapAjax.put("result", "success"); //json방식으로 전달됨
+			mapAjax.put("result", "success");
 		}
 		//JSON 문자열 생성
 		ObjectMapper mapper = new ObjectMapper();
@@ -47,6 +49,5 @@ public class WriteReplyAction implements Action{
 		//JSP 경로 반환
 		return "/WEB-INF/views/common/ajax_view.jsp";
 	}
+
 }
-
-

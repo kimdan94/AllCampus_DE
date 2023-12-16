@@ -14,7 +14,6 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/board.scrap.js"></script>
 <script type="text/javascript">
 $(function(){
-	
 	$('#board_complaint_link').click(function(){
 		alert('신고하시겠습니까?');
 		
@@ -38,9 +37,6 @@ $(function(){
 	});
 	
 });
-
-
-
 </script>
 </head>
 <body>
@@ -130,7 +126,15 @@ $(function(){
 				<c:if test="${!empty user_num}">
 				<div id="re_first">
 					<span class="letter-count">300/300</span>
+					<!-- 익명처리 -->
+					<ul>
+						<li>
+                    		<input type="checkbox" name="re_anonymous" id="re_anonymous" value="1">익명
+                   		</li>
+                    </ul>
+                
 				</div>
+				
 				<div id="re_second" class="align-right">
 					<input type="submit" value="전송">
 				</div>
@@ -145,15 +149,8 @@ $(function(){
 		<div id="loading" style="display:none;">
 			<img src="${pageContext.request.contextPath}/images/loading.gif" width="50" height="50">
 		</div>
-		
-		
-		
-		
 		<!-- 댓글 목록 출력 끝 -->
 		<!-- 댓글 끝 -->
-		
-		
-		
 	</div>
 	</div>
 </div>
