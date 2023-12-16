@@ -33,6 +33,8 @@ create table all_timetable(
  timetable_start_time varchar2(20) not null,
  timetable_end_time varchar2(20) not null,
  timetable_credit number not null,
+ timetable_table_id varchar2(60) not null,
+ timetable_color varchar2(60) not null,
  constraint all_timetable_pk primary key (timetable_num),
  constraint all_timetable_fk1 foreign key (mem_num) references all_member (mem_num),
  constraint all_timetable_fk2 foreign key (course_num) references all_course(course_num)
