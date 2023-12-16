@@ -77,6 +77,7 @@ create table all_course_eva(
  eva_complaint number(9) default 0 not null,
  eva_show number(1) default 2 not null,      -- 표시 여부 : 1 미표시, 2 표시
  eva_semester varchar2(50) not null,
+ eva_reg_date date default sysdate not null,
  constraint all_course_eva_pk primary key (eva_num),
  constraint all_course_eva_fk1 foreign key (course_num) references all_course (course_num),
  constraint all_course_eva_fk2 foreign key (mem_num) references all_member (mem_num)

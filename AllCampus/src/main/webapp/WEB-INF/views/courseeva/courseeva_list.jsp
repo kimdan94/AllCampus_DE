@@ -44,7 +44,7 @@
 		<c:if test="${count > 0}">
 		<table>
 			<c:forEach var="courseeva" items="${list}">
-			<tr>
+			<tr onclick="location.href='courseeva_detail.do?course_name=${courseeva.courseVO.course_name}&course_prof=${courseeva.courseVO.course_prof}'">
 				<td>
 					${courseeva.courseVO.course_name}<br>
 					${courseeva.courseVO.course_prof}<br>

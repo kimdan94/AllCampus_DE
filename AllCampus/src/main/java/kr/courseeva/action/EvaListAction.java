@@ -38,5 +38,4 @@ public class EvaListAction implements Action{
 		//JSP 경로 반환
 		return "/WEB-INF/views/courseeva/courseeva_list.jsp";
 	}
-
 }

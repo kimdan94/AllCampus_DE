@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import kr.board.vo.BoardVO;
 import kr.course.vo.CourseVO;
 import kr.courseeva.vo.CourseEvaVO;
 import kr.util.DBUtil;
@@ -269,6 +269,93 @@ public class CourseEvaDAO {
 		}
 		return list;
 	}
+	
+	//강의평 상세 - 전체 글 개수
+	public int getEvaDetailCount(String course_name, String course_prof)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int count = 0;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "SELECT COUNT(*) FROM all_course_eva JOIN all_course "
+				+ "USING(course_num) WHERE course_name=? AND course_prof=?";
+			//PreparedStatement 객체
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setString(1, course_name);
+			pstmt.setString(2, course_prof);
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}	
+		return count;
+	}
+	
+	//강의평 상세 
+	public List<CourseEvaVO> getCourseEva(int start, int end,String course_name, String course_prof)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<CourseEvaVO> list = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션을 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql ="SELECT * FROM (SELECT a.*,rownum rnum "
+				+ "FROM (SELECT * FROM all_course_eva JOIN all_course USING(course_num) "
+				+ "WHERE course_name=? AND course_prof=? ORDER BY eva_num DESC)a) "
+				+ "WHERE rnum >=? AND rnum <=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setString(1, course_name);
+			pstmt.setString(2, course_prof);
+			pstmt.setInt(3, start);
+			pstmt.setInt(4, end);
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			list = new ArrayList<CourseEvaVO>();
+			while(rs.next()) {
+				CourseEvaVO courseeva = new CourseEvaVO();
+				courseeva.setCourse_num(rs.getInt("course_num"));
+				courseeva.setEva_num(rs.getInt("eva_num"));
+				courseeva.setMem_num(rs.getInt("mem_num"));
+				courseeva.setEva_star(rs.getDouble("eva_star"));
+				courseeva.setEva_content(rs.getString("eva_content"));
+				courseeva.setEva_complaint(rs.getInt("eva_complaint"));
+				courseeva.setEva_show(rs.getInt("eva_show"));
+				courseeva.setEva_semester(rs.getString("eva_semester"));
+				courseeva.setEva_reg_date(rs.getDate("eva_reg_date"));
+				
+				//강의 정보를 담기 위해 CourseVO 객체 생성
+				CourseVO course = new CourseVO();
+				course.setCourse_name(rs.getString("course_name"));
+				course.setCourse_prof(rs.getString("course_prof"));
+				courseeva.setCourseVO(course);
+				
+				list.add(courseeva);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}	
+		return list;
+	}
+	
 	
 	
 	/*

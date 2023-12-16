@@ -1,5 +1,7 @@
 package kr.courseeva.vo;
 
+import java.sql.Date;
+
 import kr.course.vo.CourseVO;
 
 
@@ -7,11 +9,12 @@ public class CourseEvaVO {
 	private int eva_num;			//강의평 글번호	--PK
 	private int course_num;			//강의번호  	--FK
 	private int mem_num;			//회원번호		--FK
-	private double eva_star;			//별점     //double로 받아오기
+	private double eva_star;		//별점     //double로 받아오기
 	private String eva_content;		//강의평 내용
 	private int eva_complaint;		//강의평 게시글 신고수
 	private int eva_show;			//게시글 표시 여부     1 미표시, 2 표시
-	private String eva_semester;
+	private String eva_semester;	//수강학기
+	private Date eva_reg_date;	    //강의평 글 등록일
 	
 	private CourseVO courseVO;
 	
@@ -63,11 +66,16 @@ public class CourseEvaVO {
 	public void setEva_semester(String eva_semester) {
 		this.eva_semester = eva_semester;
 	}
+	public Date getEva_reg_date() {
+		return eva_reg_date;
+	}
+	public void setEva_reg_date(Date eva_reg_date) {
+		this.eva_reg_date = eva_reg_date;
+	}
 	public CourseVO getCourseVO() {
 		return courseVO;
 	}
 	public void setCourseVO(CourseVO courseVO) {
 		this.courseVO = courseVO;
 	}
-	
 }
