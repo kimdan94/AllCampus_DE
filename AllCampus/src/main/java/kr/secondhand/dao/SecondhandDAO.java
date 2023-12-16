@@ -193,6 +193,7 @@ public class SecondhandDAO {
 				sc.setSecondhand_filename(rs.getString("secondhand_filename"));
 				sc.setSecondhand_status(rs.getString("secondhand_status"));
 				sc.setSecondhand_way(rs.getString("secondhand_way"));
+				sc.setSecondhand_sell(rs.getInt("secondhand_sell"));
 				sc.setSecondhand_openchat(rs.getString("secondhand_openchat"));
 				sc.setMem_num(rs.getInt("mem_num"));
 				sc.setMem_id(rs.getString("mem_id"));
@@ -207,5 +208,27 @@ public class SecondhandDAO {
 	//글 수정
 	//글 삭제
 	//물건 판매 여부 변경
+	public void updateStatus(int secondhand_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "";
+		
+		try {
+			//커넥션풀로부터 커넥션을 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "UPDATE all_secondhand SET secondhand_sell=1 WHERE secondhand_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, secondhand_num);
+			//SQL문 실행
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	//신고 수 변경
 }

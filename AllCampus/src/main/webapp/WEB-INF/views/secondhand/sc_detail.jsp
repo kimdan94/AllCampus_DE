@@ -18,6 +18,15 @@
 		<ul>
 			<li>
 				<!-- 판매 여부 토글 필요 -->
+				<c:if test="${user_num == sc.mem_num}">
+				<label class="sell-flex">
+					<input role="switch" type="checkbox" id="sell_status"/>
+					<span>
+						<c:if test="${sc.secondhand_sell == 2}">판매 중</c:if>
+						<c:if test="${sc.secondhand_sell == 1}">판매 완료</c:if>
+					</span>
+				</label>
+				</c:if>
 				<input type="button" value="목록" class="sc-btn"
 					onclick="location.href='secondhand_list.do'">
 				<c:if test="${user_num == sc.mem_num}">
@@ -78,7 +87,7 @@
 			</tr>
 			<tr>
 				<th style="padding-right:13px;padding-bottom:10px;">오픈 카카오톡 URL</th>
-				<td style="padding-bottom:10px;">${sc.secondhand_openchat}</td>
+				<td style="padding-bottom:10px;"><a href="${sc.secondhand_openchat}">${sc.secondhand_openchat}</a></td>
 			</tr>
 		</table>
 	</div>
