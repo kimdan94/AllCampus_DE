@@ -127,6 +127,21 @@ textarea{
 	padding-left:30px;
 	font-size:12px;
 }
+#info_div{
+	float:left;
+	padding:5px;
+	margin:285px -350px 0 110px;
+}
+#info_div2{
+	float:left;
+	padding:5px;
+	margin:420px -350px 0 110px;
+}
+#info_div3{
+	float:left;
+	padding:5px;
+	margin:556px -350px 0 110px;
+}
 /* 로그인 : loginForm.jsp
 ------------------------------*/
 #login_form{

@@ -40,6 +40,15 @@
 			</tr>
 		</table>
 	</div>
+	<div id="info_div">
+		<a href="https://www.kimyoung.co.kr/offmegaky.asp"><img src="../images/kimyoung.jpg" width="200"></a>
+	</div>
+	<div id="info_div2">
+		<a href="https://www.work.go.kr/experi/index.do"><img src="../images/work.jpg" width="200"></a>
+	</div>
+	<div id="info_div3">
+		<a href="https://www.youtube.com/@NetflixKorea"><img src="../images/netflix.jpg" width="200"></a>
+	</div>
 	<div class="home-div">
 		<h3>공지사항 <input type="button" value="더보기"
 			onclick="location.href='#'"></h3>
