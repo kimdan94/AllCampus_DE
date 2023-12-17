@@ -1,12 +1,8 @@
 package kr.course.action;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,7 +16,7 @@ public class CourseFormAction implements Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
-		
+		// 강의 필터링
 		// 전공/영역
 		String[] course_subject = request.getParameterValues("course_subject");
 		if(course_subject != null) {
@@ -58,6 +54,7 @@ public class CourseFormAction implements Action {
 		list = dao.getListCourse(course_subject, keyword, course_category, course_credit);
 		list2 = dao.getRemoveDuplicateCourseList(course_subject, keyword, course_category, course_credit);
 		course_list = dao.getCourseList();
+		
 		
 		request.setAttribute("list", list); // request.setAttribut("객체명", 객체);
 		request.setAttribute("list2", list2);

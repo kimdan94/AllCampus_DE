@@ -15,6 +15,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/course.hover.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/timetable.add.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/timetable.print.js"></script>
 <script type="text/javascript">
 $(function(){
 	/* $('.course_subject').on('click', (e) => {
@@ -44,10 +46,10 @@ $(function(){
 	 });
 	  */
 	  
-	  /* var name = $('#courseDBtable tr'); */
-	  /* console.log(name[1]);
-	   */
-	  /*  for(let i=0; i<name.length; i++){
+	  /* var name = $('#courseDBtable tr');
+	  console.log(name[1]);
+	  
+	  for(let i=0; i<name.length; i++){
 	  $(name[i]).on('mouseover', (e) => {
 			 console.log('mouseover');
 			 $(name[i]).css({"color": "red"});
@@ -377,19 +379,19 @@ body {
 		</tr>
 		<c:forEach items="${timeList}" var="item">
 			<tr>
-				<th rowspan="2">${item}</th>
-				<th id="1_${item*60}">값</th>
-				<th id="2_${item*60}"></th>
-				<th id="3_${item*60}"></th>
-				<th id="4_${item*60}"></th>
-				<th id="5_${item*60}"></th>
+				<td rowspan="2">${item}</td>
+				<td id="1_${item*60}">월</td>
+				<td id="2_${item*60}">화</td>
+				<td id="3_${item*60}">수</td>
+				<td id="4_${item*60}">목</td>
+				<td id="5_${item*60}">금</td>
 			</tr>
 			<tr>
-				<th id="1_${item*60+30}">값</th>
-				<th id="2_${item*60+30}"></th>
-				<th id="3_${item*60+30}"></th>
-				<th id="4_${item*60+30}"></th>
-				<th id="5_${item*60+30}"></th>
+				<td id="1_${item*60+30}">월</td>
+				<td id="2_${item*60+30}">화</td>
+				<td id="3_${item*60+30}">수</td>
+				<td id="4_${item*60+30}">목</td>
+				<td id="5_${item*60+30}">금</td>
 			</tr>
 			
 		</c:forEach>
@@ -401,6 +403,37 @@ body {
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	
 	<!-- ---------------------------------------------------------------------------------------- -->
+
+<%-- 
+	<table id="timetable" border="1">
+		<tr>
+			<th></th>
+			<th>월</th>
+			<th>화</th>
+			<th>수</th>
+			<th>목</th>
+			<th>금</th>
+		</tr>
+			<tr>
+				<td rowspan="2">${item}</td>
+				<td>값</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td style="display:none"></td>
+				<td>값</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+	</table> 
+
+--%>
+
 
 
 

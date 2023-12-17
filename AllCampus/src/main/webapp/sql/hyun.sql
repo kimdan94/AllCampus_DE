@@ -23,21 +23,15 @@ create sequence all_course_seq;
 -- 시간표 테이블
 create table all_timetable(
  mem_num number not null,
- timetable_num number not null,
- course_num number not null,
+ course_code varchar2(60) not null,
  timetable_year number not null,
  timetable_semester number not null,
  timetable_course_name varchar2(60) not null,
- timetable_course_code varchar2(60) not null,
- timetable_day number not null,
- timetable_start_time varchar2(20) not null,
- timetable_end_time varchar2(20) not null,
+ timetable_course_prof varchar2(20) not null, 
  timetable_credit number not null,
  timetable_table_id varchar2(60) not null,
- timetable_color varchar2(60) not null,
- constraint all_timetable_pk primary key (timetable_num),
- constraint all_timetable_fk1 foreign key (mem_num) references all_member (mem_num),
- constraint all_timetable_fk2 foreign key (course_num) references all_course(course_num)
+ timetable_color varchar2(60) default 'red' not null
+ --constraint all_timetable_fk1 foreign key (mem_num) references all_member (mem_num)
 );
 create sequence all_timetable_seq;
 

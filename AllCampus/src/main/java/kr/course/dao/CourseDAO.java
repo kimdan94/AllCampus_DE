@@ -146,51 +146,51 @@ public class CourseDAO {
 	}
 	
 	// 강의 전체 검색 - (주의) 필터링 기능 없음
-	public List<CourseVO> getListShow(String[] course_subject, String keyword, String[] course_category, String[] course_credit) throws Exception {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		List<CourseVO> list = null;
-		String sql = null;
-		
-		try {
-			conn = DBUtil.getConnection();
-			
-			// SQL문 작성
-			sql = "SELECT * FROM all_course";
-			//PreparedStatement 객체 생성
-			pstmt = conn.prepareStatement(sql);
-			
-			//SQL문 실행
-			rs = pstmt.executeQuery();
-			list = new ArrayList<CourseVO>();
-			
-			while(rs.next()) {
-				CourseVO course = new CourseVO();
-				course.setCourse_num(rs.getInt("course_num"));
-				course.setCourse_name(rs.getString("course_name"));
-				course.setCourse_prof(rs.getString("course_prof"));
-				course.setCourse_year(rs.getInt("course_year"));
-				course.setCourse_semester(rs.getInt("course_semester"));
-				course.setCourse_subject(rs.getString("course_subject"));
-				course.setCourse_day(rs.getInt("course_day"));
-				course.setCourse_start_time(rs.getString("course_start_time"));
-				course.setCourse_end_time(rs.getString("course_end_time"));
-				course.setCourse_category(rs.getString("course_category"));
-				course.setCourse_credit(rs.getInt("course_credit"));
-				course.setCourse_classroom(rs.getString("course_classroom"));
-				course.setCourse_code(rs.getString("course_code"));
-				course.setUniv_num(rs.getInt("univ_num"));
-				
-				list.add(course);
-			}
-		} catch(Exception e) {
-			throw new Exception(e);
-		} finally {
-			DBUtil.executeClose(rs, pstmt, conn);
-		}
-		return list;
-	}
+//	public List<CourseVO> getListShow(String[] course_subject, String keyword, String[] course_category, String[] course_credit) throws Exception {
+//		Connection conn = null;
+//		PreparedStatement pstmt = null;
+//		ResultSet rs = null;
+//		List<CourseVO> list = null;
+//		String sql = null;
+//		
+//		try {
+//			conn = DBUtil.getConnection();
+//			
+//			// SQL문 작성
+//			sql = "SELECT * FROM all_course";
+//			//PreparedStatement 객체 생성
+//			pstmt = conn.prepareStatement(sql);
+//			
+//			//SQL문 실행
+//			rs = pstmt.executeQuery();
+//			list = new ArrayList<CourseVO>();
+//			
+//			while(rs.next()) {
+//				CourseVO course = new CourseVO();
+//				course.setCourse_num(rs.getInt("course_num"));
+//				course.setCourse_name(rs.getString("course_name"));
+//				course.setCourse_prof(rs.getString("course_prof"));
+//				course.setCourse_year(rs.getInt("course_year"));
+//				course.setCourse_semester(rs.getInt("course_semester"));
+//				course.setCourse_subject(rs.getString("course_subject"));
+//				course.setCourse_day(rs.getInt("course_day"));
+//				course.setCourse_start_time(rs.getString("course_start_time"));
+//				course.setCourse_end_time(rs.getString("course_end_time"));
+//				course.setCourse_category(rs.getString("course_category"));
+//				course.setCourse_credit(rs.getInt("course_credit"));
+//				course.setCourse_classroom(rs.getString("course_classroom"));
+//				course.setCourse_code(rs.getString("course_code"));
+//				course.setUniv_num(rs.getInt("univ_num"));
+//				
+//				list.add(course);
+//			}
+//		} catch(Exception e) {
+//			throw new Exception(e);
+//		} finally {
+//			DBUtil.executeClose(rs, pstmt, conn);
+//		}
+//		return list;
+//	}
 
 	
 	// 강의 전체 검색 - (주의) 필터링 기능 없음
