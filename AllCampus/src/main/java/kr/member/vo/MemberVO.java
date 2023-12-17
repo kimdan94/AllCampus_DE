@@ -12,6 +12,7 @@ public class MemberVO {
 	private String mem_email;
 	private int mem_univNum;//회원 학번
 	private String mem_major;//회원 전공
+	private String mem_major2;//회원 전공 (추가)
 	private Date mem_reg_date;//회원 가입일
 	private Date mem_certify;//회원 학교 인증일
 	private String mem_photo;//회원 프로필사진
@@ -97,6 +98,14 @@ public class MemberVO {
 
 	public void setMem_major(String mem_major) {
 		this.mem_major = mem_major;
+	}
+	
+	public String getMem_major2() {
+		return mem_major2;
+	}
+
+	public void setMem_major2(String mem_major2) {
+		this.mem_major2 = mem_major2;
 	}
 
 	public Date getMem_reg_date() {

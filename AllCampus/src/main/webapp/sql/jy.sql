@@ -26,6 +26,7 @@ create table all_member_detail(
  univ_num number not null,
  mem_univNum number(9) not null,
  mem_major varchar2(100) not null,
+ mem_major2 varchar2(100),
  mem_reg_date date default sysdate not null,
  mem_certify date,
  mem_certifyFilename varchar2(150),
