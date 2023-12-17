@@ -15,6 +15,7 @@ public class CourseEvaVO {
 	private int eva_show;			//게시글 표시 여부     1 미표시, 2 표시
 	private String eva_semester;	//수강학기
 	private Date eva_reg_date;	    //강의평 글 등록일
+	private int eva_fav;
 	
 	private CourseVO courseVO;
 	
@@ -72,10 +73,17 @@ public class CourseEvaVO {
 	public void setEva_reg_date(Date eva_reg_date) {
 		this.eva_reg_date = eva_reg_date;
 	}
+	public int getEva_fav() {
+		return eva_fav;
+	}
+	public void setEva_fav(int eva_fav) {
+		this.eva_fav = eva_fav;
+	}
 	public CourseVO getCourseVO() {
 		return courseVO;
 	}
 	public void setCourseVO(CourseVO courseVO) {
 		this.courseVO = courseVO;
 	}
+	
 }

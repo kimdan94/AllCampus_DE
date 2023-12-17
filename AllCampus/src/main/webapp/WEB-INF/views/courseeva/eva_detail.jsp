@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/jiwonstyle.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/courseeva.fav.js"></script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
@@ -35,7 +36,7 @@
 			</c:if>
 			<c:if test="${count > 0}">
 			<table>
-				<c:forEach var="evadetail" items="${list}">
+				<c:forEach var="evadetail" items="${list}" varStatus="loop">
 					<tr>
 						<td>
        						<c:choose>
@@ -49,9 +50,15 @@
 								<c:when test="${evadetail.eva_star == 1}">D</c:when>
 								<c:when test="${evadetail.eva_star == 0}">F</c:when>
 							</c:choose>
-							<br>
+							<div style="float:right">
+							<input type="button" value="추천" class="eva_fav_btn" id="output_eva_fav_${loop.index}" data-num="${evadetail.eva_num}">
+							<input type="button" value="신고" id="output_eva_complaint" data-num="${evadetail.eva_num}">
+							</div><br>
        						${evadetail.eva_star}<br>
-       						${evadetail.eva_semester}<br>
+       						${evadetail.eva_semester} 수강자
+							<img src="${pageContext.request.contextPath}/images/favj_image.png" width="20">
+							<span id="output_eva_count_${loop.index}">${evadetail.eva_fav}</span>
+							<br>
 							${evadetail.eva_content}<br>
 						</td>
 					</tr>

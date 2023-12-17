@@ -74,6 +74,7 @@ create table all_course_eva(
  mem_num number not null,   -- FK
  eva_star number(9,2) not null,
  eva_content clob not null,
+ eva_fav number(9) default 0 not null,
  eva_complaint number(9) default 0 not null,
  eva_show number(1) default 2 not null,      -- 표시 여부 : 1 미표시, 2 표시
  eva_semester varchar2(50) not null,
