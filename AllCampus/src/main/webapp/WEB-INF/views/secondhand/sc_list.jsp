@@ -60,6 +60,7 @@ window.onload = function(){
 	<c:if test="${count > 0}">
 		<table class="sc-table">
 		<c:forEach var="sc" items="${list}">
+		<c:if test="${sc.secondhand_show == 2}">
 			<tr>
 				<td rowspan="5">
 					<img src="${pageContext.request.contextPath}/upload/${sc.secondhand_filename}" width="60">
@@ -79,6 +80,7 @@ window.onload = function(){
 			<tr style="color:#6699cc;font-weight:bold;font-size:13px;">
 				<td><fmt:formatNumber value="${sc.secondhand_price}"/>원</td>
 			</tr>
+		</c:if>	
 		</c:forEach>	
 		</table>
 		<div class="align-center" style="margin-left:420px;">${page}</div>

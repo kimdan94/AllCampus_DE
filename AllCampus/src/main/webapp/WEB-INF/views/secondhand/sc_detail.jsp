@@ -11,6 +11,40 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/jy.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/secondhand.sell.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#secondhand_complaint').click(function(){
+		let choice = confirm('신고하시겠습니까?');
+		if(choice){
+			$.ajax({
+				url:'secondhand_complaint.do',
+				type:'post',
+				data:{secondhand_num:${sc.secondhand_num}},
+				dataType:'json',
+				success:function(param){
+					if(param.status == 'success'){
+						alert('신고 완료되었습니다.');
+						location.href='secondhand_detail.do?secondhand_num=${sc.secondhand_num}';
+					}else if(param.status == 'duplicated'){
+						alert('이미 신고 처리된 게시글입니다.');
+						location.href='secondhand_detail.do?secondhand_num=${sc.secondhand_num}';
+					}else if(param.status == 'noLogin'){
+						alert('로그인 후 이용 가능합니다.');
+						location.href='${pageContext.request.contextPath}/member/loginForm.do';
+					}else if(param.status == 'noCertify'){
+						alert('학교 인증을 마친 학생들만 이용할 수 있어요!');
+					}else{
+						alert('신고 처리 오류 발생');
+					}
+				},
+				error:function(){
+					alert('이미 신고되어 숨겨진 게시물입니다.');
+				}
+			});
+		}
+	});
+});
+</script>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
@@ -36,7 +70,7 @@
 						delete_btn.onclick = function(){
 							let choice = confirm('삭제하시겠습니까?');
 							if(choice){
-								location.replace('delete.do?secondhand_num=${sc.secondhand_num}');
+								location.replace('secondhand_delete.do?secondhand_num=${sc.secondhand_num}');
 							}
 						};
 					</script>
@@ -61,7 +95,9 @@
 					<c:if test="${!empty sc.secondhand_modifydate}">
 						<b>수정일</b> : <fmt:formatDate value="${sc.secondhand_modifydate}" type="date" dateStyle="full"/>
 					</c:if>
+					<c:if test="${empty sc.secondhand_modifydate}">
 					<b>등록일</b> : <fmt:formatDate value="${sc.secondhand_reg_date}" type="date" dateStyle="full"/>
+					</c:if>
 				</td>
 			</tr>
 			<tr class="align-right" style="color:#6699cc;font-weight:bold;font-size:25px;">
@@ -87,6 +123,9 @@
 				<td style="padding-bottom:10px;"><a href="${sc.secondhand_openchat}">${sc.secondhand_openchat}</a></td>
 			</tr>
 		</table>
+	</div>
+	<div class="align-right" style="margin-top:10px;">
+		<a href="#" id="secondhand_complaint"><b>[신고하기]</b></a>
 	</div>
 </div>
 </div>

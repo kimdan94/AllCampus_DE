@@ -25,6 +25,7 @@ $(function(){
 			success:function(param){
 				if(param.status == 'noLogin'){
 					alert('로그인 후 이용 가능합니다.');
+					location.href='${pageContext.request.contextPath}/member/loginForm.do';
 				}else if(param.status == 'noCertify'){
 					alert('학교 인증을 마친 학생들만 이용할 수 있어요!');
 				}else if(param.status == 'noSell'){
