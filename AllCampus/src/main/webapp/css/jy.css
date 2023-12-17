@@ -264,7 +264,7 @@ textarea{
 form[id="register_form"] ul li{
 	margin-bottom:7px;
 }
-/* 책방 목록 : secondhand_list.jsp
+/* 책방 목록 : sc_list.jsp
 ------------------------------*/
 form#search_form{
 	border:none;
@@ -295,7 +295,7 @@ ul.search li{
 	margin-right:-30px;
 	margin-left:17px;
 }
-/* 책방 상세 : secondhand_detail.jsp
+/* 책방 상세 : sc_detail.jsp
 ------------------------------*/
 .toggle-style{
 	float:left;
@@ -307,4 +307,10 @@ ul.search li{
 	margin-top:5px;
 	font-weight:bold;
 	color:#6699cc;
+}
+/* 책방 수정 : sc_updateForm.jsp
+------------------------------*/
+#file_detail{
+	font-size:10pt;
+	color:gray;
 }

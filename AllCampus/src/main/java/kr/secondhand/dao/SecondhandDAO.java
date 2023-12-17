@@ -208,6 +208,60 @@ public class SecondhandDAO {
 		return sc;
 	}
 	//글 수정
+	public void updateSecondhand(SecondhandVO sc)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		String sub_sql = "";
+		int cnt = 0;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			
+			if(sc.getSecondhand_filename()!=null) {
+				sub_sql += ",secondhand_filename=?";
+			}
+			//SQL문 작성
+			sql = "UPDATE all_secondhand SET secondhand_name=?,secondhand_writer=?,secondhand_company=?,"
+					+ "secondhand_content=?,secondhand_price=?,secondhand_way=?,secondhand_status=?" + sub_sql
+					+ ",secondhand_openchat=?,secondhand_modifydate=SYSDATE,secondhand_ip=?"
+					+ " WHERE secondhand_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setString(++cnt, sc.getSecondhand_name());
+			
+			//저자명 가공
+			if(sc.getSecondhand_writerPlus()!= null) {
+				String writerPlus = sc.getSecondhand_writer() + " " + sc.getSecondhand_writerPlus();
+				pstmt.setString(++cnt,writerPlus);
+			}else {
+				pstmt.setString(++cnt, sc.getSecondhand_writer());
+			}
+			
+			pstmt.setString(++cnt, sc.getSecondhand_company());
+			pstmt.setString(++cnt, sc.getSecondhand_content());
+			pstmt.setInt(++cnt, sc.getSecondhand_price());
+			pstmt.setString(++cnt, sc.getSecondhand_way());
+			pstmt.setString(++cnt, sc.getSecondhand_status());
+			
+			if(sc.getSecondhand_filename()!=null) {
+				pstmt.setString(++cnt, sc.getSecondhand_filename());
+			}
+			
+			pstmt.setString(++cnt, sc.getSecondhand_openchat());
+			pstmt.setString(++cnt, sc.getSecondhand_ip());
+			pstmt.setInt(++cnt, sc.getSecondhand_num());
+			
+			//SQL문 실행
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	//글 삭제
 	//물건 판매 여부 변경
 	public void updateSellStatus(SecondhandVO sc)throws Exception{

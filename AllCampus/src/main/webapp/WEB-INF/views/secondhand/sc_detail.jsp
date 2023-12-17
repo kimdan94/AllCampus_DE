@@ -28,7 +28,7 @@
 					onclick="location.href='secondhand_list.do'">
 				<c:if test="${user_num == sc.mem_num}">
 					<input type="button" value="수정" class="sc-btn"
-						onclick="location.href='updateForm.do?secondhand_num=${sc.secondhand_num}}'">
+						onclick="location.href='secondhand_updateForm.do?secondhand_num=${sc.secondhand_num}'">
 					<input type="button" value="삭제" id="delete_btn" class="sc-btn">
 					<script type="text/javascript">
 						let delete_btn = document.getElementById('delete_btn');
