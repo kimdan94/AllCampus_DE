@@ -1,7 +1,7 @@
 $(function(){
-	var index=0;
+	var index = 0;
 	//좋아요 선택 여부와 선택한 총 개수 읽기
-	function selectFav(){
+	function selectFav(index){
 		$.ajax({
 			url:'getFav.do',
 			type:'post',
@@ -17,7 +17,7 @@ $(function(){
 	}
 	//좋아요 등록(및 삭제) 이벤트 연결
 	$('.eva_fav_btn').click(function(){
-		var index = $(this).attr('id').split('_')[3];
+		index = $(this).attr('data-index');
 		
 		$.ajax({
             url: 'writeFav.do',
@@ -47,5 +47,8 @@ $(function(){
 		$('#output_eva_fav_' + index).val(param.status === 'yesFav' ? '추천 취소' : '추천');
 	}
 	//초기 데이터 호출
-	selectFav();
+	$('.eva_fav_btn').each(function () {
+        var index = $(this).attr('data-index');
+        selectFav(index);
+    });
 });

@@ -10,6 +10,7 @@ import java.util.List;
 import kr.course.vo.CourseVO;
 import kr.courseeva.vo.CourseEvaFavVO;
 import kr.courseeva.vo.CourseEvaVO;
+import kr.courseeva.vo.CourseEvaWarnVO;
 import kr.util.DBUtil;
 
 public class CourseEvaDAO {
@@ -233,9 +234,11 @@ public class CourseEvaDAO {
 				else if(keyfield.equals("2")) sub_sql += "WHERE course_prof LIKE ?";
 			}	
 			//SQL문 작성
-			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT e.*, ac.course_name, ac.course_prof,ROW_NUMBER() OVER (PARTITION BY ac.course_name, ac.course_prof ORDER BY e.eva_num DESC) as rnk FROM all_course_eva e "
-				+ "JOIN all_course ac ON e.course_num = ac.course_num WHERE (ac.course_name, ac.course_prof) IN (SELECT course_name, course_prof FROM all_course " + sub_sql
-				+ ") ORDER BY ac.course_name, ac.course_prof, e.eva_num DESC) a WHERE a.rnk = 1) WHERE rnum >= ? AND rnum <= ?";
+			//eva_show가 2(표시)인것만 가져오고, 같은 (강의, 교수)에서 최근에 등록된 강의평만 메인 리스트에 보여준다. 
+			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT e.*, ac.course_name, ac.course_prof, ROW_NUMBER() OVER "
+				+ "(PARTITION BY ac.course_name, ac.course_prof ORDER BY e.eva_num DESC) as rnk FROM all_course_eva e "
+				+ "JOIN all_course ac ON e.course_num = ac.course_num WHERE (ac.course_name, ac.course_prof) IN (SELECT course_name, course_prof FROM all_course " + sub_sql 
+				+ ") AND e.eva_show = 2 ORDER BY ac.course_name, ac.course_prof, e.eva_num DESC) a WHERE a.rnk = 1) WHERE rnum >= ? AND rnum <= ?";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			if(keyword != null && !"".equals(keyword)) {
@@ -283,8 +286,9 @@ public class CourseEvaDAO {
 			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
+			//eva_show가 2(표시)인 글 개수 가져오기
 			sql = "SELECT COUNT(*) FROM all_course_eva JOIN all_course "
-				+ "USING(course_num) WHERE course_name=? AND course_prof=?";
+				+ "USING(course_num) WHERE course_name=? AND course_prof=? AND eva_show = 2";
 			//PreparedStatement 객체
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
@@ -317,7 +321,7 @@ public class CourseEvaDAO {
 			//SQL문 작성
 			sql ="SELECT * FROM (SELECT a.*,rownum rnum "
 				+ "FROM (SELECT * FROM all_course_eva JOIN all_course USING(course_num) "
-				+ "WHERE course_name=? AND course_prof=? ORDER BY eva_num DESC)a) "
+				+ "WHERE course_name=? AND course_prof=? AND eva_show = 2 ORDER BY eva_num DESC)a) "
 				+ "WHERE rnum >=? AND rnum <=?";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
@@ -555,6 +559,143 @@ public class CourseEvaDAO {
 		}finally {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
+	}
+	
+	///////////////////////신고 부분 ////
+	//신고 개수 업데이트(신고 클릭시 추가)
+	public void addEvaComplaintCount(int eva_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "UPDATE all_course_eva SET eva_complaint=eva_complaint+1 WHERE eva_num=?";//신고 클릭되면 확인창 후 1 증가
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, eva_num);
+			//SQL문 실행
+			pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	
+	//신고 테이블에 신고 정보 등록
+	public void insertEvaWarn(CourseEvaWarnVO warnVO)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "INSERT INTO all_eva_warn (eva_num,mem_num) VALUES (?,?)";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, warnVO.getEva_num());
+			pstmt.setInt(2, warnVO.getMem_num());
+			//SQL문 실행
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	
+	//신고 개수 
+	public int selectEvaWarnCount(int eva_num,int mem_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int count = 0;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "SELECT COUNT(*) FROM all_eva_warn WHERE eva_num=? AND mem_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, eva_num);
+			pstmt.setInt(2, mem_num);
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return count;
+	}
+
+	//신고 개수 3개이상 미표시 처리
+	public void evaComplaintUpdateShow(int eva_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "UPDATE all_course_eva SET eva_show=1 WHERE eva_complaint>=3 AND eva_num=?";//신고 클릭되면 확인창 후 1 증가
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, eva_num);
+			//SQL문 실행
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	
+	//신고 총 개수 가져오기
+	public CourseEvaVO getEvaComplaint(int eva_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		CourseEvaVO evacomplaint = null;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "SELECT eva_complaint FROM all_course_eva WHERE eva_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, eva_num);
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				evacomplaint = new CourseEvaVO();
+				evacomplaint.setEva_complaint(rs.getInt("eva_complaint"));
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+		return evacomplaint;
 	}
 	
 }
