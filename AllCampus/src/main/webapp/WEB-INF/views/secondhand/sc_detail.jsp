@@ -9,6 +9,8 @@
 <title>${sc_name} - 올캠퍼스</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/jy.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/secondhand.sell.js"></script>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
@@ -17,16 +19,11 @@
 	<div class="align-right">
 		<ul>
 			<li>
-				<!-- 판매 여부 토글 필요 -->
-				<c:if test="${user_num == sc.mem_num}">
-				<label class="sell-flex">
-					<input role="switch" type="checkbox" id="sell_status"/>
-					<span>
-						<c:if test="${sc.secondhand_sell == 2}">판매 중</c:if>
-						<c:if test="${sc.secondhand_sell == 1}">판매 완료</c:if>
-					</span>
-				</label>
-				</c:if>
+				<img id="sell_status" data-num="${sc.secondhand_num}" class="toggle-style"
+					src="${pageContext.request.contextPath}/images/toggleon.png" width="45"
+					<c:if test="${user_num != sc.mem_num}">hidden</c:if>>
+					<br>
+				<span id="sell_text">[판매 중]</span>
 				<input type="button" value="목록" class="sc-btn"
 					onclick="location.href='secondhand_list.do'">
 				<c:if test="${user_num == sc.mem_num}">

@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import kr.board.vo.BoardFavVO;
 import kr.board.vo.BoardVO;
 import kr.secondhand.vo.SecondhandVO;
 import kr.util.DBUtil;
@@ -149,6 +150,7 @@ public class SecondhandDAO {
 				sc.setSecondhand_writer(rs.getString("secondhand_writer"));
 				sc.setSecondhand_company(rs.getString("secondhand_company"));
 				sc.setSecondhand_price(rs.getInt("secondhand_price"));
+				sc.setSecondhand_sell(rs.getInt("secondhand_sell"));
 				
 				list.add(sc);
 			}
@@ -208,20 +210,25 @@ public class SecondhandDAO {
 	//글 수정
 	//글 삭제
 	//물건 판매 여부 변경
-	public void updateStatus(int secondhand_num)throws Exception{
+	public void updateSellStatus(SecondhandVO sc)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql = "";
+		String sql = null;
 		
 		try {
 			//커넥션풀로부터 커넥션을 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
-			sql = "UPDATE all_secondhand SET secondhand_sell=1 WHERE secondhand_num=?";
+			
+			if(sc.getSecondhand_sell() == 2) {
+				sql = "UPDATE all_secondhand SET secondhand_sell=1 WHERE secondhand_num=?";
+			}else {
+				sql = "UPDATE all_secondhand SET secondhand_sell=2 WHERE secondhand_num=?";
+			}
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
-			pstmt.setInt(1, secondhand_num);
+			pstmt.setInt(1, sc.getSecondhand_num());
 			//SQL문 실행
 			pstmt.executeUpdate();
 		}catch(Exception e) {
@@ -229,6 +236,35 @@ public class SecondhandDAO {
 		}finally {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
+	}
+	//현재 물건 판매 여부 체크
+	public int selectSell(int secondhand_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int checkSell = 0;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "SELECT * FROM all_secondhand WHERE secondhand_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, secondhand_num);
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				checkSell = rs.getInt("secondhand_sell");
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return checkSell;
 	}
 	//신고 수 변경
 }
