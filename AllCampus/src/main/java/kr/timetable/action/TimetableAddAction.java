@@ -1,6 +1,7 @@
 package kr.timetable.action;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 
 import kr.controller.Action;
 import kr.timetable.dao.TimetableDAO;
+import kr.timetable.vo.TimetableVO;
 
 public class TimetableAddAction implements Action {
 
@@ -45,6 +47,43 @@ public class TimetableAddAction implements Action {
 //			System.out.println("user num : " + user_num + " course code : " + course_code + " timetable table id : " + timetable_tableId[i]);
 			dao.insertTimetable(user_num, course_code, timetable_tableId[i]);
 		}
+		
+		
+		//------------------------------------------------------------------
+		Integer year = 2023;
+		Integer semester = 1;
+		TimetableDAO daoTime = TimetableDAO.getInstance();
+		
+		// 요일 필터링 - 요일/mem_num/year/semester
+		List<TimetableVO> monList = daoTime.getListPrint(user_num,year,semester,1); // 월
+		List<TimetableVO> tueList = daoTime.getListPrint(user_num,year,semester,2); // 화
+		List<TimetableVO> wedList = daoTime.getListPrint(user_num,year,semester,3); // 수
+		List<TimetableVO> thurList = daoTime.getListPrint(user_num,year,semester,4); // 목
+		List<TimetableVO> friList = daoTime.getListPrint(user_num,year,semester,5); // 금
+		mapAjax.put("monList", monList); 
+		mapAjax.put("tueList", tueList); 
+		mapAjax.put("wedList", wedList); 
+		mapAjax.put("thurList", thurList); 
+		mapAjax.put("friList", friList); 
+		
+		
+		List<TimetableVO> listMON = daoTime.getListCourseCode(user_num, year, semester, 1);
+		List<TimetableVO> listTUE = daoTime.getListCourseCode(user_num, year, semester, 2);
+		List<TimetableVO> listWED = daoTime.getListCourseCode(user_num, year, semester, 3);
+		List<TimetableVO> listTHUR = daoTime.getListCourseCode(user_num, year, semester, 4);
+		List<TimetableVO> listFRI = daoTime.getListCourseCode(user_num, year, semester, 5);
+		mapAjax.put("listMON", listMON);
+		mapAjax.put("listTUE", listTUE);
+		mapAjax.put("listWED", listWED);
+		mapAjax.put("listTHUR", listTHUR);
+		mapAjax.put("listFRI", listFRI);
+		
+		
+		//------------------------------------------------------------------
+		
+		
+		
+		
 		
 		//JSON 문자열 생성
 		ObjectMapper mapper = new ObjectMapper();

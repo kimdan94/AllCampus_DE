@@ -16,7 +16,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/course.hover.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/timetable.add.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/timetable.print.js"></script>
+<%-- <script type="text/javascript" src="${pageContext.request.contextPath}/js/timetable.print.js"></script> --%>
 <script type="text/javascript">
 $(function(){
 	/* $('.course_subject').on('click', (e) => {

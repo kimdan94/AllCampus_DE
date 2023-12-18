@@ -45,7 +45,7 @@ public class TimetablePrintAction implements Action {// -> js > timetable.print.
 		mapAjax.put("wedList", wedList); 
 		mapAjax.put("thurList", thurList); 
 		mapAjax.put("friList", friList); 
-
+		
 		
 		List<TimetableVO> listMON = dao.getListCourseCode(user_num, year, semester, 1);
 		List<TimetableVO> listTUE = dao.getListCourseCode(user_num, year, semester, 2);
