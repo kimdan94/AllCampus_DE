@@ -45,7 +45,7 @@ $(function(){
 				<label for="passwd">비밀번호</label>
 			</li> 
 		</ul>
-		<input type="submit" value="올캠퍼스 로그인" class="input-button2" style="font-size:15px;margin-left:13px;">
+		<input type="submit" value="올캠퍼스 로그인" class="input-button2" style="margin-left:13px;">
 		<br>
 		<a href="checkIdForm.do" class="a-style" style="margin-left:10px;">아이디/비밀번호 찾기</a>
 	</form>

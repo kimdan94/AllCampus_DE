@@ -11,12 +11,11 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/jy.css">
 </head>
 <body>
-<div class="page-main align-center">
-<div class="member-style">
+<div class="page-main-custom">
 	<div class="result-display">
-		<div>
+		<div class="align-center">
 			<a href="${pageContext.request.contextPath}/main/main.do">
-			<img src="${pageContext.request.contextPath}/images/logo_symbol_231208.png" width="100">
+				<img src="${pageContext.request.contextPath}/images/logo_symbol_231208.png" width="100">
 			</a>
 			<p>
 			<c:if test="${empty secret_pw}">
@@ -34,7 +33,6 @@
 			</c:if>
 		</div>
 	</div>
-</div>
 </div>
 </body>
 </html>

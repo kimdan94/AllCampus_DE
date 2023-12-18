@@ -292,8 +292,8 @@ $(function(){
 				</div>
 			</li>
 		</ul>
-		<input type="submit" value="올캠퍼스 가입하기" class="input-button2" style="font-size:15px;margin-left:23px;">
-		<input type="button" value="처음으로" class="input-button1" style="font-size:15px;margin-left:23px;"
+		<input type="submit" value="올캠퍼스 가입하기" class="input-button2" style="margin-left:23px;">
+		<input type="button" value="처음으로" class="input-button1" style="margin-left:23px;"
 			onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
 	</form>
 	<div class="page-sub2">
