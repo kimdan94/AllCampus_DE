@@ -26,6 +26,12 @@ public class TimetablePrintAction implements Action {// -> js > timetable.print.
 		
 		Integer year = 2023;
 		Integer semester = 1;
+		String keyfield = request.getParameter("keyfield");
+		System.out.println("keyfield : " + keyfield);
+		if(keyfield != null) {
+			year = Integer.parseInt(keyfield.substring(0,4));
+			semester = Integer.parseInt(keyfield.substring(4));
+		}
 		
 		//전송된 데이터 인코딩 처리
 		request.setCharacterEncoding("utf-8");

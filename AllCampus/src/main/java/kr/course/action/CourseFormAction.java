@@ -17,13 +17,22 @@ public class CourseFormAction implements Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
+		//학기 선택
+		String keyfield = request.getParameter("keyfield");
+		System.out.println("keyfield : " + keyfield);
+		Integer year = 2023;
+		Integer semester = 1;
+		if(keyfield != null) {
+			year = Integer.parseInt(keyfield.substring(0,4));
+			semester = Integer.parseInt(keyfield.substring(4));
+		}
+		
 		// 강의 필터링
 		// 전공/영역
 		String[] course_subject = request.getParameterValues("course_subject");
 		if(course_subject != null) {
 			HashSet<String> hashSet_subject = new HashSet<>(Arrays.asList(course_subject));
 			course_subject = hashSet_subject.toArray(new String[0]);
-//			System.out.println("값 : " + Arrays.toString(course_subject));
 		}
 
 		// 검색어
@@ -52,9 +61,6 @@ public class CourseFormAction implements Action {
 			HashSet<String> hashSet = new HashSet<>(Arrays.asList(arr));        
 			String[] delete_course = hashSet.toArray(new String[0]);
 			
-//			for(int i=0; i<delete_course.length; i++) {
-//				System.out.println("값 " + delete_course[i]);
-//			}
 			daoTime.deleteCourse(delete_course);
 		}
 		 
@@ -63,12 +69,11 @@ public class CourseFormAction implements Action {
 		List<CourseVO> list = null;
 		List<CourseVO> list2 = null;
 		List<CourseVO> course_list = null;
-		List<CourseVO> semester_list = null;
+		List<String> semester_list = null;
 		int[] timeList = {9,10,11,12,13,14,15,16,17};
-		//String keyfield = request.getParameter("keyfield");
 		
-		list = dao.getListCourse(course_subject, keyword, course_category, course_credit);
-		list2 = dao.getRemoveDuplicateCourseList(course_subject, keyword, course_category, course_credit);
+		list = dao.getListCourse(year, semester, course_subject, keyword, course_category, course_credit);
+		list2 = dao.getRemoveDuplicateCourseList(year, semester, course_subject, keyword, course_category, course_credit);
 		course_list = dao.getCourseList();
 		semester_list = dao.selectSemester();
 		

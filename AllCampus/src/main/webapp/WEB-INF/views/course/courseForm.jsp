@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -96,7 +97,7 @@ body {
 </style>
 </head>
 <body>
-	<h2>시간표 출력</h2>
+	<h2>시간표 출력</h2>${keyfield}
 	<div id='result'>
 	</div>	
 <%-- <jsp:include page="/WEB-INF/views/common/header.jsp"/> --%>
@@ -108,11 +109,20 @@ body {
 				<li>
 					<select name="keyfield">
 					<c:forEach var="semester_list" items="${semester_list}">
-						<%-- <input type="checkbox" class="course_subject" name="course_subject" value="${course_list.course_subject}">${course_list.course_subject}<br> --%>
-						<option value="${semester_list.course_year}-${semester_list.course_semester}" <c:if test="${param.keyfield==20232}">selected</c:if>>${semester_list.course_year} ${semester_list.course_semester}</option>
-						<%--  --%>
+						<option value="${semester_list}" <c:if test="${param.keyfield eq semester_list}">selected</c:if>>
+							<c:if test="${fn:substring(semester_list,4,5) eq 0}">${fn:substring(semester_list,0,4)} 1학기</c:if>
+							<c:if test="${fn:substring(semester_list,4,5) eq 1}">${fn:substring(semester_list,0,4)} 여름 계절</c:if>
+							<c:if test="${fn:substring(semester_list,4,5) eq 2}">${fn:substring(semester_list,0,4)} 2학기</c:if>
+							<c:if test="${fn:substring(semester_list,4,5) eq 3}">${fn:substring(semester_list,0,4)} 겨울 계절</c:if>
+						</option>
 					</c:forEach>
 					</select>
+					
+
+					
+				</li>
+				<li>
+					<input type="submit" value="검색">
 				</li>
 			</ul>
 		</form>
@@ -147,6 +157,7 @@ body {
 					<input type="hidden" name="course_credit" value="${course_credit}">
 					</c:forEach>
 					<input type="hidden" name="keyword_hidden" id="keyword" value="${keyword}">
+					<input type="hidden" name="keyfield_hidden" id="keyfield" value="${keyfield}">
 					<%-- hidden 값 끝 --%>
 					<!-- Modal body -->
 						<div class="modal-body"><!-- 강의 구분(1:전필/2:전선/3:교필/4:교선/5:기타) -->
@@ -194,6 +205,7 @@ body {
 					<input type="hidden" name="course_credit" value="${course_credit}">
 					</c:forEach>
 					<input type="hidden" name="keyword_hidden" id="keyword" value="${keyword}">
+					<input type="hidden" name="keyfield_hidden" id="keyfield" value="${keyfield}">
 					<%-- hidden 값 끝 --%>
 					<!-- Modal body -->
 					<div class="modal-body"><!-- 강의명/교수명 검색창 -->
@@ -236,6 +248,7 @@ body {
 					<input type="hidden" name="course_credit" value="${course_credit}">
 					</c:forEach>
 					<input type="hidden" name="keyword_hidden" id="keyword" value="${keyword}">
+					<input type="hidden" name="keyfield_hidden" id="keyfield" value="${keyfield}">
 					<%-- hidden 값 끝 --%>
 					<!-- Modal body -->
 						<div class="modal-body"><!-- 강의 구분(1:전필/2:전선/3:교필/4:교선/5:기타) -->
@@ -285,6 +298,7 @@ body {
 					<input type="hidden" name="course_credit" value="${course_credit}">
 					</c:forEach>
 					<input type="hidden" name="keyword_hidden" id="keyword" value="${keyword}">
+					<input type="hidden" name="keyfield_hidden" id="keyfield" value="${keyfield}">
 					<%-- hidden 값 끝 --%>
 					<!-- Modal body -->
 					<div class="modal-body"><!-- course_credit -->

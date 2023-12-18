@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import kr.course.vo.CourseVO;
@@ -19,28 +20,82 @@ public class CourseDAO {
 	
 	private CourseDAO() {}
 	
-	
-	// 강의 필터 검색 - 필터링 기능 포함 -> 전공/영역, 검색, 구분, 학점
-	public List<CourseVO> getListCourse(String[] course_subject, String keyword, String[] course_category, String[] course_credit) throws Exception {
+	// 년도 학기 구분
+	public List<CourseVO> selectYearSemester(Integer course_year, Integer course_semester) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<CourseVO> list = null;
 		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+			// SQL문 작성
+			sql = "SELECT * FROM all_course WHERE course_year=? AND course_semester=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, course_year);
+			pstmt.setInt(2, course_semester);
+			
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			list = new ArrayList<CourseVO>();
+			
+			while(rs.next()) {
+				CourseVO course = new CourseVO();
+				course.setCourse_num(rs.getInt("course_num"));
+				course.setCourse_name(rs.getString("course_name"));
+				course.setCourse_prof(rs.getString("course_prof"));
+				course.setCourse_year(rs.getInt("course_year"));
+				course.setCourse_semester(rs.getInt("course_semester"));
+				course.setCourse_subject(rs.getString("course_subject"));
+				course.setCourse_day(rs.getInt("course_day"));
+				course.setCourse_start_time(rs.getString("course_start_time"));
+				course.setCourse_end_time(rs.getString("course_end_time"));
+				course.setCourse_category(rs.getString("course_category"));
+				course.setCourse_credit(rs.getInt("course_credit"));
+				course.setCourse_classroom(rs.getString("course_classroom"));
+				course.setCourse_code(rs.getString("course_code"));
+				course.setUniv_num(rs.getInt("univ_num"));
+				
+				list.add(course);
+			}
+		} catch(Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return list;
+	}
+	
+	// 강의 필터 검색 - 필터링 기능 포함 -> 전공/영역, 검색, 구분, 학점
+	public List<CourseVO> getListCourse(int course_year, int course_semester, String[] course_subject, String keyword, String[] course_category, String[] course_credit) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<CourseVO> list = null;
+		String sql = null;
+		String sub_sql = "";
 		String where_sql = "";
 		int cnt = 0;
 		
 		try {
 			conn = DBUtil.getConnection();
 			
+			sub_sql += " WHERE course_year=? AND course_semester=?";
+			System.out.println(course_year);
+			System.out.println(course_semester);
 			// course_subject - 전공/영역 검색
 			if(course_subject != null) {
 				for(int i=0; i<course_subject.length; i++) {
 					if(i==0) {
-						where_sql += " WHERE (course_subject=?";
+						where_sql += " AND (course_subject=?";
 					} else {
 						where_sql += " OR course_subject=?";
 					}
+					
 				}
 				where_sql += ")";
 			}
@@ -48,19 +103,13 @@ public class CourseDAO {
 			//keyword - 강의명 교수명 검색
 			if(keyword!=null && !"".equals(keyword)) {
 				// 검색 처리 // 강의명 / 교수명으로만 검색
-				if(!"".equals(where_sql)) {
-					where_sql += " AND (course_name LIKE ? OR course_prof LIKE ?)";
-				} else {
-					where_sql += " WHERE (course_name LIKE ? OR course_prof LIKE ?)";
-				}
+				where_sql += " AND (course_name LIKE ? OR course_prof LIKE ?)";
 			}
 			
 			// course_category - 카테고리
 			if(course_category != null) {
 				for(int i=0; i<course_category.length; i++) {
-					if("".equals(where_sql)) {
-						where_sql += " WHERE (course_category=?";
-					} else if(!"".equals(where_sql) && i == 0){
+					if(i == 0){
 						where_sql += " AND (course_category=?";
 					} else {
 						where_sql += " OR course_category=?";
@@ -72,9 +121,7 @@ public class CourseDAO {
 			// course_credit - 학점
 			if(course_credit != null) {
 				for(int i=0; i<course_credit.length; i++) {
-					if("".equals(where_sql)) {
-						where_sql += " WHERE (course_credit=?";
-					} else if(!"".equals(where_sql) && i == 0){
+					if(i == 0){
 						where_sql += " AND (course_credit=?";
 					} else {
 						where_sql += " OR course_credit=?";
@@ -84,12 +131,16 @@ public class CourseDAO {
 			}
 			
 			// SQL문 작성
-			sql = "SELECT * FROM all_course" + where_sql;
+			sql = "SELECT * FROM all_course" + sub_sql + where_sql;
+			System.out.println(sql);
 
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			
 			//?에 데이터 바인딩
+			pstmt.setInt(++cnt, course_year);
+			pstmt.setInt(++cnt, course_semester);
+			
 			// course_subject - 전공/영역
 			if(course_subject != null) {
 				for(int i=0; i<course_subject.length; i++) {
@@ -181,17 +232,22 @@ public class CourseDAO {
 	}
 	
 	// 강의 전체 검색 - (주의) 필터링 기능 없음
-	public List<CourseVO> getRemoveDuplicateCourseList(String[] course_subject, String keyword, String[] course_category, String[] course_credit) throws Exception {
+	public List<CourseVO> getRemoveDuplicateCourseList(int course_year, int course_semester, String[] course_subject, String keyword, String[] course_category, String[] course_credit) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<CourseVO> list = null;
 		String sql = null;
+		String sub_sql = "";
 		String where_sql = "";
 		int cnt = 0;
 		
 		try {
 			conn = DBUtil.getConnection();
+			
+			sub_sql += " AND course_year=? AND course_semester=?";
+			System.out.println(course_year);
+			System.out.println(course_semester);
 			
 			// course_subject - 전공/영역 검색
 				if(course_subject != null) {
@@ -238,12 +294,15 @@ public class CourseDAO {
 			// SQL문 작성
 			sql = "SELECT DISTINCT course_name,course_prof,course_subject,course_code,course_year,"
 					+ "course_semester,course_category,course_credit FROM all_course "
-					+ "WHERE course_code in (SELECT DISTINCT(course_code) FROM all_course)" + where_sql;
+					+ "WHERE course_code in (SELECT DISTINCT(course_code) FROM all_course)" + sub_sql + where_sql;
 			
+			System.out.println(sql);
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			
 			//?에 데이터 바인딩
+			pstmt.setInt(++cnt, course_year);
+			pstmt.setInt(++cnt, course_semester);
 			// course_subject - 전공/영역
 			if(course_subject != null) {
 				for(int i=0; i<course_subject.length; i++) {
@@ -340,35 +399,31 @@ public class CourseDAO {
 		return list;
 	}
 	
-	public List<CourseVO> selectSemester() throws Exception {
+	public List<String> selectSemester() throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		List<CourseVO> list = null;
+		List<String> list = new ArrayList<>();
 		String sql = null;
 		
 		try {
 			conn = DBUtil.getConnection();
 			
 			// SQL문 작성
-			sql = "SELECT DISTINCT course_year, course_semester FROM all_course";
+			sql = "SELECT DISTINCT CONCAT(course_year, course_semester) all_semester FROM all_course";
 			
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			
-			//?에 데이터 바인딩
-
 			//SQL문 실행
 			rs = pstmt.executeQuery();
-			list = new ArrayList<CourseVO>();
+//			list = new ArrayList<CourseVO>();
 			
 			while(rs.next()) {
-				CourseVO course = new CourseVO();
-				course.setCourse_year(Integer.parseInt(rs.getString("course_year")));
-				course.setCourse_semester(Integer.parseInt(rs.getString("course_semester")));
-				
-				list.add(course);
+				System.out.println(rs.getString("all_semester"));
+				list.add(rs.getString("all_semester"));
 			}
+			
 		} catch(Exception e) {
 			throw new Exception(e);
 		} finally {

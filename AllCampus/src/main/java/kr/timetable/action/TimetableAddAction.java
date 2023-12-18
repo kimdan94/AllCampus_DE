@@ -48,10 +48,15 @@ public class TimetableAddAction implements Action {
 			dao.insertTimetable(user_num, course_code, timetable_tableId[i]);
 		}
 		
-		
-		//------------------------------------------------------------------
 		Integer year = 2023;
 		Integer semester = 1;
+		String keyfield = request.getParameter("keyfield");
+		System.out.println("keyfield : " + keyfield);
+		if(keyfield != null) {
+			year = Integer.parseInt(keyfield.substring(0,4));
+			semester = Integer.parseInt(keyfield.substring(4));
+		}
+		//------------------------------------------------------------------
 		TimetableDAO daoTime = TimetableDAO.getInstance();
 		
 		// 요일 필터링 - 요일/mem_num/year/semester
