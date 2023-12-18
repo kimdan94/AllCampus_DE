@@ -26,7 +26,7 @@
 					onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
 			</c:if>
 			<c:if test="${!empty secret_pw}">
-				[${check_id}]로 가입된 계정의 비밀번호는 [${check_pw}]입니다.<br>
+				[${check_id}]로 가입된 계정의 비밀번호는 [${secret_pw}]입니다.<br>
 				비밀번호 변경을 원하신다면 입력한 [${user_email}]으로<br> 재설정 메일이 전송되었으니 확인해 주세요.<p>
 				<input type="button" value="로그인하기" class="input-button1"
 					onclick="location.href='${pageContext.request.contextPath}/member/loginForm.do'">
