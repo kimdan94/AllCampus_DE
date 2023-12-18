@@ -18,11 +18,11 @@ public class CheckIdAction implements Action{
 		MemberDAO dao = MemberDAO.getinstance();
 		String user_id = dao.checkId(email);
 		if(user_id != null) {
-			request.setAttribute("user_email", email);
-			request.setAttribute("user_id", user_id);
+			request.setAttribute("check_email", email);
+			request.setAttribute("check_id", user_id);
 		}
 		
-		request.setAttribute("user_email", email);
+		request.setAttribute("check_email", email);
 		
 		return "/WEB-INF/views/member/checkId.jsp";
 	}

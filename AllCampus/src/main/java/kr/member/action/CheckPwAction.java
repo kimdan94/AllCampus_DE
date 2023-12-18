@@ -20,8 +20,8 @@ public class CheckPwAction implements Action{
 		String user_passwd = dao.checkPw(email, id);
 		String secret_pw = "";
 		if(user_passwd != null) {
-			request.setAttribute("user_id", id);
-			request.setAttribute("user_email", email);
+			request.setAttribute("check_id", id);
+			request.setAttribute("check_email", email);
 			
 			if(user_passwd.length() >= 13) {
 				secret_pw += user_passwd.substring(0,8);
@@ -32,8 +32,8 @@ public class CheckPwAction implements Action{
 			}
 			request.setAttribute("secret_pw", secret_pw);
 		}
-		request.setAttribute("user_id", id);
-		request.setAttribute("user_email", email);
+		request.setAttribute("check_id", id);
+		request.setAttribute("check_email", email);
 		
 		return "/WEB-INF/views/member/checkPw.jsp";
 	}
