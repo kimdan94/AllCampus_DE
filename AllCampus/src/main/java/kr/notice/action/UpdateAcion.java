@@ -6,13 +6,12 @@ import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
 
-import kr.board.dao.BoardDAO;
 import kr.controller.Action;
 import kr.notice.dao.NoticeDAO;
 import kr.notice.vo.NoticeVO;
 import kr.util.FileUtil;
   
-public class WriteAction implements Action{
+public class UpdateAcion implements Action{
  
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -22,11 +21,9 @@ public class WriteAction implements Action{
 			return "redirect:/member/loginForm.do";
 	}
 	//로그인 된 경우
-	MultipartRequest multi = FileUtil.createFile(request);
 	NoticeVO notice = new NoticeVO();
-	notice.setNotice_filename(multi.getParameter("notice_filename"));
-	notice.setNotice_title(multi.getParameter("notice_title"));
-	notice.setNotice_content(multi.getParameter("notice_content"));
+	notice.setNotice_title(request.getParameter("notice_title"));
+	notice.setNotice_content(request.getParameter("notice_content"));
 	
 	NoticeDAO dao = NoticeDAO.getinstance();
 	dao.insertNotice(notice);

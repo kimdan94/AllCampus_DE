@@ -1,0 +1,9 @@
+#email {
+  border-style: solid;
+}
+#email:valid {
+  border-color: green;
+}
+#email:invalid {
+  border-color: red;
+}

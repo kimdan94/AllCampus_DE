@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
   
-public class WriteFormAction implements Action{
+public class UpdateFormAction implements Action{
  
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

@@ -1,7 +1,7 @@
 -- 공지사항 
 create table all_notice(
  notice_num number not null,
- notice_filename varchar2(150) not null,
+ notice_filename varchar2(150),
  notice_title varchar2(150) not null,
  notice_content clob not null,
  notice_reg_date date default sysdate not null,
