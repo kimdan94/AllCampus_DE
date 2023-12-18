@@ -26,6 +26,7 @@ public class ModifyNickMajorAction implements Action{
 		member.setMem_num(user_num);
 		member.setMem_nick(request.getParameter("mem_nick"));
 		member.setMem_major(request.getParameter("mem_major"));
+		member.setMem_major2(request.getParameter("mem_major2"));
 		
 		
 		MyMemberDAO dao = MyMemberDAO.getInstance();

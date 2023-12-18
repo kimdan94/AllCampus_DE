@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>내 정보 변경</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/dan.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 
@@ -163,53 +164,53 @@ $(function(){
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<div class="content-main">
 		<form action="modifyNickMajor.do" method="post" id="modify_form">
-		<h2>프로필 이미지 변경</h2>
+		<h2>프로필 이미지 변경</h2><br>
 		<ul>
 			<li>
 				<c:if test="${empty member.mem_photo}">
 				<img src="${pageContext.request.contextPath}/images/face.jpeg"
-				width="100" height="100" class="my-photo">
+				width="120" height="120" class="my-photo">
 				</c:if>
 				<c:if test="${!empty member.mem_photo}">
 				<img src="${pageContext.request.contextPath}/upload/${member.mem_photo}"
-				width="100" height="100" class="my-photo">
+				width="120" height="120" class="my-photo">
 				</c:if>
 			</li>
 		<li>
-			<div class="align-center">
-				<input type="button" value="수정" id="photo_btn">
+			<div>
+				<input type="button" value="수정" id="photo_btn" class="modify-btn">
 			</div>
 			<div id="photo_choice" style="display:none;">
 				<input type="file" id="mem_photo" accept="image/gif,image/png,image/jpeg">
-				<br>
-				<input type="button" value="전송" id="mem_photo_submit">
-				<input type="button" value="취소" id="mem_photo_reset">
+				<br><br>
+				<input type="button" value="전송" id="mem_photo_submit" class="submit-btn">
+				<input type="button" value="취소" id="mem_photo_reset" class="submit-btn">
 			</div>
 		</li>
 		</ul><br>
-		<h2>닉네임 변경</h2>
+		<h2>닉네임 변경</h2><br>
 		<div class="form-notice">*한글, 영문, 숫자 사용한 4~12자</div>
-		닉네임
+		닉네임&nbsp;&nbsp;
 		
 		<input type="text" name="mem_nick" id="mem_nick" maxlength="12" value="${member.mem_nick}"
 			   class="input-check" style="height:30px; width:300px;">
-		<input type="button" value="닉네임 중복체크" id="mem_nick_check" style="height:25px; width:120px;" >
+		<input type="button" value="닉네임 중복체크" id="mem_nick_check" class="nick" >
 		<span id="message_mem_nick"></span>
-		<br><br>
+		<br><br><br>
 		
 		<h2>학과 설정</h2>
 		<h3>주전공 변경</h3>
 		<input type="text" name="mem_major" id="mem_major" maxlength="12" value="${member.mem_major}"
 			placeholder="주전공을 입력하세요" class="input-check" style="height:30px; width:300px;"><br>
-		※입력 시 본인 학생증에 기재된 전공명을 동일하게 입력하시오.<br>
+		<br>※ 입력 시 본인 학생증에 기재된 전공명을 동일하게 입력하시오.<br>
 		학과명이 다를 시 학교 인증 과정에서 불이익이 있을 수 있습니다.<br>
 		예시)정치외교학과
 		<h3>전공 추가 변경(선택)</h3>
-		<input type="text" name="mem_major2" id="mem_major2" maxlength="12"
+		<input type="text" name="mem_major2" id="mem_major2" maxlength="12" 
 			placeholder="부전공을 입력하세요" class="input-check" style="height:30px; width:300px;">
 			<br><br>
-		<div class="align-center">
-			<input type="submit" value="저장" style="height:30px; width:550px;">
+		<div><br>
+			<input type="submit" value="저장" class="btn">
 		</div>
 		</form>
 	</div>

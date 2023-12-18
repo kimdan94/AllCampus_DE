@@ -5,8 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>내 댓글 목록</title>
+<title>댓글 단 글</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/dan.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 
@@ -15,10 +16,10 @@
 <body>
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<div class="content-main">
-		<h2>내 댓글</h2>
+	<div class="result-display">
+		<h2>댓글 단 글</h2>
 		<c:if test="${count == 0}">
-		<div class="result-display">
+		<div> 
 			표시할 게시물이 없습니다.
 		</div>
 		</c:if>
@@ -31,10 +32,9 @@
 			</tr>
 			<c:forEach var="board" items="${list}">
 			<tr>
-			<%--글 누르면 상세페이지 이동하는 <a> 추가해야함 --%>
 				<td>${board.board_num}</td>
 				<td><a href="${pageContext.request.contextPath}/board/detail.do?board_num=${board.board_num}">${board.board_title}</a></td>
-				<td>${board.board_content}</td>
+				<td>${board.board_reg_date}</td>
 			</tr>
 			</c:forEach>
 		</table>

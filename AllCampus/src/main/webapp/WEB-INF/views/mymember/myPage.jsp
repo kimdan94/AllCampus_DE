@@ -27,7 +27,7 @@
 				</c:if>
 				<div class="my-infor">
 				${member.mem_name} / ${member.mem_nick} <br>
-				${member.mem_major}
+				${member.mem_major}, ${member.mem_major2}
 				</div>
 			</li>
 			

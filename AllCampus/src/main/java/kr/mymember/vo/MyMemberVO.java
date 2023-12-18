@@ -16,6 +16,7 @@ public class MyMemberVO {
 	private String univ_name;//학교이름
 	private int mem_univNum;//학번
 	private String mem_major;	//전공
+	private String mem_major2;//전공 추가
 	private Date mem_reg_date;	//가입일
 	private Date mem_certify;	//학교 인증일
 	private String mem_photo;	//프로필 사진
@@ -148,4 +149,13 @@ public class MyMemberVO {
 	public void setMem_certifyfilename(String mem_certifyfilename) {
 		this.mem_certifyfilename = mem_certifyfilename;
 	}
+
+	public String getMem_major2() {
+		return mem_major2;
+	}
+
+	public void setMem_major2(String mem_major2) {
+		this.mem_major2 = mem_major2;
+	}
+	
 }

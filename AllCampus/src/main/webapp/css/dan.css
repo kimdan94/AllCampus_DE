@@ -1,0 +1,100 @@
+/*학교 인증
+-----------------------------*/
+.content-main{
+	width: 800px;
+    border: 1px solid gray;
+    border-collapse: collapse;
+    margin-top: 70px;
+    margin-left: 500px;
+    padding:30px;
+}
+.agree{
+	overflow:auto;
+	width:750px;
+	height:150px;
+	border:1px solid black;
+	text-align:justify;
+}
+.btn{
+	border:1px solid #e1e6ed;
+	height:40px; 
+	width:550px;
+	border-radius:10px;
+	background-color:#6699cc;
+	font-weight:bold;
+	color:white;
+	position: relative;
+    left: 120px;
+}
+
+/*내 정보 변경
+-----------------------------*/
+.modify-btn{
+	border:1px solid #e1e6ed;
+	position: relative;
+    left: 180px;
+    height:30px; 
+	width:70px;
+    border-radius:10px;
+	background-color:#6699cc;
+	font-weight:bold;
+	color:white;
+}
+.submit-btn{
+	border:1px solid #e1e6ed;
+	height:30px; 
+	width:70px;
+    border-radius:10px;
+	background-color:#6699cc;
+	font-weight:bold;
+	color:white;
+}
+.nick{
+	border:1px solid #e1e6ed;
+	height:30px; 
+	width:150px;
+	border-radius:10px;
+	background-color:#6699cc;
+	font-weight:bold;
+	color:white;
+}
+
+.form-notice{
+	font-size:10pt;
+}
+
+/*비밀번호 변경, 회원탈퇴
+-----------------------------*/
+.passwd_btn{
+	height:30px; 
+	width:300px;
+}
+
+/*약관
+-----------------------------*/
+.term{
+	overflow:auto;
+	width:900px;
+	height:800px;
+	border:1px solid black;
+	border-collapse: collapse;
+    margin-top: 70px;
+    margin-left: 500px;
+    padding:30px;
+}
+
+/*내가 쓴 글
+-----------------------------*/
+
+
+table{
+	width:100%;
+	border:1px solid #000;
+	border-collapse:collapse;
+	margin-top:5px;
+}
+
+table td, table th{
+	border:1px solid #000;
+	padding:5px;
+}

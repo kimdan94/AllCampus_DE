@@ -6,11 +6,13 @@
 <meta charset="UTF-8">
 <title>이용약관</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/dan.css">
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-<h2>서비스 이용 약관</h2>
-<div style="overflow:auto;width:900px;height:800px;border:1px solid black;" >
+
+<div class="term" >
+<h2>서비스 이용 약관</h2><br>
 <h3>제 1조 (목 적)</h3>
 
 이 이용약관(이하 '약관'이라 합니다)은 ㈜에브리타임(이하 '회사'라 합니다)이 제공하는 서비스와 관련하여 회사와 이용 고객(이하 '회원'이라 합니다)간에 서비스 이용 조건 및 절차, 이용에 관한 제반 사항과 기타 필요한 사항을 규정함을 목적으로 합니다.

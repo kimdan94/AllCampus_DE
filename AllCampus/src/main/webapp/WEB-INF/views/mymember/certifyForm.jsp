@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>학교 인증</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/dan.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -39,27 +40,30 @@ $(function(){
 		<b>3개월 이내 발급</b>된 증명서만 유효합니다.<br>
 		인증 처리에는 최대 72시간(휴일 제외)이 소요될 수 있습니다.<br>
 		
-		<p>
+		<br><br>
 		
 		<h2>증명서 첨부</h2>
 		<form action="certifyAlert.do" method="post" enctype="multipart/form-data"
 			  id="certify_form" >
 		증명서 첨부(이미지 파일)<br>
-		<input type="file" name="mem_certifyfilename" id="mem_certifyfilename" accept="image/gif,image/png.imgae/jpeg">
+		<input type="file" name="mem_certifyfilename" id="mem_certifyfilename" 
+			   accept="image/gif,image/png.imgae/jpeg">
+		
+		<br><br><br>
 		
 		<h2>약관 동의</h2>
-		<div style="overflow:auto;width:580px;height:150px;border:1px solid black;" >
+		<div class="agree" >
 		 <b>약관 동의 안내</b><br>
 		 도용,사문서 위조,해킹 등의 행위가 적발될 경우,관련 법에 따라 법적 책임이 따를 수 있습니다.<br>
 		 회원가입 및 본인 인증 시 수집된 본인 정보와 일치하지 않는 경우 인증되지 않습니다.<br>
 		 증빙 자료 사본은 3개월간 보관되고, 학번 정보는 탈퇴 후 14일간 보관되며, 이후 즉시 파기됩니다.<br>
 		 자세한 내용은 개인정보처리방침을 참고하시기 바랍니다.<br>
-		 커뮤니티 이용규칙은 누구나 기분 좋게 참여할 수 있는 커뮤니티를 만들기 위해 제정되었습니다. 서비스 내 모든
+		 커뮤니티 이용규칙은 누구나 기분 좋게 참여할 수 있는 커뮤니티를 만들기 위해 제정되었습니다.<br> 서비스 내 모든
 		 커뮤니티는 커뮤니티 이용규칙에 의해 운영되므로, 이용자는 커뮤니티 이용 전 반드시 모든 내용을 숙지하여야 합니다.
 		</div><p>
 		<input type="checkbox" name="checkbox" id="input-check">개인정보 수집 및 이용 동의(필수)
-		<div class="align-center">
-			<input type="submit" value="인증 요청하기" style="height:30px; width:550px;">
+		<div><br>
+			<input type="submit" value="인증 요청하기" class="btn">
 		</div>
 		</form>
 	</div>
