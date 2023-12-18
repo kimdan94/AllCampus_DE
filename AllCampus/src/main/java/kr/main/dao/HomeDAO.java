@@ -32,7 +32,7 @@ public class HomeDAO {
 			conn = DBUtil.getConnection();
 			//SQL문 작성
 			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
-					+ "(SELECT * FROM all_notice ORDER BY notice_reg_date)a) "
+					+ "(SELECT * FROM all_notice ORDER BY notice_reg_date DESC)a) "
 					+ "WHERE rnum >= ? AND rnum <= ?";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
@@ -56,6 +56,8 @@ public class HomeDAO {
 				}
 				
 				notice.setNotice_reg_date(rs.getDate("notice_reg_date"));
+				
+				list.add(notice);
 			}
 		}catch(Exception e) {
 			throw new Exception(e);
@@ -64,7 +66,8 @@ public class HomeDAO {
 		}
 		return list;
 	}
-	//FAQ 미리보기 - FAQ도 추후 작업 예정(자바빈 필요)
+	//FAQ 미리보기 - FAQ 제외
+	
 	
 	//HOT게시판 미리보기
 	public List<BoardVO> getListHot(int start, int end, int hit)throws Exception{

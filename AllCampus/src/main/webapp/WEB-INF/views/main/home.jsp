@@ -51,7 +51,7 @@
 	</div>
 	<div class="home-div">
 		<h3>공지사항 <input type="button" value="더보기" class="home-btn"
-			onclick="location.href='#'"></h3>
+			onclick="location.href='${pageContext.request.contextPath}/notice/list.do'"></h3>
 		<div class="list-div">
 		<table>
 			<c:forEach var="notice" items="${noticeList}">
@@ -63,7 +63,7 @@
 		</table>
 		</div>
 		<h3>FAQ <input type="button" value="더보기" class="home-btn"
-			onclick="location.href='#'"></h3><!-- 목록 처리 완료 시 update -->
+			onclick="location.href='${pageContext.request.contextPath}/faq/faq.do'"></h3>
 		<div class="list-div">
 		<table>
 			<tr>
@@ -162,7 +162,7 @@
 	</div>
 	<div class="home-div">
 		<h3>공지사항 <input type="button" value="더보기" class="home-btn"
-			onclick="location.href='#'"></h3>
+			onclick="location.href='location.href='${pageContext.request.contextPath}/notice/list.do'"></h3>
 		<div class="list-div">
 		<table>
 			<tr>
@@ -170,7 +170,7 @@
 		</table>
 		</div>
 		<h3>FAQ <input type="button" value="더보기" class="home-btn"
-			onclick="location.href='#'"></h3>
+			onclick="location.href='${pageContext.request.contextPath}/faq/faq.do'"></h3>
 		<div class="list-div">	
 		<table>
 			<tr>

@@ -6,6 +6,9 @@ a{
 input[type="button"]{
 	cursor:pointer;
 }
+input[type="submit"]{
+	cursor:pointer;
+}
 .copyright{
 	font-size:10px;
 	color:gray;
@@ -95,6 +98,10 @@ input[type="button"]{
 }
 textarea{
 	resize:none;
+}
+.form-notice{
+	font-size:10pt;
+	color:gray;
 }
 /* 메인 : main.jsp
 ------------------------------*/
