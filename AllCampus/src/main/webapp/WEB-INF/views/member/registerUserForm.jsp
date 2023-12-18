@@ -204,18 +204,21 @@ $(function(){
 </head>
 <body>
 <div class="page-main">
-	<img src="${pageContext.request.contextPath}/images/logo_typo_231208.png" width="250">
-	<hr size="1" noshade="noshade" width="100%">
+	<img src="${pageContext.request.contextPath}/images/logo_typo_231208.png" width="250" style="margin-left:590px;">
+	<hr size="1" noshade="noshade" width="30%">
+	<div id="notice-register">*모든 항목은 필수 입력</div>
 	<form id="register_form" action="registerUser.do" method="post">
 		<ul>
 			<li>
-				<label for="univ">학교 선택</label>
+				<label for="univ">학교</label>
 				<select name="univ" size="1">
 					<c:forEach var="univName" items="${list}">
 						<option value="${univName.univ_num}">${univName.univ_name}</option>
 					</c:forEach>
 				</select>
-				<label for="major">학과 입력</label>
+			</li>
+			<li>
+				<label for="major">학과</label>
 				<input type="text" name="major" id="major" maxlength="33" class="input-check"
 					size="40px" autocomplete="off" placeholder="하나만 입력해주세요.">
 			</li>
@@ -289,11 +292,11 @@ $(function(){
 				</div>
 			</li>
 		</ul>
-		<input type="submit" value="올캠퍼스 가입하기" class="input-button2" style="font-size:15px;">
-		<input type="button" value="처음으로" class="input-button1" style="font-size:15px;"
+		<input type="submit" value="올캠퍼스 가입하기" class="input-button2" style="font-size:15px;margin-left:23px;">
+		<input type="button" value="처음으로" class="input-button1" style="font-size:15px;margin-left:23px;"
 			onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
 	</form>
-	<div style="margin-bottom:3px;">
+	<div class="page-sub2">
 	<a href="#" class="bottom-style">문의하기</a>
 	<a href="${pageContext.request.contextPath}/mymember/termForm.do" class="bottom-style">이용약관</a>
 	<br>

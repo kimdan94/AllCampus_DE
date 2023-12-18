@@ -9,6 +9,9 @@ input[type="button"]{
 input[type="submit"]{
 	cursor:pointer;
 }
+input:focus{
+	outline:none;
+}
 .copyright{
 	font-size:10px;
 	color:gray;
@@ -32,6 +35,10 @@ input[type="submit"]{
 	justify-content:center;
 }
 .page-sub{
+	text-align:center;
+	font-size:12px;
+}
+.page-sub2{
 	text-align:center;
 	font-size:12px;
 }
@@ -301,6 +308,8 @@ textarea{
 	height:150px;
 	border:1px solid black;
 	margin-left:3px;
+	font-size:12px;
+	margin-top:10px;
 }
 .check-btn{
 	border:1px solid #e1e6ed;
@@ -310,7 +319,21 @@ textarea{
 	color:gray;
 }
 form[id="register_form"] ul li{
-	margin-bottom:7px;
+	margin-bottom:11px;
+}
+#register_form ul li label{
+	font-family:sans-serif;
+	font-size:15px;
+	font-weight:bold;
+}
+#register_form{
+	margin-left:600px;
+}
+#notice-register{
+	margin-left:980px;
+	font-size:9pt;
+	color:gray;
+	margin-top:-3px;
 }
 /* 책방 목록 : sc_list.jsp
 ------------------------------*/
