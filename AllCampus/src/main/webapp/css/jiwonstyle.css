@@ -105,6 +105,78 @@ ul.detail-info{
     float: right;
 }
 
+/* 학점계산기
+------------------------*/
+#container{
+	background-color:pink;
+	width:1000px;
+	margin:0 auto;
+	padding:0;
+	border:none;
+}
+
+#container.calculator div.section {
+    padding: 0 8px;
+}
+
+#container.calculator div.section div.chart,#container.calculator div.section div.menu {
+    border: 1px solid #ededed;
+    border-radius: 12px;
+}
+
+#container.calculator div.section div.chart article.overview {
+    display: flex;
+    justify-content: space-between;
+    min-height: 52px;
+    margin-bottom: 32px;
+}
+
+#container.calculator div.section div.chart article.overview div.column h4 {
+    margin-bottom: 2px;
+    color: #444;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 18px;
+}
+
+#container.calculator div.section div.chart article.overview div.column p {
+    display: inline-block;
+}
+
+#container.calculator div.section div.chart article.overview div.column p.value {
+    color: #f91f15;
+    font-size: 26px;
+    font-weight: bold;
+    line-height: 32px;
+}
+
+#container.calculator div.section div.chart article.overview div.column p.total {
+    margin-left: 4px;
+    color: #a6a6a6;
+    font-size: 12px;
+    line-height: 18px;
+}
+
+#container.calculator div.section div.chart article.overview div.column p.total span.button {
+    cursor: pointer;
+    display: inline-block;
+    margin-left: 2px;
+    padding: 0 6px;
+    color: #a6a6a6;
+    font-size: 12px;
+    line-height: 18px;
+    background-color: #f2f2f2;
+    border-radius: 9px;
+}
+
+#container.calculator div.section div.chart article.overview div.column.acquisition p.total {
+    cursor: pointer;
+    padding-right: 15px;
+    background: rgba(0, 0, 0, 0) url("/images/container.calculator.setting.png") no-repeat right center;
+}
+
+
+
 /*
 .free_title {
 	margin-top:100px;
