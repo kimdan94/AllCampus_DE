@@ -40,17 +40,17 @@
 			</tr>
 		</table>
 	</div>
-	<div id="info_div">
+	<div class="info-div">
 		<a href="https://www.kimyoung.co.kr/offmegaky.asp"><img src="../images/kimyoung.jpg" width="200"></a>
 	</div>
-	<div id="info_div2">
+	<div class="info-div2">
 		<a href="https://www.work.go.kr/experi/index.do"><img src="../images/work.jpg" width="200"></a>
 	</div>
-	<div id="info_div3">
+	<div class="info-div3">
 		<a href="https://www.youtube.com/@NetflixKorea"><img src="../images/netflix.jpg" width="200"></a>
 	</div>
 	<div class="home-div">
-		<h3>공지사항 <input type="button" value="더보기"
+		<h3>공지사항 <input type="button" value="더보기" class="home-btn"
 			onclick="location.href='#'"></h3>
 		<div class="list-div">
 		<table>
@@ -62,7 +62,7 @@
 			</c:forEach>
 		</table>
 		</div>
-		<h3>FAQ <input type="button" value="더보기"
+		<h3>FAQ <input type="button" value="더보기" class="home-btn"
 			onclick="location.href='#'"></h3><!-- 목록 처리 완료 시 update -->
 		<div class="list-div">
 		<table>
@@ -72,8 +72,8 @@
 		</div>
 	</div>
 	<div class="home-div">
-		<h3>HOT 게시판 <input type="button" value="더보기"
-			onclick="location.href='#'"></h3><!-- 목록 처리 완료 시 update -->
+		<h3>HOT 게시글 <input type="button" value="더보기" class="home-btn"
+			onclick="location.href='${pageContext.request.contextPath}/board/list.do'"></h3>
 		<div class="list-div">
 		<table>
 			<c:forEach var="hot" items="${hotList}">
@@ -84,7 +84,7 @@
 			</c:forEach>
 		</table>
 		</div>
-		<h3>자유 게시판 <input type="button" value="더보기"
+		<h3>자유 게시판 <input type="button" value="더보기" class="home-btn"
 			onclick="location.href='${pageContext.request.contextPath}/board/list.do'"></h3>
 		<div class="list-div">
 		<table>
@@ -96,6 +96,30 @@
 			</c:forEach>	
 		</table>
 		</div>
+	</div>
+	<!-- 책방 -->
+	<div class="home-div2">
+		<table>
+			<tr>
+				<c:forEach var="sc" items="${scList}">
+					<td><img src="../upload/${sc.secondhand_filename}" width="150" style="min-hight:150px;padding-left:10px;"></td>
+				</c:forEach>
+			</tr>
+			<tr style="font-size:12px;font-weight:bold;">
+				<c:forEach var="sc" items="${scList}">
+					<td style="padding-left:10px;">
+						<a href="${pageContext.request.contextPath}/secondhand/secondhand_detail.do?secondhand_num=${sc.secondhand_num}">
+							${sc.secondhand_name}
+						</a>
+					</td>
+				</c:forEach>	
+			</tr>
+			<tr style="font-size:11px;color:#6699cc;">
+				<c:forEach var="sc" items="${scList}">
+					<td style="padding-left:10px;"><fmt:formatNumber value="${sc.secondhand_price}"/>원</td>
+				</c:forEach>
+			</tr>
+		</table>	
 	</div>
 	<div class="home-end"></div>
 </div>
@@ -127,8 +151,17 @@
 			</tr>
 		</table>
 	</div>
+	<div class="info-div">
+		<a href="https://www.kimyoung.co.kr/offmegaky.asp"><img src="../images/kimyoung.jpg" width="200"></a>
+	</div>
+	<div class="info-div2">
+		<a href="https://www.work.go.kr/experi/index.do"><img src="../images/work.jpg" width="200"></a>
+	</div>
+	<div class="info-div3">
+		<a href="https://www.youtube.com/@NetflixKorea"><img src="../images/netflix.jpg" width="200"></a>
+	</div>
 	<div class="home-div">
-		<h3>공지사항 <input type="button" value="더보기"
+		<h3>공지사항 <input type="button" value="더보기" class="home-btn"
 			onclick="location.href='#'"></h3>
 		<div class="list-div">
 		<table>
@@ -136,7 +169,7 @@
 			</tr>
 		</table>
 		</div>
-		<h3>FAQ <input type="button" value="더보기"
+		<h3>FAQ <input type="button" value="더보기" class="home-btn"
 			onclick="location.href='#'"></h3>
 		<div class="list-div">	
 		<table>
@@ -146,28 +179,51 @@
 		</div>
 	</div>
 	<div class="home-div">	
-		<h3>HOT 게시판</h3>
+		<h3>HOT 게시글</h3>
 		<div class="list-div align-center" style="line-height:100px;">
 			학교 인증을 마친 학생들만 이용할 수 있어요!<br>
-			<input type="button" value="학교 인증"
+			<input type="button" value="학교 인증" class="sc-btn"
 				onclick="location.href='${pageContext.request.contextPath}/mymember/certifyForm.do'">
 		</div>
 		<h3>자유 게시판</h3>
 		<div class="list-div align-center" style="line-height:100px;">
 			학교 인증을 마친 학생들만 이용할 수 있어요!<br>
-			<input type="button" value="학교 인증"
+			<input type="button" value="학교 인증" class="sc-btn"
 				onclick="location.href='${pageContext.request.contextPath}/mymember/certifyForm.do'">
 		</div>
+	</div>
+	<!-- 책방 -->
+	<div class="home-div2">
+		<table>
+			<tr>
+				<c:forEach var="sc" items="${scList}">
+					<td><img src="../upload/${sc.secondhand_filename}" width="150" style="min-hight:150px;padding-left:10px;"></td>
+				</c:forEach>
+			</tr>
+			<tr style="font-size:12px;font-weight:bold;">
+				<c:forEach var="sc" items="${scList}">
+					<td style="padding-left:10px;">
+						<a href="${pageContext.request.contextPath}/secondhand/secondhand_detail.do?secondhand_num=${sc.secondhand_num}">
+							${sc.secondhand_name}
+						</a>
+					</td>
+				</c:forEach>	
+			</tr>
+			<tr style="font-size:11px;color:#6699cc;">
+				<c:forEach var="sc" items="${scList}">
+					<td style="padding-left:10px;"><fmt:formatNumber value="${sc.secondhand_price}"/>원</td>
+				</c:forEach>
+			</tr>
+		</table>	
 	</div>
 	<div class="home-end"></div>
 </div>
 </c:if>
-<div class="page-sub">
-	<a href="#">이용약관</a>
+<div class="bottom-style page-sub">
+	<a href="${pageContext.request.contextPath}/mymember/termForm.do">이용약관</a>
 	<div class="copyright">
 		copyright(c) 2023. 올캠퍼스. All rights reserved
 	</div>
 </div>
 </body>
 </html>
- 

@@ -64,6 +64,15 @@
 	font-weight:bold;
 	color:white;
 }
+.home-btn{
+	border:none;
+	width:80px;
+	height:25px;
+	border-radius:6px;
+	background-color:#6699cc;
+	font-weight:bold;
+	color:white;
+}
 .a-style{
 	text-decoration:none;
 	color:#575959;
@@ -89,19 +98,30 @@ textarea{
 /* 홈 : home.jsp
 ------------------------------ */
 .home-div{
-	width:36%;
+	width:30%;
 	float:left;
 	padding:5px;
 	margin:70px -390px 0 400px;
+}
+.home-div2{
+	width:975px;
+	padding:5px;
+	float:left;
+	border-radius:10px;
+	border:1px solid #edeff0;
+	padding-left:33px;
+	padding-right:25px;
+	margin-left:477px;
+	margin-top:15px;
 }
 .home-end{
 	clear:both;
 }
 .myInfo-div{
-	width:13%;
+	width:9%;
 	height:200px;
 	float:left;
-	margin:70px -300px 0 230px;
+	margin:70px -300px 0 220px;
 	border-radius:10px;
 	background:#f5f7f7;
 }
@@ -110,14 +130,14 @@ textarea{
 	border-radius:50%;
 	object-fit:cover;
 	object-position:top;
-	margin:25px 42px 10px 42px;
+	margin:25px 35px 10px 35px;
 }
 .univName-style{
 	margin:0 0 -50px 230px;
 }
 .list-div{
 	height:200px;
-	background:#f5f7f7;
+	border:1px solid #edeff0;
 	border-radius:15px;
 }
 .list-div table{
@@ -127,20 +147,20 @@ textarea{
 	padding-left:30px;
 	font-size:12px;
 }
-#info_div{
+.info-div{
 	float:left;
 	padding:5px;
-	margin:285px -350px 0 110px;
+	margin:285px -350px 0 117px;
 }
-#info_div2{
+.info-div2{
 	float:left;
 	padding:5px;
-	margin:420px -350px 0 110px;
+	margin:420px -350px 0 117px;
 }
-#info_div3{
+.info-div3{
 	float:left;
 	padding:5px;
-	margin:556px -350px 0 110px;
+	margin:556px -350px 0 117px;
 }
 /* 로그인 : loginForm.jsp
 ------------------------------*/

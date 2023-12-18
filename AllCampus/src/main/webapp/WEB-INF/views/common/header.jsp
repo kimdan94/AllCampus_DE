@@ -9,7 +9,7 @@
 			<a href="${pageContext.request.contextPath}/main/home.do">
 			<img src="${pageContext.request.contextPath}/images/logo_symbol_231208.png" width="100" style="margin-top:-10px;">	
 			</a>
-			올캠퍼스
+			All CAMPUS
 		</li>
 		<li class="clear">
 			<h2>
@@ -40,10 +40,11 @@
 		</c:if>	
 		<li class="myPage">
 			<a href="${pageContext.request.contextPath}/mymember/myPage.do">
-				<img src="${pageContext.request.contextPath}/images/face.png" width="40" height="40" style="margin-right:10px;margin-top:5px;">
+				<img src="${pageContext.request.contextPath}/images/user.png" width="40" height="40" style="margin-right:10px;margin-top:5px;">
 			</a>
 			[<span>${user_id}</span>]
-			<a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
+			<input type="button" value="로그아웃" class="sc-btn"
+				onclick="location.href='${pageContext.request.contextPath}/member/logout.do'">
 		</li>
 	</c:if>		
 	</ul>

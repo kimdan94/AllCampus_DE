@@ -11,6 +11,7 @@ import kr.controller.Action;
 import kr.main.dao.HomeDAO;
 import kr.member.dao.MemberDAO;
 import kr.notice.vo.NoticeVO;
+import kr.secondhand.vo.SecondhandVO;
 
 public class HomeAction implements Action{
 
@@ -38,14 +39,18 @@ public class HomeAction implements Action{
 		
 		//FAQ 목록
 		
-		//HOT 게시판 목록                             //추후 100으로 변경 예정
-		List<BoardVO> hotList = homeDao.getListHot(1, 5, 50);
+		//HOT 게시판 목록                             
+		List<BoardVO> hotList = homeDao.getListHot(1, 5, 100);
 		request.setAttribute("hotList", hotList);
 		
 		//자유 게시판 목록
 		List<BoardVO> boardList = homeDao.getListBoard(1, 5);
 		request.setAttribute("boardList", boardList);
-
+		
+		//책방 목록
+		List<SecondhandVO> scList = homeDao.getListSecondhand(1, 6);
+		request.setAttribute("scList", scList);
+		
 		//JSP 경로 반환
 		return "/WEB-INF/views/main/home.jsp";
 	}

@@ -8,6 +8,7 @@ import java.util.List;
 
 import kr.board.vo.BoardVO;
 import kr.notice.vo.NoticeVO;
+import kr.secondhand.vo.SecondhandVO;
 import kr.util.DBUtil;
 
 public class HomeDAO {
@@ -78,7 +79,8 @@ public class HomeDAO {
 			conn = DBUtil.getConnection();
 			//SQL문 작성
 			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
-					+ "(SELECT * FROM all_board WHERE board_hit >= ? ORDER BY board_reg_date DESC)"
+					+ "(SELECT * FROM all_board WHERE board_hit >= ? AND board_show=2 "
+					+ "ORDER BY board_reg_date DESC)"
 					+ "a) WHERE rnum >= ? AND rnum <= ?";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
@@ -126,7 +128,8 @@ public class HomeDAO {
 			conn = DBUtil.getConnection();
 			//SQL문 작성
 			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
-					+ "(SELECT * FROM all_board ORDER BY board_reg_date DESC)a) "
+					+ "(SELECT * FROM all_board WHERE board_show=2 "
+					+ "ORDER BY board_reg_date DESC)a) "
 					+ "WHERE rnum >= ? AND rnum <= ?";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
@@ -152,6 +155,54 @@ public class HomeDAO {
 				board.setBoard_reg_date(rs.getDate("board_reg_date"));
 				
 				list.add(board);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return list;
+	}
+	
+	//책방 미리보기
+	public List<SecondhandVO> getListSecondhand(int start, int end)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<SecondhandVO> list = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
+					+ "(SELECT * FROM all_secondhand WHERE secondhand_show=2 "
+					+ "ORDER BY secondhand_reg_date DESC)a) "
+					+ "WHERE rnum >= ? AND rnum <= ?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			list = new ArrayList<SecondhandVO>();
+			while(rs.next()) {
+				SecondhandVO sc = new SecondhandVO();
+				sc.setSecondhand_num(rs.getInt("secondhand_num"));
+				//글제목 가공
+				if(rs.getString("secondhand_name").length() >= 15) {
+					String title = rs.getString("secondhand_name").substring(0, 13);
+					title += " ...";
+					sc.setSecondhand_name(title);
+				}else if(rs.getString("secondhand_name").length() < 15){
+					sc.setSecondhand_name(rs.getString("secondhand_name"));
+				}
+				sc.setSecondhand_filename(rs.getString("secondhand_filename"));
+				sc.setSecondhand_price(rs.getInt("secondhand_price"));
+				
+				list.add(sc);
 			}
 		}catch(Exception e) {
 			throw new Exception(e);
