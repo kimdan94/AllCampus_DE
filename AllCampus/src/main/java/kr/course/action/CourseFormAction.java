@@ -46,9 +46,15 @@ public class CourseFormAction implements Action {
 		}
 		
 		// 강의 삭제 - all_timetable에서 강의 삭제하기
-		String[] delete_course = request.getParameterValues("delete_course");
-		if(delete_course != null) {
+		String[] arr = request.getParameterValues("delete_course");
+		if(arr != null) {
 			TimetableDAO daoTime = TimetableDAO.getInstance();
+			HashSet<String> hashSet = new HashSet<>(Arrays.asList(arr));        
+			String[] delete_course = hashSet.toArray(new String[0]);
+			
+//			for(int i=0; i<delete_course.length; i++) {
+//				System.out.println("값 " + delete_course[i]);
+//			}
 			daoTime.deleteCourse(delete_course);
 		}
 		 
@@ -57,16 +63,20 @@ public class CourseFormAction implements Action {
 		List<CourseVO> list = null;
 		List<CourseVO> list2 = null;
 		List<CourseVO> course_list = null;
+		List<CourseVO> semester_list = null;
 		int[] timeList = {9,10,11,12,13,14,15,16,17};
+		//String keyfield = request.getParameter("keyfield");
 		
 		list = dao.getListCourse(course_subject, keyword, course_category, course_credit);
 		list2 = dao.getRemoveDuplicateCourseList(course_subject, keyword, course_category, course_credit);
 		course_list = dao.getCourseList();
+		semester_list = dao.selectSemester();
 		
 		
 		request.setAttribute("list", list); // request.setAttribut("객체명", 객체);
 		request.setAttribute("list2", list2);
 		request.setAttribute("course_list", course_list);
+		request.setAttribute("semester_list", semester_list);
 		request.setAttribute("timeList", timeList);
 		request.setAttribute("course_subject", course_subject);
 		request.setAttribute("keyword", keyword);

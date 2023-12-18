@@ -100,12 +100,29 @@ body {
 	<div id='result'>
 	</div>	
 <%-- <jsp:include page="/WEB-INF/views/common/header.jsp"/> --%>
+
+
+	
+	<form id="search_semester" action="course_list.do" method="get">
+			<ul class="search">
+				<li>
+					<select name="keyfield">
+					<c:forEach var="semester_list" items="${semester_list}">
+						<%-- <input type="checkbox" class="course_subject" name="course_subject" value="${course_list.course_subject}">${course_list.course_subject}<br> --%>
+						<option value="${semester_list.course_year}-${semester_list.course_semester}" <c:if test="${param.keyfield==20232}">selected</c:if>>${semester_list.course_year} ${semester_list.course_semester}</option>
+						<%--  --%>
+					</c:forEach>
+					</select>
+				</li>
+			</ul>
+		</form>
+	
+	<hr>
 	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal1">
 	전공/영역:
 	<c:forEach var="course_subject" items="${course_subject}">
 	${course_subject}
 	</c:forEach>
-	
 	</button><!-- 구분 : 팝업창 radio -->
 	<!-- 전공/영역 --><!-- The Modal -------------------------------------->
 	<div class="modal" id="myModal1">
