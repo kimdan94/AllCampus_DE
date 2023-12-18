@@ -190,6 +190,7 @@
         </tfoot>
 		</table>
 	</div> 
+	<%-- 
  	<form id="importForm" class="modal">
       <a title="닫기" class="close"></a>
       <h3>내 시간표 가져오기</h3>
@@ -222,6 +223,7 @@
       </p>
       <input type="submit" value="저장" class="button">
     </form>
+    --%>
 </div>
 </div>
 </body>
