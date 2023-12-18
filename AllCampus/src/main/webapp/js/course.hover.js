@@ -62,7 +62,7 @@ $(function() {
 					//console.log(item.course_day + "_" + standard_time[i]);
 
 					//$("#" + item.course_day + "_" + standard_time[i]).css({ "background-color": "blue" });
-					$("#" + item.course_day + "_" + standard_time[i]).css({ "border": "1px solid red" });
+					$("#" + item.course_day + "_" + standard_time[i]).css({ "border": "1px solid red" }); 
 				}
 			}
 

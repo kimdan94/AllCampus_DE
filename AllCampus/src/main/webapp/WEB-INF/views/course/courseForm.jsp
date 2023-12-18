@@ -97,9 +97,9 @@ body {
 </head>
 <body>
 	<h2>시간표 출력</h2>
- 	<!-- 필터링 --><!-- value 값 넣어주기 -->
 	<div id='result'>
-</div>
+	</div>	
+<%-- <jsp:include page="/WEB-INF/views/common/header.jsp"/> --%>
 	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal1">
 	전공/영역:
 	<c:forEach var="course_subject" items="${course_subject}">

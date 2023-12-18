@@ -33,7 +33,7 @@ create table all_timetable(
  timetable_color varchar2(60) default 'red' not null
  --constraint all_timetable_fk1 foreign key (mem_num) references all_member (mem_num)
 );
-create sequence all_timetable_seq;
+create sequence all_timetable_seq; -- 삭제하기
 
 create table all_friend(
  mem_num number not null, -- 회원 번호
