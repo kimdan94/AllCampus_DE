@@ -1,5 +1,11 @@
 /* 공통
 ------------------------------*/
+a{
+	cursor:pointer;	
+}
+input[type="button"]{
+	cursor:pointer;
+}
 .copyright{
 	font-size:10px;
 	color:gray;

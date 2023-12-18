@@ -94,18 +94,15 @@ $(function(){
 			</li>
 			<li>
 				<label>교재 상태</label>
-				<input type="radio" name="bookStatus" value="상">상
-				<input type="radio" name="bookStatus" value="중">중
-				<input type="radio" name="bookStatus" value="하">하
+				<input type="radio" name="bookStatus" value="상" <c:if test="${sc.secondhand_status == '상'}">checked</c:if>>상
+				<input type="radio" name="bookStatus" value="중" <c:if test="${sc.secondhand_status == '중'}">checked</c:if>>중
+				<input type="radio" name="bookStatus" value="하" <c:if test="${sc.secondhand_status == '하'}">checked</c:if>>하
 			</li>
 			<li>
 				<label>거래 방법</label>
-				<input type="radio" name="bookWay" value="직거래">직거래
-				<input type="radio" name="bookWay" value="배송">배송
-				<input type="radio" name="bookWay" value="둘 다 가능">둘 다 가능
-			</li>
-			<li>
-				*교재 상태와 거래 방법을 다시 선택해주세요.
+				<input type="radio" name="bookWay" value="직거래" <c:if test="${sc.secondhand_way == '직거래'}">checked</c:if>>직거래
+				<input type="radio" name="bookWay" value="배송" <c:if test="${sc.secondhand_way == '배송'}">checked</c:if>>배송
+				<input type="radio" name="bookWay" value="둘 다 가능" <c:if test="${sc.secondhand_way == '둘 다 가능'}">checked</c:if>>둘 다 가능
 			</li>
 		</ul>
 		<div class="align-center">
