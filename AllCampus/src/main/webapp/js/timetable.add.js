@@ -1,6 +1,6 @@
 $(function() {
 	var name = $('#courseDBtable tr');
-
+	
 	var standard_time = [];
 	for (var i = 9; i < 18; i++) {
 		for (var j = 0; j < 2; j++) {
@@ -12,10 +12,10 @@ $(function() {
 	for (let i = 0; i < name.length; i++) {
 		// click 이벤트 실행
 		$(name[i]).on('click', (e) => {
-			console.log('click');
+			//console.log('click');
 			
 			$(name[i]).css({ "color": "green" });
-			console.log($(name[i]).prop("id"));
+			//console.log($(name[i]).prop("id"));
 			course_code = $(name[i]).prop("id");
 			$.ajax({
 				url: 'timetableAddList.do', // 전송 url (전송하고 데이터 받기 위한 action 페이지 dao XX)
@@ -23,10 +23,9 @@ $(function() {
 				data: { course_code: $(name[i]).prop("id") },
 				dataType: 'json',
 				success: function(param) {
-					
 					addTime(param, course_code); // 받은 course_code를 넘겨줌 -> 다른 url에 넘길 것
-					
 					//getTimetablePrint(param);
+					//console.log(timeID);
 					
 				},
 				error: function() {
@@ -36,7 +35,6 @@ $(function() {
 		});
 		
 	}
-	
 	
 	// 위에서 강의를 click해서 받아온 course_code를 이용해서 timetable 조작하기 -> timetableAdd에 전송하기
 	function addTime(param, course_code) {
@@ -63,17 +61,20 @@ $(function() {
 				data: {course_code: course_code, timetable_table_id: JSON.stringify(timetable_table_id)},// 보내려는 데이터를 문자열로 변환해서 보내기
 				dataType: 'json',
 				success: function(param) {
-					console.log('성공');
+					//console.log('성공');
 					getTimetablePrint(param);
+					console.log(timeID);
 				},
 				error: function() {
 					alert('네트워크 오류 발생');
 				}
 			});
-
 		});
-
 	}
+	const timeID = [];
+	
+	
+	
 	//==================timetablePrint 시작=====================
 	function getTimetablePrint(){
 		$.ajax({
@@ -82,11 +83,68 @@ $(function() {
 			data: {  }, // year, semester 전송하기
 			dataType: 'json',
 			success: function(param) {
+				
 				printMonTimetable(param);
 				printTueTimetable(param);	
 				printWedTimetable(param);
 				printThurTimetable(param);
 				printFriTimetable(param);
+				console.log("값 : " + timeID); // 여기 지우기
+
+				const uniqueArr = timeID.filter((element, index) => {
+				    return timeID.indexOf(element) === index;
+				});
+				
+				
+				console.log(uniqueArr);
+				 $(uniqueArr).each(function (index, value) {       // ES6: Template String
+        	        console.log('${index}:', value);        // $.each
+					$(value).click(function(e){
+						//alert(value);
+						var unique = value;
+						$.ajax({
+							url: 'timetableView.do',
+							type: 'post',
+							data: {unique: unique},
+							dataType: 'json',
+							success: function(param) {
+								console.log(" 삭제 전에 확인 창");
+								const weekend = ['','월','화','수','목','금'];
+								//alert('값');
+								console.log(param);
+								console.log(param.beforeDeleteView.length);
+								//const btn = document.querySelector('.new-btn');
+								//	btn.onclick = function() { console.log('Hi') };
+								$('.new-btn').click();
+								
+								let delete_header = '<div>강의정보</div>';
+								let delete_body = '<div>' + param.beforeDeleteView[0].course_name + '</div>';
+								delete_body += '<div>  교수 : ' + param.beforeDeleteView[0].course_prof + '</div>';
+								delete_body += '<div>  분류 : ' + param.beforeDeleteView[0].course_subject + '</div>';
+								delete_body += '<div>  구분 : ' + param.beforeDeleteView[0].course_category + '</div>';
+								delete_body += '<div>  학점 : ' + param.beforeDeleteView[0].course_credit + '</div>';
+								delete_body += '<div>  강의실 : ' + param.beforeDeleteView[0].course_classroom + '</div>';
+								for(var y=0; y<param.beforeDeleteView.length; y++){
+									delete_body += '<div>' + weekend[param.beforeDeleteView[y].course_day]	+
+									' ' + param.beforeDeleteView[y].course_start_time +
+									' ' + param.beforeDeleteView[y].course_end_time + '</div>';
+								}
+								delete_body += '<input type="text" name="delete_course" id="delete_course" value="' + param.beforeDeleteView[0].course_code + '">';
+								
+								console.log(delete_body);
+								$('.delete_header').append(delete_header);
+								$('.delete_body').append(delete_body);
+
+							},
+							error: function() {
+								alert('unique Arr 네트워크 오류 발생');
+							}
+						});
+						
+					});
+		           });
+
+
 			},
 			error: function() {
 				alert('네트워크 오류 발생');
@@ -128,6 +186,7 @@ $(function() {
 						} else if(list[s][1] == 1 && stand1 != 0){ // 두번째
 							$('#1_'+stand1).attr('rowspan', stand2);
 							$('#1_'+stand1).attr('style','background-color: #4D377B');
+							timeID.push('#1_'+stand1);
 							stand1 = list[s][0];
 						} else if(list[s][1] != 1){
 							stand2 = list[s][1];
@@ -136,6 +195,7 @@ $(function() {
 					}
 					$('#1_'+stand1).attr('rowspan', stand2);
 					$('#1_'+stand1).attr('style','background-color: #4D377B;');
+					timeID.push('#1_'+stand1);
 				}
 			}
 		}
@@ -175,6 +235,7 @@ $(function() {
 						} else if(list[s][1] == 1 && stand1 != 0){ // 두번째
 							$('#2_'+stand1).attr('rowspan', stand2);
 							$('#2_'+stand1).attr('style','background-color: #FFD400;');
+							timeID.push('#2_'+stand1);
 							stand1 = list[s][0];
 						} else if(list[s][1] != 1){
 							stand2 = list[s][1];
@@ -183,6 +244,7 @@ $(function() {
 					}
 					$('#2_'+stand1).attr('rowspan', stand2);
 					$('#2_'+stand1).attr('style','background-color: #FFD400;');
+					timeID.push('#2_'+stand1);
 				}
 			}
 		}
@@ -221,6 +283,7 @@ $(function() {
 						} else if(list[s][1] == 1 && stand1 != 0){ // 두번째
 							$('#3_'+stand1).attr('rowspan', stand2);
 							$('#3_'+stand1).attr('style','background-color: #008000');
+							timeID.push('#3_'+stand1);
 							stand1 = list[s][0];
 						} else if(list[s][1] != 1){
 							stand2 = list[s][1];
@@ -230,6 +293,7 @@ $(function() {
 					}
 					$('#3_'+stand1).attr('rowspan', stand2);
 					$('#3_'+stand1).attr('style','background-color: #008000;');
+					timeID.push('#3_'+stand1);
 				}
 			}
 		}
@@ -268,15 +332,16 @@ $(function() {
 						} else if(list[s][1] == 1 && stand1 != 0){ // 두번째
 							$('#4_'+stand1).attr('rowspan', stand2);
 							$('#4_'+stand1).attr('style','background-color: #FF7F00');
+							timeID.push('#4_'+stand1);
 							stand1 = list[s][0];
 						} else if(list[s][1] != 1){
 							stand2 = list[s][1];
 							$('#4_'+list[s][0]).attr('style', "display:none;");
 						}
-							
 					}
 					$('#4_'+stand1).attr('rowspan', stand2);
 					$('#4_'+stand1).attr('style','background-color: #FF7F00;');
+					timeID.push('#4_'+stand1);
 				}
 			}
 		}
@@ -315,19 +380,33 @@ $(function() {
 						} else if(list[s][1] == 1 && stand1 != 0){ // 두번째
 							$('#5_'+stand1).attr('rowspan', stand2);
 							$('#5_'+stand1).attr('style','background-color: #FFC0CB');
+							timeID.push('#5_'+stand1);
 							stand1 = list[s][0];
 						} else if(list[s][1] != 1){
 							stand2 = list[s][1];
 							$('#5_'+list[s][0]).attr('style', "display:none;");
 						}
-							
 					}
 					$('#5_'+stand1).attr('rowspan', stand2);
 					$('#5_'+stand1).attr('style','background-color: #FFC0CB;');
+					timeID.push('#5_'+stand1);
 				}
 			}
 		}
 	}
 	//================timetablePrint 끝==================
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 });

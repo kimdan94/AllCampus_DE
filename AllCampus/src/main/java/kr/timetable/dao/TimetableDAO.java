@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import kr.course.vo.CourseVO;
 import kr.timetable.vo.TimetableVO;
 import kr.util.DBUtil;
 
@@ -31,7 +32,6 @@ public class TimetableDAO {
 			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
 
-			System.out.println("mem num : " + mem_num + " course code : " + course_code + " timetable table id : " + timetable_table_id);
 			//SQL문 작성
 			sql = "INSERT INTO all_timetable "
 					+ "(mem_num,course_code,timetable_year,timetable_semester,timetable_course_name,timetable_course_prof,timetable_credit,timetable_table_id,timetable_color) "
@@ -143,5 +143,84 @@ public class TimetableDAO {
 		return list;
 	}
 	
+
+	public List<CourseVO> timetableView(String timetableID) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<CourseVO> list = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+			// SQL문 작성
+			//sql = "SELECT * FROM all_course JOIN (SELECT course_code FROM all_timetable WHERE timetable_table_id=?) USING(course_code);";
+			sql = "SELECT * FROM all_course JOIN (SELECT course_code FROM all_timetable WHERE timetable_table_id=?) USING(course_code)";
+			
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			
+			//?에 데이터 바인딩
+			pstmt.setString(1, timetableID);
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			list = new ArrayList<CourseVO>();
+			
+			while(rs.next()) {
+				CourseVO course = new CourseVO();
+				course.setCourse_name(rs.getString("course_name"));
+				course.setCourse_prof(rs.getString("course_prof"));
+				course.setCourse_year(Integer.parseInt(rs.getString("course_year")));
+				course.setCourse_semester(Integer.parseInt(rs.getString("course_semester")));
+				course.setCourse_subject(rs.getString("course_subject"));
+				course.setCourse_day(rs.getInt("course_day"));
+				course.setCourse_start_time(rs.getString("course_start_time"));
+				course.setCourse_end_time(rs.getString("course_end_time"));
+				course.setCourse_category(rs.getString("course_category"));
+				course.setCourse_credit(Integer.parseInt(rs.getString("course_credit")));
+				course.setCourse_classroom(rs.getString("course_classroom"));
+				course.setCourse_code(rs.getString("course_code"));
+				
+				list.add(course);
+			}
+		} catch(Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return list;
+	}
+	
+	
+	// 시간표에서 삭제하고 싶은 강의 클릭 -> 모달창에서 강의 삭제 시 -> 강의 삭제됨
+	public void deleteCourse(String[] code) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "DELETE FROM all_timetable WHERE course_code=?"; // 삭제 X 업데이트 O
+			//PreparedStatment 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			for(int i=0; i<code.length-1; i++) {
+				sql += " OR course_code=?";
+			}
+			for(int i=0; i<code.length; i++) {
+				pstmt.setString(i+1, code[i]);
+			}
+			//SQL문 실행
+			pstmt.executeUpdate();
+			
+		} catch(Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	
 }

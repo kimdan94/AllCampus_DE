@@ -82,9 +82,6 @@ public class TimetableAddAction implements Action {
 		//------------------------------------------------------------------
 		
 		
-		
-		
-		
 		//JSON 문자열 생성
 		ObjectMapper mapper = new ObjectMapper();
 		String ajaxData = mapper.writeValueAsString(mapAjax);

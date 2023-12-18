@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import kr.controller.Action;
 import kr.course.dao.CourseDAO;
 import kr.course.vo.CourseVO;
+import kr.timetable.dao.TimetableDAO;
 
 public class CourseFormAction implements Action {
 
@@ -44,6 +45,13 @@ public class CourseFormAction implements Action {
 			course_credit = hashSet_credit.toArray(new String[0]);
 		}
 		
+		// 강의 삭제 - all_timetable에서 강의 삭제하기
+		String[] delete_course = request.getParameterValues("delete_course");
+		if(delete_course != null) {
+			TimetableDAO daoTime = TimetableDAO.getInstance();
+			daoTime.deleteCourse(delete_course);
+		}
+		 
 		CourseDAO dao = CourseDAO.getInstance();
 		
 		List<CourseVO> list = null;

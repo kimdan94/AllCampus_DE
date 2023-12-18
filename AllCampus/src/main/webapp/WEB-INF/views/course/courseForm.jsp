@@ -290,6 +290,46 @@ body {
 
 
 
+
+<!-- ------------------------------------------------------------------------------------------------------------------ -->
+
+	
+	<button id="new_modal" type="button" class="btn btn-primary new-btn" data-toggle="modal" data-target="#deleteModal" style="display:none;"></button>
+	<!-- 모달 예시 -->
+	<!-- The Modal -->
+	<!-- The Modal -->
+	<div class="modal" id="deleteModal">
+		<div class="modal-dialog">
+		<form action="course_list.do" method="get">
+			<div class="modal-content">
+
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h4 id="delete_header" class="modal-title delete_header"></h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				
+					<!-- Modal body -->
+					<div class="modal-body delete_body">
+						
+					</div>
+	
+					<!-- Modal footer -->
+					<div class="modal-footer delete-footer">
+						<input type="submit" value="강의 삭제하기">
+					</div>
+				
+			</div>
+			</form>
+		</div>
+	</div>
+
+
+
+
+
+
+
 <!-- ------------------------------------------------------------------------------------------------------------------ -->
 
 
@@ -318,6 +358,11 @@ body {
 			</div>
 		</div>
 	</div>
+
+
+
+
+
 
 
 

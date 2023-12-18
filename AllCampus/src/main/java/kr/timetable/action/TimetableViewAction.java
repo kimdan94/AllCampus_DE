@@ -14,9 +14,8 @@ import kr.controller.Action;
 import kr.course.dao.CourseDAO;
 import kr.course.vo.CourseVO;
 import kr.timetable.dao.TimetableDAO;
-import kr.timetable.vo.TimetableVO;
 
-public class TimetableAddListAction implements Action {
+public class TimetableViewAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -28,17 +27,19 @@ public class TimetableAddListAction implements Action {
 		
 		//전송된 데이터 인코딩 처리
 		request.setCharacterEncoding("utf-8");
-		//전송된 데이터 번환
-		String course_code = request.getParameter("course_code"); 
-
 		Map<String, Object> mapAjax = new HashMap<String, Object>();
 		
-		CourseDAO dao = CourseDAO.getInstance();
-		List<CourseVO> listClick = dao.selectDay(course_code);
-		mapAjax.put("listClick", listClick); // ajax success로 보내는 데이터
-
-		//가진 정보 : user_num(=mem_num), course_code, listClick(시간표 정보)
-
+		//전송된 데이터 번환
+		String unique = request.getParameter("unique"); 
+		if(unique.length() > 0) {
+			unique = unique.substring(1,unique.length());
+			TimetableDAO daoTime = TimetableDAO.getInstance();
+			
+			CourseDAO dao = CourseDAO.getInstance();
+			List<CourseVO> beforeDeleteView = daoTime.timetableView(unique);
+			mapAjax.put("beforeDeleteView", beforeDeleteView); // ajax success로 보내는 데이터
+			
+		}
 		//JSON 문자열 생성
 		ObjectMapper mapper = new ObjectMapper();
 		String ajaxData = mapper.writeValueAsString(mapAjax);
