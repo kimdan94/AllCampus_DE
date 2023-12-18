@@ -1,5 +1,10 @@
 /* 공통
 ------------------------------*/
+.page-main-custom{
+	width:100%;
+	margin:40px 0;
+	min-height:500px;
+}
 a{
 	cursor:pointer;	
 }
@@ -19,7 +24,7 @@ input:focus{
 .result-display{
 	width:600px;
 	height:400px;
-	margin:50px auto;
+	margin:200px 530px 0 530px;
 	border:1px solid #000;
 	display:flex;
 	align-items:center;
@@ -43,7 +48,7 @@ input:focus{
 	font-size:12px;
 }
 .member-style{
-	margin-left:400px;
+	margin-left:300px;
 	margin-top:200px;
 }
 .input-button1{
