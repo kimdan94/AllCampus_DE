@@ -26,10 +26,9 @@ $(function(){
 </script>
 </head>
 <body>
-<div class="page-main align-center">
-<div class="member-style">
+<div class="page-main-custom align-center">
 	<a href="${pageContext.request.contextPath}/main/main.do">
-	<img src="${pageContext.request.contextPath}/images/logo_symbol_231208.png" width="100">
+		<img src="${pageContext.request.contextPath}/images/logo_symbol_231208.png" width="100" class="mem-logo">
 	</a>
 	<form id="login_form" action="login.do" method="post">
 		<ul>
@@ -46,19 +45,18 @@ $(function(){
 				<label for="passwd">비밀번호</label>
 			</li> 
 		</ul>
-		<input type="submit" value="올캠퍼스 로그인" class="input-button2" style="font-size:15px;">
+		<input type="submit" value="올캠퍼스 로그인" class="input-button2" style="font-size:15px;margin-left:13px;">
 		<br>
-		<a href="checkIdForm.do" class="a-style">아이디/비밀번호 찾기</a>
+		<a href="checkIdForm.do" class="a-style" style="margin-left:10px;">아이디/비밀번호 찾기</a>
 	</form>
-	<p>
+	<p style="margin-left:-50px;">
 	올캠퍼스가 처음이신가요? 
-	<a href="registerUserForm.do">회원가입</a>
-<div style="margin-bottom:3px;">
+	<a href="registerUserForm.do" class="important">회원가입</a>
+<div class="bottom">
 	<a href="#" class="bottom-style">문의하기</a>
 	<a href="${pageContext.request.contextPath}/mymember/termForm.do" class="bottom-style">이용약관</a>
 	<br>
 	<div class="copyright">copyright(c) 2023. 올캠퍼스. All rights reserved</div>
-</div>
 </div>
 </div>
 </body>

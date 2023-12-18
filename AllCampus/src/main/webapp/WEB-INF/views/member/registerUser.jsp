@@ -10,7 +10,6 @@
 </head>
 <body>
 <div class="page-main-custom">
-<div>
 	<div class="result-display">
 		<div class="align-center">
 		올캠퍼스 회원가입이 완료되었습니다.<p>
@@ -20,7 +19,6 @@
 			onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
 		</div>		
 	</div>
-</div>	
 </div>
 </body>
 </html>

@@ -12,15 +12,13 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/jy.css">
 </head>
 <body>
-<div class="page-main align-center">
-	<div class="member-style">
-		<div class="result-display">
-			<div class="align-center">
-				이용수칙 위반으로 정지된 계정입니다.<br>
-				신고일로부터 3일 후 정상 이용이 가능합니다.<p>
-				<input type="button" value="처음으로" class="input-button1"
-					onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
-			</div>
+<div class="page-main-custom">
+	<div class="result-display">
+		<div class="align-center">
+			이용수칙 위반으로 정지된 계정입니다.<br>
+			신고일로부터 3일 후 정상 이용이 가능합니다.<p>
+			<input type="button" value="처음으로" class="input-button1" style="font-size:15px;"
+				onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
 		</div>
 	</div>
 </div>
