@@ -19,7 +19,7 @@ public class EvaWriteFormAction implements Action{
 		if(user_num == null) {//로그인이 되지 않은경우 
 			return "redirect:/member/loginForm.do"; 
 		}
-		
+		 
 		//로그인이 된 경우
 		return "/WEB-INF/views/courseeva/evawriteForm.jsp";
 	}

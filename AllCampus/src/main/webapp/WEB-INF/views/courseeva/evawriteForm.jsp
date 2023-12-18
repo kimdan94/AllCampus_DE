@@ -117,7 +117,7 @@ $(document).ready(function () {
                     </c:forEach>
                 </select>
             </li>
-            <li>
+            <li> 
             	<select name="eva_star" id="eva_star">
             		<option value="" selected>강의를 등급으로 평가하세요</option>
             		<option value="4.5">A+</option>

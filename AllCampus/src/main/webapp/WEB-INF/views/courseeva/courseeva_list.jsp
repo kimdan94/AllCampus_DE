@@ -21,7 +21,7 @@
 						<option value="1" <c:if test="${param.keyfield==1}">selected</c:if>>과목명</option>
 						<option value="2" <c:if test="${param.keyfield==2}">selected</c:if>>교수명</option>
 					</select>
-				</li>
+				</li> 
 				<li>
 					<input type="search" size="16" name="keyword" id="keyword" value="${param.keyword}">
 				</li>

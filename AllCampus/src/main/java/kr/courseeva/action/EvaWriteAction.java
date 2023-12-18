@@ -27,7 +27,7 @@ public class EvaWriteAction implements Action{
 		
 		format.setGroupingUsed(false);
 		
-		
+		 
 		CourseEvaVO courseeva = new CourseEvaVO();
 		courseeva.setCourse_num(Integer.parseInt(request.getParameter("course_num")));
 		courseeva.setEva_star(Double.parseDouble(request.getParameter("eva_star")));

@@ -3,4 +3,4 @@
 <script type="text/javascript">
 	alert('글쓰기 완료!');
 	location.href='courseeva_list.do';
-</script>
+</script> 

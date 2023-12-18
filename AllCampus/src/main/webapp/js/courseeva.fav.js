@@ -20,7 +20,7 @@ $(function(){
 		index = $(this).attr('data-index');
 		
 		$.ajax({
-            url: 'writeFav.do',
+            url: 'writeFav.do', 
             type: 'post',
             data: {eva_num: $('#output_eva_fav_' + index).attr('data-num')},
             dataType: 'json',

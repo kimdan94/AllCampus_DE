@@ -190,6 +190,16 @@
         </tfoot>
 		</table>
 	</div> 
+	
+	<button id="openModalBtn">Open Modal</button>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModalBtn">&times;</span>
+            <h2>Modal Content</h2>
+            <p>This is a simple modal without Bootstrap.</p>
+        </div>
+    </div>
 	<%-- 
  	<form id="importForm" class="modal">
       <a title="닫기" class="close"></a>

@@ -33,7 +33,7 @@ public class CourseYearSemesterAction implements Action{
 		List<CourseVO> list1 = null;
 		list1 = dao.getCourseYearSemester(course_name,course_prof);
 		
-		
+		 
 		
 		mapAjax.put("list1",list1);
 		

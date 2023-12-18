@@ -19,7 +19,7 @@ $(function(){
 			url:'evaComplaint.do',
 			type:'post',
 			data:{eva_num:$('#output_eva_complaint_' + index).attr('data-num')},
-			dataType:'json',
+			dataType:'json', 
 			success:function(param){
 				if(param.result == 'success'){
 					alert("신고 완료되었습니다.");
