@@ -12,10 +12,8 @@ $(function() {
 	for (let i = 0; i < name.length; i++) {
 		// click 이벤트 실행
 		$(name[i]).on('click', (e) => {
-			//console.log('click');
 			
 			$(name[i]).css({ "color": "green" });
-			//console.log($(name[i]).prop("id"));
 			course_code = $(name[i]).prop("id");
 			$.ajax({
 				url: 'timetableAddList.do', // 전송 url (전송하고 데이터 받기 위한 action 페이지 dao XX)
@@ -24,9 +22,6 @@ $(function() {
 				dataType: 'json',
 				success: function(param) {
 					addTime(param, course_code); // 받은 course_code를 넘겨줌 -> 다른 url에 넘길 것
-					//getTimetablePrint(param);
-					//console.log(timeID);
-					
 				},
 				error: function() {
 					alert('네트워크 오류 발생');
@@ -89,61 +84,6 @@ $(function() {
 				printWedTimetable(param);
 				printThurTimetable(param);
 				printFriTimetable(param);
-				console.log("값 : " + timeID); // 여기 지우기
-
-				const uniqueArr = timeID.filter((element, index) => {
-				    return timeID.indexOf(element) === index;
-				});
-				
-				
-				console.log(uniqueArr);
-				 $(uniqueArr).each(function (index, value) {       // ES6: Template String
-        	        console.log('${index}:', value);        // $.each
-					$(value).click(function(e){
-						//alert(value);
-						var unique = value;
-						$.ajax({
-							url: 'timetableView.do',
-							type: 'post',
-							data: {unique: unique},
-							dataType: 'json',
-							success: function(param) {
-								console.log(" 삭제 전에 확인 창");
-								const weekend = ['','월','화','수','목','금'];
-								//alert('값');
-								console.log(param);
-								console.log(param.beforeDeleteView.length);
-								//const btn = document.querySelector('.new-btn');
-								//	btn.onclick = function() { console.log('Hi') };
-								$('.new-btn').click();
-								
-								let delete_header = '<div>강의정보</div>';
-								let delete_body = '<div>' + param.beforeDeleteView[0].course_name + '</div>';
-								delete_body += '<div>  교수 : ' + param.beforeDeleteView[0].course_prof + '</div>';
-								delete_body += '<div>  분류 : ' + param.beforeDeleteView[0].course_subject + '</div>';
-								delete_body += '<div>  구분 : ' + param.beforeDeleteView[0].course_category + '</div>';
-								delete_body += '<div>  학점 : ' + param.beforeDeleteView[0].course_credit + '</div>';
-								delete_body += '<div>  강의실 : ' + param.beforeDeleteView[0].course_classroom + '</div>';
-								for(var y=0; y<param.beforeDeleteView.length; y++){
-									delete_body += '<div>' + weekend[param.beforeDeleteView[y].course_day]	+
-									' ' + param.beforeDeleteView[y].course_start_time +
-									' ' + param.beforeDeleteView[y].course_end_time + '</div>';
-								}
-								delete_body += '<input type="text" name="delete_course" id="delete_course" value="' + param.beforeDeleteView[0].course_code + '">';
-								
-								console.log(delete_body);
-								$('.delete_header').append(delete_header);
-								$('.delete_body').append(delete_body);
-
-							},
-							error: function() {
-								alert('unique Arr 네트워크 오류 발생');
-							}
-						});
-						
-					});
-		           });
-
 
 			},
 			error: function() {
@@ -152,6 +92,54 @@ $(function() {
 		});
 	}
 	getTimetablePrint();
+	
+	//==============================
+	$(document).on("click",'.class-info',function(e){ // table에서 클래스 name만 부여된 곳만 이벤트 처리
+		console.log('[==클릭==]');
+		console.log($(this).attr('id'));
+		$.ajax({
+			url: 'timetableView.do',
+			type: 'post',
+			data: {unique: '#'+$(this).attr('id')},
+			dataType: 'json',
+			success: function(param) {
+				$('.delete_header').empty(); // 값이 누적되기 때문에 empty
+				$('.delete_body').empty();
+				
+				const weekend = ['','월','화','수','목','금'];
+				
+				console.log('param 값 출력' + param);
+				console.log("값 : " + param.beforeDeleteView[0].course_name);
+				
+				$('.new-btn').click();
+				//alert('클릭시 alert');
+				
+				let delete_header = '<div>강의정보</div>';
+				let delete_body = '<div>' + param.beforeDeleteView[0].course_name + '</div>';
+				delete_body += '<div>  교수 : ' + param.beforeDeleteView[0].course_prof + '</div>';
+				delete_body += '<div>  분류 : ' + param.beforeDeleteView[0].course_subject + '</div>';
+				delete_body += '<div>  구분 : ' + param.beforeDeleteView[0].course_category + '</div>';
+				delete_body += '<div>  학점 : ' + param.beforeDeleteView[0].course_credit + '</div>';
+				delete_body += '<div>  강의실 : ' + param.beforeDeleteView[0].course_classroom + '</div>';
+				for(var y=0; y<param.beforeDeleteView.length; y++){
+					delete_body += '<div>' + weekend[param.beforeDeleteView[y].course_day]	+
+					' ' + param.beforeDeleteView[y].course_start_time +
+					' ' + param.beforeDeleteView[y].course_end_time + '</div>';
+				}
+				delete_body += '<input type="text" name="delete_course" id="delete_course" value="' + param.beforeDeleteView[0].course_code + '">';
+				
+				console.log(delete_body);
+				$('.delete_header').append(delete_header);
+				$('.delete_body').append(delete_body);
+
+			},
+			error: function() {
+				alert('unique Arr 네트워크 오류 발생');
+			}
+		});
+		
+	});
+	//==============================
 	
 	// --------월요일---------
 	function printMonTimetable(param){
@@ -185,8 +173,8 @@ $(function() {
 							stand1 = list[s][0];
 						} else if(list[s][1] == 1 && stand1 != 0){ // 두번째
 							$('#1_'+stand1).attr('rowspan', stand2);
+							$('#1_'+stand1).addClass('class-info');
 							$('#1_'+stand1).attr('style','background-color: #4D377B');
-							timeID.push('#1_'+stand1);
 							stand1 = list[s][0];
 						} else if(list[s][1] != 1){
 							stand2 = list[s][1];
@@ -194,8 +182,8 @@ $(function() {
 						}
 					}
 					$('#1_'+stand1).attr('rowspan', stand2);
+					$('#1_'+stand1).addClass('class-info');
 					$('#1_'+stand1).attr('style','background-color: #4D377B;');
-					timeID.push('#1_'+stand1);
 				}
 			}
 		}
@@ -234,8 +222,8 @@ $(function() {
 							stand1 = list[s][0];
 						} else if(list[s][1] == 1 && stand1 != 0){ // 두번째
 							$('#2_'+stand1).attr('rowspan', stand2);
+							$('#2_'+stand1).addClass('class-info'); // 클래스 name 부여
 							$('#2_'+stand1).attr('style','background-color: #FFD400;');
-							timeID.push('#2_'+stand1);
 							stand1 = list[s][0];
 						} else if(list[s][1] != 1){
 							stand2 = list[s][1];
@@ -243,8 +231,8 @@ $(function() {
 						}
 					}
 					$('#2_'+stand1).attr('rowspan', stand2);
+					$('#2_'+stand1).addClass('class-info');
 					$('#2_'+stand1).attr('style','background-color: #FFD400;');
-					timeID.push('#2_'+stand1);
 				}
 			}
 		}
@@ -282,8 +270,8 @@ $(function() {
 							stand1 = list[s][0];
 						} else if(list[s][1] == 1 && stand1 != 0){ // 두번째
 							$('#3_'+stand1).attr('rowspan', stand2);
+							$('#3_'+stand1).addClass('class-info');
 							$('#3_'+stand1).attr('style','background-color: #008000');
-							timeID.push('#3_'+stand1);
 							stand1 = list[s][0];
 						} else if(list[s][1] != 1){
 							stand2 = list[s][1];
@@ -292,8 +280,8 @@ $(function() {
 							
 					}
 					$('#3_'+stand1).attr('rowspan', stand2);
+					$('#3_'+stand1).addClass('class-info');
 					$('#3_'+stand1).attr('style','background-color: #008000;');
-					timeID.push('#3_'+stand1);
 				}
 			}
 		}
@@ -331,8 +319,8 @@ $(function() {
 							stand1 = list[s][0];
 						} else if(list[s][1] == 1 && stand1 != 0){ // 두번째
 							$('#4_'+stand1).attr('rowspan', stand2);
+							$('#4_'+stand1).addClass('class-info');
 							$('#4_'+stand1).attr('style','background-color: #FF7F00');
-							timeID.push('#4_'+stand1);
 							stand1 = list[s][0];
 						} else if(list[s][1] != 1){
 							stand2 = list[s][1];
@@ -340,8 +328,8 @@ $(function() {
 						}
 					}
 					$('#4_'+stand1).attr('rowspan', stand2);
+					$('#4_'+stand1).addClass('class-info');
 					$('#4_'+stand1).attr('style','background-color: #FF7F00;');
-					timeID.push('#4_'+stand1);
 				}
 			}
 		}
@@ -379,8 +367,8 @@ $(function() {
 							stand1 = list[s][0];
 						} else if(list[s][1] == 1 && stand1 != 0){ // 두번째
 							$('#5_'+stand1).attr('rowspan', stand2);
+							$('#5_'+stand1).addClass('class-info');
 							$('#5_'+stand1).attr('style','background-color: #FFC0CB');
-							timeID.push('#5_'+stand1);
 							stand1 = list[s][0];
 						} else if(list[s][1] != 1){
 							stand2 = list[s][1];
@@ -388,8 +376,8 @@ $(function() {
 						}
 					}
 					$('#5_'+stand1).attr('rowspan', stand2);
+					$('#5_'+stand1).addClass('class-info');
 					$('#5_'+stand1).attr('style','background-color: #FFC0CB;');
-					timeID.push('#5_'+stand1);
 				}
 			}
 		}
@@ -398,15 +386,4 @@ $(function() {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 });

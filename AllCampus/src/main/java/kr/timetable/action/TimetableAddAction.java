@@ -51,7 +51,6 @@ public class TimetableAddAction implements Action {
 		Integer year = 2023;
 		Integer semester = 1;
 		String keyfield = request.getParameter("keyfield");
-		System.out.println("keyfield : " + keyfield);
 		if(keyfield != null) {
 			year = Integer.parseInt(keyfield.substring(0,4));
 			semester = Integer.parseInt(keyfield.substring(4));

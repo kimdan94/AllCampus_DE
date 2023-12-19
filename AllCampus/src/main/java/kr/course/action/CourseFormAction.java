@@ -19,13 +19,19 @@ public class CourseFormAction implements Action {
 		request.setCharacterEncoding("utf-8");
 		//학기 선택
 		String keyfield = request.getParameter("keyfield");
-		System.out.println("keyfield : " + keyfield);
+		String keyfield_hidden = request.getParameter("keyfield_hidden");
 		Integer year = 2023;
 		Integer semester = 1;
 		if(keyfield != null) {
 			year = Integer.parseInt(keyfield.substring(0,4));
 			semester = Integer.parseInt(keyfield.substring(4));
+		} else {
+			if(keyfield_hidden != null & keyfield_hidden != "") {
+				year =  Integer.parseInt(keyfield_hidden.substring(0,4)); 
+				semester = Integer.parseInt(keyfield_hidden.substring(4)); 
+			}
 		}
+			 
 		
 		// 강의 필터링
 		// 전공/영역
@@ -72,6 +78,7 @@ public class CourseFormAction implements Action {
 		List<String> semester_list = null;
 		int[] timeList = {9,10,11,12,13,14,15,16,17};
 		
+		
 		list = dao.getListCourse(year, semester, course_subject, keyword, course_category, course_credit);
 		list2 = dao.getRemoveDuplicateCourseList(year, semester, course_subject, keyword, course_category, course_credit);
 		course_list = dao.getCourseList();
@@ -84,6 +91,7 @@ public class CourseFormAction implements Action {
 		request.setAttribute("semester_list", semester_list);
 		request.setAttribute("timeList", timeList);
 		request.setAttribute("course_subject", course_subject);
+		request.setAttribute("keyfield", keyfield);
 		request.setAttribute("keyword", keyword);
 		request.setAttribute("course_category", course_category);
 		request.setAttribute("course_credit", course_credit);

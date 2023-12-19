@@ -85,8 +85,6 @@ public class CourseDAO {
 			conn = DBUtil.getConnection();
 			
 			sub_sql += " WHERE course_year=? AND course_semester=?";
-			System.out.println(course_year);
-			System.out.println(course_semester);
 			// course_subject - 전공/영역 검색
 			if(course_subject != null) {
 				for(int i=0; i<course_subject.length; i++) {
@@ -132,7 +130,6 @@ public class CourseDAO {
 			
 			// SQL문 작성
 			sql = "SELECT * FROM all_course" + sub_sql + where_sql;
-			System.out.println(sql);
 
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
@@ -246,8 +243,6 @@ public class CourseDAO {
 			conn = DBUtil.getConnection();
 			
 			sub_sql += " AND course_year=? AND course_semester=?";
-			System.out.println(course_year);
-			System.out.println(course_semester);
 			
 			// course_subject - 전공/영역 검색
 				if(course_subject != null) {
@@ -296,7 +291,6 @@ public class CourseDAO {
 					+ "course_semester,course_category,course_credit FROM all_course "
 					+ "WHERE course_code in (SELECT DISTINCT(course_code) FROM all_course)" + sub_sql + where_sql;
 			
-			System.out.println(sql);
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			
@@ -420,7 +414,6 @@ public class CourseDAO {
 //			list = new ArrayList<CourseVO>();
 			
 			while(rs.next()) {
-				System.out.println(rs.getString("all_semester"));
 				list.add(rs.getString("all_semester"));
 			}
 			

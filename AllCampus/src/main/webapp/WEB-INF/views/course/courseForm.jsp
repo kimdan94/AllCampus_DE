@@ -107,10 +107,11 @@ body {
 	<form id="search_semester" action="course_list.do" method="get">
 			<ul class="search">
 				<li>
+					<input type="hidden" name="keyfield_hidden" id="keyfield_hidden" value="${keyfield}">
 					<select name="keyfield">
 					<c:forEach var="semester_list" items="${semester_list}">
 						<option value="${semester_list}" <c:if test="${param.keyfield eq semester_list}">selected</c:if>>
-							<c:if test="${fn:substring(semester_list,4,5) eq 0}">${fn:substring(semester_list,0,4)} 1학기</c:if>
+							<c:if test="${fn:substring(semester_list,4,5) eq 0}">${fn:substring(semester_list,0,4)} 1학기</c:if><!-- eq -->
 							<c:if test="${fn:substring(semester_list,4,5) eq 1}">${fn:substring(semester_list,0,4)} 여름 계절</c:if>
 							<c:if test="${fn:substring(semester_list,4,5) eq 2}">${fn:substring(semester_list,0,4)} 2학기</c:if>
 							<c:if test="${fn:substring(semester_list,4,5) eq 3}">${fn:substring(semester_list,0,4)} 겨울 계절</c:if>
@@ -324,10 +325,8 @@ body {
 
 <!-- ------------------------------------------------------------------------------------------------------------------ -->
 
-	
+	<!-- 강의 클릭 시 강의 삭제 모달 -->
 	<button id="new_modal" type="button" class="btn btn-primary new-btn" data-toggle="modal" data-target="#deleteModal" style="display:none;"></button>
-	<!-- 모달 예시 -->
-	<!-- The Modal -->
 	<!-- The Modal -->
 	<div class="modal" id="deleteModal">
 		<div class="modal-dialog">
@@ -392,9 +391,10 @@ body {
 
 
 
+<!-- ------------------------------------------------------------------------------------------------------------------ -->
 
 
-
+	<input type="button" value="친구목록" onclick="location.href='friendList.do'">
 
 
 <!-- ------------------------------------------------------------------------------------------------------------------ -->
@@ -407,13 +407,12 @@ body {
 	 
 	 <table id="courseDBtable">
 	 	<tr id="courseDBtable1">
-	 		<th>구분</th>
-	 		<th>학수번호</th>
-	 		<th>교과목명</th>
-	 		<th>교수명</th>
-			<th>학점</th>
-	 		<th>시간 및 강의실</th>
-	 		<th>강의평</th>
+	 		<th style="color:black;">구분</th>
+	 		<th style="color:black;">학수번호</th>
+	 		<th style="color:black;">교과목명</th>
+	 		<th style="color:black;">교수명</th>
+			<th style="color:black;">학점</th>
+	 		<th style="color:black;">시간 및 강의실</th>
 	 	</tr>
  		<c:forEach var="inner" items="${list2}">
 		 	<tr id="${inner.course_code}">
