@@ -46,7 +46,7 @@
 <br>	
 <a href="${pageContext.request.contextPath}/member/checkIdForm.do" class="a-style">아이디/비밀번호 찾기</a>
 <div style="margin-bottom:3px;">
-	<a href="#" class="bottom-style">문의하기</a>
+	<a href="${pageContext.request.contextPath}/faq/faq.do" class="bottom-style">문의하기</a>
 	<a href="${pageContext.request.contextPath}/mymember/termForm.do" class="bottom-style">이용약관</a>
 </div>
 <div class="copyright">

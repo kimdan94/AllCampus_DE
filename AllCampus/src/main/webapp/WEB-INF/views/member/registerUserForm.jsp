@@ -297,7 +297,7 @@ $(function(){
 			onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
 	</form>
 	<div class="page-sub2">
-	<a href="#" class="bottom-style">문의하기</a>
+	<a href="${pageContext.request.contextPath}/faq/faq.do" class="bottom-style">문의하기</a>
 	<a href="${pageContext.request.contextPath}/mymember/termForm.do" class="bottom-style">이용약관</a>
 	<br>
 	<div class="copyright">copyright(c) 2023. 올캠퍼스. All rights reserved</div>

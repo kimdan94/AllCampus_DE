@@ -55,7 +55,7 @@ $(function(){
 	올캠퍼스가 처음이신가요?
 	<a href="registerUserForm.do" class="important">회원가입</a>
 <div class="bottom">
-	<a href="#" class="bottom-style">문의하기</a>
+	<a href="${pageContext.request.contextPath}/faq/faq.do" class="bottom-style">문의하기</a>
 	<a href="${pageContext.request.contextPath}/mymember/termForm.do" class="bottom-style">이용약관</a>
 	<br>
 	<div class="copyright">copyright(c) 2023. 올캠퍼스. All rights reserved</div>
