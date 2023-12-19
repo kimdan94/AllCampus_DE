@@ -29,12 +29,19 @@
 				</td>
 			</tr>
 			<tr>
-				<td id="univ_nick">
-					<b>${user_nick}</b>
-				</td>
+				<c:if test="${user_nick.length() > 9}">
+					<td class="univ-nick" style="font-size:13px;">
+						<b>${user_nick}</b>
+					</td>
+				</c:if>
+				<c:if test="${user_nick.length() <= 9}">
+					<td class="univ-nick">
+						<b>${user_nick}</b>
+					</td>
+				</c:if>
 			</tr>
 			<tr>
-				<td id="univ_id">
+				<td class="univ-id">
 					${user_id}
 				</td>
 			</tr>
@@ -140,12 +147,19 @@
 				</td>
 			</tr>
 			<tr>
-				<td class="align-center">
-					<b>${user_nick}</b>
-				</td>
+				<c:if test="${user_nick.length() > 9}">
+					<td class="univ-nick" style="font-size:13px;">
+						<b>${user_nick}</b>
+					</td>
+				</c:if>
+				<c:if test="${user_nick.length() <= 9}">
+					<td class="univ-nick">
+						<b>${user_nick}</b>
+					</td>
+				</c:if>
 			</tr>
 			<tr>
-				<td class="align-center" style="font-size:12px;">
+				<td class="univ-id">
 					${user_id}
 				</td>
 			</tr>

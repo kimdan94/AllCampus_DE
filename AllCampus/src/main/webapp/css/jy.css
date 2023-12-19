@@ -199,10 +199,10 @@ textarea{
 .univName-style{
 	margin:0 0 -50px 195px;
 }
-#univ_nick{
-	padding-left:40px;
+.univ-nick{
+	text-align:center;
 }
-#univ_id{
+.univ-id{
 	font-size:12px;
 	padding-left:57px;
 }
