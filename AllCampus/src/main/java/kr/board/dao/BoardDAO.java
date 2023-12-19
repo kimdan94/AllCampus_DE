@@ -54,8 +54,6 @@ public class BoardDAO {
 				DBUtil.executeClose(null, pstmt, conn);
 			}
 		}
-		
-		
 		//전체 레코드수/검색 레코드수
 		public int getBoardCount(String keyfield,String keyword)throws Exception{
 			Connection conn = null;

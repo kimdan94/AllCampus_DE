@@ -120,3 +120,32 @@ create table all_calculator(
  constraint all_calculator_fk2 foreign key (course_num)
                                   references all_course (course_num)
 );
+
+------------------------------
+--연습  지원 학점계산기
+create table all_calculator(
+ mem_num number not null,      --FK
+ cal_semester varchar2(30) not null,
+ cal_course_name varchar2(60) not null,
+ cal_credit number not null,
+ cal_grade number(9,2) not null,
+ cal_major number(1) not null,
+ constraint all_calculator_fk1 foreign key (mem_num) references all_member (mem_num)
+);
+
+create table all_calculator_semester(
+ mem_num number not null,      --FK
+ cal_semester varchar2(30) not null,
+ cal_avgscore number(9,2) default 0 not null,
+ cal_majorscore number(9,2) default 0 not null,
+ cal_acq number default 0 not null,
+ constraint all_calculator__semester_fk foreign key (mem_num) references all_member (mem_num)
+);
+
+create table all_calculator_total(
+ mem_num number not null,      --FK
+ cal_total_avgscore number(9,2) default 0 not null,
+ cal_total_majorscore number(9,2) default 0 not null,
+ cal_total_acq number default 0 not null,
+ constraint all_calculator_total_fk foreign key (mem_num) references all_member (mem_num)
+);

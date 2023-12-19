@@ -150,6 +150,15 @@ ul.detail-info{
     line-height: 32px;
 }
 
+/* 학점계산기 평점,전공,취득 스타일 */
+#container.calculator div.score_show  div.column p#avgscore ,p#majorscore,p#acq {
+    color: #f91f15;
+    font-size: 26px;
+    font-weight: bold;
+    line-height: 32px;
+}
+
+
 #container.calculator div.section div.chart article.overview div.column p.total {
     margin-left: 4px;
     color: #a6a6a6;
