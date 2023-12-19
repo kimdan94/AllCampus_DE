@@ -41,13 +41,13 @@
 		</table>
 	</div>
 	<div class="info-div">
-		<a href="https://www.kimyoung.co.kr/offmegaky.asp"><img src="../images/kimyoung.jpg" width="200"></a>
+		<a href="https://www.kimyoung.co.kr/offmegaky.asp" target="_blank"><img src="../images/kimyoung.jpg" width="200"></a>
 	</div>
 	<div class="info-div2">
-		<a href="https://www.work.go.kr/experi/index.do"><img src="../images/work.jpg" width="200"></a>
+		<a href="https://www.work.go.kr/experi/index.do" target="_blank"><img src="../images/work.jpg" width="200"></a>
 	</div>
 	<div class="info-div3">
-		<a href="https://www.youtube.com/@NetflixKorea"><img src="../images/netflix.jpg" width="200"></a>
+		<a href="https://www.youtube.com/@NetflixKorea" target="_blank"><img src="../images/netflix.jpg" width="200"></a>
 	</div>
 	<div class="home-div">
 		<h3>공지사항 <input type="button" value="더보기" class="home-btn"
