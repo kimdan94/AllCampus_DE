@@ -13,6 +13,7 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+<!-- 인증 회원 UI -->
 <c:if test="${user_auth >= 3}">
 <div class="page-main">
 <h3 class="univName-style">[${univ_name}]</h3>
@@ -133,6 +134,7 @@
 	<div class="home-end"></div>
 </div>
 </c:if>
+<!-- 비인증 회원 UI -->
 <c:if test="${user_auth < 3}">
 <div class="page-main">
 <h3 class="univName-style">[${univ_name}]</h3>
