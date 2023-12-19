@@ -39,7 +39,8 @@ $(function(){
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-	<h2>판매하기</h2>
+	<h2 class="board-title">[판매하기]</h2>
+	<hr width="10%" class="board-underline">
 	<form id="sell_form" action="secondhand_write.do" method="post"
 												enctype="multipart/form-data">
 		<ul>
@@ -81,7 +82,7 @@ $(function(){
 			<li>
 				<label for="bookUrl">오픈 카카오톡 URL</label>
 				<input type="url" name="bookUrl" id="bookUrl"
-					class="input-check">
+					autocomplete="off" class="input-check">
 			</li>
 			<li>
 				<label>교재 상태</label>
@@ -96,9 +97,9 @@ $(function(){
 				<input type="radio" name="bookWay" value="둘 다 가능">둘 다 가능
 			</li>
 		</ul>
-		<div class="align-center">
-			<input type="submit" value="등록하기" class="input-button2" style="font-size:15px;">
-			<input type="button" value="목록으로" class="input-button1" style="font-size:15px;"
+		<div class="btn-margin2">
+			<input type="submit" value="등록하기" class="input-button2">
+			<input type="button" value="목록으로" class="input-button1"
 				onclick="location.href='secondhand_list.do'">
 		</div>
 	</form>

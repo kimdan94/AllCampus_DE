@@ -49,7 +49,7 @@ $(function(){
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-<div class="detail-main" style="margin-left:370px;">
+<div class="detail-main">
 	<div class="align-right">
 		<ul>
 			<li>
@@ -79,13 +79,13 @@ $(function(){
 		</ul>
 	</div>
 	<div style="border:1px solid black;">
-		<h3>${sc.secondhand_name}</h3>
-		<table>
+		<h3 style="padding-left:10px;">${sc.secondhand_name}</h3>
+		<table class="sc-detail">
 			<tr>
-				<td><b>저자</b> : ${sc.secondhand_writer}</td>
+				<td style="padding-left:10px;"><b>저자</b> : ${sc.secondhand_writer}</td>
 			</tr>
 			<tr>
-				<td><b>출판사</b> : ${sc.secondhand_company}</td>
+				<td style="padding-left:10px;"><b>출판사</b> : ${sc.secondhand_company}</td>
 			</tr>
 			<tr>
 				<td style="padding-left:620px;"><b>판매자</b> : ${sc.mem_id}</td>
@@ -100,16 +100,18 @@ $(function(){
 					</c:if>
 				</td>
 			</tr>
-			<tr class="align-right" style="color:#6699cc;font-weight:bold;font-size:25px;">
+			<tr class="sc-price">
 				<td><fmt:formatNumber value="${sc.secondhand_price}"/>원</td>
 			</tr>
 		</table>
 	</div>
-	<div style="border:1px solid black;">
-		${sc.secondhand_content}
+	<br>
+	<div style="border:1px solid black;padding-left:10px;">
+		<p>${sc.secondhand_content}</p>
 		<p>
-		<img src="${pageContext.request.contextPath}/upload/${sc.secondhand_filename}" width="150">
-		<table style="text-align:left;">
+		<img src="${pageContext.request.contextPath}/upload/${sc.secondhand_filename}" 
+			width="150" style="padding-left:10px;" id="sc_img">
+		<table class="sc-choice">
 			<tr>
 				<th>교재 상태</th>
 				<td>${sc.secondhand_status}</td>

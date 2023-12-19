@@ -28,7 +28,8 @@ window.onload = function(){
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-	<h2>책방</h2>
+	<h2 class="board-title">[책방]</h2>
+	<hr width="10%" class="board-underline">
 	<form id="search_form" action="secondhand_list.do" method="get" class="sc-margin">
 		<ul class="search">
 			<li>
@@ -46,7 +47,7 @@ window.onload = function(){
 			</li>
 		</ul>
 	</form>
-	<div class="align-right">
+	<div class="btn-margin">
 		<input type="button" value="판매하기" class="sc-btn"
 			onclick="location.href='secondhand_writeForm.do'">
 		<input type="button" value="목록" class="sc-btn"
@@ -63,7 +64,7 @@ window.onload = function(){
 		<c:if test="${sc.secondhand_show == 2}">
 			<tr>
 				<td rowspan="5">
-					<img src="${pageContext.request.contextPath}/upload/${sc.secondhand_filename}" width="60">
+					<img src="${pageContext.request.contextPath}/upload/${sc.secondhand_filename}" width="70">
 				</td>
 			</tr>
 			<tr>
@@ -77,13 +78,13 @@ window.onload = function(){
 			<tr style="font-size:10px;color:gray;">
 				<td>${sc.secondhand_company}</td>
 			</tr>
-			<tr style="color:#6699cc;font-weight:bold;font-size:13px;">
+			<tr class="sc-number">
 				<td><fmt:formatNumber value="${sc.secondhand_price}"/>원</td>
 			</tr>
 		</c:if>	
 		</c:forEach>	
 		</table>
-		<div class="align-center" style="margin-left:420px;">${page}</div>
+		<div style="margin-left:827px;">${page}</div>
 	</c:if>	
 </div>
 </body>
