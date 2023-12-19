@@ -39,7 +39,7 @@ $(function(){
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-<div class="page-main">
+<div class="page-main-custom">
 	<h2 class="board-title">[판매글 수정하기]</h2>
 	<hr width="13%" class="board-underline">
 	<form id="update_form" action="secondhand_update.do" method="post"

@@ -3,7 +3,7 @@
 .page-main-custom{
 	width:100%;
 	margin:40px 0;
-	min-height:800px;
+	min-height:700px;
 }
 a{
 	cursor:pointer;	
@@ -33,7 +33,7 @@ input:focus{
 .result-display2{
 	width:600px;
 	height:400px;
-	margin:50px 540px;
+	margin:50px 530px;
 	border:1px solid #000;
 	display:flex;
 	align-items:center;
@@ -204,7 +204,7 @@ textarea{
 }
 .univ-id{
 	font-size:12px;
-	padding-left:57px;
+	text-align:center;
 }
 .list-div{
 	height:200px;
@@ -425,6 +425,14 @@ ul.search li{
 }
 .btn-margin{
 	margin-left:1085px;
+}
+.sc-margin{
+	margin-top:-45px;
+}
+.sc-notice{
+	font-size:10px;
+	margin-left:95px;
+	color:gray;
 }
 /* 책방 판매하기 : sc_writeForm.jsp
 ------------------------------*/

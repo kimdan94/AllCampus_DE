@@ -30,6 +30,8 @@ window.onload = function(){
 <div class="page-main">
 	<h2 class="board-title">[책방]</h2>
 	<hr width="10%" class="board-underline">
+	<div class="sc-notice">*올캠퍼스 [책방]은 교재만 거래 가능하며<br>
+	이를 위반하거나 이용수칙 미준수 시 이용에 제한이 발생할 수 있습니다.</div>
 	<form id="search_form" action="secondhand_list.do" method="get" class="sc-margin">
 		<ul class="search">
 			<li>
