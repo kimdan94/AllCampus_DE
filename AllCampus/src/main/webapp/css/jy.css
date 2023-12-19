@@ -187,16 +187,24 @@ textarea{
 	margin:70px -300px 0 220px;
 	border-radius:10px;
 	background:#f5f7f7;
+	border:3px solid #6699cc;
 }
 .myInfo-div img{
 	width:70px;
 	border-radius:50%;
 	object-fit:cover;
 	object-position:top;
-	margin:25px 35px 10px 35px;
+	margin:25px 35px 10px 38px;
 }
 .univName-style{
-	margin:0 0 -50px 230px;
+	margin:0 0 -50px 195px;
+}
+#univ_nick{
+	padding-left:40px;
+}
+#univ_id{
+	font-size:12px;
+	padding-left:57px;
 }
 .list-div{
 	height:200px;
@@ -207,8 +215,14 @@ textarea{
 	padding:35px 0 0 80px;
 }
 .list-margin{
-	padding-left:30px;
+	padding-left:110px;
 	font-size:12px;
+}
+.list-margin2{
+	padding-right:60px;
+}
+.list-margin3{
+	padding-right:40px;
 }
 .info-div{
 	float:left;
