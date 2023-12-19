@@ -470,3 +470,16 @@ form[id="sell_form"] ul li{
 	font-size:10pt;
 	color:gray;
 }
+#update_form{
+	margin-left:460px;
+	border:1px solid black;
+	width:767px;
+}
+form[id="update_form"] ul li{
+	margin-bottom:11px;
+}
+#update_form ul li label{
+	font-family:sans-serif;
+	font-size:15px;
+	font-weight:bold;
+}
