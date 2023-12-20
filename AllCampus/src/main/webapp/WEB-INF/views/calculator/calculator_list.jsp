@@ -50,53 +50,85 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-top: 20px;
+        margin-top: 10px;
     }
 
     .column {
         text-align: center;
-        width: 30%;
+        width: 10%;
         border: 1px solid #ddd;
         padding: 10px;
         border-radius: 5px;
     }
+    .column.gpa {
+        margin-right: 10px; /* Add right margin to the "전체 평점" div */
+    }
 </style>
 <script type="text/javascript">
 $(document).ready(function () {
-    var tbody = $('tbody');
-
-    for (var i = 0; i < 7; i++) {
-        tbody.append('<tr>' +
-            '<td class="name"></td>' +
-            '<td class="credit"></td>' +
-            '<td class="grade"><select name="cal_grade">' +
-            '<option value="4.5">A+</option>' +
-            '<option value="4.0">A</option>' +
-            '<option value="3.5">B+</option>' +
-            '<option value="3.0">B</option>' +
-            '<option value="2.5">C+</option>' +
-            '<option value="2.0">C</option>' +
-            '<option value="1.5">D+</option>' +
-            '<option value="1.0">D</option>' +
-            '<option value="0">F</option>' +
-            '<option value="0">P</option>' +
-            '<option value="0">NP</option>' +
-            '</select></td>' +
-            '<td class="major"><input type="checkbox" name="major_' + i + '"></td>' +
-            '</tr>');
-    }
+	let semester_index;
+	let list_length;
+	var tbody = $('tbody');
+	function selectTbody(){
+	    for (var i = 0; i < 7; i++) {
+	        tbody.append('<tr>' +
+	            '<td class="name"></td>' +
+	            '<td class="credit"></td>' +
+	            '<td class="grade"><select name="cal_grade">' +
+	            '<option value="4.5">A+</option>' +
+	            '<option value="4.0">A</option>' +
+	            '<option value="3.5">B+</option>' +
+	            '<option value="3.0">B</option>' +
+	            '<option value="2.5">C+</option>' +
+	            '<option value="2.0">C</option>' +
+	            '<option value="1.5">D+</option>' +
+	            '<option value="1.0">D</option>' +
+	            '<option value="0">F</option>' +
+	            '<option value="0">P</option>' +
+	            '<option value="0">NP</option>' +
+	            '</select></td>' +
+	            '<td class="major"><input type="checkbox" name="major_' + i + '"></td>' +
+	            '</tr>');
+	    }
+	}
+    selectTbody();
 	
     //select_semester에서 선택된 값을 form의 hidden값에 넣어준다
     $('select[name="select_semester"]').change(function () {
-        $('#cal_semester').val($(this).val());	//선택된 값을 hidden값에 넣어준다.
+    	let temp_index = $('select[name="select_semester"] option').index($('select[name="select_semester"] option:selected'));
+        let data = $.parseJSON(sessionStorage.getItem(temp_index));
+        console.log(data);
+        if(data){//undefiend면 if문 밖으로 감
+        	$('tbody').html('');
+        	for(var i=0;i<data.length;i++){
+        		tbody.append('<tr>' +
+                        '<td class="name">' + data[i].course_name + '</td>' +
+                        '<td class="credit">' + data[i].timetable_credit + '</td>' +
+                        '<td class="grade">' + data[i].cal_grade + '</td>' +
+                        '<td class="major">' + data[i].cal_major + '</td>' +
+                        '</tr>');
+        	}
+        	
+        }else{
+        	$('tbody').html('');
+        	selectTbody();
+        }
+    	
+    	$('#cal_semester').val($(this).val());	//선택된 값을 hidden값에 넣어준다.
+        $('.column.avgscore .value').text('0');
+        $('.column.majorscore .value').text('0');
+        $('.column.acq .value').text('0');
+        
     });
-    
     
     $('#importForm').submit(function (event) {
         event.preventDefault();
         
         var selectedSemester = $('select[name="select_semester"]').val();
         var selectedTimetable = $('select[name="cal_timetable"]').val();
+        
+        //select 선택한 인덱스
+        semester_index = $('select[name="select_semester"] option').index($('select[name="select_semester"] option:selected'));
         
         $('#cal_semester').val(selectedSemester);
         
@@ -115,6 +147,7 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (param) {
                 if (param.result == 'success') {
+                	list_length = param.list.length;
                 	//기존 존재하는 값을 비움
                 	$('tbody').html('');
                 	
@@ -191,19 +224,30 @@ $(document).ready(function () {
 
         //배열 생성
         var dataRows = [];
-
+        let dataInSessionStorage = '[';
         //7행에 대해 
-        for (var i = 0; i < 7; i++) {
+        for (var i = 0; i < list_length; i++) {
             var rowData = {
                 course_name: $('input[name="course_name_' + i + '"]').val(),
                 timetable_credit: $('input[name="timetable_credit_' + i + '"]').val(),
                 cal_grade: $('select[name="cal_grade_' + i + '"]').val(),
                 cal_major: $('input[name="cal_major_' + i + '"]').val()
             };
+
+            if(i>0)  dataInSessionStorage += ',';
+            dataInSessionStorage += '{';
+            dataInSessionStorage += '"course_name":"'+$('input[name="course_name_' + i + '"]').val()+'"';
+            dataInSessionStorage += ',"timetable_credit":'+ $('input[name="timetable_credit_' + i + '"]').val();
+            dataInSessionStorage += ',"cal_grade":'+ $('select[name="cal_grade_' + i + '"]').val();
+            dataInSessionStorage += ',"cal_major":'+ $('input[name="cal_major_' + i + '"]').val();
+            dataInSessionStorage += '}';
 			//배열에 데이터 넣기
             dataRows.push(rowData);
         }
     	
+        dataInSessionStorage += ']';
+        console.log(dataInSessionStorage);
+        
         var formData = {
                 cal_semester: $('#cal_semester').val()
             };
@@ -222,7 +266,30 @@ $(document).ready(function () {
        		dataType: 'json',
         	success: function (param) {
         		if(param.result == 'success'){
+        		
+        			sessionStorage.setItem(semester_index,dataInSessionStorage);
+        			
+        			//console.log(param);
+        			//display_calculator(param);
+        			//alert(param.semesterscore.cal_avgscore);
 					alert("학점 계산 완료");
+					$('.column.gpa .value').val('');
+					$('.column.major .value').val('');
+					$('.column.acquisition .value').val('');
+					
+					$('.column.gpa .value').text(param.totalscore.cal_total_avgscore);
+			        $('.column.major .value').text(param.totalscore.cal_total_majorscore);
+			        $('.column.acquisition .value').text(param.totalscore.cal_total_acq);
+					
+			        $('.column.avgscore .value').val('');
+					$('.column.majorscore .value').val('');
+					$('.column.acq .value').val('');
+			        
+					$('.column.avgscore .value').text(param.semesterscore.cal_avgscore);
+           			$('.column.majorscore .value').text(param.semesterscore.cal_majorscore);
+            		$('.column.acq .value').text(param.semesterscore.cal_acq);
+        			
+        			
         		}else{
         			alert('오류');
         		}
@@ -231,6 +298,14 @@ $(document).ready(function () {
             	alert('네트워크 오류 발생(학점계산기1)');
         	}
 		});
+		
+		/*
+		function display_calculator(param) {
+			$('.column_gpa .value').text(param.totalscore.cal_total_avgscore.toString());
+	        $('.column_major .value').text(param.totalscore.cal_total_majorscore.toString());
+	        $('.column_acquisition .value').text(param.totalscore.cal_total_acq.toString());
+		}
+		*/
     });
 });
 </script>
@@ -247,18 +322,49 @@ $(document).ready(function () {
 			<article class="overview">
 				<div class="column gpa">
 					<h3>전체 평점</h3>
-					<p class="value">11</p>
-					<p class="total">11</p>
+					<p class="value">
+					<c:choose>
+						<c:when test="${totalscore.cal_total_avgscore!=null}" >
+							${totalscore.cal_total_avgscore}
+						</c:when>
+						<c:otherwise>
+                            0
+                        </c:otherwise>
+					</c:choose>
+					</p>
+					<p>/</p>
+					<p class="total">4.5</p>
 				</div>
 				<div class="column major">
 					<h3>전공 평점</h3>
-					<p class="value">11</p>
-					<p class="total">11</p>
+					
+					<p class="value">
+					<c:choose>
+						<c:when test="${totalscore.cal_total_avgscore!=null}" >
+							${totalscore.cal_total_majorscore}
+						</c:when>
+						<c:otherwise>
+                            0
+                        </c:otherwise>
+					</c:choose>
+					</p>
+					<p>/</p>
+					<p class="total">4.5</p>
 				</div>
 				<div class="column acquisition">
 					<h3>취득 학점</h3>
-					<p class="value">11</p>
-					<p class="total" title="졸업 학점 설정">11</p>
+					<p class="value">
+					<c:choose>
+						<c:when test="${totalscore.cal_total_acq!=null}" >
+							${totalscore.cal_total_acq}
+						</c:when>
+						<c:otherwise>
+                            0
+                        </c:otherwise>
+					</c:choose>
+					</p>
+					<p>/</p>
+					<p class="total" title="졸업 학점 설정">130</p>
 				</div>
 			</article>
 		
@@ -266,6 +372,7 @@ $(document).ready(function () {
 		</div>
 		<div>
 			<select name="select_semester">
+				<option>선택하세요</option>
 				<option>1학년 1학기</option>
 				<option>1학년 여름</option>
 				<option>1학년 2학기</option>
@@ -285,20 +392,22 @@ $(document).ready(function () {
 			</select>
 		</div>
 		<div>
+		
 		<div class="score_show">
 			<div class="column avgscore">
 				<h3>평점</h3>
-				<p id="avgscore">11</p>
+				<p class="value" id="avgscore">0</p>
 			</div>
 			<div class="column majorscore">
 				<h3>전공</h3>
-				<p id="majorscore">11</p>
+				<p class="value" id="majorscore">0</p>
 			</div>
 			<div class="column acq">
 				<h3>취득</h3>
-				<p id="acq">11</p>
+				<p class="value" id="acq">0</p>
 			</div>
 		</div>
+		
 		<button id="openModalBtn">시간표 불러오기</button>
 		
 			<div id="myModal" class="modal">
@@ -346,7 +455,9 @@ $(document).ready(function () {
 		<tfoot>
           <tr>
             <td colspan="4">
+            <%-- 
               <a class="new">더 입력하기</a>
+            --%>
               <a class="reset">초기화</a>
             </td>
           </tr>

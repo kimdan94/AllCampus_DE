@@ -10,6 +10,8 @@ import javax.servlet.http.HttpSession;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import kr.calculator.dao.CalculatorDAO;
+import kr.calculator.vo.CalSemesterVO;
+import kr.calculator.vo.CalTotalVO;
 import kr.controller.Action;
 
 public class CalculateAction implements Action{
@@ -126,7 +128,10 @@ public class CalculateAction implements Action{
 			//전공 토탈 할 때 F 강의 학점 포함해서 나눠야한다
 			*/
 			
-			
+			CalSemesterVO semesterscore=dao.getSemesterScore(cal_semester,user_num);
+			CalTotalVO totalscore = dao.totalScore(user_num);
+			mapAjax.put("totalscore", totalscore); 
+			mapAjax.put("semesterscore", semesterscore);
 			mapAjax.put("result", "success");
 			
 			

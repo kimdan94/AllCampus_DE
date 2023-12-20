@@ -8,6 +8,7 @@ import java.util.List;
 
 import kr.board.vo.BoardVO;
 import kr.calculator.vo.CalSemesterVO;
+import kr.calculator.vo.CalTotalVO;
 import kr.calculator.vo.CalculatorVO;
 import kr.timetable.vo.TimetableVO;
 import kr.util.DBUtil;
@@ -416,9 +417,84 @@ public class CalculatorDAO {
 		}finally {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
-		
-		
 	}
+	
+	
+	
+	//전체 평점 가져오기 
+	public CalTotalVO totalScore(int mem_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		CalTotalVO totalscore = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql ="SELECT * FROM all_calculator_total WHERE mem_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mem_num);
+			//SQL문 실행 
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				totalscore = new CalTotalVO();
+				totalscore.setCal_total_avgscore(rs.getDouble("cal_total_avgscore"));
+				totalscore.setCal_total_majorscore(rs.getDouble("cal_total_majorscore"));
+				totalscore.setCal_total_acq(rs.getInt("cal_total_acq"));
+				totalscore.setMem_num(rs.getInt("mem_num"));
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return totalscore;
+	}
+	
+	
+	
+	//학기당 평점 가져오기 
+	public CalSemesterVO getSemesterScore(String cal_semester, int mem_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		CalSemesterVO semesterscore = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql ="SELECT * FROM all_calculator_semester WHERE cal_semester=? AND mem_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, cal_semester);
+			pstmt.setInt(2, mem_num);
+			//SQL문 실행 
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				semesterscore = new CalSemesterVO();
+				semesterscore.setCal_semester(rs.getString("cal_semester"));
+				
+				semesterscore.setCal_avgscore(rs.getDouble("cal_avgscore"));
+				semesterscore.setCal_majorscore(rs.getDouble("cal_majorscore"));
+				semesterscore.setCal_acq(rs.getInt("cal_acq"));
+				semesterscore.setCal_finclude_acq(rs.getInt("cal_finclude_acq"));
+				semesterscore.setCal_majorf_acq(rs.getInt("cal_majorf_acq"));
+				
+				semesterscore.setMem_num(rs.getInt("mem_num"));
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return semesterscore;
+	}
+	
 	
 }
 
