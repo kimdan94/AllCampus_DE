@@ -488,9 +488,13 @@ form[id="sell_form"] ul li{
 }
 /* 책방 수정 : sc_updateForm.jsp
 ------------------------------*/
-#file_detail{
-	font-size:10pt;
+.file-detail{
+	font-size:10px;
 	color:gray;
+}
+.file-guide{
+	font-size:10px;
+	color:red;
 }
 #update_form{
 	margin-left:460px;

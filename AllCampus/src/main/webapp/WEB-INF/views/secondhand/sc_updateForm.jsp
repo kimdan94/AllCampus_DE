@@ -11,6 +11,25 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(function(){
+	$('#bookImage').change(function(){
+		let newImg = this.files[0];
+		//파일을 선택하려다 취소한다면 안내 문구 유지
+		if(!newImg){
+			$('.file-detail').show();
+			return;
+		}
+		
+		//사이즈 체크
+		if(newImg.size > 3*1024*1024){
+			alert(Math.round(newImg.size/1024) + 'kbytes(3072kbytes까지만 업로드 가능)');
+			$(this).val('');//선택한 파일의 경로 정보 삭제
+			return;
+		}
+		
+		//새로운 파일 선택 시 이전 파일 안내 문구 숨기기
+		$('.file-detail').hide();
+	});//end of change
+	
 	$('#update_form').submit(function(){
 		let items = document.querySelectorAll('.input-check');
 		for(let i=0;i<items.length;i++){
@@ -22,17 +41,6 @@ $(function(){
 				return false;
 			}
 		}//end of for
-		
-		if($('input[type=radio]:checked').length < 1){
-			alert('판매하려는 교재의 제품 상태를 선택하세요!');
-			return false;
-		}
-		
-		if(!$('input:checked[name="bookWay"]').is(":checked")){
-			alert('거래 방법을 선택하세요!');
-			return false;
-		}
-				
 	});//end of submit
 });	
 </script>
@@ -73,15 +81,15 @@ $(function(){
 					value="${sc.secondhand_price}">
 			</li>
 			<li>
-				<label for="bookImage">교재 이미지 첨부</label>
+				<label for="bookImage">교재 이미지</label>
 				<input type="file" name="bookImage" id="bookImage"
-					accept="image/gif,image/png,image/jpeg"
-					class="input-check">
-				<c:if test="${!empty sc.secondhand_filename}">
-				<div id="file_detail">
+					accept="image/gif,image/png,image/jpeg">
+				<div class="file-guide">
+					*3,072KB(3MB) 이하의 jpg, gif, png 파일만 첨부 가능
+				</div>
+				<div class="file-detail">
 					*이전 첨부 파일 : ${sc.secondhand_filename}
 				</div>
-				</c:if>	
 			</li>
 			<li>
 				<label for="bookContent">설명</label><br>
@@ -107,8 +115,8 @@ $(function(){
 			</li>
 		</ul>
 		<div class="align-center">
-			<input type="submit" value="수정하기" class="input-button2" style="font-size:15px;">
-			<input type="button" value="목록으로" class="input-button1" style="font-size:15px;"
+			<input type="submit" value="수정하기" class="input-button2">
+			<input type="button" value="목록으로" class="input-button1" 
 				onclick="location.href='secondhand_list.do'">
 		</div>
 	</form>

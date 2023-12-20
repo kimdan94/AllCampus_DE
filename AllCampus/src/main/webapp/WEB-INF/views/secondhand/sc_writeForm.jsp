@@ -10,6 +10,15 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(function(){
+	$('#bookImage').change(function(){
+		let newImg = this.files[0];
+		if(newImg.size > 3*1024*1024){
+			alert(Math.round(newImg.size/1024) + 'kbytes(3072kbytes까지만 업로드 가능)');
+			$(this).val('');//선택한 파일의 경로 정보 삭제
+			return;
+		}
+	});//end of change
+	
 	$('#sell_form').submit(function(){
 		let items = document.querySelectorAll('.input-check');
 		for(let i=0;i<items.length;i++){
@@ -69,10 +78,13 @@ $(function(){
 					min="1" max="999999" class="input-check">
 			</li>
 			<li>
-				<label for="bookImage">교재 이미지 첨부</label>
+				<label for="bookImage">교재 이미지</label>
 				<input type="file" name="bookImage" id="bookImage"
 					accept="image/gif,image/png,image/jpeg"
 					class="input-check">
+				<div class="file-guide">
+					*3,072KB(3MB) 이하의 jpg, gif, png 파일만 첨부 가능
+				</div>	
 			</li>
 			<li>
 				<label for="bookContent">설명</label><br>
