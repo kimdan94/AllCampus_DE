@@ -64,7 +64,7 @@
 		<table>
 			<c:forEach var="notice" items="${noticeList}">
 			<tr>
-				<td class="list-margin3"><a href="${pageContext.request.contextPath}/notice/detail.do?notice_num=${notice.notice_num}">${notice.notice_title}</a></td>
+				<td class="list-margin2"><a href="${pageContext.request.contextPath}/notice/detail.do?notice_num=${notice.notice_num}">${notice.notice_title}</a></td>
 				<td class="list-margin"><fmt:formatDate value="${notice.notice_reg_date}" pattern="MM/dd HH:mm"/></td>
 			</tr>
 			</c:forEach>
@@ -98,7 +98,7 @@
 		<table>
 			<c:forEach var="board" items="${boardList}">
 			<tr>
-				<td><a href="${pageContext.request.contextPath}/board/detail.do?board_num=${board.board_num}">${board.board_title}</a></td>
+				<td class="list-margin2"><a href="${pageContext.request.contextPath}/board/detail.do?board_num=${board.board_num}">${board.board_title}</a></td>
 				<td class="list-margin"><fmt:formatDate value="${board.board_reg_date}" pattern="MM/dd HH:mm"/></td>
 			</tr>
 			</c:forEach>	
@@ -185,7 +185,7 @@
 		<table>
 			<c:forEach var="notice" items="${noticeList}">
 			<tr>
-				<td class="list-margin3"><a href="${pageContext.request.contextPath}/notice/detail.do?notice_num=${notice.notice_num}">${notice.notice_title}</a></td>
+				<td class="list-margin2"><a href="${pageContext.request.contextPath}/notice/detail.do?notice_num=${notice.notice_num}">${notice.notice_title}</a></td>
 				<td class="list-margin"><fmt:formatDate value="${notice.notice_reg_date}" pattern="MM/dd HH:mm"/></td>
 			</tr>
 			</c:forEach>
