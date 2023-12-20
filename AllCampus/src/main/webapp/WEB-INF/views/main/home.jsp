@@ -111,7 +111,11 @@
 			<table>
 				<tr>
 					<c:forEach var="sc" items="${scList}">
-						<td><img src="../upload/${sc.secondhand_filename}" width=150; height=200; class="scList-img"></td>
+						<td>
+							<a href="${pageContext.request.contextPath}/secondhand/secondhand_detail.do?secondhand_num=${sc.secondhand_num}">
+								<img src="../upload/${sc.secondhand_filename}" width=150; height=200; class="scList-img">
+							</a>
+						</td>
 					</c:forEach>
 				</tr>
 				<tr style="font-size:12px;font-weight:bold;">
