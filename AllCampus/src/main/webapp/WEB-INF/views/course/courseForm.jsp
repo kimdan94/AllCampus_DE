@@ -85,23 +85,384 @@ body {
   margin:0 auto; /*중앙정렬*/
   }
 
-.banner:hover + .winner {
-  background:#e54737; /*변경할 배경색*/
+/*--------------------------------------------------*/
+/* 공통 style */
+
+/* 전체 레이아웃
+------------------------------*/
+body {
+	margin:0 auto;
+	background-color: #FFFFFF;
 }
-.courseDBtable>tr:hover {
-	background-color: red;
+.page-main{
+	width:100%;
+	margin:40px 0;
+	min-height:850px;
 }
-/* #courseDBtable tr {
-	background-color: blue;
-} */
+
+/* 공통 정렬
+------------------------------*/
+.align-center{
+	text-align:center;
+}
+.align-right{
+	text-align:right;
+}
+
+/* 헤더
+------------------------------*/
+.header-style {
+	height: 80px;
+	width: 99%;
+	margin:15px 0 0 7px;
+	padding:2px;
+	vertical-align:middle;
+	border:1px solid #dcdfe3;
+	border-radius:10px;
+	background-color:#f2f6fa;
+}
+.header-style ul{
+	list-style:none;
+}
+.header-style li{
+	display:inline-block;
+	text-align:center;
+	vertical-align:middle;
+	margin-left:20px;
+	margin-right:83px;
+	margin-bottom:15px;
+}
+.home-logo{
+	float:left;
+	color:#6699cc;
+	font-weight:bold;
+	font-family:sans-serif;
+	font-size:17px;
+}
+.clear{
+	clear:both;
+}
+.myPage{
+	float:right;
+}
+/* 공통 등록, 수정 폼
+------------------------------*/
+form{
+	width:1000px;
+	margin:0 auto;
+	padding:10px;
+}
+.form-clear {
+	clear:both;
+}
+.form-float {
+	width:130px;
+	float:left;
+}
+ul{
+	list-style:none;
+}
+input{
+	margin-top:4px;
+}
+
+
+/* 버튼
+------------------------------*/
+.all-btn {
+	background-color: #6699cc;
+}
+
+/* a 태그
+------------------------------*/
+a {
+	text-decoration-line: none;
+	color: black;
+}
+a:hover {
+	color: gray;
+}
+
+/* font 크기/색상
+------------------------------*/
+.font-style {
+	color:#000;
+	font-size:10pt;
+}
+h2 {
+	margin: 10px;
+}
+/*--------------------------------------------------*/
+
+/* 공통
+------------------------------*/
+.page-main-custom{
+	width:100%;
+	margin:40px 0;
+	min-height:800px;
+}
+a{
+	cursor:pointer;	
+}
+input[type="button"]{
+	cursor:pointer;
+}
+input[type="submit"]{
+	cursor:pointer;
+}
+input:focus{
+	outline:none;
+}
+.copyright{
+	font-size:10px;
+	color:gray;
+}
+.result-display{
+	width:600px;
+	height:400px;
+	margin:200px 530px 0 530px;
+	border:1px solid #000;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+}
+.result-display2{
+	width:600px;
+	height:400px;
+	margin:50px 560px;
+	border:1px solid #000;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+}
+.page-sub{
+	text-align:center;
+	font-size:12px;
+}
+.page-sub2{
+	text-align:center;
+	font-size:12px;
+}
+.member-style{
+	margin-left:300px;
+	margin-top:200px;
+}
+.input-button1{
+	border:1px solid #e1e6ed;
+	width:200px;
+	height:45px;
+	border-radius:10px;
+	font-weight:bold;
+	color:gray;
+	font-size:15px;
+}
+.input-button2{
+	border:none;
+	width:200px;
+	height:45px;
+	border-radius:10px;
+	background-color:#6699cc;
+	font-weight:bold;
+	color:white;
+	font-size:15px;
+}
+.sc-btn{
+	border:1px solid #e1e6ed;
+	width:80px;
+	height:25px;
+	border-radius:5px;
+	color:black;
+	font-weight:bold;
+}
+.sc-btn2{
+	border:none;
+	width:90px;
+	height:25px;
+	border-radius:10px;
+	background-color:#6699cc;
+	font-weight:bold;
+	color:white;
+}
+.home-btn{
+	border:none;
+	width:80px;
+	height:25px;
+	border-radius:6px;
+	background-color:#6699cc;
+	font-weight:bold;
+	color:white;
+}
+.a-style{
+	text-decoration:none;
+	color:#575959;
+	font-size:11px;
+}
+.bottom-style{
+	text-decoration:none;
+	color:gray;
+	font-size:10px;
+	margin-bottom:5px;
+}
+.find-link{
+	font-size:12px;
+}
+.find-link-pick{
+	font-size:12px;
+	text-decoration:overline;
+	text-decoration-color:#6699cc;
+}
+textarea{
+	resize:none;
+}
+.form-notice{
+	font-size:10pt;
+	color:gray;
+}
+.mem-logo{
+	margin:140px 0 -65px -60px;	
+}
+.bottom{
+	margin-bottom:3px;
+	margin-left:-60px;
+}
+.important{
+	color:#6699cc;
+	font-weight:bold;
+	font-size:20px;
+	font-family:sans-serif;
+}
+.finds{
+	margin:77px 58px -100px 0;
+}
+/* 메인 : main.jsp
+------------------------------*/
+.main-style{
+	padding-top:300px;
+}
+/* 홈 : home.jsp
+------------------------------ */
+.home-div{
+	width:30%;
+	float:left;
+	padding:5px;
+	margin:70px -390px 0 400px;
+}
+.home-div2{
+	width:975px;
+	padding:5px;
+	float:left;
+	border-radius:10px;
+	border:1px solid #edeff0;
+	padding-left:33px;
+	padding-right:25px;
+	margin-left:477px;
+	margin-top:15px;
+}
+.home-end{
+	clear:both;
+}
+.myInfo-div{
+	width:9%;
+	height:200px;
+	float:left;
+	margin:70px -300px 0 220px;
+	border-radius:10px;
+	background:#f5f7f7;
+}
+.myInfo-div img{
+	width:70px;
+	border-radius:50%;
+	object-fit:cover;
+	object-position:top;
+	margin:25px 35px 10px 35px;
+}
+.univName-style{
+	margin:0 0 -50px 230px;
+}
+.list-div{
+	height:200px;
+	border:1px solid #edeff0;
+	border-radius:15px;
+}
+.list-div table{
+	padding:35px 0 0 80px;
+}
+.list-margin{
+	padding-left:30px;
+	font-size:12px;
+}
+.info-div{
+	float:left;
+	padding:5px;
+	margin:285px -350px 0 117px;
+}
+.info-div2{
+	float:left;
+	padding:5px;
+	margin:420px -350px 0 117px;
+}
+.info-div3{
+	float:left;
+	padding:5px;
+	margin:556px -350px 0 117px;
+}
+
+/*--------------------------------------------------*/
 </style>
 </head>
 <body>
-	<h2>시간표 출력</h2>${keyfield}
-	<div id='result'>
-	</div>	
-<%-- <jsp:include page="/WEB-INF/views/common/header.jsp"/> --%>
 
+<!-- header 시작 -->
+<div class="header-style">
+	<ul>
+	<c:if test="${!empty user_num}">
+		<li class="home-logo">
+			<a href="${pageContext.request.contextPath}/main/home.do">
+			<img src="${pageContext.request.contextPath}/images/logo_symbol_231208.png" width="100" style="margin-top:-10px;">	
+			</a>
+			All CAMPUS
+		</li>
+		<li class="clear">
+			<h2>
+			<a href="${pageContext.request.contextPath}/course/course_list.do">시간표</a>
+			</h2>
+		</li>
+		<li class="clear">
+			<h2>
+			<a href="${pageContext.request.contextPath}/courseeva/courseeva_list.do">강의평</a>
+			</h2> 
+		</li>
+		<li class="clear">
+			<h2>
+			<a href="${pageContext.request.contextPath}/calculator/calculator_list.do">학점 계산기</a>
+			</h2>
+		</li>
+		<li class="clear">
+			<h2>
+			<a href="${pageContext.request.contextPath}/secondhand/secondhand_list.do">책방</a>
+			</h2>
+		</li>
+		<c:if test="${!empty user_num && user_auth == 9}">
+		<li class="clear">
+			<h2>
+			<a href="${pageContext.request.contextPath}/admin/adminMenu.do">관리</a>
+			</h2>
+		</li>
+		</c:if>	
+		<li class="myPage">
+			<a href="${pageContext.request.contextPath}/mymember/myPage.do">
+				<img src="${pageContext.request.contextPath}/images/user.png" width="40" height="40" style="margin-right:10px;margin-top:5px;">
+			</a>
+			[<span>${user_id}</span>]
+			<input type="button" value="로그아웃" class="sc-btn"
+				onclick="location.href='${pageContext.request.contextPath}/member/logout.do'">
+		</li>
+	</c:if>		
+	</ul>
+</div>
+<!-- header 끝 -->
+
+	<h2>시간표 출력</h2>${keyfield}
 
 	
 	<form id="search_semester" action="course_list.do" method="get">
@@ -129,6 +490,12 @@ body {
 		</form>
 	
 	<hr>
+	
+	
+	
+	
+	<a href="${pageContext.request.contextPath}/course/course_list.do"><img class="fit-picture" src="${pageContext.request.contextPath}/images/fresh.png" alt="새로고침" style="width:35px;"/></a>
+
 	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal1">
 	전공/영역:
 	<c:forEach var="course_subject" items="${course_subject}">
@@ -414,8 +781,8 @@ body {
 			<th style="color:black;">학점</th>
 	 		<th style="color:black;">시간 및 강의실</th>
 	 	</tr>
- 		<c:forEach var="inner" items="${list2}">
-		 	<tr id="${inner.course_code}">
+ 		<c:forEach var="inner" items="${list2}"><!-- list, list2 : CoursFormAction -->
+		 	<tr id="${inner.course_code}"><!-- class명도 넣어주기 -->
 		 	<!-- <tr> -->
 		 		<td>${inner.course_category}</td>
 				<td>${inner.course_code}</td>
@@ -453,6 +820,7 @@ body {
 			<th>금</th>
 		</tr>
 		<c:forEach items="${timeList}" var="item">
+			<!-- timeList : {9,10,11,12,13,14,15,16,17} CourseFormAction -->
 			<tr>
 				<td rowspan="2">${item}</td>
 				<td id="1_${item*60}">월</td>
@@ -470,7 +838,6 @@ body {
 			</tr>
 			
 		</c:forEach>
-		
 	</table>
 	
 	
@@ -508,8 +875,6 @@ body {
 	</table> 
 
 --%>
-
-
 
 
 

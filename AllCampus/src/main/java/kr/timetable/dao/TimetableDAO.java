@@ -223,4 +223,40 @@ public class TimetableDAO {
 		}
 	}
 	
+	// TimetableAddAction에서 year이랑 semester 구하기
+	public List<String> selectYearAndSemester(String course_code) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<String> list = new ArrayList<>();
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			// SQL문 작성
+			sql = "SELECT DISTINCT course_year, course_semester FROM all_course WHERE course_code=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setString(1, course_code);
+			
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+//			list = new ArrayList<CourseVO>();
+			
+			if(rs.next()) {
+				list.add(rs.getString("course_year"));
+				list.add(rs.getString("course_semester"));
+			}
+		} catch(Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return list;
+	}
+	
+	
+	
+	
 }

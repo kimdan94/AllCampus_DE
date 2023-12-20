@@ -32,7 +32,6 @@ public class CourseFormAction implements Action {
 			}
 		}
 			 
-		
 		// 강의 필터링
 		// 전공/영역
 		String[] course_subject = request.getParameterValues("course_subject");
@@ -78,8 +77,9 @@ public class CourseFormAction implements Action {
 		List<String> semester_list = null;
 		int[] timeList = {9,10,11,12,13,14,15,16,17};
 		
-		
+		// CourseDAO // 강의 필터 결과 - 강의 목록
 		list = dao.getListCourse(year, semester, course_subject, keyword, course_category, course_credit);
+		// CourseDAO
 		list2 = dao.getRemoveDuplicateCourseList(year, semester, course_subject, keyword, course_category, course_credit);
 		course_list = dao.getCourseList();
 		semester_list = dao.selectSemester();

@@ -35,28 +35,19 @@ public class TimetableAddAction implements Action {
 		TimetableDAO dao = TimetableDAO.getInstance();
 		
 		//가진 정보 : user_num(=mem_num), course_code, listClick(시간표 정보)
-//		System.out.println("user_num : " + user_num);
-//		System.out.println("course_code : " + course_code);
 		
-		//timetable_table_id = timetable_table_id.substring(1, timetable_table_id.length()-1);
 		timetable_table_id = timetable_table_id.replaceAll("[^0-9,_]", "");
-//		System.out.println("timetable_table_id " + timetable_table_id);
 		String[] timetable_tableId = timetable_table_id.split(",");
 		for(int i=0; i<timetable_tableId.length; i++) {
-//			System.out.println("[" + i + "] : " + timetable_tableId[i]);
-//			System.out.println("user num : " + user_num + " course code : " + course_code + " timetable table id : " + timetable_tableId[i]);
 			dao.insertTimetable(user_num, course_code, timetable_tableId[i]);
 		}
-		
-		Integer year = 2023;
-		Integer semester = 1;
-		String keyfield = request.getParameter("keyfield");
-		if(keyfield != null) {
-			year = Integer.parseInt(keyfield.substring(0,4));
-			semester = Integer.parseInt(keyfield.substring(4));
-		}
+
 		//------------------------------------------------------------------
 		TimetableDAO daoTime = TimetableDAO.getInstance();
+		List<String> semesterList = daoTime.selectYearAndSemester(course_code);
+		int year = Integer.parseInt(semesterList.get(0));
+		int semester = Integer.parseInt(semesterList.get(1));
+		
 		
 		// 요일 필터링 - 요일/mem_num/year/semester
 		List<TimetableVO> monList = daoTime.getListPrint(user_num,year,semester,1); // 월

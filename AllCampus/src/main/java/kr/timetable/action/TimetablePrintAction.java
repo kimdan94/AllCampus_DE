@@ -23,16 +23,27 @@ public class TimetablePrintAction implements Action {// -> js > timetable.print.
 		if(user_num == null) {
 			return "redirect:/member/loginForm.do";
 		}
+		int year = 2023;
+		int semester = 1;
+		String tmp_year = request.getParameter("year");
+		String tmp_semester = request.getParameter("semester");
+		if(tmp_year != null) {
+			year = Integer.parseInt(tmp_year);
+		}
+		if(tmp_semester != null) {
+			semester = Integer.parseInt(tmp_semester);
+		}
 		
-		Integer year = 2023;
-		Integer semester = 1;
+//		System.out.println("year : " + year);
+//		System.out.println("semster : " + semester);
+		
+		//-----------------------------------------------
 		String keyfield = request.getParameter("keyfield");
-		System.out.println("keyfield : " + keyfield);
 		if(keyfield != null) {
 			year = Integer.parseInt(keyfield.substring(0,4));
 			semester = Integer.parseInt(keyfield.substring(4));
 		}
-		
+		//------------------------------------------------
 		//전송된 데이터 인코딩 처리
 		request.setCharacterEncoding("utf-8");
 		
