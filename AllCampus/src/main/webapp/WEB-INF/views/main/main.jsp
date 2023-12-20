@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/jy.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
 </head>
-<body>
+<body style="overflow: hidden;">
 <div class="row">
 <!-- 올캠퍼스 사이트 소개 시작 -->
 <div class="container col-md-9">
@@ -18,17 +18,20 @@
 	     <div class="carousel-inner">
 	     	<!-- 0 이미지 시작 -->
 	     	<div class="carousel-item active">
-	     		<img src="${pageContext.request.contextPath}/images/Koala.jpg" class="d-block w-100">
+	     		<img src="${pageContext.request.contextPath}/images/carousel-1.png" 
+	     			class="d-block w-100" data-bs-interval="2500">
 	     	</div>
 	     	<!-- 0 이미지 끝 -->
 	     	<!-- 1 이미지 시작 -->
 	     	<div class="carousel-item">
-	     		<img src="${pageContext.request.contextPath}/images/Penguins.jpg" class="d-block w-100">
+	     		<img src="${pageContext.request.contextPath}/images/carousel-2.png" 
+	     			class="d-block w-100" data-bs-interval="2500">
 	     	</div>
 	     	<!-- 1 이미지 끝 -->
 	     	<!-- 2 이미지 시작 -->
 	     	<div class="carousel-item">
-	     		<img src="${pageContext.request.contextPath}/images/Jellyfish.jpg" class="d-block w-100">
+	     		<img src="${pageContext.request.contextPath}/images/carousel-3.png" 
+	     			class="d-block w-100" data-bs-interval="2500">
 	     	</div>
 	     	<!-- 2 이미지 끝 -->
 	     </div><!-- end of .carousel-inner -->
