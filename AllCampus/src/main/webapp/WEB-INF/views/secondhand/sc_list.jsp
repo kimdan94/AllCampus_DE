@@ -72,7 +72,9 @@ window.onload = function(){
 			</tr>
 			<tr>
 				<td>
-					<a href="${pageContext.request.contextPath}/secondhand/secondhand_detail.do?secondhand_num=${sc.secondhand_num}"><b>${sc.secondhand_name}</b></a>
+					<a href="${pageContext.request.contextPath}/secondhand/secondhand_detail.do?secondhand_num=${sc.secondhand_num}">
+						<b>${sc.secondhand_name}</b>
+					</a>
 				</td>
 			</tr>
 			<tr style="font-size:12px;">
