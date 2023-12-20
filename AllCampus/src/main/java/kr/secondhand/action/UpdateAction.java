@@ -36,6 +36,13 @@ public class UpdateAction implements Action{
 		SecondhandDAO dao = SecondhandDAO.getInstance();
 		//수정 전 데이터 반환
 		SecondhandVO db_sc = dao.getsecondhand(secondhand_num);
+		//동시 작업의 영향으로 신고 3건 누적, 미표시로 전환되었는지 체크
+		if(db_sc.getSecondhand_show() == 1) {
+			request.setAttribute("notice_msg", "해당 게시글은 미공개 처리되었습니다.");
+			request.setAttribute("notice_url", request.getContextPath()+"/secondhand/secondhand_list.do");
+			return "/WEB-INF/views/common/alert_singleView.jsp";
+		}
+		
 		if(user_num!=db_sc.getMem_num()) {
 			//로그인한 회원번호와 작성자 회원번호 불일치
 			FileUtil.removeFile(request, filename);

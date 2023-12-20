@@ -33,6 +33,13 @@ public class DetailAction implements Action{
 		SecondhandDAO dao = SecondhandDAO.getInstance();
 		SecondhandVO sc = dao.getsecondhand(secondhand_num);
 		
+		//동시 작업의 영향으로 신고 3건 누적, 미표시로 전환되었는지 체크
+		if(sc.getSecondhand_show() == 1) {
+			request.setAttribute("notice_msg", "해당 게시글은 미공개 처리되었습니다.");
+			request.setAttribute("notice_url", request.getContextPath()+"/secondhand/secondhand_list.do");
+			return "/WEB-INF/views/common/alert_singleView.jsp";
+		}
+		
 		//제목, 저자, 출판사 - HTML을 허용하지 않음
 		sc.setSecondhand_name(StringUtil.useNoHtml(sc.getSecondhand_name()));
 		sc.setSecondhand_writer(StringUtil.useNoHtml(sc.getSecondhand_writer()));
@@ -40,11 +47,7 @@ public class DetailAction implements Action{
 		//내용 - HTML을 허용하지 않으면서 줄바꿈 처리
 		sc.setSecondhand_content(StringUtil.useBrNoHtml(sc.getSecondhand_content()));
 		
-		//<title>에 명시할 제목(교재명) 추출
-		String sc_name = sc.getSecondhand_name();
-		
 		request.setAttribute("sc", sc);
-		request.setAttribute("sc_name", sc_name);
 		
 		return "/WEB-INF/views/secondhand/sc_detail.jsp";
 	}
