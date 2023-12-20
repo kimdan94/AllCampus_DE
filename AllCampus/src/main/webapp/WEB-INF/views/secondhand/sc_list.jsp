@@ -65,7 +65,7 @@ window.onload = function(){
 		<c:forEach var="sc" items="${list}">
 		<c:if test="${sc.secondhand_show == 2}">
 			<tr>
-				<td rowspan="5">
+				<td rowspan="5" width="117">
 					<img src="${pageContext.request.contextPath}/upload/${sc.secondhand_filename}" 
 						width="70" height="100" style="object-fit:cover;">
 				</td>
