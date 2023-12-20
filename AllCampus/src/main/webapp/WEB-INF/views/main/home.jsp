@@ -111,7 +111,7 @@
 			<table>
 				<tr>
 					<c:forEach var="sc" items="${scList}">
-						<td><img src="../upload/${sc.secondhand_filename}" width="150" style="min-hight:150px;padding-left:10px;"></td>
+						<td><img src="../upload/${sc.secondhand_filename}" width=150; height=200; class="scList-img"></td>
 					</c:forEach>
 				</tr>
 				<tr style="font-size:12px;font-weight:bold;">
@@ -215,29 +215,31 @@
 		</div>
 	</div>
 	<!-- 책방 -->
-	<div class="home-div2">
-		<table>
-			<tr>
-				<c:forEach var="sc" items="${scList}">
-					<td><img src="../upload/${sc.secondhand_filename}" width="150" style="min-hight:150px;padding-left:10px;"></td>
-				</c:forEach>
-			</tr>
-			<tr style="font-size:12px;font-weight:bold;">
-				<c:forEach var="sc" items="${scList}">
-					<td style="padding-left:10px;">
-						<a href="${pageContext.request.contextPath}/secondhand/secondhand_detail.do?secondhand_num=${sc.secondhand_num}">
-							${sc.secondhand_name}
-						</a>
-					</td>
-				</c:forEach>	
-			</tr>
-			<tr style="font-size:11px;color:#6699cc;">
-				<c:forEach var="sc" items="${scList}">
-					<td style="padding-left:10px;"><fmt:formatNumber value="${sc.secondhand_price}"/>원</td>
-				</c:forEach>
-			</tr>
-		</table>	
-	</div>
+	<c:if test="${!empty scList}">
+		<div class="home-div2">
+			<table>
+				<tr>
+					<c:forEach var="sc" items="${scList}">
+						<td><img src="../upload/${sc.secondhand_filename}" width=150; height=200; class="scList-img"></td>
+					</c:forEach>
+				</tr>
+				<tr style="font-size:12px;font-weight:bold;">
+					<c:forEach var="sc" items="${scList}">
+						<td style="padding-left:10px;">
+							<a href="${pageContext.request.contextPath}/secondhand/secondhand_detail.do?secondhand_num=${sc.secondhand_num}">
+								${sc.secondhand_name}
+							</a>
+						</td>
+					</c:forEach>	
+				</tr>
+				<tr style="font-size:11px;color:#6699cc;">
+					<c:forEach var="sc" items="${scList}">
+						<td style="padding-left:10px;"><fmt:formatNumber value="${sc.secondhand_price}"/>원</td>
+					</c:forEach>
+				</tr>
+			</table>	
+		</div>
+	</c:if>
 	<div class="home-end"></div>
 </div>
 </c:if>

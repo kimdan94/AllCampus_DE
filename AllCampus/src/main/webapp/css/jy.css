@@ -172,8 +172,8 @@ textarea{
 	float:left;
 	border-radius:10px;
 	border:1px solid #edeff0;
-	padding-left:33px;
-	padding-right:25px;
+	padding-left:25px;
+	padding-right:44px;
 	margin-left:477px;
 	margin-top:15px;
 }
@@ -238,6 +238,10 @@ textarea{
 	float:left;
 	padding:5px;
 	margin:556px -350px 0 117px;
+}
+.scList-img{
+	object-fit:cover;
+	padding-left:10px;
 }
 /* 로그인 : loginForm.jsp
 ------------------------------*/
