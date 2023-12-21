@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <!-- viewport : 모바일 장치에서 웹 사이트가 원하는 사이즈로 보여지게 처리 -->
 <meta name="viewport" content="width=device-width,initial-scale=1"><!-- 뷰포트 넣어주기 반응형 -->
-<title>Insert title here</title>
+<title>시간표</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -464,7 +464,7 @@ textarea{
 
 	<h2>시간표 출력</h2>${keyfield}
 
-	
+	<!-- 
 	<form id="search_semester" action="course_list.do" method="get">
 			<ul class="search">
 				<li>
@@ -472,7 +472,7 @@ textarea{
 					<select name="keyfield">
 					<c:forEach var="semester_list" items="${semester_list}">
 						<option value="${semester_list}" <c:if test="${param.keyfield eq semester_list}">selected</c:if>>
-							<c:if test="${fn:substring(semester_list,4,5) eq 0}">${fn:substring(semester_list,0,4)} 1학기</c:if><!-- eq -->
+							<c:if test="${fn:substring(semester_list,4,5) eq 0}">${fn:substring(semester_list,0,4)} 1학기</c:if>
 							<c:if test="${fn:substring(semester_list,4,5) eq 1}">${fn:substring(semester_list,0,4)} 여름 계절</c:if>
 							<c:if test="${fn:substring(semester_list,4,5) eq 2}">${fn:substring(semester_list,0,4)} 2학기</c:if>
 							<c:if test="${fn:substring(semester_list,4,5) eq 3}">${fn:substring(semester_list,0,4)} 겨울 계절</c:if>
@@ -491,7 +491,7 @@ textarea{
 	
 	<hr>
 	
-	
+	 -->
 	
 	
 	<a href="${pageContext.request.contextPath}/course/course_list.do"><img class="fit-picture" src="${pageContext.request.contextPath}/images/fresh.png" alt="새로고침" style="width:35px;"/></a>
