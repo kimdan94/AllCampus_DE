@@ -37,9 +37,17 @@ public class TimetableAddAction implements Action {
 		
 		//가진 정보 : user_num(=mem_num), course_code, listClick(시간표 정보)
 		
+		
+		Random random = new Random();
+		int randomColor = random.nextInt(12);
+		
 		byte[] arr = new byte[8];
         new Random().nextBytes(arr);
-
+		
+        String col = "";
+        for(int i=0; i<6; i++) {
+        	
+        }
         String color = "#" + (convertBytesToHex(arr).substring(0,6));
 		
 		timetable_table_id = timetable_table_id.replaceAll("[^0-9,_]", "");

@@ -24,7 +24,7 @@ public class FriendListAction implements Action { // 친구들 리스트 있는 
 		int[] timeList = {9,10,11,12,13,14,15,16,17};
 		
 		String search_friend = request.getParameter("search_friend");
-		System.out.println(search_friend);
+		//System.out.println(search_friend);
 		
 		FriendDAO friendDao = FriendDAO.getInstance();
 		

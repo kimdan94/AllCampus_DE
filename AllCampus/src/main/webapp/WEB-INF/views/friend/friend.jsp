@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>친구시간표</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/friend.table.js"></script>
@@ -52,18 +52,18 @@
 			<!-- timeList : {9,10,11,12,13,14,15,16,17} CourseFormAction -->
 			<tr>
 				<td rowspan="2">${item}</td>
-				<td id="1_${item*60}">월</td>
-				<td id="2_${item*60}">화</td>
-				<td id="3_${item*60}">수</td>
-				<td id="4_${item*60}">목</td>
-				<td id="5_${item*60}">금</td>
+				<td id="1__${item*60}">월</td>
+				<td id="2__${item*60}">화</td>
+				<td id="3__${item*60}">수</td>
+				<td id="4__${item*60}">목</td>
+				<td id="5__${item*60}">금</td>
 			</tr>
 			<tr>
-				<td id="1_${item*60+30}">월</td>
-				<td id="2_${item*60+30}">화</td>
-				<td id="3_${item*60+30}">수</td>
-				<td id="4_${item*60+30}">목</td>
-				<td id="5_${item*60+30}">금</td>
+				<td id="1__${item*60+30}">월</td>
+				<td id="2__${item*60+30}">화</td>
+				<td id="3__${item*60+30}">수</td>
+				<td id="4__${item*60+30}">목</td>
+				<td id="5__${item*60+30}">금</td>
 			</tr>
 
 		</c:forEach>

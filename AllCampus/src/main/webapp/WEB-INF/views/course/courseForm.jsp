@@ -810,6 +810,7 @@ textarea{
 	
 	
 	<!-- 시간표 table -->
+	<!-- timeList : {9,10,11,12,13,14,15,16,17} CourseFormAction -->
 	<table id="timetable" border="1">
 		<tr>
 			<th></th>
@@ -820,7 +821,6 @@ textarea{
 			<th>금</th>
 		</tr>
 		<c:forEach items="${timeList}" var="item">
-			<!-- timeList : {9,10,11,12,13,14,15,16,17} CourseFormAction -->
 			<tr>
 				<td rowspan="2">${item}</td>
 				<td id="1_${item*60}">월</td>

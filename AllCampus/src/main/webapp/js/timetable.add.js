@@ -73,8 +73,7 @@ $(function() {
 	
 	
 	
-	/////////////////////////////////////////////////////////////////////////
-	//==================timetablePrint 시작=====================
+	//==================timetablePrint 시작======================================================================================================
 	function getTimetablePrint(year, semester){
 		$.ajax({
 			url: 'timetablePrint.do', // 전송 url : TimetablePrintAction
@@ -98,14 +97,12 @@ $(function() {
 	getTimetablePrint();
 	
 	
-	//==============================
+	//--------------시간표의 강의를 클릭했을 때 강의에 대한 정보&강의 삭제 버튼을 모달로 나타냄---------------------------------------------------------------------------
 	$(document).on("click",'.class-info',function(e){ // table에서 클래스 name만 부여된 곳만 이벤트 처리
-		console.log('[==클릭==]');
-		console.log($(this).attr('id'));
 		$.ajax({
 			url: 'timetableView.do',
 			type: 'post',
-			data: {unique: '#'+$(this).attr('id')},
+			data: {unique: '#'+$(this).attr('id')}, // 테이블 아이디 전송
 			dataType: 'json',
 			success: function(param) {
 				$('.delete_header').empty(); // 값이 누적되기 때문에 empty
@@ -113,11 +110,7 @@ $(function() {
 				
 				const weekend = ['','월','화','수','목','금'];
 				
-				console.log('param 값 출력' + param);
-				console.log("값 : " + param.beforeDeleteView[0].course_name);
-				
 				$('.new-btn').click();
-				//alert('클릭시 alert');
 				
 				let delete_header = '<div>강의정보</div>';
 				let delete_body = '<div>' + param.beforeDeleteView[0].course_name + '</div>';
@@ -144,36 +137,10 @@ $(function() {
 		});
 		
 	});
-	//==============================
-	
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
-	/*function printMon(param){
-		for(var i=0; i<param.listMON.length; i++){
-			console.log(param.listMON[i]);
-			
-			for(var j=0; j<param.monList.length; j++){
-				if(param.listMON[i].course_code == param.monList[j].course_code){
-					
-					console.log(param.monList[j]);
-					
-					
-					
-					
-				}
-			}
-		}
-		//array.push(Number(param.monList[j].timetable_table_id.slice(2)));
-		
-		
-	}*/
+	//-------------------------------------------------------------------------------------------------------------------------------------------
 	
 	
-	
-	
-	
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
-	
-	// --------월요일---------
+	// --------월요일------------------
 	function printMonTimetable(param){
 		for(var i=0; i<param.listMON.length; i++){
 			var array = [];
@@ -181,9 +148,299 @@ $(function() {
 				if(param.listMON[i].course_code == param.monList[j].course_code){
 					array.push(Number(param.monList[j].timetable_table_id.slice(2)));
 				}
+			}
+			
+			
+			array.sort((a, b) => a - b); // js에서 정렬할 때는 문자열로 변경해서 정렬하기 때문에 이런 방식으로 정렬해야 한다
+			var prev = array[0];
+			var cnt = 1;
+			var list = [];
+			list.push([array[0],cnt]);
+			for(var k=1; k<array.length; k++){
+				if(array[k] == prev + 30){
+					cnt += 1;
+					prev = array[k];
+				}else {
+					prev = array[k];
+					cnt = 1;
+				}
+				list.push([array[k],cnt]);
+			}
+			// array 다 만듦
+
+
+			for(var j=0; j<param.monList.length; j++){
+				if(param.listMON[i].course_code == param.monList[j].course_code){
+					var stand1 = 0;
+					var stand2 = 0;
+					for(var s=0; s<list.length; s++){
+						if(list[s][1] == 1 && stand1 == 0){ // 첫번째
+							stand1 = list[s][0];
+						} else if(list[s][1] == 1 && stand1 != 0){ // 두번째
+							$('#1_'+stand1).attr('rowspan', stand2);
+							$('#1_'+stand1).addClass('class-info');
+							$('#1_' + stand1).html(param.monList[j].timetable_course_name); // text 크기를 넘어가면 조절
+							$('#1_'+stand1).attr('style','background-color: '+param.monList[j].timetable_color); // db에서 색깔지정
+							stand1 = list[s][0];
+						} else if(list[s][1] != 1){
+							stand2 = list[s][1];
+							$('#1_'+list[s][0]).attr('style', "display:none;");
+						}
+					}
+					$('#1_'+stand1).attr('rowspan', stand2);
+					$('#1_'+stand1).addClass('class-info');
+					$('#1_' + stand1).html(param.monList[j].timetable_course_name); // text 크기를 넘어가면 조절
+					$('#1_'+stand1).attr('style','background-color: '+param.monList[j].timetable_color); // db에서 색깔지정
+				}
+			}
+		}
+	}
+	
+	// --------화요일---------
+	function printTueTimetable(param){
+		for(var i=0; i<param.listTUE.length; i++){
+			var array = [];
+			for(var j=0; j<param.tueList.length; j++){
+				if(param.listTUE[i].course_code == param.tueList[j].course_code){
+					array.push(Number(param.tueList[j].timetable_table_id.slice(2)));
+				}
+			}
+			
+			
+			array.sort((a, b) => a - b); // js에서 정렬할 때는 문자열로 변경해서 정렬하기 때문에 이런 방식으로 정렬해야 한다
+			var prev = array[0];
+			var cnt = 1;
+			var list = [];
+			list.push([array[0],cnt]);
+			for(var k=1; k<array.length; k++){
+				if(array[k] == prev + 30){
+					cnt += 1;
+					prev = array[k];
+				}else {
+					prev = array[k];
+					cnt = 1;
+				}
+				list.push([array[k],cnt]);
+			}
+			// array 다 만듦
+			
+			
+			for(var j=0; j<param.tueList.length; j++){
+				if(param.listTUE[i].course_code == param.tueList[j].course_code){
+					var stand1 = 0;
+					var stand2 = 0;
+					for(var s=0; s<list.length; s++){
+						if(list[s][1] == 1 && stand1 == 0){ // 첫번째
+							stand1 = list[s][0];
+						} else if(list[s][1] == 1 && stand1 != 0){ // 두번째
+							$('#2_'+stand1).attr('rowspan', stand2);
+							$('#2_'+stand1).addClass('class-info');
+							$('#2_' + stand1).html(param.tueList[j].timetable_course_name); // text 크기를 넘어가면 조절
+							$('#2_'+stand1).attr('style','background-color: '+param.tueList[j].timetable_color); // db에서 색깔지정
+							stand1 = list[s][0];
+						} else if(list[s][1] != 1){
+							stand2 = list[s][1];
+							$('#2_'+list[s][0]).attr('style', "display:none;");
+						}
+					}
+					$('#2_'+stand1).attr('rowspan', stand2);
+					$('#2_'+stand1).addClass('class-info');
+					$('#2_' + stand1).html(param.tueList[j].timetable_course_name); // text 크기를 넘어가면 조절
+					$('#2_'+stand1).attr('style','background-color: '+param.tueList[j].timetable_color); // db에서 색깔지정
+				}
+			}
+		}
+	}
+	
+	
+	// --------수요일---------
+	function printWedTimetable(param){
+		for(var i=0; i<param.listWED.length; i++){
+			var array = [];
+			for(var j=0; j<param.wedList.length; j++){
+				if(param.listWED[i].course_code == param.wedList[j].course_code){
+					array.push(Number(param.wedList[j].timetable_table_id.slice(2)));
+				}
+			}
+			
+			
+			array.sort((a, b) => a - b); // js에서 정렬할 때는 문자열로 변경해서 정렬하기 때문에 이런 방식으로 정렬해야 한다
+			var prev = array[0];
+			var cnt = 1;
+			var list = [];
+			list.push([array[0],cnt]);
+			for(var k=1; k<array.length; k++){
+				if(array[k] == prev + 30){
+					cnt += 1;
+					prev = array[k];
+				}else {
+					prev = array[k];
+					cnt = 1;
+				}
+				list.push([array[k],cnt]);
+			}
+			// array 다 만듦
+
+
+			for(var j=0; j<param.wedList.length; j++){
+				if(param.listWED[i].course_code == param.wedList[j].course_code){
+					var stand1 = 0;
+					var stand2 = 0;
+					for(var s=0; s<list.length; s++){
+						if(list[s][1] == 1 && stand1 == 0){ // 첫번째
+							stand1 = list[s][0];
+						} else if(list[s][1] == 1 && stand1 != 0){ // 두번째
+							$('#3_'+stand1).attr('rowspan', stand2);
+							$('#3_'+stand1).addClass('class-info');
+							$('#3_' + stand1).html(param.wedList[j].timetable_course_name); // text 크기를 넘어가면 조절
+							$('#3_'+stand1).attr('style','background-color: '+param.wedList[j].timetable_color); // db에서 색깔지정
+							stand1 = list[s][0];
+						} else if(list[s][1] != 1){
+							stand2 = list[s][1];
+							$('#3_'+list[s][0]).attr('style', "display:none;");
+						}
+					}
+					$('#3_'+stand1).attr('rowspan', stand2);
+					$('#3_'+stand1).addClass('class-info');
+					$('#3_' + stand1).html(param.wedList[j].timetable_course_name); // text 크기를 넘어가면 조절
+					$('#3_'+stand1).attr('style','background-color: '+param.wedList[j].timetable_color); // db에서 색깔지정
+				}
+			}
+		}
+	}
+	
+	
+	// --------목요일---------
+	function printThurTimetable(param){
+		for(var i=0; i<param.listTHUR.length; i++){
+			var array = [];
+			for(var j=0; j<param.thurList.length; j++){
+				if(param.listTHUR[i].course_code == param.thurList[j].course_code){
+					array.push(Number(param.thurList[j].timetable_table_id.slice(2)));
+				}
+			}
+			
+			
+			array.sort((a, b) => a - b); // js에서 정렬할 때는 문자열로 변경해서 정렬하기 때문에 이런 방식으로 정렬해야 한다
+			var prev = array[0];
+			var cnt = 1;
+			var list = [];
+			list.push([array[0],cnt]);
+			for(var k=1; k<array.length; k++){
+				if(array[k] == prev + 30){
+					cnt += 1;
+					prev = array[k];
+				}else {
+					prev = array[k];
+					cnt = 1;
+				}
+				list.push([array[k],cnt]);
+			}
+			// array 다 만듦
+			
+			
+			for(var j=0; j<param.thurList.length; j++){
+				if(param.listTHUR[i].course_code == param.thurList[j].course_code){
+					var stand1 = 0;
+					var stand2 = 0;
+					for(var s=0; s<list.length; s++){
+						if(list[s][1] == 1 && stand1 == 0){ // 첫번째
+							stand1 = list[s][0];
+						} else if(list[s][1] == 1 && stand1 != 0){ // 두번째
+							$('#4_'+stand1).attr('rowspan', stand2);
+							$('#4_'+stand1).addClass('class-info');
+							$('#4_' + stand1).html(param.thurList[j].timetable_course_name); // text 크기를 넘어가면 조절
+							$('#4_'+stand1).attr('style','background-color: '+param.thurList[j].timetable_color); // db에서 색깔지정
+							stand1 = list[s][0];
+						} else if(list[s][1] != 1){
+							stand2 = list[s][1];
+							$('#4_'+list[s][0]).attr('style', "display:none;");
+						}
+					}
+					$('#4_'+stand1).attr('rowspan', stand2);
+					$('#4_'+stand1).addClass('class-info');
+					$('#4_' + stand1).html(param.thurList[j].timetable_course_name); // text 크기를 넘어가면 조절
+					$('#4_'+stand1).attr('style','background-color: '+param.thurList[j].timetable_color); // db에서 색깔지정
+				}
+			}
+		}
+	}
+	
+	
+	// --------금요일---------
+	function printFriTimetable(param){
+		for(var i=0; i<param.listFRI.length; i++){
+			var array = [];
+			for(var j=0; j<param.friList.length; j++){
+				if(param.listFRI[i].course_code == param.friList[j].course_code){
+					array.push(Number(param.friList[j].timetable_table_id.slice(2)));
+				}
+			}
+			
+			
+			array.sort((a, b) => a - b); // js에서 정렬할 때는 문자열로 변경해서 정렬하기 때문에 이런 방식으로 정렬해야 한다
+			var prev = array[0];
+			var cnt = 1;
+			var list = [];
+			list.push([array[0],cnt]);
+			for(var k=1; k<array.length; k++){
+				if(array[k] == prev + 30){
+					cnt += 1;
+					prev = array[k];
+				}else {
+					prev = array[k];
+					cnt = 1;
+				}
+				list.push([array[k],cnt]);
+			}
+			// array 다 만듦
+			
+			
+			for(var j=0; j<param.friList.length; j++){
+				if(param.listFRI[i].course_code == param.friList[j].course_code){
+					var stand1 = 0;
+					var stand2 = 0;
+					for(var s=0; s<list.length; s++){
+						if(list[s][1] == 1 && stand1 == 0){ // 첫번째
+							stand1 = list[s][0];
+						} else if(list[s][1] == 1 && stand1 != 0){ // 두번째
+							$('#5_'+stand1).attr('rowspan', stand2);
+							$('#5_'+stand1).addClass('class-info');
+							$('#5_' + stand1).html(param.friList[j].timetable_course_name); // text 크기를 넘어가면 조절
+							$('#5_'+stand1).attr('style','background-color: '+param.friList[j].timetable_color); // db에서 색깔지정
+							stand1 = list[s][0];
+						} else if(list[s][1] != 1){
+							stand2 = list[s][1];
+							$('#5_'+list[s][0]).attr('style', "display:none;");
+						}
+					}
+					$('#5_'+stand1).attr('rowspan', stand2);
+					$('#5_'+stand1).addClass('class-info');
+					$('#5_' + stand1).html(param.friList[j].timetable_course_name); // text 크기를 넘어가면 조절
+					$('#5_'+stand1).attr('style','background-color: '+param.friList[j].timetable_color); // db에서 색깔지정
+				}
+			}
+		}
+	}
+	
+	
+	//=============================================================================================================================================
+	
+	
+	
+	// 수정하기 전 코드 (강의명, 색상명이 작동을 하지 않고 나머지는 작동하는 코드, 이 코드를 이용해서 위에 실행되는 코드를 만들었음)
+	// --------월요일--------------------
+	function printMonTimetable2(param){
+		for(var i=0; i<param.listMON.length; i++){
+			var array = [];
+			for(var j=0; j<param.monList.length; j++){
+				if(param.listMON[i].course_code == param.monList[j].course_code){
+					array.push(Number(param.monList[j].timetable_table_id.slice(2)));
+				}
+				
 				if(j == param.monList.length - 1){
 					array.sort((a, b) => a - b); // js에서 정렬할 때는 문자열로 변경해서 정렬하기 때문에 이런 방식으로 정렬해야 한다
-					var prev = array[0]
+					var prev = array[0];
 					var cnt = 1;
 					var list = [];
 					list.push([array[0],cnt]);
@@ -201,7 +458,6 @@ $(function() {
 					var stand1 = 0;
 					var stand2 = 0;
 					for(var s=0; s<list.length; s++){
-						console.log("여기");
 						if(list[s][1] == 1 && stand1 == 0){ // 첫번째
 							stand1 = list[s][0];
 						} else if(list[s][1] == 1 && stand1 != 0){ // 두번째
@@ -226,8 +482,8 @@ $(function() {
 	
 	
 	
-	// --------화요일---------
-	function printTueTimetable(param){
+	// --------화요일--------------------
+	function printTueTimetable2(param){
 		
 		for(var i=0; i<param.listTUE.length; i++){
 			var array = [];
@@ -236,8 +492,9 @@ $(function() {
 					array.push(Number(param.tueList[j].timetable_table_id.slice(2)));
 				}
 				if(j == param.tueList.length - 1){
+					console.log(param.listTUE[i]);
 					array.sort((a, b) => a - b); // js에서 정렬할 때는 문자열로 변경해서 정렬하기 때문에 이런 방식으로 정렬해야 한다
-					var prev = array[0]
+					var prev = array[0];
 					var cnt = 1;
 					var list = [];
 					list.push([array[0],cnt]);
@@ -277,8 +534,8 @@ $(function() {
 		}
 	}
 	
-	// --------수요일---------
-	function printWedTimetable(param){
+	// --------수요일--------------------
+	function printWedTimetable2(param){
 		for(var i=0; i<param.listWED.length; i++){
 			var array = [];
 			for(var j=0; j<param.wedList.length; j++){
@@ -287,7 +544,7 @@ $(function() {
 				}
 				if(j == param.wedList.length - 1){
 					array.sort((a, b) => a - b); // js에서 정렬할 때는 문자열로 변경해서 정렬하기 때문에 이런 방식으로 정렬해야 한다
-					var prev = array[0]
+					var prev = array[0];
 					var cnt = 1;
 					var list = [];
 					list.push([array[0],cnt]);
@@ -317,7 +574,6 @@ $(function() {
 							stand2 = list[s][1];
 							$('#3_'+list[s][0]).attr('style', "display:none;");
 						}
-							
 					}
 					$('#3_'+stand1).attr('rowspan', stand2);
 					$('#3_'+stand1).addClass('class-info');
@@ -328,8 +584,8 @@ $(function() {
 		}
 	}
 	
-	// --------목요일---------
-	function printThurTimetable(param){
+	// --------목요일---------------------
+	function printThurTimetable2(param){
 		for(var i=0; i<param.listTHUR.length; i++){
 			var array = [];
 			for(var j=0; j<param.thurList.length; j++){
@@ -338,7 +594,7 @@ $(function() {
 				}
 				if(j == param.thurList.length - 1){
 					array.sort((a, b) => a - b); // js에서 정렬할 때는 문자열로 변경해서 정렬하기 때문에 이런 방식으로 정렬해야 한다
-					var prev = array[0]
+					var prev = array[0];
 					var cnt = 1;
 					var list = [];
 					list.push([array[0],cnt]);
@@ -378,8 +634,8 @@ $(function() {
 		}
 	}
 	
-	// --------금요일---------
-	function printFriTimetable(param){
+	// --------금요일--------------------
+	function printFriTimetable2(param){
 		for(var i=0; i<param.listFRI.length; i++){
 			var array = [];
 			for(var j=0; j<param.friList.length; j++){
@@ -388,7 +644,7 @@ $(function() {
 				}
 				if(j == param.friList.length - 1){
 					array.sort((a, b) => a - b); // js에서 정렬할 때는 문자열로 변경해서 정렬하기 때문에 이런 방식으로 정렬해야 한다
-					var prev = array[0]
+					var prev = array[0];
 					var cnt = 1;
 					var list = [];
 					list.push([array[0],cnt]);
@@ -427,9 +683,8 @@ $(function() {
 			}
 		}
 	}
+	
+	
 	//================timetablePrint 끝==================
-	
-	
-	
 	
 });
