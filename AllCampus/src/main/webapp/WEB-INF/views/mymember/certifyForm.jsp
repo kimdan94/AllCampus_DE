@@ -25,33 +25,44 @@ $(function(){
 			return false;
 		}
 	});
+	//파일명 띄우기
+	$("#mem_certifyfilename").on('change',function(){
+  		let fileName = $("#mem_certifyfilename").val();
+ 		 $(".upload-name").val(fileName);
+	});
 });
 </script>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+	<jsp:include page="/WEB-INF/views/mymember/sidebar.jsp"/>
+	<h2 class="header">학교 인증</h2>
 	<div class="content-main">
 		<h2>학교 인증 안내</h2>
+		<div class="write">
 		대학교에서 발급된 증명서 자료를 이용한 인증 방법입니다.<br>
 		가능한 증명서 자료에는 <b>학생증,재학증명서,졸업증명서</b>가 있습니다.<br>
 		발급된 증명서를 스캔하거나 사진으로 찍어 첨부해 주세요.<br>
 		증명서에는 <b>발급일자,대학교,이름,학번,학과</b>가 모두 포함되어 있어야 하며,<br>
 		<b>3개월 이내 발급</b>된 증명서만 유효합니다.<br>
 		인증 처리에는 최대 72시간(휴일 제외)이 소요될 수 있습니다.<br>
-		
+		</div>
 		<br><br>
 		
 		<h2>증명서 첨부</h2>
 		<form action="certifyAlert.do" method="post" enctype="multipart/form-data"
-			  id="certify_form" >
+			  id="certify_form">
 		증명서 첨부(이미지 파일)<br>
+		<div class="filebox">
+		<input class="upload-name" value="첨부파일" placeholder="첨부파일">
+		<label for="mem_certifyfilename">파일 찾기</label>
 		<input type="file" name="mem_certifyfilename" id="mem_certifyfilename" 
 			   accept="image/gif,image/png.imgae/jpeg">
+		</div>
+		<br><br>
 		
-		<br><br><br>
-		
-		<h2>약관 동의</h2>
+		<h2>약관 동의</h2><br>
 		<div class="agree" >
 		 <b>약관 동의 안내</b><br>
 		 도용,사문서 위조,해킹 등의 행위가 적발될 경우,관련 법에 따라 법적 책임이 따를 수 있습니다.<br>
@@ -61,13 +72,13 @@ $(function(){
 		 커뮤니티 이용규칙은 누구나 기분 좋게 참여할 수 있는 커뮤니티를 만들기 위해 제정되었습니다.<br> 서비스 내 모든
 		 커뮤니티는 커뮤니티 이용규칙에 의해 운영되므로, 이용자는 커뮤니티 이용 전 반드시 모든 내용을 숙지하여야 합니다.
 		</div><p>
-		<input type="checkbox" name="checkbox" id="input-check">개인정보 수집 및 이용 동의(필수)
+		<input type="checkbox" name="checkbox" id="input-check" class="write">개인정보 수집 및 이용 동의(필수)
 		<div><br>
 			<input type="submit" value="인증 요청하기" class="btn">
 		</div>
 		</form>
 	</div>
-	
+ </div>
 </div>
 </body>
 </html>

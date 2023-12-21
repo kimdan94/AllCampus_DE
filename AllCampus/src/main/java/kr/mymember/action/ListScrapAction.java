@@ -30,7 +30,7 @@ public class ListScrapAction implements Action{
 		
 		//댓글 단 글
 		int count = dao.getBoardScrapCount(user_num);
-		PageUtil page = new PageUtil(Integer.parseInt(pageNum),count,20,10,"listscrap.do");
+		PageUtil page = new PageUtil(Integer.parseInt(pageNum),count,6,10,"listscrap.do");
 		List<BoardVO> list = null;
 		if(count>0) {
 			list = dao.getListScrapReply(page.getStartRow(), page.getEndRow(), user_num);

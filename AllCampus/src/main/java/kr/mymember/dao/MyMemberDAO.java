@@ -39,7 +39,8 @@ public class MyMemberDAO {
 			// 커넥션풀로부터 커넥션을 할당
 			conn = DBUtil.getConnection();
 			// SQL문 작성
-			sql = "SELECT * FROM all_member JOIN all_member_detail USING(mem_num) " + "WHERE mem_num=?";
+			sql = "SELECT * FROM all_member JOIN all_member_detail USING(mem_num) " 
+				+ "WHERE mem_num=?";
 			// PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			// ?에 데이터 바인딩
@@ -55,7 +56,7 @@ public class MyMemberDAO {
 				member.setMem_nick(rs.getString("mem_nick"));
 				member.setMem_name(rs.getString("mem_name"));
 				member.setMem_email(rs.getString("mem_email"));
-				member.setMem_num(rs.getInt("mem_univNum"));
+				member.setMem_univNum(rs.getInt("mem_univNum"));
 				member.setMem_major(rs.getString("mem_major"));
 				member.setMem_major2(rs.getString("mem_major2"));
 				member.setMem_photo(rs.getString("mem_photo"));
@@ -369,7 +370,6 @@ public class MyMemberDAO {
 				BoardVO board = new BoardVO();
 				board.setBoard_num(rs.getInt("board_num"));
 				board.setBoard_title(StringUtil.useNoHtml(rs.getString("board_title")));
-				board.setBoard_content(StringUtil.useNoHtml(rs.getString("board_content")));
 				board.setBoard_reg_date(rs.getDate("board_reg_date"));
 				
 				list.add(board);
@@ -388,7 +388,7 @@ public class MyMemberDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = null;
-		int count = 0;
+		int count2 = 0;
 
 		try {
 			// 커넥션풀로부터 커넥션을 할당
@@ -402,14 +402,14 @@ public class MyMemberDAO {
 			// SQL문 실행
 			rs = pstmt.executeQuery();
 			if (rs.next()) {// 전체 레코드에 페이지 처리
-				count = rs.getInt(1);
+				count2 = rs.getInt(1);
 			}
 		} catch (Exception e) {
 			throw new Exception(e);
 		} finally {
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
-		return count;
+		return count2;
 	}
 
 	// 내가 쓴 글 전체 글 - all_secondhand
@@ -439,6 +439,7 @@ public class MyMemberDAO {
 			list2 = new ArrayList<SecondhandVO>();
 			while (rs.next()) {
 				SecondhandVO second = new SecondhandVO();
+				second.setSecondhand_num(rs.getInt("secondhand_num"));
 				second.setSecondhand_name(rs.getString("secondhand_name"));
 				second.setSecondhand_writer(rs.getString("secondhand_writer"));
 				second.setSecondhand_price(rs.getInt("secondhand_price"));
@@ -461,7 +462,7 @@ public class MyMemberDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = null;
-		int count = 0;
+		int count3 = 0;
 
 		try {
 			// 커넥션풀로부터 커넥션을 할당
@@ -475,14 +476,14 @@ public class MyMemberDAO {
 			// SQL문 실행
 			rs = pstmt.executeQuery();
 			if (rs.next()) {// 전체 레코드에 페이지 처리
-				count = rs.getInt(1);
+				count3 = rs.getInt(1);
 			}
 		} catch (Exception e) {
 			throw new Exception(e);
 		} finally {
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
-		return count;
+		return count3;
 	}
 
 	// 내가 쓴 글 전체 글 - all_course_eva
@@ -499,7 +500,7 @@ public class MyMemberDAO {
 
 			// SQL문 작성
 			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
-					+ "(SELECT * FROM all_course_eva JOIN all_member USING(mem_num) WHERE mem_num=? "
+					+ "(SELECT * FROM all_course_eva JOIN all_course USING(course_num) JOIN all_member USING(mem_num) WHERE mem_num=? "
 					+ "ORDER BY eva_reg_date DESC)a) WHERE rnum >=? AND rnum <=?";
 			// PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
@@ -512,11 +513,13 @@ public class MyMemberDAO {
 			list3 = new ArrayList<CourseEvaVO>();
 			while (rs.next()) {
 				CourseEvaVO courseeva = new CourseEvaVO();
+				courseeva.setEva_num(rs.getInt("eva_num"));
 				courseeva.setEva_reg_date(rs.getDate("eva_reg_date"));
 				
 				//강의명 담기 위해 CourseVO 객체 생성
 				CourseVO course = new CourseVO();
 				course.setCourse_name(rs.getString("course_name"));
+				course.setCourse_prof(rs.getString("course_prof"));
 				
 				courseeva.setCourseVO(course);
 				
@@ -574,9 +577,9 @@ public class MyMemberDAO {
 			conn = DBUtil.getConnection();
 			// SQL문 작성
 			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
-					+ "(SELECT * FROM all_board JOIN all_member USING(mem_num) "
-					+ "JOIN all_board_reply f USING(board_num) WHERE f.mem_num=? "
-					+ "ORDER BY board_reg_date DESC)a) WHERE rnum >=? AND rnum <= ?";
+				+ "(SELECT * FROM all_board JOIN all_member USING(mem_num) "
+				+ "JOIN all_board_reply f USING(board_num) WHERE f.mem_num=? "
+				+ "ORDER BY board_reg_date DESC)a) WHERE rnum >=? AND rnum <= ?";
 			// PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			// ?에 데이터 바인딩
@@ -590,7 +593,6 @@ public class MyMemberDAO {
 				BoardVO board = new BoardVO();
 				board.setBoard_num(rs.getInt("board_num"));
 				board.setBoard_title(StringUtil.useNoHtml(rs.getString("board_title")));
-				board.setBoard_content(StringUtil.useNoHtml(rs.getString("board_content")));
 				board.setBoard_reg_date(rs.getDate("board_reg_date"));
 
 				list.add(board);

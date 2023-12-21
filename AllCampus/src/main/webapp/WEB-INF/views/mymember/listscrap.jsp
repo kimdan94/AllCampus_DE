@@ -7,16 +7,15 @@
 <meta charset="UTF-8">
 <title>내 스크랩 목록</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/dan.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript">
-
-</script>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<div class="content-main">
-		<h2>내 스크랩</h2>
+	<jsp:include page="/WEB-INF/views/mymember/sidebar.jsp"/>
+	<h2 class="header">내 스크랩</h2>
+	<div class="content">
 		<c:if test="${count == 0}">
 		<div class="result-display">
 			표시할 게시물이 없습니다.
@@ -24,6 +23,7 @@
 		</c:if>
 		<c:if test="${count > 0}">
 		<table>
+		<h3 class="write">[ 자유게시판 ]</h3>
 			<tr>
 				<th>글번호</th>
 				<th>제목</th>
@@ -37,9 +37,11 @@
 			</tr>
 			</c:forEach>
 		</table>
+		<br><br>
 		<div class="align-center">${page}</div>
 		</c:if>
 	</div>
+ </div>
  </div>
 </body>
 </html>
