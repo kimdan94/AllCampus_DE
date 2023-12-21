@@ -67,7 +67,7 @@ public class SecondhandDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
-	//전체 레코드 수/검색 레코드 수
+	//전체 레코드 수/ 검색 레코드 수
 	public int getSecondhandCount(String keyfield,String keyword)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -105,7 +105,7 @@ public class SecondhandDAO {
 		}
 		return count;
 	}
-	//전체 글/검색 글 목록
+	//전체 글/ 검색 글 목록
 	public List<SecondhandVO> getListSecondhand(int start, int end, 
 											String keyfield, String keyword)throws Exception{
 		Connection conn = null;
