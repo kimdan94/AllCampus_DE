@@ -5,12 +5,13 @@
 body {
 	margin:0 auto;
 	background-color: #FFFFFF;
-	min-width:1700px;
+	
 }
 .page-main{
-	width:100%;
+	width:1650px;
 	margin:40px 0;
 	min-height:850px;
+	overflow:hidden;
 }
 
 /* 공통 정렬
@@ -26,9 +27,9 @@ body {
 ------------------------------*/
 .header-style {
 	height: 80px;
-	width: 99%;
-	margin:15px 0 0 7px;
-	padding:2px;
+	width: 1670px;
+	margin:15px 0 0 9px;
+	padding:0;
 	vertical-align:middle;
 	border:1px solid #dcdfe3;
 	border-radius:10px;
