@@ -161,20 +161,20 @@ textarea{
 /* 홈 : home.jsp
 ------------------------------ */
 .home-div{
-	width:30%;
+	width:495px;
 	float:left;
 	padding:5px;
 	margin:70px -390px 0 400px;
 }
 .home-div2{
-	width:975px;
+	width:960px;
 	padding:5px;
 	float:left;
 	border-radius:10px;
 	border:1px solid #edeff0;
-	padding-left:25px;
+	padding-left:11px;
 	padding-right:44px;
-	margin-left:477px;
+	margin-left:475px;
 	margin-top:15px;
 }
 .home-end{
@@ -187,7 +187,7 @@ textarea{
 	border:1px solid;
 }
 .myInfo-div{
-	width:9%;
+	width:150px;
 	height:200px;
 	float:left;
 	margin:70px -300px 0 220px;
@@ -197,6 +197,7 @@ textarea{
 }
 .myInfo-div img{
 	width:70px;
+	height:70px;
 	border-radius:50%;
 	object-fit:cover;
 	object-position:top;
