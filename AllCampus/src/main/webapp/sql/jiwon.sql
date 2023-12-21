@@ -106,23 +106,7 @@ create table all_eva_warn(
                                   references all_member (mem_num)
 );
 
-
--------------------------------------------------
-
---학점계산기
-create table all_calculator(
- mem_num number not null,      --FK
- course_num number not null,   --FK
- cal_grade varchar2(10) not null,
- cal_major number(1) not null,
- constraint all_calculator_fk1 foreign key (mem_num)
-                                  references all_member (mem_num),
- constraint all_calculator_fk2 foreign key (course_num)
-                                  references all_course (course_num)
-);
-
 ------------------------------
---연습  지원 학점계산기
 create table all_calculator(
  mem_num number not null,      --FK
  cal_semester varchar2(30) not null,
@@ -139,6 +123,8 @@ create table all_calculator_semester(
  cal_avgscore number(9,2) default 0 not null,
  cal_majorscore number(9,2) default 0 not null,
  cal_acq number default 0 not null,
+ cal_finclude_acq not null,
+ cal_majorf_acq not null,
  constraint all_calculator__semester_fk foreign key (mem_num) references all_member (mem_num)
 );
 

@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/jiwonstyle.css">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script type="text/javascript">
 function getSemesterLabel(semesterValue) {
@@ -13,11 +14,11 @@ function getSemesterLabel(semesterValue) {
         case 0:
             return '1학기';
         case 1:
-            return '하계 계절';
+            return '여름';
         case 2:
             return '2학기';
         case 3:
-            return '동계 계절';
+            return '겨울';
         default:
             return 'Unknown Semester';
     }
@@ -97,9 +98,8 @@ $(document).ready(function () {
 <body>
     <jsp:include page="/WEB-INF/views/common/header.jsp"/>
     <div class="page-main">
-
-    <div class="content-main">
-        <h2>강의평 수정 폼</h2>
+        <h2 class="board-title">강의평 수정 폼</h2>
+ 		<hr width="10%" class="board-underline">       
         <form id="write_form" action="evawrite.do" method="post">
         <input type="hidden" name="course_nameprof" id="course_nameprof">   <%-- name과 id 값인 course_name은 내가 바꿔주기(설정) --%>
         <input type="hidden" name="eva_semester" id="course_yearsemester">
@@ -138,7 +138,7 @@ $(document).ready(function () {
             	<select name="course_num" id="evasemesterList">
             		<option value="" selected>수강 학기 선택</option>
             		<c:forEach var="course1" items="${list1}">
-                        <option value="${course1.course_num}">${course1.course_year}(${course1.course_semester})</option>
+                        <option value="${course1.course_num}">${course1.course_year} (${course1.course_semester})</option>
                     </c:forEach>
             	</select>
             </li>
@@ -148,7 +148,6 @@ $(document).ready(function () {
             <input type="button" value="목록" onclick="location.href='courseeva_list.do'">
         </div>
         </form>
-    </div>
 </div>
 </body>
 </html> 

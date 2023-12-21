@@ -5,7 +5,7 @@ public class CalSemesterVO {
 	private String cal_semester;		//학년학기
 	private double cal_avgscore;		//평점 
 	private double cal_majorscore;		//전공 점수
-	private int cal_acq;				//총 취득 점수
+	private int cal_acq;				//총 취득 학점
 	private int cal_finclude_acq; 		//F등급 포함한 한 학기 당 취득 점수
 	private int cal_majorf_acq;			//F등급 포함한 한 학기 당 전공 취득 점수
 	

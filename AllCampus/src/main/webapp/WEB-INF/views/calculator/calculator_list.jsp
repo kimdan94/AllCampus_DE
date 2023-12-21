@@ -9,61 +9,6 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/jiwonstyle.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
-<style type="text/css">
-        body {
-            font-family: Arial, sans-serif;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-        }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        .score_show {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-top: 10px;
-    }
-
-    .column {
-        text-align: center;
-        width: 10%;
-        border: 1px solid #ddd;
-        padding: 10px;
-        border-radius: 5px;
-    }
-    .column.gpa {
-        margin-right: 10px; /* Add right margin to the "전체 평점" div */
-    }
-</style>
 <script type="text/javascript">
 $(document).ready(function () {
 	let semester_index;
@@ -313,10 +258,12 @@ $(document).ready(function () {
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-<div id="container" class="calculator">
-	<div class="title">
-		<h1>학점계산기</h1>
+	<div>
+		<h2 class="board-title">학점계산기</h2>
+		<hr width="10%" class="board-underline">
 	</div> 
+<div id="container" class="calculator">
+	
 	<div class="section">
 		<div class="chart">
 			<article class="overview">
@@ -367,12 +314,10 @@ $(document).ready(function () {
 					<p class="total" title="졸업 학점 설정">130</p>
 				</div>
 			</article>
-		
-			
 		</div>
 		<div>
 			<select name="select_semester">
-				<option>선택하세요</option>
+				<option>학기 선택</option>
 				<option>1학년 1학기</option>
 				<option>1학년 여름</option>
 				<option>1학년 2학기</option>
@@ -407,9 +352,9 @@ $(document).ready(function () {
 				<p class="value" id="acq">0</p>
 			</div>
 		</div>
-		
-		<button id="openModalBtn">시간표 불러오기</button>
-		
+		<div class="button">
+		<button id="openModalBtn" class="cal-btn4">시간표 불러오기</button>
+		</div>
 			<div id="myModal" class="modal">
 				<div class="modal-content">
 					<span class="close" id="closeModalBtn">&times;</span>
@@ -433,12 +378,12 @@ $(document).ready(function () {
 								<option value="2019-0">2019년 1학기</option>
 							</select>
            				</p>
-            			<input type="submit" value="가져오기" class="button">
+            			<input type="submit" value="가져오기" class="cal-btn4">
        				</form>
 				</div>
 			</div>
 		<form id="cal_count">
-		<table>
+		<table class="cal-table">
 		<thead>
 			<tr>
             	<th class="name">과목명</th>
@@ -465,8 +410,7 @@ $(document).ready(function () {
         
 		</table>
 		<input type="hidden" id="cal_semester" name="cal_semester" value="">
-		<input type="submit" value="계산하기">
-		
+		<input type="submit" value="계산하기" class="cal-btn4">
 		</form>
 	</div> 
 </div>

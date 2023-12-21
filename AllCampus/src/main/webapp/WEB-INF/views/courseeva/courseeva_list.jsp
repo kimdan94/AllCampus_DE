@@ -8,12 +8,28 @@
 <title>강의평 리스트</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/jiwonstyle.css">
+<script type="text/javascript">
+window.onload = function(){
+	let myForm = document.getElementById('search_Form');
+	//이벤트 연결
+	myForm.onsubmit = function(){
+		let keyword = document.getElementById('keyword');
+		if(keyword.value.trim()==''){
+			alert('검색어를 입력하세요!');
+			keyword.value = '';
+			keyword.focus();
+			return false;
+		}
+	};
+};
+</script>
 </head>
 <body>
-<div class="main_page">
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+<div class="page-main">
+	<h2 class="board-title">강의평</h2>
+	<hr width="10%" class="board-underline">
 	<div class="free_title">
-		
 		<form id="search_Form" action="list.do" method="get">
 				<ul class="search">
 				<li>
@@ -31,10 +47,10 @@
 			</ul>
 		</form>
 		<div class="list-space align-right">
+			<input type="button" value="목록" onclick="location.href='courseeva_list.do'">
 			<input type="button" value="강의평 작성" onclick="location.href='evawriteForm.do'"
 			<c:if test="${empty user_num}">disabled="disabled"</c:if>
 			>
-			<input type="button" value="목록" onclick="location.href='courseeva_list.do'">
 		</div>
 		<c:if test="${count == 0}">
 		<div class="result-display">
@@ -42,15 +58,16 @@
 		</div>
 		</c:if>
 		<c:if test="${count > 0}">
-		<table>
+		<table class="eva-table">
 			<c:forEach var="courseeva" items="${list}">
 			<tr onclick="location.href='courseeva_detail.do?course_name=${courseeva.courseVO.course_name}&course_prof=${courseeva.courseVO.course_prof}'">
 				<td>
-					${courseeva.courseVO.course_name}<br>
-					${courseeva.courseVO.course_prof}<br>
-					${courseeva.eva_star}<br>
-					${courseeva.eva_semester}<br>
-					${courseeva.eva_content}
+					<span class="course_name">${courseeva.courseVO.course_name}</span><br>
+					<span class="course_prof">${courseeva.courseVO.course_prof}</span><br>
+					<img src="${pageContext.request.contextPath}/images/star_icon2.png" width="18" height="18">
+					<span class="eva_star">${courseeva.eva_star}</span><br>
+					<span class="eva-semester">${courseeva.eva_semester} 수강자</span><br>
+                    <span class="eva-content">${courseeva.eva_content}</span>
 				</td>
 			</tr>
 			</c:forEach>

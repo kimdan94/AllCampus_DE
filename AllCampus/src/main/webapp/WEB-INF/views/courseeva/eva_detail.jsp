@@ -43,6 +43,7 @@ $(function(){
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<div class="page-main">
+		
 		<div class="content-main">
 			<h2>${course_name}</h2>
 			

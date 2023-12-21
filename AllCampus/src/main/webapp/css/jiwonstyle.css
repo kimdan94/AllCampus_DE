@@ -1,4 +1,28 @@
 @charset "UTF-8"; 
+
+/*공통
+---------------------------------*/
+.cal-btn2{
+	border:none;
+	width:90px;
+	height:25px;
+	border-radius:10px;
+	background-color:#6699cc;
+	font-weight:bold;
+	color:white;
+}
+.board-underline{
+	margin-left:95px;
+	border:0;
+	height:3px;
+	background:#6699cc;
+}
+.board-title{
+	margin-left:95px;
+	color:#2b2b2b;
+}
+
+
 /* 
 자유게시판 list.jsp 부분
 ------------------------------*/
@@ -20,7 +44,7 @@ table td, table th{
 	
 }
 form{
-	background-color:yellow;
+	
 	width:1000px;
 	margin:0;
 	padding:10px;
@@ -47,7 +71,7 @@ ul.board_search li{
 /*글쓰기 버튼*/
 .list-space input[type="button"]{
 	float:right;
-  align-items: center;
+  	align-items: center;
 }
 
 
@@ -105,40 +129,129 @@ ul.detail-info{
     float: right;
 }
 
-/* 학점계산기
-------------------------*/
+/* 강의평 시작   courseeva_list.jsp
+---------------------------------*/
+.eva-table{
+    width: 800px;
+    border: 1px solid gray;
+    border-collapse: collapse;
+    margin-top: 5px;
+    margin-left: 450px;
+}
+
+form#search_Form {
+    border: none;
+    margin-left:110px;
+    margin-right: 0; /* 조정할 오른쪽 여백 크기 */
+    margin-top: 10px; /* 조정할 상단 여백 크기 */
+}
+
+ul.search {
+    width: 340px;
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+}
+
+ul.search li {
+    margin: 0 0 9px 0;
+    padding: 0;
+    display: inline;
+}
+
+.free_title .list-space {
+	width:700px;
+    margin-left: 550px;
+}
+
+.list-space input {
+    margin-left: 5px; /* 각 버튼 사이의 간격 조절 */
+}
+
+.result-display2{
+	width:600px;
+	height:400px;
+	margin:50px 530px;
+	border:1px solid #000;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+}
+
+.eva-table{
+	width:800px;
+	border:1px solid gray;
+	border-collapse:collapse;
+	margin-top:5px;
+	margin-left:450px;
+}
+.eva-table .course_name{
+	font-weight: bold;
+	font-size:20px;
+}
+.eva-table .course_prof{
+	font-size:15px;
+}
+
+.eva-table img{
+	color:yellow;
+}
+.eva-table .eva_star {
+    font-size: 14px;
+}
+
+.eva-table .eva-semester{
+	color:#808080;
+	font-size: 14px;
+}
+.eva-table .eva-content{
+	font-size:16px;
+}
+
+
+/* 학점계산기 시작
+---------------------------------*/
 #container{
-	background-color:pink;
-	width:1000px;
-	margin:0 auto;
-	padding:0;
-	border:none;
+	/* background-color: pink; */
+    width: 870px;
+    margin: 0 auto;
+    padding: 0;
+    border: none;
+    margin-left: 450px;
+   
+   
 }
 
 #container.calculator div.section {
-    padding: 0 8px;
+    border: 1px solid #808080;
+    border-radius: 5px;
+    padding: 0 5px;
 }
 
-#container.calculator div.section div.chart,#container.calculator div.section div.menu {
-    border: 1px solid #ededed;
-    border-radius: 12px;
-}
+
 
 #container.calculator div.section div.chart article.overview {
     display: flex;
-    justify-content: space-between;
-    min-height: 52px;
-    margin-bottom: 32px;
+    justify-content: start;
+    min-height: 20px;
+    margin-bottom: 10px;
 }
 
-#container.calculator div.section div.chart article.overview div.column h4 {
+#container.calculator div.section div.chart article.overview div.column h3 {
     margin-bottom: 2px;
     color: #444;
-    font-size: 12px;
     font-weight: normal;
-    line-height: 18px;
+    line-height: 10px;
 }
 
+
+#container.calculator div.section div.score_show div.column h3 {
+    margin-bottom: 2px;
+    color: #444;
+    font-size: 15px;
+    font-weight: normal;
+    line-height: 10px;
+}
 #container.calculator div.section div.chart article.overview div.column p {
     display: inline-block;
 }
@@ -147,44 +260,134 @@ ul.detail-info{
     color: #f91f15;
     font-size: 26px;
     font-weight: bold;
-    line-height: 32px;
+    line-height: 5px;
 }
 
 /* 학점계산기 평점,전공,취득 스타일 */
+/*
 #container.calculator div.score_show  div.column p#avgscore ,p#majorscore,p#acq {
     color: #f91f15;
     font-size: 26px;
-    font-weight: bold;
-    line-height: 32px;
+   font-weight: bold;
+    line-height: 10px;
 }
-
+ */
 
 #container.calculator div.section div.chart article.overview div.column p.total {
-    margin-left: 4px;
+    margin-left: 5px;
     color: #a6a6a6;
     font-size: 12px;
-    line-height: 18px;
+    line-height: 5px;
 }
-
-#container.calculator div.section div.chart article.overview div.column p.total span.button {
-    cursor: pointer;
-    display: inline-block;
-    margin-left: 2px;
-    padding: 0 6px;
-    color: #a6a6a6;
-    font-size: 12px;
-    line-height: 18px;
-    background-color: #f2f2f2;
-    border-radius: 9px;
+/*시간표 불러오기 버튼 */
+#container.calculator div.section div.button button.cal-btn4{
+	border:none;
+	width:130px;
+	height:25px;
+	border-radius:10px;
+	background-color:#6699cc;
+	font-weight:bold;
+	color:white;
+}
+/* 계산하기 버튼 */
+#container.calculator div.section input.cal-btn4{
+	border:none;
+	width:100px;
+	height:25px;
+	border-radius:10px;
+	background-color:#6699cc;
+	font-weight:bold;
+	color:white;
 }
 
 #container.calculator div.section div.chart article.overview div.column.acquisition p.total {
     cursor: pointer;
     padding-right: 15px;
-    background: rgba(0, 0, 0, 0) url("/images/container.calculator.setting.png") no-repeat right center;
+    
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 25%;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 
+.column {
+    text-align: center;
+    width: 12%;
+    padding: 10px;
+    border-radius: 5px;
+    
+}
+
+
+
+.score_show {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.score_show .column {
+    display: flex;
+    flex-direction: row; /* Keep items in each column side by side */
+    align-items: center; /* Align items vertically in the center */
+}
+
+.score_show .column h3 {
+    margin-right: 5px; /* Adjust as needed for spacing */
+    margin-bottom: 0;
+}
+
+.score_show .column p.value {
+    margin-bottom: 1px;
+    color: #f91f15;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top:10px;
+    line-height: 5px;
+}
+
+#container.calculator div.section .cal-table {
+    width: 800px;
+    border: 1px solid gray;
+    border-collapse: collapse;
+    margin-top: 5px;
+}
+
+/* 학점계산기 끝
+----------------------------  */
 
 /*
 .free_title {
