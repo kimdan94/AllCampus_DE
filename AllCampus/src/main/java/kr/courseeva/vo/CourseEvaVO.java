@@ -3,6 +3,7 @@ package kr.courseeva.vo;
 import java.sql.Date;
 
 import kr.course.vo.CourseVO;
+import kr.member.vo.MemberVO;
 
 
 public class CourseEvaVO {
@@ -16,6 +17,8 @@ public class CourseEvaVO {
 	private String eva_semester;	//수강학기
 	private Date eva_reg_date;	    //강의평 글 등록일
 	private int eva_fav;
+	
+	private MemberVO memberVO; 
 	
 	private CourseVO courseVO;
 	
@@ -78,6 +81,12 @@ public class CourseEvaVO {
 	}
 	public void setEva_fav(int eva_fav) {
 		this.eva_fav = eva_fav;
+	}
+	public MemberVO getMemberVO() {
+		return memberVO;
+	}
+	public void setMemberVO(MemberVO memberVO) {
+		this.memberVO = memberVO;
 	}
 	public CourseVO getCourseVO() {
 		return courseVO;
