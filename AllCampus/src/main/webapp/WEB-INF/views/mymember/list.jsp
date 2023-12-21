@@ -16,15 +16,15 @@
 	<jsp:include page="/WEB-INF/views/mymember/sidebar.jsp"/>
 	<h2 class="header">내가 쓴 글</h2>
 	<div class="content">
+		
+		<h3 class="write">[ 자유게시판 ]</h3>
 		<c:if test="${count == 0}">
 		<div class="result-display">
 			표시할 게시물이 없습니다.
 		</div>
 		</c:if>
 		<c:if test="${count > 0}">
-		
 		<table>
-		<h3 class="write">[ 자유게시판 ]</h3>
 			<tr>
 				<th>글번호</th>
 				<th>제목</th>
@@ -40,9 +40,17 @@
 			</c:forEach>
 		</table><br><br>
 		<div class="align-center">${page}</div>
+		</c:if>
+		
 		<br>
 		
 		<h3 class="write">[ 책방 ]</h3>
+		<c:if test="${count == 0}">
+		<div class="result-display">
+			표시할 게시물이 없습니다.
+		</div>
+		</c:if>
+		<c:if test="${count2 > 0}">
 		<table>
 			<tr>
 				<th>글번호</th>
@@ -58,9 +66,16 @@
 			</c:forEach>
 		</table><br><br>
 		<div class="align-center">${page2}</div>
+		</c:if>
 		<br>
 		
 		<h3 class="write">[ 강의평 ]</h3>
+		<c:if test="${count == 0}">
+		<div class="result-display">
+			표시할 게시물이 없습니다.
+		</div>
+		</c:if>
+		<c:if test="${count3 > 0}">
 		<table>
 			<tr>
 				<th>글번호</th>
@@ -77,7 +92,6 @@
 		</table><br><br>
 		<div class="align-center">${page3}</div>
 		</c:if>
-	</div>
 	</div>
 	</div>
 </body>

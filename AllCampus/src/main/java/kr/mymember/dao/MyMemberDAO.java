@@ -576,7 +576,7 @@ public class MyMemberDAO {
 			// 커넥션풀로부터 커넥션을 할당
 			conn = DBUtil.getConnection();
 			// SQL문 작성
-			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
+			sql = "SELECT distinct(board_num),board_title,board_reg_date FROM (SELECT a.*, rownum rnum FROM "
 				+ "(SELECT * FROM all_board JOIN all_member USING(mem_num) "
 				+ "JOIN all_board_reply f USING(board_num) WHERE f.mem_num=? "
 				+ "ORDER BY board_reg_date DESC)a) WHERE rnum >=? AND rnum <= ?";

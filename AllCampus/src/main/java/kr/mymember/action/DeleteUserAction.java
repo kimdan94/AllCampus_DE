@@ -7,6 +7,8 @@ import javax.servlet.http.HttpSession;
 import kr.controller.Action;
 import kr.mymember.dao.MyMemberDAO;
 import kr.mymember.vo.MyMemberVO;
+import kr.secondhand.dao.SecondhandDAO;
+import kr.secondhand.vo.SecondhandVO;
 import kr.util.FileUtil;
 
 public class DeleteUserAction implements Action{
@@ -21,7 +23,6 @@ public class DeleteUserAction implements Action{
 		//로그인 된 경우
 		//전송된 데이터 인코딩 처리
 		request.setCharacterEncoding("utf-8");
-		
 		//전송된 데이터 반환
 		String passwd = request.getParameter("passwd");
 		//현재 로그인 한 아이디
@@ -29,8 +30,8 @@ public class DeleteUserAction implements Action{
 		
 		MyMemberDAO dao = MyMemberDAO.getInstance();
 		MyMemberVO db_member = dao.checkId(user_id);
-		boolean check = false;
 		
+		boolean check = false;
 		if(db_member!=null) {
 			//비밀번호 일치여부 체크
 			check = db_member.isCheckedPassword(passwd);

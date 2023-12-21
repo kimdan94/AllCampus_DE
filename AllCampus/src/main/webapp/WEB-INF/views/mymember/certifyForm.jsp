@@ -58,7 +58,7 @@ $(function(){
 		<input class="upload-name" value="첨부파일" placeholder="첨부파일">
 		<label for="mem_certifyfilename">파일 찾기</label>
 		<input type="file" name="mem_certifyfilename" id="mem_certifyfilename" 
-			   accept="image/gif,image/png.imgae/jpeg">
+			   accept="image/gif,image/png,image/jpeg">
 		</div>
 		<br><br>
 		
