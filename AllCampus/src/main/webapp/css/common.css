@@ -13,7 +13,23 @@ body {
 	min-height:850px;
 	overflow:hidden;
 }
-
+a{
+	cursor:pointer;
+}
+input[type="button"]{
+	cursor:pointer;
+}
+input[type="submit"]{
+	cursor:pointer;
+}
+.sc-btn{
+	border:1px solid #e1e6ed;
+	width:80px;
+	height:25px;
+	border-radius:5px;
+	color:black;
+	font-weight:bold;
+}
 /* 공통 정렬
 ------------------------------*/
 .align-center{
