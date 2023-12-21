@@ -14,10 +14,11 @@
 </script>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<div class="result-display">
-		<h2>댓글 단 글</h2>
+	<jsp:include page="/WEB-INF/views/mymember/sidebar.jsp"/>
+		<h2 class="header">댓글 단 글</h2>
+		<div class="content">
 		<c:if test="${count == 0}">
 		<div> 
 			표시할 게시물이 없습니다.
@@ -25,6 +26,7 @@
 		</c:if>
 		<c:if test="${count > 0}">
 		<table>
+		<h3 class="write">[ 자유게시판 ]</h3>
 			<tr>
 				<th>글번호</th>
 				<th>제목</th>
@@ -38,9 +40,11 @@
 			</tr>
 			</c:forEach>
 		</table>
+		<br><br>
 		<div class="align-center">${page}</div>
 		</c:if>
 	</div>
+ </div>
  </div>
 </body>
 </html>

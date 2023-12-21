@@ -1,20 +1,79 @@
-/*학교 인증
+/*사이드 바
 -----------------------------*/
+.side{
+	width: 200px;
+    border: 1px solid #d6d6d6;
+    border-collapse: collapse;
+    border-radius:10px;
+    margin-left: 180px;
+    padding:15px;
+    float:left;
+}
+
+/*공통 
+-----------------------------*/
+/*제목*/
+.header{
+	width:820px;
+	border:1px solid #d6d6d6;
+	border-collapse:collapse;
+	border-radius:10px;
+	margin-top: 70px;
+	margin-left: 460px;
+	padding:20px;
+}
+
 .content-main{
 	width: 800px;
-    border: 1px solid gray;
+    border: 1px solid #d6d6d6;
     border-collapse: collapse;
-    margin-top: 70px;
-    margin-left: 500px;
+    border-radius:10px;
+    margin-left: 460px;
     padding:30px;
 }
-.agree{
-	overflow:auto;
-	width:750px;
-	height:150px;
-	border:1px solid black;
-	text-align:justify;
+
+/*버튼*/
+input[type="button"]{
+	cursor:pointer;
 }
+input[type="submit"]{
+	cursor:pointer;
+}
+/*input 스타일 변경*/
+.upload-name {
+    display: inline-block;
+    height: 10px;
+    padding: 10px;
+    border: 1px solid #BDBDBD;
+    width: 200px;
+    color: #999999;
+    margin-top:20px;
+}
+/*label 스타일 변경*/
+.filebox label {
+    display: inline-block;
+    padding: 5px 5px 10px 5px;
+    color:white;
+    text-align:center;
+    font-size:10pt;
+    border-radius:10px;
+    background-color: #BDBDBD;
+    font-weight:bold;
+    cursor: pointer;
+    height: 15px;
+    width:80px;
+    margin-left: 10px;
+}
+/*기존 디자인 없애기*/
+.filebox input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+}
+
 .btn{
 	border:1px solid #e1e6ed;
 	height:40px; 
@@ -25,6 +84,75 @@
 	color:white;
 	position: relative;
     left: 120px;
+}
+/*글 간격 조정*/
+.write{
+	margin-left:10px;
+}
+/*입력창*/
+.input-check{
+    border: none;
+    border-radius: 2pt;
+    box-shadow: 0 0 0 1pt #D8D8D8;
+    outline: none;
+    transition: .1s;
+}
+
+/*마이페이지 메인
+-----------------------------*/
+/*박스 테두리*/
+.wide{
+	width: 75%;
+    border: 1px solid #d6d6d6;
+    border-collapse: collapse;
+    margin-top: 100px;
+    margin-left: 150px;
+    padding:30px;
+}
+/*내용*/
+.myinfor{
+	margin-left:150px;
+	margin-top: 50px;
+	margin-bottom: 80px;
+}
+/*이름,닉네임,학번,전공*/
+.my{
+	display:inline-block;
+	margin-left: 50px;
+}
+/*이름,닉네임 간격조정*/
+.name_nick{
+	font-size:15pt;
+}
+/*학번,전공 간격조정*/
+.major{
+	font-size:12pt;
+}
+/*계정,내활동,기타 한 행으로 정렬*/
+.parent{
+	margin-left:150px;
+	display:flex;
+}
+.child{
+	flex:0.7;
+}
+/*프로필 이미지*/
+.my-photo{
+	object-fit:cover;
+	object-position:top;
+	border-radius:50%;
+}
+
+/*학교 인증
+-----------------------------*/
+.agree{
+	overflow:auto;
+	width:700px;
+	height:150px;
+	border:1px solid black;
+	text-align:justify;
+	margin-left:10px;
+	padding:10px;
 }
 
 /*내 정보 변경
@@ -58,7 +186,6 @@
 	font-weight:bold;
 	color:white;
 }
-
 .form-notice{
 	font-size:10pt;
 }
@@ -69,32 +196,94 @@
 	height:30px; 
 	width:300px;
 }
+.new_passwd{
+	margin-left:38px;
+}
+.origin_passwd{
+	margin-left:20px;
+}
+.delete_passwd{
+	height:40px; 
+	width:450px;
+}
+.confirm_passwd{
+	margin-top:10px;
+	margin-left:1px;
+}
 
 /*약관
 -----------------------------*/
 .term{
 	overflow:auto;
-	width:900px;
+	width:800px;
 	height:800px;
-	border:1px solid black;
+	border:1px solid #d6d6d6;
 	border-collapse: collapse;
+	border-radius:10px;
     margin-top: 70px;
     margin-left: 500px;
     padding:30px;
 }
+.logo{
+	width:250;
+}
 
-/*내가 쓴 글
+/*내가 쓴 글, 댓글, 스크랩
 -----------------------------*/
-
+.content{
+	width: 800px;
+    border-style: none;
+    border-collapse: collapse;
+    margin-left: 480px;
+    margin-top: 30px;
+    padding:10px;
+}
 
 table{
 	width:100%;
-	border:1px solid #000;
+	border:1px solid #d6d6d6;
 	border-collapse:collapse;
 	margin-top:5px;
+	margin-left:10px;
 }
 
-table td, table th{
-	border:1px solid #000;
-	padding:5px;
+td{
+	border:1px solid #d6d6d6;;
+	padding:20px;
+	background-color:#fff;
 }
+
+table th{
+	border:1px solid #d6d6d6;;
+	padding:10px;
+	text-align: center;
+	background-color:#9fbfdf;
+	font-weight:bold;
+	color:white;
+}
+
+.head{
+	width:750px;
+	border:1px solid #d6d6d6;
+	border-collapse:collapse;
+	padding:20px;
+}
+.icon{
+	width:150px;
+	height:150px;
+	border:1px solid #d6d6d6;;
+	border-radius:10px;
+	padding:10px;
+	
+}
+.img{
+	float:left;
+	margin-top:170px;
+}
+.name{
+	text-align:center;
+	font-size:15pt;
+	font-weight:bold;
+}
+
+
