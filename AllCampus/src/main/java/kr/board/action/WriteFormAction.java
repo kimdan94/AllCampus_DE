@@ -16,6 +16,17 @@ public class WriteFormAction implements Action{
 			 return "redirect:/member/loginForm.do"; 
 		 }
 		 
+		
+			
+		//인증 회원과 관리자만 접근 가능
+		Integer user_auth = (Integer)session.getAttribute("user_auth");
+		if(user_auth == 2) {
+			request.setAttribute("notice_msg", "학교 인증을 마친 학생들만 이용할 수 있어요!");
+			request.setAttribute("notice_url", request.getContextPath()+"/main/home.do");
+			return "/WEB-INF/views/common/alert_singleView.jsp";
+		}
+		 
+		 
 		//로그인이 된 경우
 		return "/WEB-INF/views/board/writeForm.jsp";
 	}

@@ -35,11 +35,13 @@ window.onload=function(){
 </script>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-<div class="page-main">
+	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+	<div class="page-main">
+		<h2 class="board-title">자유게시판</h2>
+		<hr width="10%" class="board-underline">
 	<div class="content-main">
 		<form id="search_Form" action="list.do" method="get">
-				<ul class="board_search">
+				<ul class="search">
 				<li>
 					<select name="keyfield">
 						<option value="1" <c:if test="${param.keyfield==1}">selected</c:if>>제목</option>
@@ -50,37 +52,39 @@ window.onload=function(){
 					<input type="search" size="16" name="keyword" id="keyword" value="${param.keyword}">
 				</li>
 				<li>
-					<input type="submit" value="검색">
+					<input type="submit" value="검색" class="cal-btn2">
 				</li>
 			</ul>
 		</form>
 		
-		<div class="list-space align-right">
-			<input type="button" value="글쓰기" onclick="location.href='writeForm.do'"
+		<div class="blist-space align-right">
+			<input type="button" value="글쓰기" class="cal-btn" onclick="location.href='writeForm.do'"
 			<c:if test="${empty user_num}">disabled="disabled"</c:if>
 			>
 		</div>
 		
 		<div class="board_listform">
-			<h1>자유게시판</h1>	
 			<c:if test="${count==0}">
 			<div class="result-display">
 				표시할 게시물이 없습니다.
 			</div>
 			</c:if>
 			<c:if test="${count > 0}">
-			<table>
+			<table class="board-table">
 			<c:forEach var="board" items="${list}">
 				<tr data-href="detail.do?board_num=${board.board_num}">
 					<td>
-					<span style="font-weight:bold; font-size=10pt">${board.board_title}</span><br>
-					${board.board_content}<br>
+					<span class="board1-title">${board.board_title}</span><br>
+					<span class="board1-content">${board.board_content}</span><br>
 			
 					<!-- !!!!!!!!!!!!!!!!!!!!!!      몇분전 형식으로 변경하기 !!!!!! -->
-					${board.board_reg_date} | 
+					<span class="board-date">${board.board_reg_date}</span> 
+					<span class="pipe">|</span>
 					<!-- 익명 여부  1: 익명X   2: 익명 -->
+					<span class="pipe">
 					<c:if test="${board.board_anonymous ==1}">${board.mem_id}</c:if>
 					<c:if test="${board.board_anonymous ==2}">익명</c:if>
+					</span>
 					</td>
 				</tr>
 			</c:forEach>

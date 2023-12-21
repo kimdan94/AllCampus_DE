@@ -391,9 +391,10 @@ public class BoardDAO {
 		public void deleteBoard(int board_num)throws Exception{
 			Connection conn = null;
 			PreparedStatement pstmt = null;   //좋아요 삭제
-			PreparedStatement pstmt2 = null; //스크랩 삭제 삭제
-			PreparedStatement pstmt3 = null; //댓글 삭제
-			PreparedStatement pstmt4 = null;//부모글 삭제
+			PreparedStatement pstmt2 = null; //스크랩 삭제
+			PreparedStatement pstmt3 = null;//신고 삭제
+			PreparedStatement pstmt4 = null; //댓글 삭제
+			PreparedStatement pstmt5 = null;//부모글 삭제
 			String sql = null;
 			
 			try {
@@ -415,19 +416,25 @@ public class BoardDAO {
 				pstmt2.setInt(1, board_num);
 				pstmt2.executeUpdate();
 				
-				
-				//댓글 삭제 //board_num을 넣어서 관련된 자식들을 다 지운다는 뜻 
-				sql ="DELETE FROM all_board_reply WHERE board_num=?"; 
+				//신고 삭제
+				sql="DELETE FROM all_board_warn WHERE board_num=?";
 				pstmt3 = conn.prepareStatement(sql); 
 				pstmt3.setInt(1, board_num);
 				pstmt3.executeUpdate();
 				
 				
-				//부모글 삭제
-				sql = "DELETE FROM all_board WHERE board_num=?";
-				pstmt4 = conn.prepareStatement(sql);
+				//댓글 삭제 //board_num을 넣어서 관련된 자식들을 다 지운다는 뜻 
+				sql ="DELETE FROM all_board_reply WHERE board_num=?"; 
+				pstmt4 = conn.prepareStatement(sql); 
 				pstmt4.setInt(1, board_num);
 				pstmt4.executeUpdate();
+				
+				
+				//부모글 삭제
+				sql = "DELETE FROM all_board WHERE board_num=?";
+				pstmt5 = conn.prepareStatement(sql);
+				pstmt5.setInt(1, board_num);
+				pstmt5.executeUpdate();
 				
 				//모든 SQL문 실행이 성공하면 
 				conn.commit();
@@ -436,6 +443,7 @@ public class BoardDAO {
 				conn.rollback();
 				throw new Exception(e);
 			}finally {
+				DBUtil.executeClose(null, pstmt5, null);
 				DBUtil.executeClose(null, pstmt4, null);
 				DBUtil.executeClose(null, pstmt3, null);
 				DBUtil.executeClose(null, pstmt2, null);

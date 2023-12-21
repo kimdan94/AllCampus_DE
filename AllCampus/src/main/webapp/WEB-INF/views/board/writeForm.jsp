@@ -30,9 +30,9 @@
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-    
+    <h2 class="board-title">게시판 글 작성</h2>
+	<hr width="10%" class="board-underline">
     <div>
-        <h2>게시판 글쓰기</h2>
         <form id="write_Form" action="write.do" method="post" enctype="multipart/form-data">
             <ul>
                 <li>
@@ -51,12 +51,10 @@
                     
                     <input type="checkbox" name="board_anonymous" id="board_anonymous" value="1">익명
                 </li>
-                <li>
-                    <input type="submit" value="등록">
-                </li>
             </ul>
             <div class="align-center">
-                <input type="button" value="목록" onclick="location.href='list.do'">
+          		<input type="submit" value="등록하기" class="input-evabutton1">
+                <input type="button" value="목록" class="input-evabutton2" onclick="location.href='list.do'">
             </div>
         </form>
     </div>

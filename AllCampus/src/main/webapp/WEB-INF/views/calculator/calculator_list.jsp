@@ -149,6 +149,12 @@ $(document).ready(function () {
     var modal = $('#myModal');
 
     openModalBtn.click(function () {
+    	let temp_select = $('select[name="select_semester"] option').index($('select[name="select_semester"] option:selected'));
+    	if(temp_select == 0){
+    		alert('학기를 선택하세요');
+    		return;
+    	}
+    	
         modal.show();
     });
 
@@ -317,7 +323,7 @@ $(document).ready(function () {
 		</div>
 		<div>
 			<select name="select_semester">
-				<option>학기 선택</option>
+				<option disabled="disabled" selected>학기 선택</option>
 				<option>1학년 1학기</option>
 				<option>1학년 여름</option>
 				<option>1학년 2학기</option>

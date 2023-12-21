@@ -47,8 +47,8 @@ window.onload = function(){
 			</ul>
 		</form>
 		<div class="list-space align-right">
-			<input type="button" value="목록" onclick="location.href='courseeva_list.do'">
-			<input type="button" value="강의평 작성" onclick="location.href='evawriteForm.do'"
+			<input type="button" value="목록" class="eva-writebtn2" onclick="location.href='courseeva_list.do'">
+			<input type="button" value="강의 평가하기" class="eva-writebtn1" onclick="location.href='evawriteForm.do'"
 			<c:if test="${empty user_num}">disabled="disabled"</c:if>
 			>
 		</div>
@@ -65,7 +65,19 @@ window.onload = function(){
 					<span class="course_name">${courseeva.courseVO.course_name}</span><br>
 					<span class="course_prof">${courseeva.courseVO.course_prof}</span><br>
 					<img src="${pageContext.request.contextPath}/images/star_icon2.png" width="18" height="18">
-					<span class="eva_star">${courseeva.eva_star}</span><br>
+					<span class="eva_star">
+						<c:choose>
+								<c:when test="${courseeva.eva_star == 4.5}">A+</c:when>
+								<c:when test="${courseeva.eva_star == 4}">A</c:when>
+								<c:when test="${courseeva.eva_star == 3.5}">B+</c:when>
+								<c:when test="${courseeva.eva_star == 3}">B</c:when>
+								<c:when test="${courseeva.eva_star == 2.5}">C+</c:when>
+								<c:when test="${courseeva.eva_star == 2}">C</c:when>
+								<c:when test="${courseeva.eva_star == 1.5}">D+</c:when>
+								<c:when test="${courseeva.eva_star == 1}">D</c:when>
+								<c:when test="${courseeva.eva_star == 0}">F</c:when>
+						</c:choose>
+					</span><br>
 					<span class="eva-semester">${courseeva.eva_semester} 수강자</span><br>
                     <span class="eva-content">${courseeva.eva_content}</span>
 				</td>

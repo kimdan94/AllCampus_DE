@@ -43,7 +43,8 @@ $(function(){
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<div class="page-main">
-		
+		<h2 class="board-title">강의평 상세</h2>
+		<hr width="10%" class="board-underline">
 		<div class="content-main">
 			<h2>${course_name}</h2>
 			
@@ -52,8 +53,8 @@ $(function(){
 			${totalgrade}<br><br>
 			
 			<div class="align-right">
-				<input type="button" value="강의평 작성" class="sc-btn" onclick="location.href='evawriteForm.do'">
-				<input type="button" value="목록" class="sc-btn" onclick="location.href='courseeva_list.do'">	
+				<input type="button" value="강의 평가하기" class="eva-writebtn1" onclick="location.href='evawriteForm.do'">
+				<input type="button" value="목록" class="eva-writebtn2" onclick="location.href='courseeva_list.do'">	
 				<!-- 등록순, 추천순 정렬 만들기 -->
 				
 				
@@ -65,10 +66,12 @@ $(function(){
 				</div>	
 			</c:if>
 			<c:if test="${count > 0}">
+			
 			<table>
 				<c:forEach var="evadetail" items="${list}" varStatus="status">
 					<tr>
 						<td>
+							<img src="${pageContext.request.contextPath}/images/star_icon2.png" width="18" height="18">
        						<c:choose>
 								<c:when test="${evadetail.eva_star == 4.5}">A+</c:when>
 								<c:when test="${evadetail.eva_star == 4}">A</c:when>
@@ -86,10 +89,10 @@ $(function(){
 							<input type="button" value="신고" class="eva_complaint_btn" id="output_eva_complaint_${status.index}" data-num="${evadetail.eva_num}" data-index="${status.index}">
 							</c:if>
 							</div><br>
-       						${evadetail.eva_star}<br>
+       						
        						${evadetail.eva_semester} 수강자
-							<img src="${pageContext.request.contextPath}/images/favj_image.png" width="20">
-							<span id="output_eva_count_${status.index}">${evadetail.eva_fav}</span>
+							<img src="${pageContext.request.contextPath}/images/redfav.png" width="18">
+							<span style="color:red;" id="output_eva_count_${status.index}">${evadetail.eva_fav}</span>
 							<br>
 							${evadetail.eva_content}<br>
 						</td>

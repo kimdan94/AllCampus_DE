@@ -22,10 +22,31 @@
 	color:#2b2b2b;
 }
 
+.cal-btn{
+	border:1px solid #e1e6ed;
+	width:80px;
+	height:25px;
+	border-radius:5px;
+	color:black;
+	font-weight:bold;
+}
+
 
 /* 
 자유게시판 list.jsp 부분
 ------------------------------*/
+.board-table{
+    width: 800px;
+    border: 1px solid gray;
+    border-collapse: collapse;
+    margin-top: 5px;
+    margin-left: 450px;
+}
+/* 글쓰기 버튼 위치 조정 */
+.blist-space{
+	width:700px;
+    margin-left: 550px;
+}
 table{
 	width:100%;
 	border:1px solid #000;
@@ -34,56 +55,48 @@ table{
 }
 table td, table th{
 	border:1px solid #000;
-	padding:5px;
+	padding:15px;
+}
+.board-table .board1-title{
+	font-weight:bold; 
+	font-size:19px;
+}
+.board-table .board1-content{
+	font-size:17px;
+	
+}
+.board-table .board-date{
+	color:#808080;	
+	
+}
+.board-table .pipe{
+	color:#808080;	
+	
+}
+.board-table .pipe{
+	color:#808080;	
+	
 }
 
-.board_listform{
-	background-color:pink;
-	width:1000px;
-	margin: 0 auto;
-	
-}
-form{
-	
-	width:1000px;
-	margin:0;
-	padding:10px;
-}
-.content-main{
-	width:34%;
-	float:left;
-	padding:5px;
-	margin:70px -390px 0 400px;
-}
-/*검색 폼*/
-#search_Form{
-	display: flex;
-  	align-items: center;
-  	margin-left: 0px;
- 	 border:none;
-}
-ul.board_search li{
-	margin:0 0 0 0;
-	padding:0;
-	/* display:inline; */
-	display: inline-block;
-}
-/*글쓰기 버튼*/
-.list-space input[type="button"]{
-	float:right;
-  	align-items: center;
+/* 
+자유게시판 detail.jsp 부분
+------------------------------*/
+.board-content{
+	border-width: 0 0 1px;
 }
 
 
 .board_detail_form{
-	margin-left:400px;
+	width: 800px;
+    border-collapse: collapse;
+    margin-top: 5px;
+    margin-left: 450px;
+	
 }
 
 .board-detail{
 	border: 1px solid #808080;
     
-    margin-left: 150px;
-    margin-right: 150px;
     border-radius: 10px;
     position: relative;
 }
@@ -105,7 +118,7 @@ ul.detail-info{
     padding: 0;
     margin: 0;
 }
-수정,삭제 위치 부분
+/* 수정,삭제 위치 부분 */
 .detail-actions {
 	list-style: none;
     padding: 0;
@@ -115,19 +128,47 @@ ul.detail-info{
     right: 0;
 }
 .detail-info li {
-  
 	list-style: none;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+ 	display: flex;
+  	justify-content: space-between;
+  	align-items: center;
 }
 .detail-info li a {
 	float: right;
+	
 }
 
 .detail-actions li {
     float: right;
+    margin-right:10px;
+    margin-top:5px;
 }
+
+.likeimage{
+	margin-bottom:10px;
+}
+.likeimage #output_board_fav {
+	margin-left:10px;
+}
+
+/* 자유게시판 writeForm.jsp
+---------------------------------*/
+form#write_Form{
+	margin-left:460px;
+	border:1px solid black;
+	width:767px;
+	
+}
+
+
+/* 자유게시판  updateForm.jsp
+---------------------------------*/
+form#update_Form{
+	margin-left:460px;
+	border:1px solid black;
+	width:767px;
+}
+
 
 /* 강의평 시작   courseeva_list.jsp
 ---------------------------------*/
@@ -208,6 +249,82 @@ ul.search li {
 	font-size:16px;
 }
 
+
+
+/* 강의평 evawriteForm.jsp
+---------------------------------*/
+form#write_form{
+	margin-left:460px;
+	border:1px solid black;
+	width:767px;
+}
+
+.eva-btn1{
+	border:none;
+	width:55px;
+	height:25px;
+	border-radius:10px;
+	background-color:#6699cc;
+	font-weight:bold;
+	color:white;
+}
+/* 강의평가하기 버튼 */
+.input-evabutton1{
+	border:none;
+	width:200px;
+	height:45px;
+	border-radius:10px;
+	background-color:#6699cc;
+	font-weight:bold;
+	color:white;
+	font-size:15px;
+}
+/* 목록 버튼 */
+.input-evabutton2{
+	border:1px solid #e1e6ed;
+	width:200px;
+	height:45px;
+	border-radius:10px;
+	font-weight:bold;
+	color:gray;
+	font-size:15px;
+}
+
+#eva_star{
+	margin-top:10px;
+}
+
+
+
+
+
+/* 강의평 eva_detail.jsp
+---------------------------------*/
+#content-main{
+	width:800px;
+	border:1px solid gray;
+	border-collapse:collapse;
+	margin-top:5px;
+	margin-left:450px;
+	
+}
+.eva-writebtn1{
+	border:1px solid #e1e6ed;
+	width:100px;
+	height:25px;
+	border-radius:5px;
+	color:black;
+	font-weight:bold;
+	margin-bottom:7px;
+}
+.eva-writebtn2{
+	border:1px solid #e1e6ed;
+	width:80px;
+	height:25px;
+	border-radius:5px;
+	color:black;
+	font-weight:bold;
+}
 
 /* 학점계산기 시작
 ---------------------------------*/

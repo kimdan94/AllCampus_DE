@@ -44,9 +44,11 @@ $(function(){
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
+	<h2 class="board-title">자유게시판</h2>
+	<hr width="10%" class="board-underline">
+	<div class="board-content">
 	<div class="board_detail_form">
-	<h2>자유게시판</h2>	
-	<div class="board-detail">
+		<div class="board-detail">
 		<ul class="detail-info">
 			<li>
 				<c:if test="${!empty board.mem_photo}">
@@ -103,16 +105,28 @@ $(function(){
 		</c:if>
 		<ul>
 			<li>
-			<img src="${pageContext.request.contextPath}/images/favj_image.png" width="20">
+			<img src="${pageContext.request.contextPath}/images/redfav.png" width="20">
 			<span id="output_board_fcount"></span>
 			
-			<img src="${pageContext.request.contextPath}/images/star_icon1.png" width="20">
+			<img src="${pageContext.request.contextPath}/images/star_icon2.png" width="20">
 			<span id="output_board_scrapcount"></span>
 			</li>
 		</ul>
-		<div>
+		<div class="likeimage">
+		<%-- 
+		<button type="button" id="output_board_fav" data-num="${board.board_num}">
+			 <img src="${pageContext.request.contextPath}/images/favj_image.png" width="18">
+			 공감
+		</button>
+		<button type="button" id="output_board_scrap" data-num="${board.board_num}">
+			 <img src="${pageContext.request.contextPath}/images/star_image1.png" width="18">
+			 스크랩
+		</button>
+		--%>
 		<input type="button" value="공감" id="output_board_fav" data-num="${board.board_num}">
 		<input type="button" value="스크랩" id="output_board_scrap" data-num="${board.board_num}">
+		
+		</div>
 		</div>
 		<!-- 댓글 시작 -->
 		<div id="reply_div">

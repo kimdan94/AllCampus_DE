@@ -98,7 +98,7 @@ $(document).ready(function () {
 <body>
     <jsp:include page="/WEB-INF/views/common/header.jsp"/>
     <div class="page-main">
-        <h2 class="board-title">강의평 수정 폼</h2>
+        <h2 class="board-title">강의평 작성</h2>
  		<hr width="10%" class="board-underline">       
         <form id="write_form" action="evawrite.do" method="post">
         <input type="hidden" name="course_nameprof" id="course_nameprof">   <%-- name과 id 값인 course_name은 내가 바꿔주기(설정) --%>
@@ -108,7 +108,7 @@ $(document).ready(function () {
             <li>
                 <!-- keyword를 입력할 input 태그 -->
                 <input type="search" size="16" id="keyword" value="${param.keyword}" placeholder="과목명을 입력하세요">
-               	<input type="button" id="button" value="검색">
+               	<input type="button" id="button" value="검색" class="eva-btn1">
                 
                 <select name="course_num1" id="courseList">
                 	<option value="" selected>검색 후 선택하세요</option>
@@ -144,8 +144,8 @@ $(document).ready(function () {
             </li>
         </ul>
         <div class="align-center">
-            <input type="submit" value="강의평가하기"> <!--강의평가하기를 클릭시 courseeva_list.do로  -->
-            <input type="button" value="목록" onclick="location.href='courseeva_list.do'">
+            <input type="submit" value="강의 평가하기" class="input-evabutton1"> <!--강의평가하기를 클릭시 courseeva_list.do로  -->
+            <input type="button" value="목록" class="input-evabutton2" onclick="location.href='courseeva_list.do'">
         </div>
         </form>
 </div>
