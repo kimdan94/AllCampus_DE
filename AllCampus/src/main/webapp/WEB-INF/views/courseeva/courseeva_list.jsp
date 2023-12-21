@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>강의평 리스트</title>
+<title>강의평 리스트</title> 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/jiwonstyle.css">
 <script type="text/javascript">

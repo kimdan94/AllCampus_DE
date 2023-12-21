@@ -265,7 +265,7 @@ $(document).ready(function () {
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
 	<div>
-		<h2 class="board-title">학점계산기</h2>
+		<h2 class="board-title">학점 계산기</h2>
 		<hr width="10%" class="board-underline">
 	</div> 
 <div id="container" class="calculator">

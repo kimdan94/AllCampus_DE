@@ -17,7 +17,7 @@ public class EvaListAction implements Action{
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		String pageNum = request.getParameter("pageNum"); //처음에는 페이지가 null이니까 1로 간주하게 됨
-		if(pageNum == null) pageNum = "1";
+		if(pageNum == null) pageNum = "1"; 
 		
 		String keyfield = request.getParameter("keyfield"); //안넘어오면 null
 		String keyword = request.getParameter("keyword");

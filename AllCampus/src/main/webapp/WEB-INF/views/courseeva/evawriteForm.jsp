@@ -12,7 +12,7 @@
 function getSemesterLabel(semesterValue) {
     switch (semesterValue) {
         case 0:
-            return '1학기';
+            return '1학기'; 
         case 1:
             return '여름';
         case 2:

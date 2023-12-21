@@ -15,7 +15,7 @@ $(function(){
 	$('.eva_complaint_btn').click(function(){
 		alert('신고하시겠습니까?');
 		var index = $(this).attr('data-index');
-		$.ajax({
+		$.ajax({ 
 			url:'evaComplaint.do',
 			type:'post',
 			data:{eva_num:$('#output_eva_complaint_' + index).attr('data-num')},
