@@ -3,6 +3,7 @@ package kr.timetable.action;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,18 +33,23 @@ public class TimetableAddAction implements Action {
 		String timetable_table_id = request.getParameter("timetable_table_id"); 
 		Map<String, Object> mapAjax = new HashMap<String, Object>();
 		
-		TimetableDAO dao = TimetableDAO.getInstance();
+		TimetableDAO daoTime = TimetableDAO.getInstance();
 		
 		//가진 정보 : user_num(=mem_num), course_code, listClick(시간표 정보)
+		
+		byte[] arr = new byte[8];
+        new Random().nextBytes(arr);
+
+        String color = "#" + (convertBytesToHex(arr).substring(0,6));
 		
 		timetable_table_id = timetable_table_id.replaceAll("[^0-9,_]", "");
 		String[] timetable_tableId = timetable_table_id.split(",");
 		for(int i=0; i<timetable_tableId.length; i++) {
-			dao.insertTimetable(user_num, course_code, timetable_tableId[i]);
+			daoTime.insertTimetable(user_num, course_code, timetable_tableId[i]);
+			daoTime.updateColor(user_num, course_code, color);
 		}
 
 		//------------------------------------------------------------------
-		TimetableDAO daoTime = TimetableDAO.getInstance();
 		List<String> semesterList = daoTime.selectYearAndSemester(course_code);
 		int year = Integer.parseInt(semesterList.get(0));
 		int semester = Integer.parseInt(semesterList.get(1));
@@ -72,8 +78,6 @@ public class TimetableAddAction implements Action {
 		mapAjax.put("listWED", listWED);
 		mapAjax.put("listTHUR", listTHUR);
 		mapAjax.put("listFRI", listFRI);
-		
-		
 		//------------------------------------------------------------------
 		
 		
@@ -85,5 +89,13 @@ public class TimetableAddAction implements Action {
 		
 		return "/WEB-INF/views/common/ajax_view.jsp";
 	}
+	
+    private static String convertBytesToHex(byte[] bytes) {
+        StringBuilder result = new StringBuilder();
+        for (byte temp : bytes) {
+            result.append(String.format("%02x", temp));
+        }
+        return result.toString();
+    }
 
 }

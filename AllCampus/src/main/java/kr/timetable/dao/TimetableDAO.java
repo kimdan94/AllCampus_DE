@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.course.vo.CourseVO;
+import kr.member.vo.MemberVO;
 import kr.timetable.vo.TimetableVO;
 import kr.util.DBUtil;
 
@@ -23,7 +24,8 @@ public class TimetableDAO {
 	
 	
 	// INSERT 문
-	public void insertTimetable(Integer mem_num, String course_code, String timetable_table_id) throws Exception {
+	// TimetableAddAction
+	public void insertTimetable(int mem_num, String course_code, String timetable_table_id) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
@@ -54,6 +56,32 @@ public class TimetableDAO {
 		}
 	}
 	
+	
+	// 색 바꾸기 기본색 : red
+	public void updateColor(int mem_num, String course_code, String timetable_color)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "UPDATE all_timetable SET timetable_color=? WHERE mem_num=? AND course_code=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setString(1, timetable_color);
+			pstmt.setInt(2, mem_num);
+			pstmt.setString(3, course_code);
+			//SQL문 실행
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}		
+	}
 	
 	
 	public List<TimetableVO> getListPrint(int mem_num, int year, int semester, int course_day) throws Exception {
