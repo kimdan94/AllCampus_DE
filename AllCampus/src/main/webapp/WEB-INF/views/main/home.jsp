@@ -184,7 +184,7 @@
 	</div>
 	<div class="home-div">
 		<h3>공지사항 <input type="button" value="더보기" class="home-btn"
-			onclick="location.href='location.href='${pageContext.request.contextPath}/notice/list.do'"></h3>
+			onclick="location.href='${pageContext.request.contextPath}/notice/list.do'"></h3>
 		<div class="list-div">
 		<table>
 			<c:forEach var="notice" items="${noticeList}">

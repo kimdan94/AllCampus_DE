@@ -78,7 +78,7 @@ $(function(){
 			</li>
 		</ul>
 	</div>
-	<div style="border:1px solid black;">
+	<div style="border:2px solid #d6d6d6;">
 		<h3 style="padding-left:10px;">${sc.secondhand_name}</h3>
 		<table class="sc-detail">
 			<tr>
@@ -106,7 +106,7 @@ $(function(){
 		</table>
 	</div>
 	<br>
-	<div style="border:1px solid black;padding-left:10px;">
+	<div style="border:2px solid #d6d6d6;padding-left:10px;">
 		<p>${sc.secondhand_content}</p>
 		<p>
 		<img src="${pageContext.request.contextPath}/upload/${sc.secondhand_filename}" 

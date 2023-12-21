@@ -418,7 +418,7 @@ ul.search li{
 }
 .sc-table{
 	width:800px;
-	border:1px solid gray;
+	border:1px solid #d6d6d6;
 	border-collapse:collapse;
 	margin-top:5px;
 	margin-left:450px;
@@ -454,7 +454,7 @@ form[id="sell_form"] ul li{
 }
 #sell_form{
 	margin-left:460px;
-	border:1px solid black;
+	border:1px solid #d6d6d6;
 	width:767px;
 }
 #bookContent{
@@ -506,7 +506,7 @@ form[id="sell_form"] ul li{
 }
 #update_form{
 	margin-left:460px;
-	border:1px solid black;
+	border:1px solid #d6d6d6;
 	width:767px;
 }
 form[id="update_form"] ul li{
