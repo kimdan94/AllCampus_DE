@@ -1,6 +1,7 @@
 package kr.question.vo;
 
 public class QuestionVO {
+	private int question_num;
 	private int mem_num;
 	private int question_board_ask;
 	private String question_filename;
@@ -8,6 +9,12 @@ public class QuestionVO {
 	private String question_content;
 	private String question_title;
 	
+	public int getQuestion_num() {
+		return question_num;
+	}
+	public void setQuestion_num(int question_num) {
+		this.question_num = question_num;
+	}
 	public int getMem_num() {
 		return mem_num;
 	}
