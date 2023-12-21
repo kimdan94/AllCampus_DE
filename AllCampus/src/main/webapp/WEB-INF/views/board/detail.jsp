@@ -95,7 +95,7 @@ $(function(){
 		</ul>
 		<h2>${board.board_title}</h2>
 		<p>
-			${board.board_content}
+			${board.board_content} 
 		</p>
 		
 		<c:if test="${!empty board.board_filename}">

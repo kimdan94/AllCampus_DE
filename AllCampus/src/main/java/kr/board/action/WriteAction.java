@@ -23,7 +23,7 @@ public class WriteAction implements Action{
 			return "redirect:/member/loginForm.do"; 
 		}
 		
-		
+		 
 		
 		//인증 회원과 관리자만 접근 가능
 		Integer user_auth = (Integer)session.getAttribute("user_auth");

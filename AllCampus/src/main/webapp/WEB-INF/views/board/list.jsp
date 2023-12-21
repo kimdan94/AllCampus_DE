@@ -64,7 +64,7 @@ window.onload=function(){
 		</div>
 		
 		<div class="board_listform">
-			<c:if test="${count==0}">
+			<c:if test="${count==0}"> 
 			<div class="result-display">
 				표시할 게시물이 없습니다.
 			</div>

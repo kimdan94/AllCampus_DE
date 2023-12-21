@@ -17,7 +17,7 @@ public class WriteFormAction implements Action{
 		 }
 		 
 		
-			
+			 
 		//인증 회원과 관리자만 접근 가능
 		Integer user_auth = (Integer)session.getAttribute("user_auth");
 		if(user_auth == 2) {

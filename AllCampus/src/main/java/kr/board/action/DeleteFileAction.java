@@ -14,7 +14,7 @@ import kr.board.vo.BoardVO;
 import kr.controller.Action;
 import kr.util.FileUtil;
 
-public class DeleteFileAction implements Action{
+public class DeleteFileAction implements Action{ 
 	
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

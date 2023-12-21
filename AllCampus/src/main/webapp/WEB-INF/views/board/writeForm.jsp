@@ -30,7 +30,7 @@
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-    <h2 class="board-title">게시판 글 작성</h2>
+    <h2 class="board-title">게시판 글 작성</h2> 
 	<hr width="10%" class="board-underline">
     <div>
         <form id="write_Form" action="write.do" method="post" enctype="multipart/form-data">

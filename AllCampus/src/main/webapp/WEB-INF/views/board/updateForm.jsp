@@ -66,7 +66,7 @@
                                                             alert('잘못된 접속입니다.');
                                                         } else{
                                                             alert('파일 삭제 오류 발생');
-                                                        }
+                                                        } 
                                                     },
                                                     error:function(){
                                                         alert('네트워크 오류 발생');

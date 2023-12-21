@@ -14,7 +14,7 @@ import kr.board.vo.BoardVO;
 import kr.board.vo.BoardWarnVO;
 import kr.controller.Action;
 
-public class AddComplaintCountAction implements Action{
+public class AddComplaintCountAction implements Action{ 
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
