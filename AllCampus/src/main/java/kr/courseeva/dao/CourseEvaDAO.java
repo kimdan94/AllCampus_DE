@@ -196,7 +196,13 @@ public class CourseEvaDAO {
 				else if(keyfield.equals("2")) sub_sql += "WHERE course_prof LIKE ?";
 			}	
 			//SQL문 작성
-			sql = "SELECT COUNT(*) FROM all_course_eva JOIN all_course USING(course_num) " + sub_sql;
+			sql = "SELECT COUNT(*) AS row_count FROM (SELECT a.*, rownum rnum FROM "
+				+ "(SELECT e.*, ac.course_name, ac.course_prof, ROW_NUMBER() OVER "
+				+ "(PARTITION BY ac.course_name, ac.course_prof ORDER BY e.eva_num DESC) as rnk "
+				+ "FROM all_course_eva e JOIN all_course ac ON e.course_num = ac.course_num WHERE "
+				+ "(ac.course_name, ac.course_prof) IN (SELECT course_name, course_prof FROM all_course " + sub_sql
+				+ ")AND e.eva_show = 2 ORDER BY ac.course_name, ac.course_prof, e.eva_num DESC) a WHERE a.rnk = 1)";
+					
 			//PreparedStatement 객체
 			pstmt = conn.prepareStatement(sql);
 			if(keyword != null && !"".equals(keyword)) {

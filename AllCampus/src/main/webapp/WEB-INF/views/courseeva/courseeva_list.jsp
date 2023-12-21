@@ -30,7 +30,7 @@ window.onload = function(){
 	<h2 class="board-title">강의평</h2>
 	<hr width="10%" class="board-underline">
 	<div class="free_title">
-		<form id="search_Form" action="list.do" method="get">
+		<form id="search_Form" action="courseeva_list.do" method="get">
 				<ul class="search">
 				<li>
 					<select name="keyfield">
