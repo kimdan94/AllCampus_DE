@@ -82,12 +82,12 @@ public class SecondhandDAO {
 			
 			if(keyword!=null && !"".equals(keyword)) {
 				//검색 처리 - 교재명
-				if(keyfield.equals("1")) sub_sql += "WHERE secondhand_name LIKE ?";
-				else if(keyfield.equals("2")) sub_sql += "WHERE secondhand_writer LIKE ?";
+				if(keyfield.equals("1")) sub_sql += "AND secondhand_name LIKE ?";
+				else if(keyfield.equals("2")) sub_sql += "AND secondhand_writer LIKE ?";
 			}
 			
 			//SQL문 작성
-			sql = "SELECT COUNT(*) FROM all_secondhand JOIN all_member USING(mem_num) "+ sub_sql;
+			sql = "SELECT COUNT(*) FROM all_secondhand JOIN all_member USING(mem_num) WHERE secondhand_show=2 "+ sub_sql;
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			if(keyword!=null && !"".equals(keyword)) {
@@ -122,13 +122,13 @@ public class SecondhandDAO {
 			
 			if(keyword!=null && !"".equals(keyword)) {
 				//검색 처리 - 교재명
-				if(keyfield.equals("1")) sub_sql += "WHERE secondhand_name LIKE ?";
-				else if(keyfield.equals("2")) sub_sql += "WHERE secondhand_writer LIKE ?";
+				if(keyfield.equals("1")) sub_sql += "AND secondhand_name LIKE ?";
+				else if(keyfield.equals("2")) sub_sql += "AND secondhand_writer LIKE ?";
 			}
 			
 			//SQL문 작성
 			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
-					+ "(SELECT * FROM all_secondhand JOIN all_member USING(mem_num) " + sub_sql
+					+ "(SELECT * FROM all_secondhand JOIN all_member USING(mem_num) WHERE secondhand_show=2 " + sub_sql
 					+ " ORDER BY secondhand_num DESC)a) WHERE rnum >= ? AND rnum <= ?";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
