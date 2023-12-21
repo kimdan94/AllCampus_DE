@@ -70,6 +70,9 @@ $(function() {
 		});
 	}
 	
+	
+	
+	
 	/////////////////////////////////////////////////////////////////////////
 	//==================timetablePrint 시작=====================
 	function getTimetablePrint(year, semester){
@@ -79,13 +82,13 @@ $(function() {
 			data: { year:year, semester:semester }, // year, semester 전송하기
 			dataType: 'json',
 			success: function(param) {
-				
+				//printMon(param);
 				printMonTimetable(param);
 				printTueTimetable(param);	
 				printWedTimetable(param);
 				printThurTimetable(param);
 				printFriTimetable(param);
-
+				
 			},
 			error: function() {
 				alert('네트워크 오류 발생');
@@ -93,6 +96,7 @@ $(function() {
 		});
 	}
 	getTimetablePrint();
+	
 	
 	//==============================
 	$(document).on("click",'.class-info',function(e){ // table에서 클래스 name만 부여된 곳만 이벤트 처리
@@ -142,6 +146,33 @@ $(function() {
 	});
 	//==============================
 	
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+	/*function printMon(param){
+		for(var i=0; i<param.listMON.length; i++){
+			console.log(param.listMON[i]);
+			
+			for(var j=0; j<param.monList.length; j++){
+				if(param.listMON[i].course_code == param.monList[j].course_code){
+					
+					console.log(param.monList[j]);
+					
+					
+					
+					
+				}
+			}
+		}
+		//array.push(Number(param.monList[j].timetable_table_id.slice(2)));
+		
+		
+	}*/
+	
+	
+	
+	
+	
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+	
 	// --------월요일---------
 	function printMonTimetable(param){
 		for(var i=0; i<param.listMON.length; i++){
@@ -150,47 +181,44 @@ $(function() {
 				if(param.listMON[i].course_code == param.monList[j].course_code){
 					array.push(Number(param.monList[j].timetable_table_id.slice(2)));
 				}
-				if(param.listMON[i].course_code == param.monList[j].course_code){
-					if(j == param.monList.length - 1){
-						array.sort((a, b) => a - b); // js에서 정렬할 때는 문자열로 변경해서 정렬하기 때문에 이런 방식으로 정렬해야 한다
-						var prev = array[0]
-						var cnt = 1;
-						var list = [];
-						list.push([array[0],cnt]);
-						for(var k=1; k<array.length; k++){
-							if(array[k] == prev + 30){
-								cnt += 1;
-								prev = array[k];
-							}else {
-								prev = array[k];
-								cnt = 1;
-							}
-							list.push([array[k],cnt]);
+				if(j == param.monList.length - 1){
+					array.sort((a, b) => a - b); // js에서 정렬할 때는 문자열로 변경해서 정렬하기 때문에 이런 방식으로 정렬해야 한다
+					var prev = array[0]
+					var cnt = 1;
+					var list = [];
+					list.push([array[0],cnt]);
+					for(var k=1; k<array.length; k++){
+						if(array[k] == prev + 30){
+							cnt += 1;
+							prev = array[k];
+						}else {
+							prev = array[k];
+							cnt = 1;
 						}
-						
-						var stand1 = 0;
-						var stand2 = 0;
-						for(var s=0; s<list.length; s++){
-							console.log("여기");
-							if(list[s][1] == 1 && stand1 == 0){ // 첫번째
-								stand1 = list[s][0];
-							} else if(list[s][1] == 1 && stand1 != 0){ // 두번째
-								$('#1_'+stand1).attr('rowspan', stand2);
-								$('#1_'+stand1).addClass('class-info');
-								$('#1_'+stand1).html(param.monList[j].timetable_course_name);
-								$('#1_'+stand1).attr('style','background-color: ' + +param.monList[j].timetable_color);
-								stand1 = list[s][0];
-							} else if(list[s][1] != 1){
-								stand2 = list[s][1];
-								$('#1_'+list[s][0]).attr('style', "display:none;");
-							}
-						}
-						$('#1_'+stand1).attr('rowspan', stand2);
-						$('#1_'+stand1).addClass('class-info');
-						$('#1_' + stand1).html(param.monList[j].timetable_course_name); // text 크기를 넘어가면 조절
-						$('#1_'+stand1).attr('style','background-color: '+param.monList[j].timetable_color); // db에서 색깔지정
+						list.push([array[k],cnt]);
 					}
-				
+					
+					var stand1 = 0;
+					var stand2 = 0;
+					for(var s=0; s<list.length; s++){
+						console.log("여기");
+						if(list[s][1] == 1 && stand1 == 0){ // 첫번째
+							stand1 = list[s][0];
+						} else if(list[s][1] == 1 && stand1 != 0){ // 두번째
+							$('#1_'+stand1).attr('rowspan', stand2);
+							$('#1_'+stand1).addClass('class-info');
+							$('#1_'+stand1).html(param.monList[j].timetable_course_name);
+							$('#1_'+stand1).attr('style','background-color: ' + +param.monList[j].timetable_color);
+							stand1 = list[s][0];
+						} else if(list[s][1] != 1){
+							stand2 = list[s][1];
+							$('#1_'+list[s][0]).attr('style', "display:none;");
+						}
+					}
+					$('#1_'+stand1).attr('rowspan', stand2);
+					$('#1_'+stand1).addClass('class-info');
+					$('#1_' + stand1).html(param.monList[j].timetable_course_name); // text 크기를 넘어가면 조절
+					$('#1_'+stand1).attr('style','background-color: '+param.monList[j].timetable_color); // db에서 색깔지정
 				}
 			}
 		}
@@ -207,45 +235,43 @@ $(function() {
 				if(param.listTUE[i].course_code == param.tueList[j].course_code){
 					array.push(Number(param.tueList[j].timetable_table_id.slice(2)));
 				}
-				if(param.listTUE[i].course_code == param.tueList[j].course_code){
-					if(j == param.tueList.length - 1){
-						array.sort((a, b) => a - b); // js에서 정렬할 때는 문자열로 변경해서 정렬하기 때문에 이런 방식으로 정렬해야 한다
-						var prev = array[0]
-						var cnt = 1;
-						var list = [];
-						list.push([array[0],cnt]);
-						for(var k=1; k<array.length; k++){
-							if(array[k] == prev + 30){
-								cnt += 1;
-								prev = array[k];
-							}else {
-								prev = array[k];
-								cnt = 1;
-							}
-							list.push([array[k],cnt]);
+				if(j == param.tueList.length - 1){
+					array.sort((a, b) => a - b); // js에서 정렬할 때는 문자열로 변경해서 정렬하기 때문에 이런 방식으로 정렬해야 한다
+					var prev = array[0]
+					var cnt = 1;
+					var list = [];
+					list.push([array[0],cnt]);
+					for(var k=1; k<array.length; k++){
+						if(array[k] == prev + 30){
+							cnt += 1;
+							prev = array[k];
+						}else {
+							prev = array[k];
+							cnt = 1;
 						}
-						
-						var stand1 = 0;
-						var stand2 = 0;
-						for(var s=0; s<list.length; s++){
-							if(list[s][1] == 1 && stand1 == 0){ // 첫번째
-								stand1 = list[s][0];
-							} else if(list[s][1] == 1 && stand1 != 0){ // 두번째
-								$('#2_'+stand1).attr('rowspan', stand2);
-								$('#2_'+stand1).addClass('class-info'); // 클래스 name 부여
-								$('#2_'+stand1).html(param.tueList[j].timetable_course_name);
-								$('#2_'+stand1).attr('style','background-color: '+param.tueList[j].timetable_color);
-								stand1 = list[s][0];
-							} else if(list[s][1] != 1){
-								stand2 = list[s][1];
-								$('#2_'+list[s][0]).attr('style', "display:none;");
-							}
-						}
-						$('#2_'+stand1).attr('rowspan', stand2);
-						$('#2_'+stand1).addClass('class-info');
-						$('#2_'+stand1).html(param.tueList[j].timetable_course_name);
-						$('#2_'+stand1).attr('style','background-color: '+param.tueList[j].timetable_color);
+						list.push([array[k],cnt]);
 					}
+					
+					var stand1 = 0;
+					var stand2 = 0;
+					for(var s=0; s<list.length; s++){
+						if(list[s][1] == 1 && stand1 == 0){ // 첫번째
+							stand1 = list[s][0];
+						} else if(list[s][1] == 1 && stand1 != 0){ // 두번째
+							$('#2_'+stand1).attr('rowspan', stand2);
+							$('#2_'+stand1).addClass('class-info'); // 클래스 name 부여
+							$('#2_'+stand1).html(param.tueList[j].timetable_course_name);
+							$('#2_'+stand1).attr('style','background-color: '+param.tueList[j].timetable_color);
+							stand1 = list[s][0];
+						} else if(list[s][1] != 1){
+							stand2 = list[s][1];
+							$('#2_'+list[s][0]).attr('style', "display:none;");
+						}
+					}
+					$('#2_'+stand1).attr('rowspan', stand2);
+					$('#2_'+stand1).addClass('class-info');
+					$('#2_'+stand1).html(param.tueList[j].timetable_course_name);
+					$('#2_'+stand1).attr('style','background-color: '+param.tueList[j].timetable_color);
 				}
 			}
 		}
@@ -259,46 +285,44 @@ $(function() {
 				if(param.listWED[i].course_code == param.wedList[j].course_code){
 					array.push(Number(param.wedList[j].timetable_table_id.slice(2)));
 				}
-				if(param.listWED[i].course_code == param.wedList[j].course_code){
-					if(j == param.wedList.length - 1){
-						array.sort((a, b) => a - b); // js에서 정렬할 때는 문자열로 변경해서 정렬하기 때문에 이런 방식으로 정렬해야 한다
-						var prev = array[0]
-						var cnt = 1;
-						var list = [];
-						list.push([array[0],cnt]);
-						for(var k=1; k<array.length; k++){
-							if(array[k] == prev + 30){
-								cnt += 1;
-								prev = array[k];
-							}else {
-								prev = array[k];
-								cnt = 1;
-							}
-							list.push([array[k],cnt]);
+				if(j == param.wedList.length - 1){
+					array.sort((a, b) => a - b); // js에서 정렬할 때는 문자열로 변경해서 정렬하기 때문에 이런 방식으로 정렬해야 한다
+					var prev = array[0]
+					var cnt = 1;
+					var list = [];
+					list.push([array[0],cnt]);
+					for(var k=1; k<array.length; k++){
+						if(array[k] == prev + 30){
+							cnt += 1;
+							prev = array[k];
+						}else {
+							prev = array[k];
+							cnt = 1;
 						}
-						
-						var stand1 = 0;
-						var stand2 = 0;
-						for(var s=0; s<list.length; s++){
-							if(list[s][1] == 1 && stand1 == 0){ // 첫번째
-								stand1 = list[s][0];
-							} else if(list[s][1] == 1 && stand1 != 0){ // 두번째
-								$('#3_'+stand1).attr('rowspan', stand2);
-								$('#3_'+stand1).addClass('class-info');
-								$('#3_'+stand1).html(param.wedList[j].timetable_course_name);
-								$('#3_'+stand1).attr('style','background-color: '+param.wedList[j].timetable_color);
-								stand1 = list[s][0];
-							} else if(list[s][1] != 1){
-								stand2 = list[s][1];
-								$('#3_'+list[s][0]).attr('style', "display:none;");
-							}
-								
-						}
-						$('#3_'+stand1).attr('rowspan', stand2);
-						$('#3_'+stand1).addClass('class-info');
-						$('#3_'+stand1).html(param.wedList[j].timetable_course_name);
-						$('#3_'+stand1).attr('style','background-color: '+param.wedList[j].timetable_color);
+						list.push([array[k],cnt]);
 					}
+					
+					var stand1 = 0;
+					var stand2 = 0;
+					for(var s=0; s<list.length; s++){
+						if(list[s][1] == 1 && stand1 == 0){ // 첫번째
+							stand1 = list[s][0];
+						} else if(list[s][1] == 1 && stand1 != 0){ // 두번째
+							$('#3_'+stand1).attr('rowspan', stand2);
+							$('#3_'+stand1).addClass('class-info');
+							$('#3_'+stand1).html(param.wedList[j].timetable_course_name);
+							$('#3_'+stand1).attr('style','background-color: '+param.wedList[j].timetable_color);
+							stand1 = list[s][0];
+						} else if(list[s][1] != 1){
+							stand2 = list[s][1];
+							$('#3_'+list[s][0]).attr('style', "display:none;");
+						}
+							
+					}
+					$('#3_'+stand1).attr('rowspan', stand2);
+					$('#3_'+stand1).addClass('class-info');
+					$('#3_'+stand1).html(param.wedList[j].timetable_course_name);
+					$('#3_'+stand1).attr('style','background-color: '+param.wedList[j].timetable_color);
 				}
 			}
 		}
@@ -312,45 +336,43 @@ $(function() {
 				if(param.listTHUR[i].course_code == param.thurList[j].course_code){
 					array.push(Number(param.thurList[j].timetable_table_id.slice(2)));
 				}
-				if(param.listTHUR[i].course_code == param.thurList[j].course_code){
-					if(j == param.thurList.length - 1){
-						array.sort((a, b) => a - b); // js에서 정렬할 때는 문자열로 변경해서 정렬하기 때문에 이런 방식으로 정렬해야 한다
-						var prev = array[0]
-						var cnt = 1;
-						var list = [];
-						list.push([array[0],cnt]);
-						for(var k=1; k<array.length; k++){
-							if(array[k] == prev + 30){
-								cnt += 1;
-								prev = array[k];
-							}else {
-								prev = array[k];
-								cnt = 1;
-							}
-							list.push([array[k],cnt]);
+				if(j == param.thurList.length - 1){
+					array.sort((a, b) => a - b); // js에서 정렬할 때는 문자열로 변경해서 정렬하기 때문에 이런 방식으로 정렬해야 한다
+					var prev = array[0]
+					var cnt = 1;
+					var list = [];
+					list.push([array[0],cnt]);
+					for(var k=1; k<array.length; k++){
+						if(array[k] == prev + 30){
+							cnt += 1;
+							prev = array[k];
+						}else {
+							prev = array[k];
+							cnt = 1;
 						}
-	
-						var stand1 = 0;
-						var stand2 = 0;
-						for(var s=0; s<list.length; s++){
-							if(list[s][1] == 1 && stand1 == 0){ // 첫번째
-								stand1 = list[s][0];
-							} else if(list[s][1] == 1 && stand1 != 0){ // 두번째
-								$('#4_'+stand1).attr('rowspan', stand2);
-								$('#4_'+stand1).addClass('class-info');
-								$('#4_'+stand1).html(param.thurList[j].timetable_course_name);
-								$('#4_'+stand1).attr('style','background-color: '+param.thurList[j].timetable_color);
-								stand1 = list[s][0];
-							} else if(list[s][1] != 1){
-								stand2 = list[s][1];
-								$('#4_'+list[s][0]).attr('style', "display:none;");
-							}
-						}
-						$('#4_'+stand1).attr('rowspan', stand2);
-						$('#4_'+stand1).addClass('class-info');
-						$('#4_'+stand1).html(param.thurList[j].timetable_course_name);
-						$('#4_'+stand1).attr('style','background-color: '+param.thurList[j].timetable_color);
+						list.push([array[k],cnt]);
 					}
+
+					var stand1 = 0;
+					var stand2 = 0;
+					for(var s=0; s<list.length; s++){
+						if(list[s][1] == 1 && stand1 == 0){ // 첫번째
+							stand1 = list[s][0];
+						} else if(list[s][1] == 1 && stand1 != 0){ // 두번째
+							$('#4_'+stand1).attr('rowspan', stand2);
+							$('#4_'+stand1).addClass('class-info');
+							$('#4_'+stand1).html(param.thurList[j].timetable_course_name);
+							$('#4_'+stand1).attr('style','background-color: '+param.thurList[j].timetable_color);
+							stand1 = list[s][0];
+						} else if(list[s][1] != 1){
+							stand2 = list[s][1];
+							$('#4_'+list[s][0]).attr('style', "display:none;");
+						}
+					}
+					$('#4_'+stand1).attr('rowspan', stand2);
+					$('#4_'+stand1).addClass('class-info');
+					$('#4_'+stand1).html(param.thurList[j].timetable_course_name);
+					$('#4_'+stand1).attr('style','background-color: '+param.thurList[j].timetable_color);
 				}
 			}
 		}
@@ -364,50 +386,49 @@ $(function() {
 				if(param.listFRI[i].course_code == param.friList[j].course_code){
 					array.push(Number(param.friList[j].timetable_table_id.slice(2)));
 				}
-				if(param.listFRI[i].course_code == param.friList[j].course_code){
-					if(j == param.friList.length - 1){
-						array.sort((a, b) => a - b); // js에서 정렬할 때는 문자열로 변경해서 정렬하기 때문에 이런 방식으로 정렬해야 한다
-						var prev = array[0]
-						var cnt = 1;
-						var list = [];
-						list.push([array[0],cnt]);
-						for(var k=1; k<array.length; k++){
-							if(array[k] == prev + 30){
-								cnt += 1;
-								prev = array[k];
-							}else {
-								prev = array[k];
-								cnt = 1;
-							}
-							list.push([array[k],cnt]);
+				if(j == param.friList.length - 1){
+					array.sort((a, b) => a - b); // js에서 정렬할 때는 문자열로 변경해서 정렬하기 때문에 이런 방식으로 정렬해야 한다
+					var prev = array[0]
+					var cnt = 1;
+					var list = [];
+					list.push([array[0],cnt]);
+					for(var k=1; k<array.length; k++){
+						if(array[k] == prev + 30){
+							cnt += 1;
+							prev = array[k];
+						}else {
+							prev = array[k];
+							cnt = 1;
 						}
-						
-						var stand1 = 0;
-						var stand2 = 0;
-						for(var s=0; s<list.length; s++){
-							if(list[s][1] == 1 && stand1 == 0){ // 첫번째
-								stand1 = list[s][0];
-							} else if(list[s][1] == 1 && stand1 != 0){ // 두번째
-								$('#5_'+stand1).attr('rowspan', stand2);
-								$('#5_'+stand1).addClass('class-info');
-								$('#5_'+stand1).html(param.friList[j].timetable_course_name);
-								$('#5_'+stand1).attr('style','background-color: '+param.friList[j].timetable_color);
-								stand1 = list[s][0];
-							} else if(list[s][1] != 1){
-								stand2 = list[s][1];
-								$('#5_'+list[s][0]).attr('style', "display:none;");
-							}
-						}
-						$('#5_'+stand1).attr('rowspan', stand2);
-						$('#5_'+stand1).addClass('class-info');
-						$('#5_'+stand1).html(param.friList[j].timetable_course_name);
-						$('#5_'+stand1).attr('style','background-color: '+param.friList[j].timetable_color);
+						list.push([array[k],cnt]);
 					}
+					
+					var stand1 = 0;
+					var stand2 = 0;
+					for(var s=0; s<list.length; s++){
+						if(list[s][1] == 1 && stand1 == 0){ // 첫번째
+							stand1 = list[s][0];
+						} else if(list[s][1] == 1 && stand1 != 0){ // 두번째
+							$('#5_'+stand1).attr('rowspan', stand2);
+							$('#5_'+stand1).addClass('class-info');
+							$('#5_'+stand1).html(param.friList[j].timetable_course_name);
+							$('#5_'+stand1).attr('style','background-color: '+param.friList[j].timetable_color);
+							stand1 = list[s][0];
+						} else if(list[s][1] != 1){
+							stand2 = list[s][1];
+							$('#5_'+list[s][0]).attr('style', "display:none;");
+						}
+					}
+					$('#5_'+stand1).attr('rowspan', stand2);
+					$('#5_'+stand1).addClass('class-info');
+					$('#5_'+stand1).html(param.friList[j].timetable_course_name);
+					$('#5_'+stand1).attr('style','background-color: '+param.friList[j].timetable_color);
 				}
 			}
 		}
 	}
 	//================timetablePrint 끝==================
+	
 	
 	
 	
