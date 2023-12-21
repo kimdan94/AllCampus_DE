@@ -11,6 +11,7 @@ import kr.controller.Action;
 import kr.main.dao.HomeDAO;
 import kr.member.dao.MemberDAO;
 import kr.notice.vo.NoticeVO;
+import kr.question.vo.QuestionVO;
 import kr.secondhand.vo.SecondhandVO;
 
 public class HomeAction implements Action{
@@ -38,6 +39,8 @@ public class HomeAction implements Action{
 		request.setAttribute("noticeList", noticeList);
 		
 		//FAQ 목록
+		List<QuestionVO> questionList = homeDao.getListQuestion(1, 5);
+		request.setAttribute("questionList", questionList);
 		
 		//HOT 게시판 목록                             
 		List<BoardVO> hotList = homeDao.getListHot(1, 5, 100);

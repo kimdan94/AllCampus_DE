@@ -229,10 +229,19 @@ textarea{
 	word-break:break-all;
 	width:265px;
 }
+.list-margin3{
+	width:370px;
+	margin-top:3px;
+	font-size:14px;
+}
 .info-div{
 	float:left;
 	padding:5px;
 	margin:285px -350px 0 117px;
+}
+.faq-table{
+	margin-left:-20px;
+	margin-top:-20px;
 }
 .info-div2{
 	float:left;

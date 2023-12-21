@@ -73,9 +73,15 @@
 		<h3>FAQ <input type="button" value="더보기" class="home-btn"
 			onclick="location.href='${pageContext.request.contextPath}/faq/faq.do'"></h3>
 		<div class="list-div">
-		<table>
+		<table class="faq-table">
 			<tr>
+				<th style="height:33px;">[자주 묻는 질문]</th>
 			</tr>
+			<c:forEach var="question" items="${questionList}">
+			<tr>
+				<td class="list-margin3"><a href="#">${question.question_title}</a></td>
+			</tr>
+			</c:forEach>
 		</table>
 		</div>
 	</div>
@@ -198,9 +204,15 @@
 		<h3>FAQ <input type="button" value="더보기" class="home-btn"
 			onclick="location.href='${pageContext.request.contextPath}/faq/faq.do'"></h3>
 		<div class="list-div">	
-		<table>
+		<table class="faq-table">
 			<tr>
+				<th style="height:33px;">[자주 묻는 질문]</th>
 			</tr>
+			<c:forEach var="question" items="${questionList}">
+			<tr>
+				<td class="list-margin3"><a href="#">${question.question_title}</a></td>
+			</tr>
+			</c:forEach>
 		</table>
 		</div>
 	</div>

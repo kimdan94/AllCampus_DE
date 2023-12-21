@@ -8,6 +8,7 @@ import java.util.List;
 
 import kr.board.vo.BoardVO;
 import kr.notice.vo.NoticeVO;
+import kr.question.vo.QuestionVO;
 import kr.secondhand.vo.SecondhandVO;
 import kr.util.DBUtil;
 
@@ -66,8 +67,43 @@ public class HomeDAO {
 		}
 		return list;
 	}
-	//FAQ 미리보기 - FAQ 제외
-	
+	//FAQ 미리보기
+	public List<QuestionVO> getListQuestion(int start, int end)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<QuestionVO> list = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
+					+ "(SELECT * FROM all_question ORDER BY question_num ASC)a) "
+					+ "WHERE rnum >= ? AND rnum <= ?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			list = new ArrayList<QuestionVO>();
+			while(rs.next()) {
+				QuestionVO question = new QuestionVO();
+				question.setQuestion_num(rs.getInt("question_num"));
+				question.setQuestion_title(rs.getString("question_title"));
+				
+				list.add(question);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return list;
+	}
 	
 	//HOT게시판 미리보기
 	public List<BoardVO> getListHot(int start, int end, int hit)throws Exception{
