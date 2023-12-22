@@ -36,25 +36,29 @@ public class TimetableAddAction implements Action {
 		TimetableDAO daoTime = TimetableDAO.getInstance();
 		
 		//가진 정보 : user_num(=mem_num), course_code, listClick(시간표 정보)
+		//////////////////////////////////////////////
+		String[] colorCode = {
+				"#f2e8e8","#dcf2e9","#ffe9e9","#dee8f6","#fff8cc",
+				"#ffedda","#f2e8e8","#dceef2","#eff9cc"
+		};
+		int idx = (int)((Math.random()*10000)%(colorCode.length-1));
+		
+		/////////////////////////////////////////////
 		
 		
-		Random random = new Random();
-		int randomColor = random.nextInt(12);
 		
 		byte[] arr = new byte[8];
         new Random().nextBytes(arr);
 		
-        String col = "";
-        for(int i=0; i<6; i++) {
-        	
-        }
         String color = "#" + (convertBytesToHex(arr).substring(0,6));
 		
 		timetable_table_id = timetable_table_id.replaceAll("[^0-9,_]", "");
 		String[] timetable_tableId = timetable_table_id.split(",");
+		
 		for(int i=0; i<timetable_tableId.length; i++) {
 			daoTime.insertTimetable(user_num, course_code, timetable_tableId[i]);
-			daoTime.updateColor(user_num, course_code, color);
+//			daoTime.updateColor(user_num, course_code, color);
+			daoTime.updateColor(user_num, course_code, colorCode[idx]);
 		}
 
 		//------------------------------------------------------------------

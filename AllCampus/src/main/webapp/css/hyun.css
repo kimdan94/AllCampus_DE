@@ -1,1 +1,56 @@
- 
+/*
+table {
+  width: 50%;
+  border: 1px solid #444444;
+  float: left;
+}*/
+body {
+	margin: 0 auto;
+	background-color: #FFFFFF;
+}
+.timetable-main {
+	margin: 30px 140px;
+}
+#courseDBtable {
+  width: 100%;/* div 내 100% */
+  float: left;
+  overflow: auto;
+  height: 10px;
+}
+#courseDBtable th {
+	border: none;
+	border-bottom: 1px solid #d3d3d3;
+	text-align: center;
+	padding: 5px;
+}
+#courseDBtable td {
+	border: none;
+	border-bottom: 1px solid #d3d3d3;
+	text-align: center;
+	padding: 10px;
+}
+#timetable{
+	width: 45%;
+	border: none;
+    /*border-bottom: 1px solid #444444;*/
+	float: right;
+}
+#timetable th {
+	width: 16.6%;
+	height: 60px;
+	text-align:center;
+}
+#timetable td {
+	text-align:center;
+	height: 33px;
+	/*border:none;*/
+}
+th, td {
+  border: 1px solid #444444;
+}
+
+
+
+
+/*friend jsp
+-----------------------------------*/
