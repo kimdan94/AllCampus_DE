@@ -6,6 +6,7 @@
     border-collapse: collapse;
     border-radius:10px;
     margin-left: 180px;
+    margin-top: 70px;
     padding:15px;
     float:left;
 }
@@ -176,15 +177,15 @@ input[type="submit"]{
 	background-color:#6699cc;
 	font-weight:bold;
 	color:white;
+	margin-left:215px;
 }
 .nick{
 	border:1px solid #e1e6ed;
 	height:30px; 
 	width:150px;
 	border-radius:10px;
-	background-color:#6699cc;
 	font-weight:bold;
-	color:white;
+	color:gray;
 }
 .form-notice{
 	font-size:10pt;
@@ -225,7 +226,8 @@ input[type="submit"]{
     padding:30px;
 }
 .logo{
-	width:250;
+	width:350px;
+	margin-top:30px;
 }
 
 /*내가 쓴 글, 댓글, 스크랩

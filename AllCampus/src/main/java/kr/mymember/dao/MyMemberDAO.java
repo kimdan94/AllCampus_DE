@@ -39,8 +39,7 @@ public class MyMemberDAO {
 			// 커넥션풀로부터 커넥션을 할당
 			conn = DBUtil.getConnection();
 			// SQL문 작성
-			sql = "SELECT * FROM all_member JOIN all_member_detail USING(mem_num) " 
-				+ "WHERE mem_num=?";
+			sql = "SELECT * FROM all_member JOIN all_member_detail USING(mem_num) " + "WHERE mem_num=?";
 			// PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			// ?에 데이터 바인딩
@@ -98,17 +97,15 @@ public class MyMemberDAO {
 		}
 	}
 
-	// 내 정보 변경(닉네임&전공)
-	public void updateMyNick_Major(MyMemberVO member) throws Exception {
+	// 내 정보 변경(닉네임)
+	public void updateMyNick(MyMemberVO member) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		PreparedStatement pstmt2 = null;
 		String sql = null;
 
 		try {
 			// 커넥션풀로부터 커넥션을 할당
 			conn = DBUtil.getConnection();
-			conn.setAutoCommit(false);
 			// SQL문 작성
 			sql = "UPDATE all_member SET mem_nick=? WHERE mem_num=?";
 			// PreparedStatement 객체 생성
@@ -119,19 +116,34 @@ public class MyMemberDAO {
 			// SQL문 실행
 			pstmt.executeUpdate();
 
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+
+	// 내 정보 변경(전공)
+	public void updateMyMajor(MyMemberVO member) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+
+		try {
+			// 커넥션풀로부터 커넥션을 할당
+			conn = DBUtil.getConnection();
+			// SQL문 작성
 			sql = "UPDATE all_member_detail SET mem_major=?,mem_major2=? WHERE mem_num=?";
 			// PreparedStatement 객체 생성
-			pstmt2 = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql);
 			// ?에 데이터 바인딩
-			pstmt2.setString(1, member.getMem_major());
-			pstmt2.setString(2, member.getMem_major2());
-			pstmt2.setInt(3, member.getMem_num());
+			pstmt.setString(1, member.getMem_major());
+			pstmt.setString(2, member.getMem_major2());
+			pstmt.setInt(3, member.getMem_num());
 			// SQL문 실행
-			pstmt2.executeUpdate();
-			
-			conn.commit();
+			pstmt.executeUpdate();
+
 		} catch (Exception e) {
-			conn.rollback();
 			throw new Exception(e);
 		} finally {
 			DBUtil.executeClose(null, pstmt, conn);
@@ -140,7 +152,6 @@ public class MyMemberDAO {
 
 	// 닉네임 중복 체크
 	public MyMemberVO checkMember(String mem_nick) throws Exception {
-		System.out.println(mem_nick);
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -371,7 +382,7 @@ public class MyMemberDAO {
 				board.setBoard_num(rs.getInt("board_num"));
 				board.setBoard_title(StringUtil.useNoHtml(rs.getString("board_title")));
 				board.setBoard_reg_date(rs.getDate("board_reg_date"));
-				
+
 				list.add(board);
 			}
 		} catch (Exception e) {
@@ -515,14 +526,14 @@ public class MyMemberDAO {
 				CourseEvaVO courseeva = new CourseEvaVO();
 				courseeva.setEva_num(rs.getInt("eva_num"));
 				courseeva.setEva_reg_date(rs.getDate("eva_reg_date"));
-				
-				//강의명 담기 위해 CourseVO 객체 생성
+
+				// 강의명 담기 위해 CourseVO 객체 생성
 				CourseVO course = new CourseVO();
 				course.setCourse_name(rs.getString("course_name"));
 				course.setCourse_prof(rs.getString("course_prof"));
-				
+
 				courseeva.setCourseVO(course);
-				
+
 				list3.add(courseeva);
 			}
 		} catch (Exception e) {
@@ -577,9 +588,9 @@ public class MyMemberDAO {
 			conn = DBUtil.getConnection();
 			// SQL문 작성
 			sql = "SELECT distinct(board_num),board_title,board_reg_date FROM (SELECT a.*, rownum rnum FROM "
-				+ "(SELECT * FROM all_board JOIN all_member USING(mem_num) "
-				+ "JOIN all_board_reply f USING(board_num) WHERE f.mem_num=? "
-				+ "ORDER BY board_reg_date DESC)a) WHERE rnum >=? AND rnum <= ?";
+					+ "(SELECT * FROM all_board JOIN all_member USING(mem_num) "
+					+ "JOIN all_board_reply f USING(board_num) WHERE f.mem_num=? "
+					+ "ORDER BY board_reg_date DESC)a) WHERE rnum >=? AND rnum <= ?";
 			// PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			// ?에 데이터 바인딩

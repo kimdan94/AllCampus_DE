@@ -35,14 +35,8 @@ $(function(){
 		});
 	});
 	
-	//닉네임 중복 안내 메시지 초기화 및 닉네임 중복 값 초기화
-	$('#mem_nick').keydown(function(){
-		nickChecked = 0;
-		$('#message_mem_nick').text('');
-	});//end of keydown
-	
-	//닉네임,전공 유효성 체크
-	$('#modify_form').submit(function(){
+	//닉네임 유효성 체크
+	$('#modify_nick').submit(function(){
 		if($('#mem_nick').val().trim()==''){
 			alert('닉네임을 입력해주세요');
 			$('#mem_nick').val('').focus();
@@ -52,13 +46,23 @@ $(function(){
 			alert('닉네임 중복체크는 필수입니다.');
 			return false;
 		}
+	});
+	
+	//닉네임 중복 안내 메시지 초기화 및 닉네임 중복 값 초기화
+	$('#mem_nick').keydown(function(){
+		nickChecked = 0;
+		$('#message_mem_nick').text('');
+	});//end of keydown
+	
+	
+	//전공 유효성 체크
+	$('#modify_major').submit(function(){
 		if($('#mem_major').val().trim()==''){
 			alert('전공을 입력해주세요');
 			$('#mem_major').val('').focus();
 			return false;
 		}
 	});
-	
 	
 //프로필 이미지
 
