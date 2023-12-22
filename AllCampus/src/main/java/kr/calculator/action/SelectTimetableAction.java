@@ -26,14 +26,8 @@ public class SelectTimetableAction implements Action{
 		int timetable_semester = Integer.parseInt(request.getParameter("timetableSemester"));
 		
 		if(user_num == null) {//로그인이 되지 않은 경우
-			mapAjax.put("result", "logout");
+			mapAjax.put("result", "logout"); 
 		}else {//로그인 된 경우
-			
-			//시간표 정보를 자바빈에 담음
-			//TimetableVO timetable = new TimetableVO();
-			//timetable.setTimetable_year(timetable_year);	//연도
-			//timetable.setTimetable_semester(timetable_semester);		//학기
-			
 			List<CalculatorVO> list = null;
 			CalculatorDAO calDao = CalculatorDAO.getInstance();
 			//시간표 정보 가져오기(강의명, 강의수강학점) 

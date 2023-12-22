@@ -72,7 +72,7 @@ $(document).ready(function () {
 		    $('.column.acq .value').text(data.acq);
         }
         
-    });
+    }); 
     
     $('#importForm').submit(function (event) {
         event.preventDefault();

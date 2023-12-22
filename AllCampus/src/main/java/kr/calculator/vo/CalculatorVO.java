@@ -10,13 +10,6 @@ public class CalculatorVO {
 	private double cal_grade;			//성적
 	private int cal_major;				//전공여부
 	
-	//private double cal_avgscore;		//평점 
-	//private double cal_majorscore;		//전공 점수
-	//private int cal_acq;				//취득 점수
-	//private double cal_total_avgscore;	//전체평점 
-	//private double cal_total_majorscore;//전공평점
-	//private int cal_total_acq;			//취득학점
-	
 	private TimetableVO timetableVO;    //시간표 VO
 	
 	

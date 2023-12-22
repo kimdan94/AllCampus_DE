@@ -32,7 +32,7 @@ public class CalculatorDAO {
 	    
 	    try {
 	    	//커넥션풀로부터 커넥션 할당
-			conn = DBUtil.getConnection();
+			conn = DBUtil.getConnection();  
 			//SQL문 작성
 			//중복 없이 강의명, 강의 수강 학점 select
 			sql ="SELECT DISTINCT timetable_course_name, timetable_year, timetable_semester,timetable_credit "
@@ -48,7 +48,7 @@ public class CalculatorDAO {
 			list = new ArrayList<CalculatorVO>();
 			while(rs.next()) {
 				
-				CalculatorVO calculator = new CalculatorVO();
+				CalculatorVO calculator = new CalculatorVO(); 
 				
 				//시간표 정보를 담기 위해 TimetableVO 객체 생성
 				TimetableVO timetable = new TimetableVO();
