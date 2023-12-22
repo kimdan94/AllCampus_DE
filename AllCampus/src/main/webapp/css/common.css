@@ -93,6 +93,15 @@ input{
 	color:black;
 	font-weight:bold;
 }
+a{
+	cursor:pointer;	
+}
+input[type="button"]{
+	cursor:pointer;
+}
+input[type="submit"]{
+	cursor:pointer;
+}
 /* a 태그
 ------------------------------*/
 a {
