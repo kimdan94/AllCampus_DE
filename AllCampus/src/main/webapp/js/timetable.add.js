@@ -428,10 +428,12 @@ $(function() {
 	
 	function initTable(){
 		let timeList = [9,10,11,12,13,14,15,16,17];
+		let timeKor = ['오전 9시','오전 10시','오전 11시','오후 12시','오후 1시','오후 2시',
+		'오후 3시','오후 4시','오후 5시'];
 			$('#timetable > tbody').empty();
 			for(let i=0;i<timeList.length;i++){
 				let output = '<tr>';
-				output += '<td rowspan="2">' + timeList[i] + '</td>';
+				output += '<td rowspan="2">' + timeKor[i] + '</td>';
 				output += '<td id="1_'+ timeList[i]*60 + '"></td>';
 				output += '<td id="2_'+ timeList[i]*60 + '"></td>';
 				output += '<td id="3_'+ timeList[i]*60 + '"></td>';
