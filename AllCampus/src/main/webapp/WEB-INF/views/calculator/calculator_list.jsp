@@ -11,6 +11,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function () {
+	let dataInSessionStorage;
 	let semester_index;
 	let list_length;
 	var tbody = $('tbody');
@@ -40,17 +41,17 @@ $(document).ready(function () {
 	
     //select_semester에서 선택된 값을 form의 hidden값에 넣어준다
     $('select[name="select_semester"]').change(function () {
-    	let temp_index = $('select[name="select_semester"] option').index($('select[name="select_semester"] option:selected'));
-        let data = $.parseJSON(sessionStorage.getItem(temp_index));
+    	semester_index = $('select[name="select_semester"] option').index($('select[name="select_semester"] option:selected'));
+    	let data = $.parseJSON(sessionStorage.getItem(semester_index));
         console.log(data);
         if(data){//undefiend면 if문 밖으로 감
         	$('tbody').html('');
-        	for(var i=0;i<data.length;i++){
+        	for(var i=0;i<data.table.length;i++){
         		tbody.append('<tr>' +
-                        '<td class="name">' + data[i].course_name + '</td>' +
-                        '<td class="credit">' + data[i].timetable_credit + '</td>' +
-                        '<td class="grade">' + data[i].cal_grade + '</td>' +
-                        '<td class="major">' + data[i].cal_major + '</td>' +
+                        '<td class="name">' + data.table[i].course_name + '</td>' +
+                        '<td class="credit">' + data.table[i].timetable_credit + '</td>' +
+                        '<td class="grade">' + data.table[i].cal_grade + '</td>' +
+                        '<td class="major">' + data.table[i].cal_major + '</td>' +
                         '</tr>');
         	}
         	
@@ -59,10 +60,17 @@ $(document).ready(function () {
         	selectTbody();
         }
     	
-    	$('#cal_semester').val($(this).val());	//선택된 값을 hidden값에 넣어준다.
+        $('#cal_semester').val($(this).val());	//선택된 값을 hidden값에 넣어준다.
         $('.column.avgscore .value').text('0');
         $('.column.majorscore .value').text('0');
         $('.column.acq .value').text('0');
+        
+        
+        if(data){
+	        $('.column.avgscore .value').text(data.avgscore);
+			$('.column.majorscore .value').text(data.majorscore);
+		    $('.column.acq .value').text(data.acq);
+        }
         
     });
     
@@ -149,8 +157,8 @@ $(document).ready(function () {
     var modal = $('#myModal');
 
     openModalBtn.click(function () {
-    	let temp_select = $('select[name="select_semester"] option').index($('select[name="select_semester"] option:selected'));
-    	if(temp_select == 0){
+    	semester_index = $('select[name="select_semester"] option').index($('select[name="select_semester"] option:selected'));
+    	if(semester_index == 0){
     		alert('학기를 선택하세요');
     		return;
     	}
@@ -168,14 +176,28 @@ $(document).ready(function () {
         }
     });
     
+    
     //계산하기 폼 제출 시 
     $('#cal_count').submit(function (event) {
     	
     	event.preventDefault();
-
+	
+    	/* var datasemscore=[];
+    	let datascoreInSessionStorage = '[';
+    	datascoreInSessionStorage += '{';
+    	datascoreInSessionStorage += '"avgscore":'+ $('.column.avgscore .value').text();
+    	datascoreInSessionStorage += ',"majorscore":'+ $('.column.majorscore .value').text();
+    	datascoreInSessionStorage += '}';
+    	datascoreInSessionStorage += ']';
+    	console.log(datascoreInSessionStorage);
+    	
+    	 */
+    	
+    	 
         //배열 생성
         var dataRows = [];
-        let dataInSessionStorage = '[';
+        dataInSessionStorage = '{"table":[';
+       
         //7행에 대해 
         for (var i = 0; i < list_length; i++) {
             var rowData = {
@@ -197,8 +219,7 @@ $(document).ready(function () {
         }
     	
         dataInSessionStorage += ']';
-        console.log(dataInSessionStorage);
-        
+
         var formData = {
                 cal_semester: $('#cal_semester').val()
             };
@@ -218,11 +239,6 @@ $(document).ready(function () {
         	success: function (param) {
         		if(param.result == 'success'){
         		
-        			sessionStorage.setItem(semester_index,dataInSessionStorage);
-        			
-        			//console.log(param);
-        			//display_calculator(param);
-        			//alert(param.semesterscore.cal_avgscore);
 					alert("학점 계산 완료");
 					$('.column.gpa .value').val('');
 					$('.column.major .value').val('');
@@ -240,7 +256,15 @@ $(document).ready(function () {
            			$('.column.majorscore .value').text(param.semesterscore.cal_majorscore);
             		$('.column.acq .value').text(param.semesterscore.cal_acq);
         			
-        			
+            		dataInSessionStorage += ',"avgscore":'+ $('.column.avgscore .value').text();
+            		dataInSessionStorage += ',"majorscore":'+ $('.column.majorscore .value').text();
+            		dataInSessionStorage += ',"acq":'+ $('.column.acq .value').text();
+                    dataInSessionStorage += '}';
+                    
+                    sessionStorage.setItem(semester_index,dataInSessionStorage);
+                    
+                    console.log(dataInSessionStorage);
+            		
         		}else{
         			alert('오류');
         		}
@@ -250,14 +274,27 @@ $(document).ready(function () {
         	}
 		});
 		
-		/*
-		function display_calculator(param) {
-			$('.column_gpa .value').text(param.totalscore.cal_total_avgscore.toString());
-	        $('.column_major .value').text(param.totalscore.cal_total_majorscore.toString());
-	        $('.column_acquisition .value').text(param.totalscore.cal_total_acq.toString());
-		}
-		*/
     });
+    //초기화
+   $('#reset').click(function(){
+	   console.log('~~');
+	   console.log(semester_index);
+	   console.log(sessionStorage.getItem(semester_index));
+	   if(sessionStorage.getItem(semester_index)){
+		   sessionStorage.removeItem(semester_index);
+		   let cal_semester = $('select[name="select_semester"] option').eq(semester_index).val();
+		   alert(cal_semester);
+		   alert('초기화 완료');
+		   
+		   //ui 초기화
+		   tbody.empty();
+		   selectTbody();
+		   
+		   $('.column.avgscore .value').text('0');
+      	   $('.column.majorscore .value').text('0');
+      	   $('.column.acq .value').text('0');
+	   }
+   });
 });
 </script>
 </head>
@@ -409,7 +446,7 @@ $(document).ready(function () {
             <%-- 
               <a class="new">더 입력하기</a>
             --%>
-              <a class="reset">초기화</a>
+              
             </td>
           </tr>
         </tfoot>
@@ -417,6 +454,7 @@ $(document).ready(function () {
 		</table>
 		<input type="hidden" id="cal_semester" name="cal_semester" value="">
 		<input type="submit" value="계산하기" class="cal-btn4">
+		<input type="button" class="cal-btn4" id="reset" value="초기화">
 		</form>
 	</div> 
 </div>

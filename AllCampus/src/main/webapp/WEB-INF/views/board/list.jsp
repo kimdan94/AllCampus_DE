@@ -58,7 +58,7 @@ window.onload=function(){
 		</form>
 		
 		<div class="blist-space align-right">
-			<input type="button" value="글쓰기" class="cal-btn" onclick="location.href='writeForm.do'"
+			<input type="button" value="글 작성하기" class="board-btn" onclick="location.href='writeForm.do'"
 			<c:if test="${empty user_num}">disabled="disabled"</c:if>
 			>
 		</div>

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시판 상세 정보</title>
+<title>게시판 상세 정보 - 올캠퍼스</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/jiwonstyle.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
@@ -15,28 +15,34 @@
 <script type="text/javascript">
 $(function(){
 	$('#board_complaint_link').click(function(){
-		alert('신고하시겠습니까?');
-		
-		$.ajax({
-			url:'addComplaintCount.do',
-			type:'post',
-			data:{board_num: ${board.board_num}},
-			dataType:'json',
-			success:function(param){
-				if(param.result == 'success'){
-					alert("신고 완료되었습니다.");
-					location.href='detail.do?board_num=${board.board_num}';
-				}else if(param.result == 'duplicated'){
-					alert('이미 신고 처리된 게시글입니다.');
-					location.href='detail.do?board_num=${board.board_num}';
-				}else{
-					alert("신고 처리 오류 발생");
+		let choice = confirm('신고하시겠습니까?');
+		if(choice){
+			$.ajax({
+				url:'addComplaintCount.do',
+				type:'post',
+				data:{board_num: ${board.board_num}},
+				dataType:'json',
+				success:function(param){
+					if(param.status == 'success'){
+						alert("신고 완료되었습니다.");
+						location.href='detail.do?board_num=${board.board_num}';
+					}else if(param.status == 'duplicated'){
+						alert('이미 신고 처리된 게시글입니다.');
+						location.href='detail.do?board_num=${board.board_num}';
+					}else if(param.status == 'noLogin'){
+						alert('로그인 후 이용 가능합니다.');
+						location.href='${pageContext.request.contextPath}/member/loginForm.do';
+					}else if(param.status == 'noCertify'){
+						alert('학교 인증을 마친 학생들만 이용할 수 있어요!');
+					}else{
+						alert("신고 처리 오류 발생");
+					}
+				},
+				error:function(){
+					alert('이미 신고되어 숨겨진 게시물입니다.');
 				}
-			},
-			error:function(){
-				alert('이미 신고되어 숨겨진 게시물입니다.');
-			}
-		});
+			});	
+		}
 	});
 });
 </script>
@@ -113,21 +119,19 @@ $(function(){
 			</li>
 		</ul>
 		<div class="likeimage">
-		<%-- 
-		<button type="button" id="output_board_fav" data-num="${board.board_num}">
-			 <img src="${pageContext.request.contextPath}/images/favj_image.png" width="18">
-			 공감
-		</button>
-		<button type="button" id="output_board_scrap" data-num="${board.board_num}">
-			 <img src="${pageContext.request.contextPath}/images/star_image1.png" width="18">
-			 스크랩
-		</button>
-		--%>
-		<input type="button" value="공감" id="output_board_fav" data-num="${board.board_num}">
-		<input type="button" value="스크랩" id="output_board_scrap" data-num="${board.board_num}">
-		
+		<input type="button" value="공감" id="output_board_fav" class="board-btn" data-num="${board.board_num}">
+		<input type="button" value="스크랩" id="output_board_scrap" class="board-btn" data-num="${board.board_num}">
 		</div>
 		</div>
+		<!-- 댓글 목록 출력 시작 -->
+		<div id="output"></div>
+		<div class="paging-button" style="display:none;">
+			<input type="button" value="다음글 보기">
+		</div>
+		<div id="loading" style="display:none;">
+			<img src="${pageContext.request.contextPath}/images/loading.gif" width="50" height="50">
+		</div>
+		<!-- 댓글 목록 출력 끝 -->
 		<!-- 댓글 시작 -->
 		<div id="reply_div">
 			<span class="re-title">댓글 달기</span>
@@ -157,15 +161,7 @@ $(function(){
 				</c:if>
 			</form>
 		</div>
-		<!-- 댓글 목록 출력 시작 -->
-		<div id="output"></div>
-		<div class="paging-button" style="display:none;">
-			<input type="button" value="다음글 보기">
-		</div>
-		<div id="loading" style="display:none;">
-			<img src="${pageContext.request.contextPath}/images/loading.gif" width="50" height="50">
-		</div>
-		<!-- 댓글 목록 출력 끝 -->
+		
 		<!-- 댓글 끝 -->
 	</div>
 	</div>

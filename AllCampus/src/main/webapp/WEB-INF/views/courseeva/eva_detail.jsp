@@ -13,32 +13,39 @@
 <script type="text/javascript">
 $(function(){
 	$('.eva_complaint_btn').click(function(){
-		alert('신고하시겠습니까?');
 		var index = $(this).attr('data-index');
-		$.ajax({ 
-			url:'evaComplaint.do',
-			type:'post',
-			data:{eva_num:$('#output_eva_complaint_' + index).attr('data-num')},
-			dataType:'json', 
-			success:function(param){
-				if(param.result == 'success'){
-					alert("신고 완료되었습니다.");
-					location.href='courseeva_detail.do?course_name=${course_name}&course_prof=${course_prof}';
-				}else if(param.result == 'duplicated'){
-					alert('이미 신고 처리된 게시글입니다.');
-					location.href='courseeva_detail.do?course_name=${course_name}&course_prof=${course_prof}';
-				}else{
-					alert("신고 처리 오류 발생");
+		
+		let choice = confirm('신고하시겠습니까?');
+		if(choice){
+			$.ajax({ 
+				url:'evaComplaint.do',
+				type:'post',
+				data:{eva_num:$('#output_eva_complaint_' + index).attr('data-num')},
+				dataType:'json', 
+				success:function(param){
+					if(param.status == 'success'){
+						alert("신고 완료되었습니다.");
+						location.href='courseeva_detail.do?course_name=${course_name}&course_prof=${course_prof}';
+					}else if(param.status == 'duplicated'){
+						alert('이미 신고 처리된 게시글입니다.');
+						location.href='courseeva_detail.do?course_name=${course_name}&course_prof=${course_prof}';
+					}else if(param.status == 'noLogin'){
+						alert('로그인 후 이용 가능합니다.');
+						location.href='${pageContext.request.contextPath}/member/loginForm.do';
+					}else if(param.status == 'noCertify'){
+						alert('학교 인증을 마친 학생들만 이용할 수 있어요!');
+					}else{
+						alert("신고 처리 오류 발생");
+					}
+				},
+				error:function(){
+					alert('이미 신고되어 숨겨진 게시물입니다.');
 				}
-			},
-			error:function(){
-				alert('이미 신고되어 숨겨진 게시물입니다.');
-			}
-		});
+			});
+		}
 	});
 });
 </script>
-
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>

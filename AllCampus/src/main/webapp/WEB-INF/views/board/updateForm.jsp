@@ -11,6 +11,16 @@
     <script type="text/javascript">
         $(function(){
             $('#update_Form').submit(function(){
+            	if($('#board_title').val().trim()==''){
+            		alert('글 제목을 입력하세요');
+            		$('#board_title').val('').focus();
+            		return false;
+            	}
+            	if($('#board_content').val().trim()==''){
+            		alert('글 내용을 입력하세요');
+            		$('#board_content').val('').focus();
+            		return false;
+            	}
                 // 익명 체크박스가 체크되어 있으면 값을 2로, 체크되어 있지 않으면 값을 1로 설정
                 if ($('#board_anonymous').is(':checked')) {
                     $('#board_anonymous').val('2');
@@ -38,7 +48,7 @@
                     </li>
                     <li>
                         <label for="board_content"></label>
-                        <input type="text" name="board_content" id="board_content" value="${board.board_content}" maxlength="50">
+                        <textarea rows="10" cols="80" style="margin-top:10px;" name="board_content" id="board_content" maxlength="50" placeholder="글 내용">${board.board_content}</textarea>
                     </li>
                     <li>
                         <label for="board_filename"></label>
@@ -81,7 +91,7 @@
                     </li>
                     <li>
                         <label for="board_anonymous"></label>
-                        <input type="checkbox" name="board_anonymous" id="board_anonymous" value="2" <c:if test="${board.board_anonymous == 2}">checked</c:if>>익명
+                        <input type="checkbox" style="margin-top:10px;" name="board_anonymous" id="board_anonymous" value="2" <c:if test="${board.board_anonymous == 2}">checked</c:if>>익명
                     </li>
                 </ul>
                 <div class="align-center">

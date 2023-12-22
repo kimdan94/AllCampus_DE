@@ -30,7 +30,9 @@
 	color:black;
 	font-weight:bold;
 }
-
+textarea{
+	resize:none;
+}
 
 /* 
 자유게시판 list.jsp 부분
@@ -47,6 +49,16 @@
 	width:700px;
     margin-left: 550px;
 }
+.board-btn{
+	border:1px solid #e1e6ed;
+	width:90px;
+	height:25px;
+	border-radius:5px;
+	color:black;
+	font-weight:bold;
+}
+
+
 table{
 	width:100%;
 	border:1px solid #000;
