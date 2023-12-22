@@ -37,7 +37,7 @@ public class SelectTimetableAction implements Action{
 			List<CalculatorVO> list = null;
 			CalculatorDAO calDao = CalculatorDAO.getInstance();
 			//시간표 정보 가져오기(강의명, 강의수강학점) 
-			list = calDao.getTimetable(timetable_year,timetable_semester);
+			list = calDao.getTimetable(timetable_year,timetable_semester,user_num);
 			mapAjax.put("list", list);
 			mapAjax.put("result", "success");
 		}
