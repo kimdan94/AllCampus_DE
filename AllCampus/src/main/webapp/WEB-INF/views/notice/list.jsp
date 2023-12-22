@@ -6,7 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>공지사항 목록</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/yen.css">
 <script type="text/javascript">
 window.onload=function(){
 	let myForm = document.getElementById('search_form');
@@ -33,10 +34,10 @@ window.onload=function(){
 </script>
 </head>
 <body>
-<div class="main_page">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<div class="free_title">
-		
+	<div class="page-main">
+		<h2 class="notice-title">공지사항</h2>
+		<div class="free_title">
 		<form id="search_Form" action="list.do" method="get">
 				<ul class="search">
 				<li>
@@ -54,29 +55,26 @@ window.onload=function(){
 			</ul>
 		</form>
 		<div class="list-space align-right">
-			<input type="button" value="글쓰기" onclick="location.href='writeForm.do'"
+			<input type="button" value="글쓰기" class="notice-writebtn" onclick="location.href='writeForm.do'"
 			<c:if test="${empty user_num}">disabled="disabled"</c:if>
 			>
 
 			
 		</div>
 	</div>
-	<h1>공지사항</h1>	
 	<c:if test="${count==0}">
 	<div class="result-display">
 		표시할 게시물이 없습니다.
 	</div>
 	</c:if>
 	<c:if test="${count > 0}">
-	<table>
+	<table class="notice-table">
 	<c:forEach var="notice" items="${list}">
-		<tr data-href="detail.do?notice_num=${notice.notice_num}">
+		<tr>
 			<td>
-			<span style="font-weight:bold; font-size=10pt">${notice.notice_title}</span><br>
-			${notice.notice_content}<br>
-			
-			<!-- !!!!!!!!!!!!!!!!!!!!!!      몇분전 형식으로 변경하기 !!!!!! -->
-			${notice.notice_reg_date} 
+			<span class="title"><a href="detail.do?notice_num=${notice.notice_num}">${notice.notice_title}</a></span><br>
+			<span class="content">${notice.notice_content}</span><br>
+			<span class="reg_date">${notice.notice_reg_date}</span><br>
 			</td>
 		</tr>
 	</c:forEach>

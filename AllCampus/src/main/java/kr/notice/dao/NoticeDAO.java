@@ -193,6 +193,24 @@ public class NoticeDAO {
 		}
 	}
 	//글 삭제
+	public void deleteNotice(int notice_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "DELETE FROM all_notice WHERE notice_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	//좋아요 등록
 	//좋아요 개수
 	

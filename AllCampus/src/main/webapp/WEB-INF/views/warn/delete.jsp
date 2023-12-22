@@ -5,8 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공지사항 글 등록</title> 
+<title>신고글 삭제</title> 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/yen.css">
 </head>
 <body>
 <div class="page-main">
@@ -14,9 +15,9 @@
 	<div class="content-main">
 		<div class="result-display">
 			<div class="align-center">
-				공지사항 글등록이 완료되었습니다.
+				게시글 삭제가 완료되었습니다.
 				<p>
-				<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/notice/list.do'">
+				<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/warn/list.do'">
 				</p>
 			</div>
 		</div>

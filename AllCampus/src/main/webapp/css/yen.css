@@ -1,3 +1,36 @@
+@charset "UTF-8"; 
+/*공통
+---------------------------------*/
+.board-underline{
+	margin-left:95px;
+	border:0;
+	height:3px;
+	background:#6699cc;
+}
+.board-title{
+	margin-left:95px;
+	color:#2b2b2b;
+}
+
+/* 
+자유게시판 신고 list.jsp 부분
+------------------------------*/
+table{
+	width:100%;
+	border:1px solid #000;
+	border-collapse:collapse;
+	margin-top:5px;
+}
+table td, table th{
+	border:1px solid #000;
+	padding:5px;
+}
+.content-main{
+	width:34%;
+	float:left;
+	padding:5px;
+	margin:70px -390px 0 400px;
+}
 #email {
   border-style: solid;
 }
@@ -6,4 +39,96 @@
 }
 #email:invalid {
   border-color: red;
+}
+
+/* 공지사항 목록 시작   notice_list.jsp
+---------------------------------*/
+.notice-table{
+    width: 800px;
+    border: 1px solid gray;
+    border-collapse: collapse;
+    margin-top: 5px;
+    margin-left: 450px;
+}
+
+form#search_Form {
+    border: none;
+    margin-left:110px;
+    margin-right: 0; /* 조정할 오른쪽 여백 크기 */
+    margin-top: 10px; /* 조정할 상단 여백 크기 */
+}
+
+ul.search {
+    width: 340px;
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+}
+
+ul.search li {
+    margin: 0 0 9px 0;
+    padding: 0;
+    display: inline;
+}
+
+.free_title .list-space {
+	width:700px;
+    margin-left: 550px;
+}
+
+.list-space input {
+    margin-left: 5px; /* 각 버튼 사이의 간격 조절 */
+}
+
+.result-display{
+	width:600px;
+	height:400px;
+	margin:50px 530px;
+	border:1px solid #000;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+}
+
+.notice-table{
+	width:800px;
+	border:1px solid gray;
+	border-collapse:collapse;
+	margin-top:5px;
+	margin-left:450px;
+}
+.notice-table .title{
+	font-weight: bold;
+	font-size:20px;
+}
+.notice-table .content{
+	font-size:15px;
+}
+
+.notice-table img{
+	color:yellow;
+}
+.notice-writebtn{
+	border:1px solid #e1e6ed;
+	width:100px;
+	height:25px;
+	border-radius:5px;
+	color:black;
+	font-weight:bold;
+	margin-bottom:7px;
+}
+/* 공지사항 notice_writeForm.jsp
+---------------------------------*/
+form#write_Form{
+	margin-left:460px;
+	border:1px solid black;
+	width:767px;
+	
+}
+/* 공지사항 notice_updateForm.jsp
+---------------------------------*/
+form#update_Form{
+	margin-left:460px;
+	border:1px solid black;
+	width:767px;
 }

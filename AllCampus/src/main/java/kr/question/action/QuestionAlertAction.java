@@ -1,13 +1,13 @@
-package kr.notice.action;
+package kr.question.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
-  
-public class WriteFormAction implements Action{
- 
+
+public class QuestionAlertAction implements Action{
+
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
@@ -16,7 +16,7 @@ public class WriteFormAction implements Action{
 			return "redirect:/member/loginForm.do";
 		}
 		//로그인 된 경우
-		return "/WEB-INF/views/notice/writeForm.jsp";
+		return "/WEB-INF/views/faq/alert.jsp";
 	}
 
 }

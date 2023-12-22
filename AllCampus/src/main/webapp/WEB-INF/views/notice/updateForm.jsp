@@ -5,13 +5,16 @@
 <head>
 <meta charset="UTF-8">
 <title>공지사항 글 수정</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/yen.css">
 </head>
 <body>
-<div class="page-main">
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<h2>공지사항 글 수정</h2>
-	<form id="update_form" action="update.do" method="post" enctype="multipart/form-data">
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+	<div class="page-main">
+		<h2 class="board-title">공지사항 글 수정</h2>
+		<hr width="10%" class="board-underline">
+		<div>
+		<form id="update_form" action="update.do" method="post" enctype="multipart/form-data">
 			<ul>
 				<li>
 					<label for="notice_title">제목</label>
@@ -24,11 +27,15 @@
 				</li>
 			</ul>
 			<div class="align-right">
- 			<input type="submit" value="수정">
+ 			<input type="submit" value="수정"><input type="button" value="삭제" onclick="location.href='delete.do'">
  			<br>
- 			<input type="button" value="목록" onclick="location.href='list.do'">
 			</div>
 		</form>
+		<br>
+		<div class="align-right">
+		<input type="button" value="목록" onclick="location.href='list.do'">
+		</div>
+</div>
 </div>
 </body>
 </html>

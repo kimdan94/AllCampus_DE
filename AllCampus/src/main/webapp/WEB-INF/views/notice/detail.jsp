@@ -6,19 +6,21 @@
 <head>
 <meta charset="UTF-8">
 <title>공지사항 상세글</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/yen.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/board.fav.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/board.reply.js"></script>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+	<h2 class="board-title">공지사항 상세</h2>
+	<hr width="10%" class="board-underline">
 	<div class="content-main">
 		<h2>${notice.notice_title}</h2>
 		<ul class="detail-info">
+		<img src="${pageContext.request.contextPath}/images/face.png" width="40" height="40" class="my-photo">
 			<li>
-				관리자<br>
+			관리자<br>
 			</li>
 		</ul>
 		<hr size="1" noshade="noshade" width="100%">
@@ -30,15 +32,7 @@
 		<p>
 			${notice.notice_content}
 		</p>
-		<hr size="1" noshade="noshade" width="100%">
-		<ul class="detail-sub">
-			<li>
-				<%-- 좋아요 --%>
-				<img id="output_fav" data-num="${notice.notice_num}"
-					src="${pageContext.request.contextPath}/images/fav01.gif" width="50">
-				좋아요
-				<span id="output_fcount"></span>
-			</li>
+		<ul>
 			<li>
 				<c:if test="${!empty notice.notice_modify_date}">
 					최근 수정일 : ${notice.notice_modify_date}

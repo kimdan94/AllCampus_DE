@@ -5,31 +5,14 @@
 body {
 	margin:0 auto;
 	background-color: #FFFFFF;
-	
+	min-width:1700px;
 }
 .page-main{
-	width:1650px;
+	width:100%;
 	margin:40px 0;
 	min-height:850px;
-	overflow:hidden;
 }
-a{
-	cursor:pointer;
-}
-input[type="button"]{
-	cursor:pointer;
-}
-input[type="submit"]{
-	cursor:pointer;
-}
-.sc-btn{
-	border:1px solid #e1e6ed;
-	width:80px;
-	height:25px;
-	border-radius:5px;
-	color:black;
-	font-weight:bold;
-}
+
 /* 공통 정렬
 ------------------------------*/
 .align-center{
@@ -43,9 +26,9 @@ input[type="submit"]{
 ------------------------------*/
 .header-style {
 	height: 80px;
-	width: 1670px;
-	margin:15px 0 0 9px;
-	padding:0;
+	width: 99%;
+	margin:15px 0 0 7px;
+	padding:2px;
 	vertical-align:middle;
 	border:1px solid #dcdfe3;
 	border-radius:10px;

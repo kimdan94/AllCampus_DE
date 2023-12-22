@@ -5,12 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <title>공지사항 등록</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/yen.css">
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<h2>공지사항 글쓰기</h2>
+	<h2 class="board-title">공지사항 글쓰기</h2>
+	<hr width="10%" class="board-underline">
 	<form id="write_form" action="write.do" method="post" enctype="multipart/form-data">
 			<ul>
 				<li>
@@ -29,7 +31,7 @@
 				</li>
 			</ul>
 			<div class="align-right">
- 			<input type="submit" value="등록">
+ 			<input type="submit" value="등록" onclick="location.href='write.do'">
  			<br>
  			<input type="button" value="목록" onclick="location.href='list.do'">
 			</div>

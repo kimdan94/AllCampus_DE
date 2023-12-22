@@ -31,7 +31,7 @@ public class WriteAction implements Action{
 	NoticeDAO dao = NoticeDAO.getinstance();
 	dao.insertNotice(notice);
 	//JSP 경로 반환
-	return "/WEB-INF/views/notice/update.jsp";
+	return "/WEB-INF/views/notice/write.jsp";
 		
   }
 }
