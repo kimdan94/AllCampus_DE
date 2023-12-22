@@ -10,7 +10,7 @@ import kr.notice.vo.NoticeVO;
 
 
 public class DeleteAction implements Action{
-    
+      
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();

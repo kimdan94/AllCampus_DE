@@ -26,10 +26,6 @@
 						name="notice_content" id="notice_content">${notice.content}</textarea>
 				</li>
 			</ul>
-			<div class="align-right">
- 			<input type="submit" value="수정"><input type="button" value="삭제" onclick="location.href='delete.do'">
- 			<br>
-			</div>
 		</form>
 		<br>
 		<div class="align-right">

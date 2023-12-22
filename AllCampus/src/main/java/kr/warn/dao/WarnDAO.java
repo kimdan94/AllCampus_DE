@@ -375,16 +375,15 @@ public class WarnDAO {
 				rs = pstmt.executeQuery();
 				list = new ArrayList<SecondhandVO>();
 				while (rs.next()) {
-					SecondhandVO Secondhand = new SecondhandVO();
-					Secondhand.setSecondhand_num(rs.getInt("Secondhand_num"));
+					SecondhandVO secondhand = new SecondhandVO();
+					secondhand.setSecondhand_num(rs.getInt("Secondhand_num"));
 					// HTML를 허용하지 않음
-					Secondhand.setSecondhand_content(StringUtil.useNoHtml(rs.getString("Secondhand_content")));
-					Secondhand.setSecondhand_reg_date(rs.getDate("Secondhand_reg_date"));
-
-					MemberVO memberVO = new MemberVO();
-					memberVO.setMem_id(rs.getString("mem_id"));
+					secondhand.setSecondhand_content(StringUtil.useNoHtml(rs.getString("Secondhand_content")));
+					secondhand.setSecondhand_reg_date(rs.getDate("Secondhand_reg_date"));
+					secondhand.setMem_id(rs.getString("mem_id"));
 					
-					list.add(Secondhand);
+					list.add(secondhand);
+					
 				}
 			} catch (Exception e) {
 				throw new Exception(e);
