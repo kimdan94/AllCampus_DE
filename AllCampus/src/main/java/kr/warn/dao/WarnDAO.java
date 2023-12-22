@@ -348,7 +348,7 @@ public class WarnDAO {
 			}
 			return count;
 		}
-
+  
 		//중고거래 신고 전체 글/검색 글 목록
 		public List<SecondhandVO> getListSecond(int start, int end) throws Exception {
 			Connection conn = null;
