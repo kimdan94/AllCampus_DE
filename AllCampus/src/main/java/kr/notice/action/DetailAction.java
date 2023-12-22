@@ -9,7 +9,7 @@ import kr.notice.vo.NoticeVO;
 import kr.util.StringUtil;
 
 public class DetailAction implements Action {
-
+  
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// 글번호 반환
