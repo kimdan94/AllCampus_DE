@@ -10,7 +10,7 @@ import kr.question.dao.QuestionDAO;
 import kr.question.vo.QuestionVO;
 
 public class QuestionDetailAction implements Action{
-
+  
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// 글번호 반환

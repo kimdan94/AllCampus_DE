@@ -11,7 +11,7 @@ import kr.controller.Action;
 import kr.util.PageUtil;
 
 public class QuestionAction implements Action {
-
+  
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String pageNum = request.getParameter("pageNum"); //처음에는 페이지가 null이니까 1로 간주하게 됨
