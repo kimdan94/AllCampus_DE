@@ -28,12 +28,6 @@
 	     			class="d-block w-100" data-bs-interval="1000">
 	     	</div>
 	     	<!-- 1 이미지 끝 -->
-	     	<!-- 2 이미지 시작 -->
-	     	<div class="carousel-item">
-	     		<img src="${pageContext.request.contextPath}/images/carousel-3.png" 
-	     			class="d-block w-100" data-bs-interval="1000">
-	     	</div>
-	     	<!-- 2 이미지 끝 -->
 	     </div><!-- end of .carousel-inner -->
 	</div>     
 </div>
