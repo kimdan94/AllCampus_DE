@@ -54,3 +54,40 @@ th, td {
 
 /*friend jsp
 -----------------------------------*/
+/*--검색창--*/
+.search-container {
+    display: flex;
+}
+
+.search-box {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+}
+
+.search-button {
+    background-color: #007bff;
+    color: #fff;
+    border: 1px solid #007bff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    outline: none;
+    padding: 10px;
+    /* Add the icon as a background image */
+    background-image: url('search-icon.png');
+    background-size: 20px 20px; /* Set the size of the icon */
+    background-repeat: no-repeat;
+    background-position: center; /* Center the icon */
+}
+
+/*--친구목록--*/
+.friend-val-scroll {
+	height: 300px;
+	overflow: auto;
+	width:30%;
+}
+.friend_val {
+	width: 350px;
+	height: 50px;
+}
