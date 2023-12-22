@@ -9,7 +9,7 @@ import kr.warn.dao.WarnDAO;
   
 //강의편 신고글 표시
 public class CourseShowAction implements Action{
-
+  
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();

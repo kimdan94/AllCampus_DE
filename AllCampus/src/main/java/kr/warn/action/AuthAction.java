@@ -11,7 +11,7 @@ import kr.warn.dao.WarnDAO;
 
 //자유게시판 신고 등급변경
 public class AuthAction implements Action{
-
+  
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();

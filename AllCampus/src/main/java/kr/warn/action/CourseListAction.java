@@ -20,7 +20,7 @@ public class CourseListAction implements Action{
 		
 		WarnDAO dao = WarnDAO.getInstance();
 		int count = dao.getCourseWarnCount();
-		  
+		    
 		//페이지 처리
 		PageUtil page = new PageUtil(Integer.parseInt(pageNum),count,20,10,"list.do");
 		List<CourseEvaVO> list = null;

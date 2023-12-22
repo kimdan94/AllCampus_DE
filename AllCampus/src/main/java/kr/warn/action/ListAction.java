@@ -31,7 +31,7 @@ public class ListAction implements Action{
 		request.setAttribute("count", count);
 		request.setAttribute("list", list);
 		request.setAttribute("page", page.getPage());
-  
+    
 		//---------------------------------------------------
 
 		String pageNum2 = request.getParameter("pageNum"); //처음에는 페이지가 null이니까 1로 간주하게 됨

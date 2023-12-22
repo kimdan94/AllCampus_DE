@@ -25,7 +25,7 @@ public class DeleteAction implements Action{
 		if(user_auth != 9) {//관리자로 로그인하지 않은 경우
 			return "/WEB-INF/views/common/notice.jsp";
 		}
-		  
+		    
 		//관리자로 로그인한 경우
 		WarnDAO dao = WarnDAO.getInstance();
 		dao.deleteCourse(Integer.parseInt(request.getParameter("board_num")));
