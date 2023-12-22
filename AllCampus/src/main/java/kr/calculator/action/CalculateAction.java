@@ -43,6 +43,8 @@ public class CalculateAction implements Action{
 				String creditParam = request.getParameter("timetable_credit_" + i);
 			    String gradeParam = request.getParameter("cal_grade_" + i);
 			    String majorParam = request.getParameter("cal_major_" + i);
+			    System.out.println("majorParam : " + majorParam);
+			    if(majorParam == null) break;
 	            
 			    if (creditParam != null && gradeParam != null && majorParam != null) {
 			            
@@ -85,8 +87,13 @@ public class CalculateAction implements Action{
 				            if(majorCalGrade != 0.1 && majorCalGrade != 0.2) {
 				            	cal_majorf_acq = cal_majorf_acq + majorTimetableCredit;//F포함 강의 학점
 				            }
-				            //tmajor/major_acq 하면 cal_majorscore 나온다.
-				            cal_majorscore = tmajor / cal_majorf_acq; //전공 평점
+				            if(cal_majorf_acq > 0) {
+				            	cal_majorscore = tmajor / cal_majorf_acq; //전공 평점
+				            }else {
+				            	//tmajor/major_acq 하면 cal_majorscore 나온다.
+					            cal_majorscore = 0; //전공 평점
+				            }
+				            
 				        }
 			    }//end of if
 			  
@@ -95,6 +102,7 @@ public class CalculateAction implements Action{
 			//테이블에 정보 저장
 			
 			//all_calculator_semester에 학기마다 점수 구한거 넣어줌
+			System.out.println(cal_semester+","+cal_avgscore+","+cal_majorscore+","+cal_acq+","+cal_finclude_acq+","+cal_majorf_acq);
 			dao.calculateScore(cal_semester,cal_avgscore,cal_majorscore,cal_acq,cal_finclude_acq,cal_majorf_acq,user_num);
 			
 			//모든 학기의 cal_avgscore  * finclude_acq  합한 값 
@@ -108,8 +116,17 @@ public class CalculateAction implements Action{
 			int summajorf_acq = dao.sumMajorf(user_num);		//cal_majorf_acq 합
 			
 			double cal_total_avgscore = favgscore/(double)sumfinclude_acq;
-			double cal_total_majorscore = fmajorscore/(double)summajorf_acq;
+			System.out.println(fmajorscore+","+summajorf_acq);
+			double cal_total_majorscore;
+			if(summajorf_acq>0) {
+				cal_total_majorscore = fmajorscore/(double)summajorf_acq;
+			}else {
+				cal_total_majorscore = 0;
+			}
+			
 			int cal_total_acq = acqscore;
+			
+			System.out.println(cal_total_avgscore+","+cal_total_majorscore+","+cal_total_acq);
 			
 			dao.totalScore(user_num, cal_total_avgscore, cal_total_majorscore, cal_total_acq);
 			

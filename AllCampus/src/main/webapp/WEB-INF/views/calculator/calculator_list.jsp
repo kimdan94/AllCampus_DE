@@ -176,7 +176,6 @@ $(document).ready(function () {
         }
     });
     
-    
     //계산하기 폼 제출 시 
     $('#cal_count').submit(function (event) {
     	
@@ -298,15 +297,6 @@ $(document).ready(function () {
 	   }
 	   
    });
-   /* function deletes(){
-	   $('.column.gpa .value').val('');
-		$('.column.major .value').val('');
-		$('.column.acquisition .value').val('');
-		
-		$('.column.gpa .value').text(param.totalscore.cal_total_avgscore);
-       $('.column.major .value').text(param.totalscore.cal_total_majorscore);
-       $('.column.acquisition .value').text(param.totalscore.cal_total_acq);
-   } */
 });
 </script>
 </head>
@@ -455,10 +445,6 @@ $(document).ready(function () {
 		<tfoot>
           <tr>
             <td colspan="4">
-            <%-- 
-              <a class="new">더 입력하기</a>
-            --%>
-              
             </td>
           </tr>
         </tfoot>

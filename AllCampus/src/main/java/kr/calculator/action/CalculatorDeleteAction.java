@@ -15,6 +15,7 @@ import kr.controller.Action;
 public class CalculatorDeleteAction implements Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		System.out.println("-------------CalculatorDeleteAction--------------------------------");
 		Map<String,String> mapAjax = new HashMap<String,String>();
 		
 		HttpSession session = request.getSession();
@@ -36,10 +37,21 @@ public class CalculatorDeleteAction implements Action{
 			int sumfinclude_acq = dao.sumFinclude(user_num);	// cal_finclude_acq 합
 			int summajorf_acq = dao.sumMajorf(user_num);		//cal_majorf_acq 합
 			
-			double cal_total_avgscore = favgscore/(double)sumfinclude_acq;
-			double cal_total_majorscore = fmajorscore/(double)summajorf_acq;
+			double cal_total_avgscore;
+			if(sumfinclude_acq > 0) {
+				cal_total_avgscore = favgscore/(double)sumfinclude_acq;
+			}else {
+				cal_total_avgscore = 0;
+			}
+			double cal_total_majorscore;
+			if(summajorf_acq>0) {
+				cal_total_majorscore = fmajorscore/(double)summajorf_acq;
+			}else {
+				cal_total_majorscore = 0;
+			}
 			int cal_total_acq = acqscore;
 			
+			System.out.println(cal_total_avgscore+","+cal_total_majorscore+","+cal_total_acq);
 			dao.totalScore(user_num, cal_total_avgscore, cal_total_majorscore, cal_total_acq);
 			
 			mapAjax.put("result", "success");
