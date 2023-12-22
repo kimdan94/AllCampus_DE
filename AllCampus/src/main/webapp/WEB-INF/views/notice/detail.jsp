@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/yen.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 </head>
-<body>
+<body>  
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
 	<h2 class="board-title">공지사항 상세</h2>

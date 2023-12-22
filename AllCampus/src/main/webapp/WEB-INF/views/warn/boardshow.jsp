@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/yen.css">
 </head>
-<body>
+<body>  
 <jsp:include page="/WEB-INF/views/common/header.jsp"/><!-- header는 꼭 여기에 -->
 <div class="page-main">
 	<div class="content-main">

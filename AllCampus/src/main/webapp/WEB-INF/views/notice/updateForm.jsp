@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/yen.css">
 </head>
-<body>
+<body>  
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<div class="page-main">
 		<h2 class="board-title">공지사항 글 수정</h2>
