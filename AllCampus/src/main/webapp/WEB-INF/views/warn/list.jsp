@@ -88,7 +88,7 @@
 							if(choice) {
 								location.replace('courseauth.do?mem_num=${course_eva.mem_num}');
 							}
-						};  
+						};    
 						</script>
 						<input type="button" value="삭제" id="delete_btn2${status.count}">
 						<script type="text/javascript">
