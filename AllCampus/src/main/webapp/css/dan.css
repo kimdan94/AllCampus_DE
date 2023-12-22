@@ -177,6 +177,7 @@ input[type="submit"]{
 	background-color:#6699cc;
 	font-weight:bold;
 	color:white;
+	margin-left:210px;
 }
 .nick{
 	border:1px solid #e1e6ed;

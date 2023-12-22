@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/dan.css">
 </head>
 <body>
-<img src="${pageContext.request.contextPath}/images/logo_typo_231208.png" class="logo">
+<a href="${pageContext.request.contextPath}/main/main.do"><img src="${pageContext.request.contextPath}/images/logo_typo_231208.png" class="logo"></a>
 <hr size="1" noshade="noshade" width="99%">
 <div class="page-main">
 <jsp:include page="/WEB-INF/views/mymember/sidebar.jsp"/>
