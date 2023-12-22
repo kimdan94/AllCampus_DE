@@ -47,10 +47,10 @@ window.onload = function(){
 			</ul>
 		</form>
 		<div class="list-space align-right">
-			<input type="button" value="목록" class="eva-writebtn2" onclick="location.href='courseeva_list.do'">
 			<input type="button" value="강의 평가하기" class="eva-writebtn1" onclick="location.href='evawriteForm.do'"
 			<c:if test="${empty user_num}">disabled="disabled"</c:if>
 			>
+			<input type="button" value="목록" class="eva-writebtn2" onclick="location.href='courseeva_list.do'">
 		</div>
 		<c:if test="${count == 0}">
 		<div class="result-display">
