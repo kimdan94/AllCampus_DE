@@ -66,7 +66,7 @@ window.onload=function(){
 	<div class="result-display">
 		표시할 게시물이 없습니다.
 	</div>
-	</c:if>  
+	</c:if>    
 	<c:if test="${count > 0}">
 	<table class="notice-table">
 	<c:forEach var="notice" items="${list}">

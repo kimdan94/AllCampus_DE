@@ -35,7 +35,7 @@ $(function(){
 	<h2>문의하기</h2>
 	<form id="faq_form" action="faq.do" method="post" enctype="multipart/form-data">
 			<ul>
-				<li>  
+				<li>    
 					<label for="question_title">제목</label>
 					<input type="text" name="question_title" id="question_title" class="input-check" maxlength="50">
 				</li>

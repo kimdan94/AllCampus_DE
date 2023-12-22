@@ -15,7 +15,7 @@
 		<div class="align-center">
 			<input type="button" style="WIDTH: 180pt; HEIGHT: 40pt" 
 				value="신고 게시글 관리" onclick="location.href='${pageContext.request.contextPath}/warn/list.do'">
-			<br>  
+			<br>    
 			<input type="button" style="WIDTH: 180pt; HEIGHT: 40pt" 
 				value="공지사항 관리" onclick="location.href='${pageContext.request.contextPath}/notice/list.do'">
 			<br>

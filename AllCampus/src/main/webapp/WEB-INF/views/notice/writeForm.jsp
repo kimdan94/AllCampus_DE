@@ -46,7 +46,7 @@ $(function(){
 					<input type="file" name="notice_filename"
 						id="notice_filename" accept="image/gif,image/png,image/jpeg">
 				</li>
-			</ul>  
+			</ul>    
 			<div class="align-right">
  			<input type="submit" value="등록">
  			<br>
