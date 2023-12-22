@@ -45,6 +45,11 @@ public class TimetableAddAction implements Action {
 		
 		/////////////////////////////////////////////
 		
+		//--------------------------------------------------
+		List<String> semesterList = daoTime.selectYearAndSemester(course_code);
+		int year = Integer.parseInt(semesterList.get(0));
+		int semester = Integer.parseInt(semesterList.get(1));
+		//--------------------------------------------------
 		
 		
 		byte[] arr = new byte[8];
@@ -52,19 +57,30 @@ public class TimetableAddAction implements Action {
 		
         String color = "#" + (convertBytesToHex(arr).substring(0,6));
 		
+        
+        // timetable.add.js에서 받아온 해당 강의 table id 리스트(문자열)을 리스트로 변환
 		timetable_table_id = timetable_table_id.replaceAll("[^0-9,_]", "");
 		String[] timetable_tableId = timetable_table_id.split(",");
 		
-		for(int i=0; i<timetable_tableId.length; i++) {
-			daoTime.insertTimetable(user_num, course_code, timetable_tableId[i]);
-//			daoTime.updateColor(user_num, course_code, color);
-			daoTime.updateColor(user_num, course_code, colorCode[idx]);
+		System.out.println("리스트");
+		
+		int count = 0;
+		for(int i=0; i<timetable_tableId.length; i++) { // 여기서 중복처리를 해줘야 함
+			System.out.println(timetable_tableId[i]);
+				count += daoTime.checkTimetable(user_num, year, semester, timetable_tableId[i]);
+		}
+		
+		if(count == 0) {
+			for(int i=0; i<timetable_tableId.length; i++) { // 여기서 중복처리를 해줘야 함
+				System.out.println(timetable_tableId[i]);
+				daoTime.insertTimetable(user_num, course_code, timetable_tableId[i]);
+//				daoTime.updateColor(user_num, course_code, color);
+				daoTime.updateColor(user_num, course_code, colorCode[idx]);
+			}
 		}
 
 		//------------------------------------------------------------------
-		List<String> semesterList = daoTime.selectYearAndSemester(course_code);
-		int year = Integer.parseInt(semesterList.get(0));
-		int semester = Integer.parseInt(semesterList.get(1));
+		
 		
 		
 		// 요일 필터링 - 요일/mem_num/year/semester

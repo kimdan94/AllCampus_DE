@@ -424,7 +424,7 @@ $(function(){
 		1. 모든 시간표 출력
 		2. 필터링된 시간표 출력
 	 -->
-	 <div style="height: 300px; overflow: auto; width:45%;">
+	 <div style="height: 500px; overflow: auto; width:45%;">
 	 <table id="courseDBtable">
 	 	<tr id="courseDBtable1">
 	 		<th style="color:black;">구분</th>

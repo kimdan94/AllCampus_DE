@@ -346,7 +346,8 @@ public class CourseDAO {
 		return list;
 	}
 	
-	//cours_code에 따른 요일 시간 필터링
+	// cours_code에 따른 요일 시간 필터링
+	// TimetableAddListAction
 	public List<CourseVO> selectDay(String course_code) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;

@@ -9,11 +9,14 @@ $(function() {
 	}
 	var text = "...";//말 줄임표 -- > table 크기를 벗어나면 작동
 
+	var course_second;
 	// 강의 click 시 클릭한 강의의 course_code를 addTime에 넘겨줌(오로지 넘겨주는 역할만 하는 ajax, action)
 	for (let i = 0; i < name.length; i++) {
 		// click 이벤트 실행
 		$(name[i]).on('click', (e) => {
-			$(name[i]).css({ "color": "green" });
+			course_second = 0; // 초기화
+			console.log(course_second);
+			$(name[i]).css({ "color": "green" }); // 지울것 + coursor 바꿀것!
 			course_code = $(name[i]).prop("id");
 			$.ajax({
 				url: 'timetableAddList.do', // 전송 url (전송하고 데이터 받기 위한 action 페이지 dao XX)
@@ -35,6 +38,8 @@ $(function() {
 	function addTime(param, course_code) {
 		console.log('listclick');
 		console.log(param.listClick);
+		console.log(param.list);
+		console.log("-- : " + course_second);
 		$(param.listClick).each(function(index, item) {
 			var startList = item.course_start_time.split(':');
 			var startTime = Number(startList[0]) * 60 + Number(startList[1]);
@@ -52,21 +57,42 @@ $(function() {
 					//지울것
 				}
 			}
-			$.ajax({
-				url: 'timetableAdd.do',
-				type: 'post',
-				data: {course_code: course_code, timetable_table_id: JSON.stringify(timetable_table_id)},// 보내려는 데이터를 문자열로 변환해서 보내기
-				dataType: 'json',
-				success: function(param) {
-					console.log('성공'); // 통과
-					year = param.year;
-					semester = param.semester;
-					getTimetablePrint(year, semester);
-				},
-				error: function() {
-					alert('네트워크 오류 발생');
+			
+			let root = 0;
+			console.log(timetable_table_id);
+			for(var p=0; p<param.list.length; p++){
+				if(item.course_year == param.list[p].timetable_year && item.course_semester ==param.list[p].timetable_semester){
+					if(timetable_table_id.indexOf(param.list[p].timetable_table_id) != -1){
+						timetable_table_id = [];
+						course_second = 1;
+					}
 				}
-			});
+			}
+			console.log("--" + course_second);
+
+			if(timetable_table_id.length>0 && course_second==0){
+				console.log("찐막 : " + course_second);
+				// ajax 시작
+				$.ajax({
+					url: 'timetableAdd.do',
+					type: 'post',
+					data: {course_code: course_code, timetable_table_id: JSON.stringify(timetable_table_id)},// 보내려는 데이터를 문자열로 변환해서 보내기
+					dataType: 'json',
+					success: function(param) {
+						console.log('성공'); // 통과
+						year = param.year;
+						semester = param.semester;
+						getTimetablePrint(year, semester);
+						
+						
+					},
+					error: function() {
+						alert('네트워크 오류 발생');
+					}
+				});
+				// ajax 끝
+			}
+			
 		});
 	}
 	
