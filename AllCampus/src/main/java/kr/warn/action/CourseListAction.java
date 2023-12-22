@@ -10,6 +10,7 @@ import kr.controller.Action;
 import kr.util.PageUtil;
 import kr.warn.dao.WarnDAO;
 
+//강의편 신고 목록
 public class CourseListAction implements Action{
 
 	@Override

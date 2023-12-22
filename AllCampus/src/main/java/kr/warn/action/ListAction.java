@@ -11,6 +11,7 @@ import kr.courseeva.vo.CourseEvaVO;
 import kr.util.PageUtil;
 import kr.warn.dao.WarnDAO;
 
+//자유게시판 신고글 목록
 public class ListAction implements Action{
 
 	@Override

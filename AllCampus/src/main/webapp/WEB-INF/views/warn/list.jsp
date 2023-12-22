@@ -24,7 +24,7 @@
 			<c:if test="${count > 0}">
 			<table style="width:600px;">
 			<c:forEach var="board" items="${list}" varStatus="status">
-				<tr data-href="detail.do?board_num=${board.board_num}">
+				<tr>
 					<td>
 					<span style="font-weight:bold; font-size=10pt">${board.board_title}</span><br>
 					${board.board_content}
@@ -35,7 +35,7 @@
 						document.getElementById('auth_btn${status.count}').onclick=function(){
 							let choice = confirm('일반회원으로 변경하시겠습니까?');
 							if(choice) {
-								location.replace('auth.do?board_num=${board.board_num}');
+								location.replace('auth.do?mem_num=${board.mem_num}');
 							}
 						};
 						</script>
@@ -75,18 +75,18 @@
 			<c:if test="${count2 > 0}">
 			<table style="width:600px;">
 			<c:forEach var="course_eva" items="${list2}" varStatus="status">
-				<tr data-href="detail.do?eva_num=${course_eva.eva_num}">
+				<tr>
 					<td>
-					<span style="font-weight:bold; font-size=10pt">${course_eva.eva_num}</span><br>
-					${eva.eva_content}
+					<span style="font-weight:bold; font-size=10pt">${course_eva.memberVO.mem_id}</span><br>
+					${course_eva.eva_content}
 					<div class="align-right">
-						${course_eva.eva_reg_date} | ${course_eva.mem_id}
+						${course_eva.eva_reg_date} |
 						<input type="button" value="등급변경" id="auth_btn2${status.count}">
 						<script type="text/javascript">
 						document.getElementById('auth_btn2${status.count}').onclick=function(){
 							let choice = confirm('일반회원으로 변경하시겠습니까?');
 							if(choice) {
-								location.replace('courseauth.do?eva_num=${course_eva.eva_num}');
+								location.replace('courseauth.do?mem_num=${course_eva.mem_num}');
 							}
 						};
 						</script>
@@ -126,12 +126,12 @@
 			<c:if test="${count2 > 0}">
 			<table style="width:600px;">
 			<c:forEach var="secondhand" items="${list3}" varStatus="status">
-				<tr data-href="detail.do?eva_num=${course_eva.eva_num}">
+				<tr>
 					<td>
 					<span style="font-weight:bold; font-size=10pt">${course_eva.eva_num}</span><br>
 					${eva.eva_content}
 					<div class="align-right">
-						${course_eva.eva_reg_date} | ${course_eva.mem_id}
+						${course_eva.eva_reg_date} | ${course_eva.memberVO.mem_id}
 						<input type="button" value="등급변경" id="auth_btn3${status.count}">
 						<script type="text/javascript">
 						document.getElementById('auth_btn2${status.count}').onclick=function(){

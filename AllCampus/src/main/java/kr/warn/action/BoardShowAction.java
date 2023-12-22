@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import kr.controller.Action;
 import kr.warn.dao.WarnDAO;
   
+//자유게시판 신고글 표시
 public class BoardShowAction implements Action{
 
 	@Override

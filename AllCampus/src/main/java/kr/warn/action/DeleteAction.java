@@ -9,6 +9,7 @@ import kr.board.vo.BoardVO;
 import kr.controller.Action;
 import kr.warn.dao.WarnDAO;
 
+//자유게시판 신고글 삭제
 public class DeleteAction implements Action{
 
 	@Override
@@ -27,7 +28,7 @@ public class DeleteAction implements Action{
 		
 		//관리자로 로그인한 경우
 		WarnDAO dao = WarnDAO.getInstance();
-		dao.deleteBoard(Integer.parseInt(request.getParameter("board_num")));
+		dao.deleteCourse(Integer.parseInt(request.getParameter("board_num")));
 		
 		return "/WEB-INF/views/warn/delete.jsp";
 	}

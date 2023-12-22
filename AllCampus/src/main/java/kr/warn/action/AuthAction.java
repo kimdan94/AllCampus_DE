@@ -9,6 +9,7 @@ import kr.board.vo.BoardVO;
 import kr.controller.Action;
 import kr.warn.dao.WarnDAO;
 
+//자유게시판 신고 등급변경
 public class AuthAction implements Action{
 
 	@Override
@@ -25,10 +26,8 @@ public class AuthAction implements Action{
 		}
 		
 		//관리자로 로그인한 경우
-		BoardDAO board_dao = BoardDAO.getInstance();
-		BoardVO board = board_dao.getBoard(Integer.parseInt(request.getParameter("board_num")));
 		WarnDAO dao = WarnDAO.getInstance();
-		dao.warnAuth(board.getMem_num());
+		dao.warnAuth(Integer.parseInt(request.getParameter("mem_num")));
 		return "/WEB-INF/views/warn/auth.jsp";
 	}
 
