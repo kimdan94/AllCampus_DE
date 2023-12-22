@@ -17,15 +17,11 @@
 	<hr width="10%" class="board-underline">
 	<div class="content-main">
 		<h2>${notice.notice_title}</h2>
-		<ul class="detail-info">
-		<img src="${pageContext.request.contextPath}/images/face.png" width="40" height="40" class="my-photo">
-			<li>
-			관리자<br>
-			</li>
-		</ul>
+		<img src="${pageContext.request.contextPath}/images/face.png" width="40" height="40">
+		<div>관리자</div>
 		<hr size="1" noshade="noshade" width="100%">
 		<c:if test="${!empty notice.notice_filename}">
-		<div class="align-center">
+		<div>
 			<img src="${pageContext.request.contextPath}/upload/${notice.notice_filename}" class="detail-img">
 		</div>
 		</c:if>
@@ -40,7 +36,7 @@
 				작성일 : ${notice.notice_reg_date}
 				<%-- 관리자로 로그인된 계정만
 					 수정,삭제 가능 (일반회원은 접근 불가)--%>
-				<c:if test="${auth == 9}">
+				<c:if test="${user_auth == 9}">
 				<input type="button" value="수정" onclick="location.href='updateForm.do?notice_num=${notice.notice_num}'">
 				<input type="button" value="삭제" id="delete_btn">
 				<script type="text/javascript">
