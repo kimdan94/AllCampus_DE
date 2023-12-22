@@ -107,8 +107,8 @@ table td, table th{
 }
 
 .board-detail{
-	border: 1px solid #808080;
-    
+	border: 1px solid #d6d6d6;
+    padding:10px;
     border-radius: 10px;
     position: relative;
 }
@@ -156,12 +156,40 @@ ul.detail-info{
     margin-top:5px;
 }
 
-.likeimage{
-	margin-bottom:10px;
-}
+
 .likeimage #output_board_fav {
 	margin-left:10px;
 }
+
+/* 댓글 익명 버튼 위치 설정 */
+#re_first {
+    display: flex;
+    align-items: center;
+    padding-top: 0;
+    margin-top:0;
+}
+
+/* Adjust the margin as needed */
+#re_first .letter-count {
+    margin-right: 10px; /* Adjust the margin as needed */
+}
+
+/* Remove list-style and padding for the ul element */
+#re_first ul {
+    list-style: none;
+    padding: 0;
+}
+
+/* Display li elements horizontally */
+#re_first li {
+    display: inline-block;
+    margin-right: 10px; /* Adjust the margin as needed */
+}
+
+
+
+
+
 
 /* 자유게시판 writeForm.jsp
 ---------------------------------*/

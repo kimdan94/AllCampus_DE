@@ -77,7 +77,6 @@ window.onload=function(){
 					<span class="board1-title">${board.board_title}</span><br>
 					<span class="board1-content">${board.board_content}</span><br>
 			
-					<!-- !!!!!!!!!!!!!!!!!!!!!!      몇분전 형식으로 변경하기 !!!!!! -->
 					<span class="board-date">${board.board_reg_date}</span> 
 					<span class="pipe">|</span>
 					<!-- 익명 여부  1: 익명X   2: 익명 -->

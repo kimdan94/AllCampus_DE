@@ -182,18 +182,6 @@ $(document).ready(function () {
     	
     	event.preventDefault();
 	
-    	/* var datasemscore=[];
-    	let datascoreInSessionStorage = '[';
-    	datascoreInSessionStorage += '{';
-    	datascoreInSessionStorage += '"avgscore":'+ $('.column.avgscore .value').text();
-    	datascoreInSessionStorage += ',"majorscore":'+ $('.column.majorscore .value').text();
-    	datascoreInSessionStorage += '}';
-    	datascoreInSessionStorage += ']';
-    	console.log(datascoreInSessionStorage);
-    	
-    	 */
-    	
-    	 
         //배열 생성
         var dataRows = [];
         dataInSessionStorage = '{"table":[';
@@ -286,15 +274,39 @@ $(document).ready(function () {
 		   alert(cal_semester);
 		   alert('초기화 완료');
 		   
-		   //ui 초기화
-		   tbody.empty();
-		   selectTbody();
-		   
-		   $('.column.avgscore .value').text('0');
-      	   $('.column.majorscore .value').text('0');
-      	   $('.column.acq .value').text('0');
+		   //ajax통신
+		   $.ajax({
+				url: 'caldelete.do',
+           		type: 'post',
+           	 	data: {cal_semester:cal_semester},
+       			dataType: 'json',
+        		success: function (param) {
+        		   //ui 초기화
+       			   tbody.empty();
+       			   selectTbody();
+       			   
+       			   $('.column.avgscore .value').text('0');
+       	      	   $('.column.majorscore .value').text('0');
+       	      	   $('.column.acq .value').text('0');
+       	      	   
+       	      	   location.href='calculator_list.do';
+				},
+        		error: function () {
+            		alert('네트워크 오류 발생(학점계산기 DB삭제)');
+        		}
+			});//end of ajax
 	   }
+	   
    });
+   /* function deletes(){
+	   $('.column.gpa .value').val('');
+		$('.column.major .value').val('');
+		$('.column.acquisition .value').val('');
+		
+		$('.column.gpa .value').text(param.totalscore.cal_total_avgscore);
+       $('.column.major .value').text(param.totalscore.cal_total_majorscore);
+       $('.column.acquisition .value').text(param.totalscore.cal_total_acq);
+   } */
 });
 </script>
 </head>

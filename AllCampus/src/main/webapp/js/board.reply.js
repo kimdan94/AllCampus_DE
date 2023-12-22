@@ -50,7 +50,7 @@ $(function(){
 						output += ' <input type="button" data-renum="' + item.re_num + '" value="수정" class="modify-btn">';
 						output += ' <input type="button" data-renum="' + item.re_num + '" value="삭제" class="delete-btn">';
 					}
-					output += '<hr size="1" noshade width="100%">';
+					output += '<hr size="1" style="border-color:#d6d6d6" noshade width="100%">';
 					output += '</div>';
 					output += '</div>';
 					

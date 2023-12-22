@@ -70,7 +70,7 @@ $(function(){
 				<c:if test="${board.board_anonymous ==2}">익명</c:if>
 				
 				<!-- 아래 hit 지우고 몇분전 관련된거 넣기 !!!!!!! -->
-				조회 : ${board.board_hit}
+				${board.board_reg_date}
 			</li>
 			<li>
 			조회 : ${board.board_hit}
@@ -146,6 +146,7 @@ $(function(){
 				<c:if test="${!empty user_num}">
 				<div id="re_first">
 					<span class="letter-count">300/300</span>
+					
 					<!-- 익명처리 -->
 					<ul>
 						<li>
@@ -155,7 +156,7 @@ $(function(){
                 
 				</div>
 				
-				<div id="re_second" class="align-right">
+				<div id="re_second">
 					<input type="submit" value="전송">
 				</div>
 				</c:if>
