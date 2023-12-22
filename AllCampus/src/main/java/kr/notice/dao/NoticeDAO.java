@@ -10,7 +10,7 @@ import kr.board.vo.BoardVO;
 import kr.notice.vo.NoticeVO;
 import kr.util.DBUtil;
 import kr.util.StringUtil;
-  
+    
 public class NoticeDAO {
 	//싱글턴 패턴
 	private static NoticeDAO instance = new NoticeDAO();
