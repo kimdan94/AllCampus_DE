@@ -79,7 +79,7 @@
 			</tr>
 			<c:forEach var="question" items="${questionList}">
 			<tr>
-				<td class="list-margin3"><a href="${pageContext.request.contextPath}/question/detail.do?question_num=${question.question_num}">${question.question_title}</a></td>
+				<td class="list-margin3"><a href="${pageContext.request.contextPath}/faq/detail.do?question_num=${question.question_num}">${question.question_title}</a></td>
 			</tr>
 			</c:forEach>
 		</table>
@@ -210,7 +210,7 @@
 			</tr>
 			<c:forEach var="question" items="${questionList}">
 			<tr>
-				<td class="list-margin3"><a href="${pageContext.request.contextPath}/question/detail.do?question_num=${question.question_num}">${question.question_title}</a></td>
+				<td class="list-margin3"><a href="${pageContext.request.contextPath}/faq/detail.do?question_num=${question.question_num}">${question.question_title}</a></td>
 			</tr>
 			</c:forEach>
 		</table>
