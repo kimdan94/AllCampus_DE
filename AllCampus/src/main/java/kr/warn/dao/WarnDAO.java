@@ -12,6 +12,7 @@ import kr.member.vo.MemberVO;
 import kr.secondhand.vo.SecondhandVO;
 import kr.secondhand.vo.SecondhandWarnVO;
 import kr.util.DBUtil;
+import kr.util.DurationFromNow;
 import kr.util.StringUtil;
 
 public class WarnDAO {
@@ -82,7 +83,7 @@ public class WarnDAO {
 					//HTML를 허용하지 않음
 					board.setBoard_title(StringUtil.useNoHtml(rs.getString("board_title")));
 					board.setBoard_content(StringUtil.useNoHtml(rs.getString("board_content")));
-					board.setBoard_reg_date(rs.getDate("board_reg_date"));
+					board.setBoard_reg_date(DurationFromNow.getTimeDiffLabel(rs.getString("board_reg_date")));
 					board.setMem_num(rs.getInt("mem_num"));
 					board.setMem_id(rs.getString("mem_id"));
 					

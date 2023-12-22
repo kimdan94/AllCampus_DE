@@ -11,6 +11,7 @@ import kr.notice.vo.NoticeVO;
 import kr.question.vo.QuestionVO;
 import kr.secondhand.vo.SecondhandVO;
 import kr.util.DBUtil;
+import kr.util.DurationFromNow;
 
 public class HomeDAO {
 	//싱글턴 패턴
@@ -143,7 +144,7 @@ public class HomeDAO {
 					hot.setBoard_title(rs.getString("board_title"));
 				}
 				
-				hot.setBoard_reg_date(rs.getDate("board_reg_date"));
+				hot.setBoard_reg_date(DurationFromNow.getTimeDiffLabel(rs.getString("board_reg_date")));
 				
 				list.add(hot);
 			}
@@ -191,7 +192,7 @@ public class HomeDAO {
 					board.setBoard_title(rs.getString("board_title"));
 				}
 				
-				board.setBoard_reg_date(rs.getDate("board_reg_date"));
+				board.setBoard_reg_date(DurationFromNow.getTimeDiffLabel(rs.getString("board_reg_date")));
 				
 				list.add(board);
 			}
