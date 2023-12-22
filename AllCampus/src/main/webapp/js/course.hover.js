@@ -4,7 +4,7 @@ $(function() {
 	for (let i = 0; i < name.length; i++) {
 		//마우스 오버
 		$(name[i]).on('mouseover', (e) => {
-			$(name[i]).css({ "color": "red" });
+			$(name[i]).css({ "color": "#808080" });
 			$.ajax({
 				url: 'courseHover.do',
 				type: 'post',
@@ -61,7 +61,7 @@ $(function() {
 					if(i == (standard_time.length-1)){
 						$("#" + item.course_day + "_" + (standard_time[i])).css({ "border-bottom": "1px solid red" }); 
 					}*/
-					$("#" + item.course_day + "_" + standard_time[i]).css({ "border": "1px solid red" }); 
+					$("#" + item.course_day + "_" + standard_time[i]).css({ "border": "3px solid #6699cc" }); 
 					//$("#" + (item.course_day-1) + "_" + standard_time[i]).css({ "border-left": "1px solid yellow" }); 
 				}
 			}

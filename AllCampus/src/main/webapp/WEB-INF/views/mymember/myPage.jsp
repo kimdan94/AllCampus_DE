@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>마이페이지</title>
+<title>마이페이지 - 올캠퍼스</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/dan.css">
 </head>
