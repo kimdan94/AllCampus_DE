@@ -54,12 +54,10 @@ $(function() {
 					timetable_table_id.push(timetable_tableID);
 					
 					$("#" + item.course_day + "_" + standard_time[i]).css({ "color": "blue" }); // 강의 클릭시 시간표 색상 바뀜
-					//지울것
 				}
 			}
 			
-			let root = 0;
-			console.log(timetable_table_id);
+			// 시간표 중복 처리
 			for(var p=0; p<param.list.length; p++){
 				if(item.course_year == param.list[p].timetable_year && item.course_semester ==param.list[p].timetable_semester){
 					if(timetable_table_id.indexOf(param.list[p].timetable_table_id) != -1){
@@ -68,10 +66,8 @@ $(function() {
 					}
 				}
 			}
-			console.log("--" + course_second);
 
 			if(timetable_table_id.length>0 && course_second==0){
-				console.log("찐막 : " + course_second);
 				// ajax 시작
 				$.ajax({
 					url: 'timetableAdd.do',
@@ -79,12 +75,9 @@ $(function() {
 					data: {course_code: course_code, timetable_table_id: JSON.stringify(timetable_table_id)},// 보내려는 데이터를 문자열로 변환해서 보내기
 					dataType: 'json',
 					success: function(param) {
-						console.log('성공'); // 통과
 						year = param.year;
 						semester = param.semester;
 						getTimetablePrint(year, semester);
-						
-						
 					},
 					error: function() {
 						alert('네트워크 오류 발생');

@@ -25,7 +25,7 @@ public class TimetableAddAction implements Action {
 			return "redirect:/member/loginForm.do";
 		}
 		
-		//전송된 데이터 인코딩 처리
+		// 전송된 데이터 인코딩 처리
 		request.setCharacterEncoding("utf-8");
 		
 		// ajax에서 전송된 data 변환 
@@ -36,14 +36,14 @@ public class TimetableAddAction implements Action {
 		TimetableDAO daoTime = TimetableDAO.getInstance();
 		
 		//가진 정보 : user_num(=mem_num), course_code, listClick(시간표 정보)
-		//////////////////////////////////////////////
+
+		// 색상코드
 		String[] colorCode = {
 				"#f2e8e8","#dcf2e9","#ffe9e9","#dee8f6","#fff8cc",
 				"#ffedda","#f2e8e8","#dceef2","#eff9cc"
 		};
 		int idx = (int)((Math.random()*10000)%(colorCode.length-1));
 		
-		/////////////////////////////////////////////
 		
 		//--------------------------------------------------
 		List<String> semesterList = daoTime.selectYearAndSemester(course_code);
@@ -51,37 +51,27 @@ public class TimetableAddAction implements Action {
 		int semester = Integer.parseInt(semesterList.get(1));
 		//--------------------------------------------------
 		
-		
-		byte[] arr = new byte[8];
-        new Random().nextBytes(arr);
-		
-        String color = "#" + (convertBytesToHex(arr).substring(0,6));
-		
         
         // timetable.add.js에서 받아온 해당 강의 table id 리스트(문자열)을 리스트로 변환
 		timetable_table_id = timetable_table_id.replaceAll("[^0-9,_]", "");
 		String[] timetable_tableId = timetable_table_id.split(",");
 		
-		System.out.println("리스트");
 		
 		int count = 0;
-		for(int i=0; i<timetable_tableId.length; i++) { // 여기서 중복처리를 해줘야 함
+		for(int i=0; i<timetable_tableId.length; i++) { // 시간표 중복되었을 때 못들어가게 하기
 			System.out.println(timetable_tableId[i]);
 				count += daoTime.checkTimetable(user_num, year, semester, timetable_tableId[i]);
 		}
 		
 		if(count == 0) {
-			for(int i=0; i<timetable_tableId.length; i++) { // 여기서 중복처리를 해줘야 함
+			for(int i=0; i<timetable_tableId.length; i++) { 
 				System.out.println(timetable_tableId[i]);
 				daoTime.insertTimetable(user_num, course_code, timetable_tableId[i]);
-//				daoTime.updateColor(user_num, course_code, color);
 				daoTime.updateColor(user_num, course_code, colorCode[idx]);
 			}
 		}
 
 		//------------------------------------------------------------------
-		
-		
 		
 		// 요일 필터링 - 요일/mem_num/year/semester
 		List<TimetableVO> monList = daoTime.getListPrint(user_num,year,semester,1); // 월
