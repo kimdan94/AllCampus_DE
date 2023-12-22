@@ -114,7 +114,7 @@ public class PageUtil2 {
 				}
 				
 				if (currentPage2 > pageCount) {
-					page2.append("<a href="+pageUrl+"?pageNum1="+ currentPage + "&pageNum2="+ (startPage - 1) + "&pageNum3="+ currentPage3 +">");
+					page2.append("<a href="+pageUrl+"?pageNum="+ currentPage + "&pageNum2="+ (startPage - 1) + "&pageNum3="+ currentPage3 +">");
 					page2.append("[이전]");
 					page2.append("</a>");
 				}
@@ -128,7 +128,7 @@ public class PageUtil2 {
 						page2.append(i);
 						page2.append("</span></b>");
 					} else {
-						page2.append("&nbsp;<a href='"+pageUrl+"?pageNum1=");
+						page2.append("&nbsp;<a href='"+pageUrl+"?pageNum=");
 						page2.append(currentPage);
 						page2.append("&pageNum2=");
 						page2.append(i);
@@ -142,7 +142,7 @@ public class PageUtil2 {
 				}
 				// 다음 block 페이지
 				if (totalPage - startPage >= pageCount) {
-					page2.append("<a href="+pageUrl+"?pageNum1="+ currentPage + "&pageNum2="+ (endPage + 1) + "&pageNum3="+ currentPage3 + ">");
+					page2.append("<a href="+pageUrl+"?pageNum="+ currentPage + "&pageNum2="+ (endPage + 1) + "&pageNum3="+ currentPage3 + ">");
 					page2.append("[다음]");
 					page2.append("</a>");
 				}
@@ -177,7 +177,7 @@ public class PageUtil2 {
 				}
 				
 				if (currentPage3 > pageCount) {
-					page3.append("<a href="+pageUrl+"?pageNum3="+ currentPage + "&pageNum2="+ currentPage2 + "&pageNum3="+ (startPage - 1) + ">");
+					page3.append("<a href="+pageUrl+"?pageNum="+ currentPage + "&pageNum2="+ currentPage2 + "&pageNum3="+ (startPage - 1) + ">");
 					page3.append("[이전]");
 					page3.append("</a>");
 				}
@@ -191,7 +191,7 @@ public class PageUtil2 {
 						page3.append(i);
 						page3.append("</span></b>");
 					} else {
-						page3.append("&nbsp;<a href='"+pageUrl+"?pageNum1=");
+						page3.append("&nbsp;<a href='"+pageUrl+"?pageNum=");
 						page3.append(currentPage);
 						page3.append("&pageNum2=");
 						page3.append(currentPage2);
@@ -205,7 +205,7 @@ public class PageUtil2 {
 				}
 				// 다음 block 페이지
 				if (totalPage - startPage >= pageCount) {
-					page3.append("<a href="+pageUrl+"?pageNum1="+ currentPage + "&pageNum2="+ currentPage + "&pageNum3="+ (endPage + 1) + ">");
+					page3.append("<a href="+pageUrl+"?pageNum="+ currentPage + "&pageNum2="+ currentPage + "&pageNum3="+ (endPage + 1) + ">");
 					page3.append("[다음]");
 					page3.append("</a>");
 				}

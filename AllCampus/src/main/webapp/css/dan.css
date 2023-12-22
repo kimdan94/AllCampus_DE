@@ -168,6 +168,7 @@ input[type="submit"]{
 	font-weight:bold;
 	color:white;
 }
+/*수정,취소 버튼*/
 .submit-btn{
 	border:1px solid #e1e6ed;
 	height:30px; 
@@ -176,7 +177,6 @@ input[type="submit"]{
 	background-color:#6699cc;
 	font-weight:bold;
 	color:white;
-	margin-left:215px;
 }
 .nick{
 	border:1px solid #e1e6ed;
