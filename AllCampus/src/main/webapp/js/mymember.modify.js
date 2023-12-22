@@ -1,4 +1,4 @@
-//닉네임
+//닉네임 
 
 $(function(){
 	let nickChecked = 0; //0은 중복체크 미실행 또는 중복, 1은 미중복
@@ -35,14 +35,8 @@ $(function(){
 		});
 	});
 	
-	//닉네임 중복 안내 메시지 초기화 및 닉네임 중복 값 초기화
-	$('#mem_nick').keydown(function(){
-		nickChecked = 0;
-		$('#message_mem_nick').text('');
-	});//end of keydown
-	
-	//닉네임,전공 유효성 체크
-	$('#modify_form').submit(function(){
+	//닉네임 유효성 체크
+	$('#modify_nick').submit(function(){
 		if($('#mem_nick').val().trim()==''){
 			alert('닉네임을 입력해주세요');
 			$('#mem_nick').val('').focus();
@@ -52,6 +46,19 @@ $(function(){
 			alert('닉네임 중복체크는 필수입니다.');
 			return false;
 		}
+	});
+	
+	//닉네임 중복 안내 메시지 초기화
+	$('#mem_nick').keydown(function(){
+		nickChecked = 0;
+		$('#message_mem_nick').text('');
+	});//end of keydown
+	
+	
+//전공	
+	
+	//전공 유효성 체크
+	$('#modify_major').submit(function(){
 		if($('#mem_major').val().trim()==''){
 			alert('전공을 입력해주세요');
 			$('#mem_major').val('').focus();
@@ -68,7 +75,7 @@ $(function(){
  		 $(".upload-name").val(fileName);
 	});
 	
-	//프로필 이미지
+	//프로필 이미지 수정 버튼 클릭시
 	$('#photo_btn').click(function(){
 		$('#photo_choice').show();
 		$(this).hide();//수정 버튼 감추기
@@ -99,7 +106,6 @@ $(function(){
 		$('.my-photo').attr('src',reader.result);
 		return;
 		}
-		
 	});//end of change
 	
 	//프로필 이미지 전송
@@ -149,5 +155,6 @@ $(function(){
 		$('#mem_photo').val('');
 		$('#photo_choice').hide();
 		$('#photo_btn').show();//수정 버튼 표시
+		$('.upload-name').val('');//첨부파일 부분 비우기
 	});
 });	

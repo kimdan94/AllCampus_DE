@@ -45,7 +45,10 @@
 				<input type="button" value="취소" id="mem_photo_reset" class="submit-btn">
 			</div>
 		</li>
-		</ul><br>
+		</ul>
+		</form>
+		<br>
+		<form action="modifyNick.do" method="post" id="modify_nick">
 		<h2>닉네임 변경</h2><br>
 		<div class="form-notice write">*한글, 영문, 숫자 사용한 4~12자</div>
 		<div class="write">닉네임
@@ -53,10 +56,13 @@
 		<input type="text" name="mem_nick" id="mem_nick" maxlength="12" value="${member.mem_nick}"
 			   class="input-check" style="height:30px; width:300px;">
 		<input type="button" value="닉네임 중복체크" id="mem_nick_check" class="nick" >
-		<span id="message_mem_nick"></span>
+		<span id="message_mem_nick"></span><br><br><br>
+		<input type="submit" value="수정" class="submit-btn">
 		</div>
-		<br><br>
+		</form>
+		<br>
 		
+		<form action="modifyMajor.do" method="post" id="modify_major">
 		<h2>학과 설정</h2>
 		<div class="write">
 		<h3>주전공 변경</h3>
@@ -66,11 +72,11 @@
 		학과명이 다를 시 학교 인증 과정에서 불이익이 있을 수 있습니다.<br>
 		예시) 정치외교학과
 		<h3>전공 추가 변경(선택)</h3>
-		<input type="text" name="mem_major2" id="mem_major2" maxlength="12" 
+		<input type="text" name="mem_major2" id="mem_major2" maxlength="12"  value="${member.mem_major2}"
 			placeholder="부전공을 입력하세요" class="input-check" style="height:30px; width:300px;">
 		</div>	
 		<div><br><br>
-			<input type="submit" value="저장" class="btn">
+			<input type="submit" value="수정" class="submit-btn">
 		</div>
 		</form>
 	</div>

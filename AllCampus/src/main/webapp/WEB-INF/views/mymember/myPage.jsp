@@ -27,7 +27,7 @@
 				width="120" height="120" class="my-photo">
 				</c:if>
 				<div class="my">
-				<div class="name_nick">${member.mem_name} / ${member.mem_nick}</div> <p>
+				<b><div class="name_nick">${member.mem_name} / ${member.mem_nick}</div></b> <p>
 				<div class="major">${member.mem_univNum} / ${member.mem_major}</div>
 				</div>
 			</li>

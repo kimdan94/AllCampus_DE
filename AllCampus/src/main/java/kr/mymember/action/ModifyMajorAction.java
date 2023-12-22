@@ -8,7 +8,7 @@ import kr.controller.Action;
 import kr.mymember.dao.MyMemberDAO;
 import kr.mymember.vo.MyMemberVO;
 
-public class ModifyNickMajorAction implements Action{
+public class ModifyMajorAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -24,13 +24,12 @@ public class ModifyNickMajorAction implements Action{
 		//자바빈(VO) 생성
 		MyMemberVO member = new MyMemberVO();
 		member.setMem_num(user_num);
-		member.setMem_nick(request.getParameter("mem_nick"));
 		member.setMem_major(request.getParameter("mem_major"));
 		member.setMem_major2(request.getParameter("mem_major2"));
 		
 		
 		MyMemberDAO dao = MyMemberDAO.getInstance();
-		dao.updateMyNick_Major(member);
+		dao.updateMyMajor(member);
 		
 		//JSP 경로 반환
 		return "/WEB-INF/views/mymember/modifyUser.jsp";

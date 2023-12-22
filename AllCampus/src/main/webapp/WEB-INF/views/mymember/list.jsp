@@ -45,7 +45,7 @@
 		<br>
 		
 		<h3 class="write">[ 책방 ]</h3>
-		<c:if test="${count == 0}">
+		<c:if test="${count2 == 0}">
 		<div class="result-display">
 			표시할 게시물이 없습니다.
 		</div>
@@ -70,7 +70,7 @@
 		<br>
 		
 		<h3 class="write">[ 강의평 ]</h3>
-		<c:if test="${count == 0}">
+		<c:if test="${count3 == 0}">
 		<div class="result-display">
 			표시할 게시물이 없습니다.
 		</div>
