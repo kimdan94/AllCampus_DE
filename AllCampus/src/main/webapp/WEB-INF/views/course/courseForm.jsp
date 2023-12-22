@@ -109,7 +109,7 @@ $(function(){
 	
 	<a href="${pageContext.request.contextPath}/course/course_list.do"><img class="fit-picture" src="${pageContext.request.contextPath}/images/fresh.png" alt="새로고침" style="width:35px;"/></a>
 
-	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal1">
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal1" style="background-color:#6699cc; border:none;">
 	전공/영역:
 	<c:forEach var="course_subject" items="${course_subject}">
 	${course_subject}
@@ -195,7 +195,7 @@ $(function(){
 	</div>
 	
 	
-	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal4">
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal4" style="background-color:#6699cc; border:none;">
 		구분:
 		<c:forEach var="course_category" items="${course_category}">
 		${course_category}
@@ -247,7 +247,7 @@ $(function(){
 	
 	
 	<!-- 학점 -->	<!-- The Modal ------------------------------------->
-	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal5">
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal5" style="background-color:#6699cc; border:none;">
 		학점
 		<c:forEach var="course_credit" items="${course_credit}">
 		${course_credit}
@@ -379,6 +379,10 @@ $(function(){
 	<!-- 시간표 table -->
 	<!-- timeList : {9,10,11,12,13,14,15,16,17} CourseFormAction -->
 	<table id="timetable" border="1">
+	<caption>
+		<button type="button" id="whole-init" class="btn btn-danger" style="background-color:#d3d3d3; border:none;">시간표 초기화</button>
+	</caption>
+		<thead><!-- 오류나면 thead tbody 지우기 -->
 		<tr>
 			<th></th>
 			<th>월</th>
@@ -387,6 +391,8 @@ $(function(){
 			<th>목</th>
 			<th>금</th>
 		</tr>
+		</thead>
+		<tbody>
 		<c:forEach items="${timeList}" var="item">
 			<tr>
 				<td rowspan="2">
@@ -407,8 +413,8 @@ $(function(){
 				<td id="4_${item*60+30}"></td>
 				<td id="5_${item*60+30}"></td>
 			</tr>
-			
 		</c:forEach>
+		</tbody>
 	</table>
 	
 

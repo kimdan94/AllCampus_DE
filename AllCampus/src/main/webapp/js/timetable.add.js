@@ -426,7 +426,70 @@ $(function() {
 	
 	//=============================================================================================================================================
 	
+	function initTable(){
+		let timeList = [9,10,11,12,13,14,15,16,17];
+			$('#timetable > tbody').empty();
+			for(let i=0;i<timeList.length;i++){
+				let output = '<tr>';
+				output += '<td rowspan="2">' + timeList[i] + '</td>';
+				output += '<td id="1_'+ timeList[i]*60 + '"></td>';
+				output += '<td id="2_'+ timeList[i]*60 + '"></td>';
+				output += '<td id="3_'+ timeList[i]*60 + '"></td>';
+				output += '<td id="4_'+ timeList[i]*60 + '"></td>';
+				output += '<td id="5_'+ timeList[i]*60 + '"></td>';
+				output += '</tr>';
+				output += '<tr>';
+				output += '<td id="1_'+ (timeList[i]*60+30) + '"></td>';
+				output += '<td id="2_'+ (timeList[i]*60+30) + '"></td>';
+				output += '<td id="3_'+ (timeList[i]*60+30) + '"></td>';
+				output += '<td id="4_'+ (timeList[i]*60+30) + '"></td>';
+				output += '<td id="5_'+ (timeList[i]*60+30) + '"></td>';
+				output += '</tr>';
+				
+				$('#timetable > tbody').append(output)
+			}
+	}
 	
+	
+	$('#whole-init').on('click', (e) =>{
+		$.ajax({
+			url: 'timetableWholeInit.do',
+			type: 'post',
+			data: {},
+			dataType: 'json',
+			success: function(param){
+				initTable();
+			},
+			error: function(){
+				alert('init 네트워크 오류');
+			}
+		})
+		
+	});
+	
+	
+	$(name[i]).on('click', (e) => {
+			$(name[i]).css({ "color": "green" });
+			course_code = $(name[i]).prop("id");
+			$.ajax({
+				url: 'timetableAddList.do', // 전송 url (전송하고 데이터 받기 위한 action 페이지 dao XX)
+				type: 'post',
+				data: { course_code: $(name[i]).prop("id") },
+				dataType: 'json',
+				success: function(param) { // 클릭한 course_code에 대한 강의 정보
+					addTime(param, course_code); // 받은 course_code를 넘겨줌 -> 다른 url에 넘길 것
+				},
+				error: function() {
+					alert('네트워크 오류 발생');
+				}
+			});
+		});
+	
+	
+	
+	
+	
+	//=============================================================================================================================================
 	
 	// 수정하기 전 코드 (강의명, 색상명이 작동을 하지 않고 나머지는 작동하는 코드, 이 코드를 이용해서 위에 실행되는 코드를 만들었음)
 	// --------월요일--------------------
