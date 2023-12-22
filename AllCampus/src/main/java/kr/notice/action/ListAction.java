@@ -11,7 +11,7 @@ import kr.notice.vo.NoticeVO;
 import kr.util.PageUtil;
 
 public class ListAction implements Action{
-  
+    
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String pageNum = request.getParameter("pageNum");

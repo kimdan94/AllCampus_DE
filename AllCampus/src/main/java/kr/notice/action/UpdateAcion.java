@@ -12,7 +12,7 @@ import kr.notice.vo.NoticeVO;
 import kr.util.FileUtil;
   
 public class UpdateAcion implements Action{
-   
+     
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
