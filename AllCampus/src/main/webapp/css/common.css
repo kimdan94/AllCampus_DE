@@ -85,7 +85,14 @@ input{
 .all-btn {
 	background-color: #6699cc;
 }
-
+.sc-btn{
+	border:1px solid #e1e6ed;
+	width:80px;
+	height:25px;
+	border-radius:5px;
+	color:black;
+	font-weight:bold;
+}
 /* a 태그
 ------------------------------*/
 a {
