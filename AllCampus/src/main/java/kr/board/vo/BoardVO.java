@@ -7,8 +7,8 @@ public class BoardVO {
 	private String board_title;		//제목
 	private String board_content;		//내용
 	private int board_hit;			//조회수
-	private String board_reg_date;		//등록일
-	private String board_modify_date;	//수정일
+	private Date board_reg_date;		//등록일
+	private Date board_modify_date;	//수정일
 	private String board_filename;	//파일명
 	private String board_ip;			//ip주소
 	private int board_anonymous; 		//익명 여부  1: 익명X 2: 익명
@@ -45,17 +45,16 @@ public class BoardVO {
 	public void setBoard_hit(int board_hit) {
 		this.board_hit = board_hit;
 	}
-	
-	public String getBoard_reg_date() {
+	public Date getBoard_reg_date() {
 		return board_reg_date;
 	}
-	public void setBoard_reg_date(String board_reg_date) {
+	public void setBoard_reg_date(Date board_reg_date) {
 		this.board_reg_date = board_reg_date;
 	}
-	public String getBoard_modify_date() {
+	public Date getBoard_modify_date() {
 		return board_modify_date;
 	}
-	public void setBoard_modify_date(String board_modify_date) {
+	public void setBoard_modify_date(Date board_modify_date) {
 		this.board_modify_date = board_modify_date;
 	}
 	public String getBoard_filename() {

@@ -14,7 +14,6 @@ import kr.member.vo.MemberVO;
 import kr.mymember.vo.MyMemberVO;
 import kr.secondhand.vo.SecondhandVO;
 import kr.util.DBUtil;
-import kr.util.DurationFromNow;
 import kr.util.StringUtil;
 
 public class MyMemberDAO {
@@ -382,7 +381,7 @@ public class MyMemberDAO {
 				BoardVO board = new BoardVO();
 				board.setBoard_num(rs.getInt("board_num"));
 				board.setBoard_title(StringUtil.useNoHtml(rs.getString("board_title")));
-				board.setBoard_reg_date(DurationFromNow.getTimeDiffLabel(rs.getString("board_reg_date")));
+				board.setBoard_reg_date(rs.getDate("board_reg_date"));
 
 				list.add(board);
 			}
@@ -605,7 +604,7 @@ public class MyMemberDAO {
 				BoardVO board = new BoardVO();
 				board.setBoard_num(rs.getInt("board_num"));
 				board.setBoard_title(StringUtil.useNoHtml(rs.getString("board_title")));
-				board.setBoard_reg_date(DurationFromNow.getTimeDiffLabel(rs.getString("board_reg_date")));
+				board.setBoard_reg_date(rs.getDate("board_reg_date"));
 
 				list.add(board);
 			}
@@ -679,7 +678,7 @@ public class MyMemberDAO {
 				board.setBoard_num(rs.getInt("board_num"));
 				board.setBoard_title(StringUtil.useNoHtml(rs.getString("board_title")));
 				board.setBoard_content(StringUtil.useNoHtml(rs.getString("board_content")));
-				board.setBoard_reg_date(DurationFromNow.getTimeDiffLabel(rs.getString("board_reg_date")));
+				board.setBoard_reg_date(rs.getDate("board_reg_date"));
 
 				list.add(board);
 			}

@@ -133,7 +133,7 @@ public class BoardDAO {
 					board.setBoard_title(StringUtil.useNoHtml(rs.getString("board_title")));
 					board.setBoard_content(StringUtil.useNoHtml(rs.getString("board_content")));
 					board.setBoard_hit(rs.getInt("board_hit"));
-					board.setBoard_reg_date(DurationFromNow.getTimeDiffLabel(rs.getString("board_reg_date")));
+					board.setBoard_reg_date(rs.getDate("board_reg_date"));
 					board.setMem_id(rs.getString("mem_id"));
 					
 					board.setBoard_anonymous(rs.getInt("board_anonymous"));  //익명 여부  1: 익명X 2: 익명
@@ -176,8 +176,8 @@ public class BoardDAO {
 					board.setBoard_title(rs.getString("board_title"));
 					board.setBoard_content(rs.getString("board_content"));
 					board.setBoard_hit(rs.getInt("board_hit"));
-					board.setBoard_reg_date(DurationFromNow.getTimeDiffLabel(rs.getString("board_reg_date")));
-					board.setBoard_modify_date(DurationFromNow.getTimeDiffLabel(rs.getString("board_modify_date")));
+					board.setBoard_reg_date(rs.getDate("board_reg_date"));
+					board.setBoard_modify_date(rs.getDate("board_modify_date"));
 					board.setBoard_filename(rs.getString("board_filename"));
 					
 					board.setBoard_anonymous(rs.getInt("board_anonymous"));
