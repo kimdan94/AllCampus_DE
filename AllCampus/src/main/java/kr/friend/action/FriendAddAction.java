@@ -29,7 +29,6 @@ public class FriendAddAction implements Action {
 			request.setAttribute("notice_msg", add_friend + "는 이미 친구입니다");
 		}
 		
-		
 		request.setAttribute("notice_url", request.getContextPath()+"/course/friendList.do");
 		
 		return "/WEB-INF/views/common/alert_singleView.jsp";

@@ -116,13 +116,13 @@ public class FriendDAO {
 	
 	// 친구 이름 검색해서 찾기
 	// FriendListAction
-	public List<MemberVO> selectSearchFriend(String mem_name) throws Exception {
+	public List<MemberVO> selectSearchFriend(int mem_num, String mem_name) throws Exception {
 		Connection conn = null;
 	    PreparedStatement pstmt = null;
 	    ResultSet rs = null;
 	    List<MemberVO> list = null;
 	    String sql = null;
-	    String sub_sql = " WHERE a.mem_name=?";
+	    String sub_sql = " AND a.mem_name LIKE ?";
 	    
 	    try {
 	    	//커넥션풀로부터 커넥션 할당
@@ -130,15 +130,16 @@ public class FriendDAO {
 			//SQL문 작성
 			//중복 없이 강의명, 강의 수강 학점 select
 //			sql ="SELECT a.mem_num,a.mem_name,a.univ_num,a.mem_major FROM all_friend JOIN (SELECT * FROM all_member JOIN all_member_detail USING(mem_num)) a ON a.mem_num = all_friend.friend_num WHERE a.mem_name=?";
-			sql ="SELECT a.mem_num,a.mem_name,a.univ_num,a.mem_major FROM all_friend JOIN (SELECT * FROM all_member JOIN all_member_detail USING(mem_num)) a ON a.mem_num = all_friend.friend_num";
+			sql ="SELECT a.mem_num,a.mem_name,a.univ_num,a.mem_major FROM all_friend JOIN (SELECT * FROM all_member JOIN all_member_detail USING(mem_num)) a ON a.mem_num = all_friend.friend_num WHERE all_friend.mem_num=?";
 			if(mem_name != null & mem_name != "") {
 				sql += sub_sql;
 			}
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mem_num);
 			if(mem_name != null & mem_name != "") {
 				//?에 데이터 바인딩
-				pstmt.setString(1, mem_name);
+				pstmt.setString(2, "%"+mem_name+"%");
 				
 			}
 			
