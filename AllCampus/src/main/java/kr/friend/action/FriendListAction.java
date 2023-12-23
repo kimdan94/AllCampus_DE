@@ -28,7 +28,7 @@ public class FriendListAction implements Action { // 친구들 리스트 있는 
 		
 		FriendDAO friendDao = FriendDAO.getInstance();
 		
-		List<MemberVO> searchFriendList = friendDao.selectSearchFriend(search_friend); // 친구 리스트 뽑기
+		List<MemberVO> searchFriendList = friendDao.selectSearchFriend(user_num, search_friend); // 친구 리스트 뽑기
 		
 		
 		

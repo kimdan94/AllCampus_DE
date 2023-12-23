@@ -45,6 +45,7 @@ public class TimetableAddAction implements Action {
 		int idx = (int)((Math.random()*10000)%(colorCode.length-1));
 		
 		
+		
 		//--------------------------------------------------
 		List<String> semesterList = daoTime.selectYearAndSemester(course_code);
 		int year = Integer.parseInt(semesterList.get(0));
@@ -56,21 +57,14 @@ public class TimetableAddAction implements Action {
 		timetable_table_id = timetable_table_id.replaceAll("[^0-9,_]", "");
 		String[] timetable_tableId = timetable_table_id.split(",");
 		
-		
-		int count = 0;
-		for(int i=0; i<timetable_tableId.length; i++) { // 시간표 중복되었을 때 못들어가게 하기
-			System.out.println(timetable_tableId[i]);
-				count += daoTime.checkTimetable(user_num, year, semester, timetable_tableId[i]);
-		}
-		
-		if(count == 0) {
-			for(int i=0; i<timetable_tableId.length; i++) { 
-				System.out.println(timetable_tableId[i]);
-				daoTime.insertTimetable(user_num, course_code, timetable_tableId[i]);
-				daoTime.updateColor(user_num, course_code, colorCode[idx]);
-			}
+		for(int i=0; i<timetable_tableId.length; i++) { 
+			daoTime.insertTimetable(user_num, course_code, timetable_tableId[i]);
+			daoTime.updateColor(user_num, course_code, colorCode[idx]);
 		}
 
+		
+		
+		
 		//------------------------------------------------------------------
 		
 		// 요일 필터링 - 요일/mem_num/year/semester

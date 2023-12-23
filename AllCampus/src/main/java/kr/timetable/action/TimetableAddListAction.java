@@ -35,11 +35,12 @@ public class TimetableAddListAction implements Action { // data를 받아오기 
 		
 		CourseDAO dao = CourseDAO.getInstance();
 		List<CourseVO> listClick = dao.selectDay(course_code); // 강의 코드의 모든 강의 정보 저장
+		
 		mapAjax.put("listClick", listClick); // ajax success로 보내는 데이터
 		
 		TimetableDAO daoTime = TimetableDAO.getInstance();
-		List<TimetableVO> list = daoTime.getListTableID(user_num);
-		mapAjax.put("list", list);
+		List<TimetableVO> slist = daoTime.getListTableID(user_num);
+		mapAjax.put("slist", slist);
 
 		//가진 정보 : user_num(=mem_num), course_code, listClick(시간표 정보)
 
