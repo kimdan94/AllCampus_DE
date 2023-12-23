@@ -33,7 +33,9 @@
 textarea{
 	resize:none;
 }
-
+button{
+	cursor:pointer;
+}
 /* 
 자유게시판 list.jsp 부분
 ------------------------------*/
