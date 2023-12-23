@@ -19,38 +19,6 @@ public class FriendDAO {
 	private FriendDAO() {}
 	
 
-	// 친구추가 전에 친구 목록에 검색한 아이디가 있는지 없는지 확인
-	public int checkFriend(int mem_num, String friend_id) throws Exception {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = null;
-		int count = 0;
-		
-		try {
-			conn = DBUtil.getConnection();
-			
-			// SQL문 작성
-			sql = "SELECT * FROM all_friend f JOIN all_member m ON f.friend_num = m.mem_num WHERE f.mem_num=? AND m.mem_id=?";
-			//PreparedStatement 객체 생성
-			pstmt = conn.prepareStatement(sql);
-			//?에 데이터 바인딩
-			pstmt.setInt(1, mem_num);
-			pstmt.setString(2, friend_id);
-			
-			//SQL문 실행
-			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				count = rs.getInt(1);
-			}
-		} catch(Exception e) {
-			throw new Exception(e);
-		} finally {
-			DBUtil.executeClose(null, pstmt, conn);
-		}
-		return count;
-	}
-	
 	// 친구 추가하기 - 검색창에서 id를 검색하면 mem_num friend_num 에 데이터 insert // 등급 제한 걸어둠
 	// FriendSearchAction
 	public void searchFriend(int mem_num, String friend_id) throws Exception {
@@ -115,30 +83,29 @@ public class FriendDAO {
 	
 	// 친구 이름 검색해서 찾기
 	// FriendListAction
-	public List<MemberVO> selectSearchFriend(int mem_num, String mem_name) throws Exception {
+	public List<MemberVO> selectSearchFriend(String mem_name) throws Exception {
 		Connection conn = null;
 	    PreparedStatement pstmt = null;
 	    ResultSet rs = null;
 	    List<MemberVO> list = null;
 	    String sql = null;
-	    String sub_sql = " AND a.mem_name LIKE ?";
-	    int count = 0;
+	    String sub_sql = " WHERE a.mem_name=?";
 	    
 	    try {
 	    	//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
 			//중복 없이 강의명, 강의 수강 학점 select
-			sql = "SELECT DISTINCT a.mem_name FROM all_friend JOIN (SELECT * FROM all_member JOIN all_member_detail USING(mem_num)) a ON a.mem_num = all_friend.friend_num WHERE all_friend.mem_num=?";
+//			sql ="SELECT a.mem_num,a.mem_name,a.univ_num,a.mem_major FROM all_friend JOIN (SELECT * FROM all_member JOIN all_member_detail USING(mem_num)) a ON a.mem_num = all_friend.friend_num WHERE a.mem_name=?";
+			sql ="SELECT a.mem_num,a.mem_name,a.univ_num,a.mem_major FROM all_friend JOIN (SELECT * FROM all_member JOIN all_member_detail USING(mem_num)) a ON a.mem_num = all_friend.friend_num";
 			if(mem_name != null & mem_name != "") {
 				sql += sub_sql;
 			}
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(++count, mem_num);
 			if(mem_name != null & mem_name != "") {
 				//?에 데이터 바인딩
-				pstmt.setString(++count, "%"+mem_name+"%");
+				pstmt.setString(1, mem_name);
 				
 			}
 			
@@ -148,7 +115,10 @@ public class FriendDAO {
 			list = new ArrayList<MemberVO>();
 			while(rs.next()) { // mem_num mem_name univ_num mem_major
 				MemberVO friend = new MemberVO();
+				friend.setMem_num(rs.getInt("mem_num"));
 				friend.setMem_name(rs.getString("mem_name"));
+				friend.setUniv_num(rs.getInt("univ_num"));
+				friend.setMem_major(rs.getString("mem_major"));
 				
 				list.add(friend);
 			}

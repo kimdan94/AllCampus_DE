@@ -134,10 +134,6 @@ $(function(){
 	 
 });
 </script>
-<style type="text/css">
-
-
-</style>
 </head>
 <body>
 

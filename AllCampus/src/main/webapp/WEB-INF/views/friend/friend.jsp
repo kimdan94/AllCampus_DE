@@ -11,38 +11,13 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/hyun.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/friend.table.js"></script>
-<script type="text/javascript">
-window.onload=function(){
-	let addForm = document.getElementById('add_form');
-	addForm.onsubmit=function(){//이벤트 연결
-		let add_friend = document.getElementById('add_friend');
-		if(add_friend.value.trim()==''){
-			alert('친구 ID를 입력하세요!');
-			add_friend.value = '';
-			add_friend.focus();
-			return false;
-		}
-	};
-	
-	let searchForm = document.getElementById('search_form');
-	searchForm.onsubmit=function(){//이벤트 연결
-		let search_friend = document.getElementById('search_friend');
-		if(search_friend.value.trim()==''){
-			alert('이름을 입력하세요!');
-			search_friend.value = '';
-			search_friend.focus();
-			return false;
-		}
-	};
-};
-</script>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<h2>Friend</h2>
 	
 	<!-- 친구 검색 - 추가 -->
-	<form id="add_form" action="friendAdd.do" method="get">
+	<form action="friendAdd.do" method="get">
 	<div class="search-container">
 		<input type="search" size="30" name="add_friend" id="add_friend" class="search-box" placeholder="id를 검색하세요">
 		<input type="submit" class="search-button" value="친구 추가">
@@ -51,7 +26,7 @@ window.onload=function(){
 	
 	
 	<!-- 친구 리스트 검색 --><!-- FriendListAction -->
-	<form id="search_form" action="friendList.do" method="get">
+	<form action="friendList.do" method="get">
 	<div class="search-container">
 		<input type="search" size="30" name="search_friend" id="search_friend" class="search-box" placeholder="친구 이름을 검색하세요">
 		<input type="submit" class="search-button" value="친구 검색">
