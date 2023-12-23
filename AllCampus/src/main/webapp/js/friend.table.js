@@ -17,18 +17,18 @@ $(function() {
 			for(let i=0;i<timeList.length;i++){
 				let output = '<tr>';
 				output += '<td rowspan="2">' + timeKor[i] + '</td>';
-				output += '<td id="1__'+ timeList[i]*60 + '">월</td>';
-				output += '<td id="2__'+ timeList[i]*60 + '">화</td>';
-				output += '<td id="3__'+ timeList[i]*60 + '">수</td>';
-				output += '<td id="4__'+ timeList[i]*60 + '">목</td>';
-				output += '<td id="5__'+ timeList[i]*60 + '">금</td>';
+				output += '<td id="1__'+ timeList[i]*60 + '"></td>';
+				output += '<td id="2__'+ timeList[i]*60 + '"></td>';
+				output += '<td id="3__'+ timeList[i]*60 + '"></td>';
+				output += '<td id="4__'+ timeList[i]*60 + '"></td>';
+				output += '<td id="5__'+ timeList[i]*60 + '"></td>';
 				output += '</tr>';
 				output += '<tr>';
-				output += '<td id="1__'+ (timeList[i]*60+30) + '">월</td>';
-				output += '<td id="2__'+ (timeList[i]*60+30) + '">화</td>';
-				output += '<td id="3__'+ (timeList[i]*60+30) + '">수</td>';
-				output += '<td id="4__'+ (timeList[i]*60+30) + '">목</td>';
-				output += '<td id="5__'+ (timeList[i]*60+30) + '">금</td>';
+				output += '<td id="1__'+ (timeList[i]*60+30) + '"></td>';
+				output += '<td id="2__'+ (timeList[i]*60+30) + '"></td>';
+				output += '<td id="3__'+ (timeList[i]*60+30) + '"></td>';
+				output += '<td id="4__'+ (timeList[i]*60+30) + '"></td>';
+				output += '<td id="5__'+ (timeList[i]*60+30) + '"></td>';
 				output += '</tr>';
 				
 				$('#timetable > tbody').append(output)

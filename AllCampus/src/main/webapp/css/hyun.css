@@ -85,7 +85,7 @@ th, td {
 .friend-val-scroll {
 	height: 300px;
 	overflow: auto;
-	width:30%;
+	width:100%;
 }
 .friend_val {
 	width: 350px;
@@ -95,5 +95,17 @@ th, td {
   border : 1px solid black;
   border-collapse : collapse;
 };
+.friend-list-area {
+	width: 80%;
+}
+.friend-search-area {
+	float:left;
+}
+.friend-search-area{
+	margin-left: 200px;
+}
+.friend-timetable{
+	margin-right: 200px;
+}
 
 
