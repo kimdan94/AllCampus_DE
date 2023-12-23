@@ -18,7 +18,40 @@ public class FriendDAO {
 	}
 	private FriendDAO() {}
 	
+	//전체 레코드수/검색 레코드수
+	public int getFriendCount(int mem_num, String friend_id) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int count = 0;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			
+			//SQL문 작성
+			sql = "SELECT COUNT(*) FROM all_friend f JOIN all_member m ON f.friend_num = m.mem_num"
+					+ " WHERE f.mem_num=? AND m.mem_id=?";
+			//PreparedStatement 객체
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mem_num);
+			pstmt.setString(2, friend_id);
+			
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}		
+		return count;
+	}
 
+	
 	// 친구 추가하기 - 검색창에서 id를 검색하면 mem_num friend_num 에 데이터 insert // 등급 제한 걸어둠
 	// FriendSearchAction
 	public void searchFriend(int mem_num, String friend_id) throws Exception {

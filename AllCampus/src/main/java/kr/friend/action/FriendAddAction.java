@@ -17,12 +17,19 @@ public class FriendAddAction implements Action {
 			return "redirect:/member/loginForm.do";
 		}
 		
-		String add_friend = request.getParameter("add_friend");
+		String add_friend = request.getParameter("add_friend"); // 친구 id
 		
 		FriendDAO friendDao = FriendDAO.getInstance();
-		friendDao.searchFriend(user_num, add_friend);
 		
-		request.setAttribute("notice_msg", add_friend + "가 추가되었습니다");
+		int count = friendDao.getFriendCount(user_num, add_friend);
+		if(count == 0) {
+			friendDao.searchFriend(user_num, add_friend);
+			request.setAttribute("notice_msg", add_friend + "가 추가되었습니다");
+		} else {
+			request.setAttribute("notice_msg", add_friend + "는 이미 친구입니다");
+		}
+		
+		
 		request.setAttribute("notice_url", request.getContextPath()+"/course/friendList.do");
 		
 		return "/WEB-INF/views/common/alert_singleView.jsp";
