@@ -4,13 +4,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.oreilly.servlet.MultipartRequest;
-
 import kr.controller.Action;
 import kr.notice.dao.NoticeDAO;
 import kr.notice.vo.NoticeVO;
-import kr.util.FileUtil;
-  
+
 public class UpdateAcion implements Action{
  
 	@Override
@@ -26,9 +23,11 @@ public class UpdateAcion implements Action{
 	notice.setNotice_content(request.getParameter("notice_content"));
 	
 	NoticeDAO dao = NoticeDAO.getinstance();
-	dao.insertNotice(notice);
+	dao.updateNotice(notice);
+	
+	
 	//JSP 경로 반환
-	return "/WEB-INF/views/notice/update.jsp";
+	return "/WEB-INF/views/notice/detail.jsp";
 		
   }
 }

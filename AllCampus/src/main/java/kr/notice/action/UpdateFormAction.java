@@ -5,6 +5,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
+import kr.notice.dao.NoticeDAO;
+import kr.notice.vo.NoticeVO;
   
 public class UpdateFormAction implements Action{
  
@@ -15,7 +17,16 @@ public class UpdateFormAction implements Action{
 		if(user_num==null) {//로그인이 되지 않은 경우
 			return "redirect:/member/loginForm.do";
 		}
+		
 		//로그인 된 경우
+		NoticeDAO dao = NoticeDAO.getinstance();
+		NoticeVO notice = new NoticeVO();
+		
+		
+		
+		dao.updateNotice(notice);
+		request.setAttribute("notice", notice);
+		
 		return "/WEB-INF/views/notice/updateForm.jsp";
 	}
 

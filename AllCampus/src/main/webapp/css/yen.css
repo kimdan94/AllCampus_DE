@@ -11,10 +11,61 @@
 	margin-left:95px;
 	color:#2b2b2b;
 }
-  
+.page-main-custom{
+	width:100%;
+	margin:40px 0;
+	min-height:700px;
+}
+textarea{
+	resize:none;
+}
 /* 
-자유게시판 신고 list.jsp 부분
+관리자 메뉴 버튼 admin_menu.jsp 부분
 ------------------------------*/
+.admin-btn{
+	border:1px solid #e1e6ed;
+	width:200px;
+	height:45px;
+	border-radius:10px;
+	font-weight:bold;
+	color:black;
+	font-size:14px;
+}
+/* 
+신고 list.jsp 부분
+------------------------------*/
+.board-underline1{
+	margin-left:10px;
+	height:3px;
+	background:#6699cc;
+}
+.warn-table{
+	width:750px;
+	border:1px solid gray;
+	border-collapse:collapse;
+	margin-top:5px;
+}
+.warn-table .warn_title{
+	font-weight: bold;
+	font-size:18px;
+}
+.warn-table .warn_content{
+	font-size:15px;
+}
+.warn-table .warn_{
+	color:#808080;
+	font-size: 14px;
+}
+.input-button1{
+	border:none;
+	width:50px;
+	height:16px;
+	border-radius:10px;
+	background-color:#6699cc;
+	font-weight:bold;
+	color:white;
+	font-size:9px;
+}
 table{
 	width:100%;
 	border:1px solid #000;
@@ -117,6 +168,17 @@ ul.search li {
 	font-weight:bold;
 	margin-bottom:7px;
 }
+.input-button2{
+	border:none;
+	width:50px;
+	height:16px;
+	border-radius:10px;
+	background-color:#6699cc;
+	font-weight:bold;
+	color:white;
+	font-size:9px;
+}
+
 /* 공지사항 notice_writeForm.jsp
 ---------------------------------*/
 form#write_Form{
@@ -132,3 +194,51 @@ form#update_Form{
 	border:1px solid black;
 	width:767px;
 }
+/* 공지사항 notice_detail.jsp
+---------------------------------*/
+
+/* faq faq.jsp
+---------------------------------*/
+.faq-table {
+	width:750px;
+	border:1px solid gray;
+	border-collapse:collapse;
+	margin-top:5px;
+}
+.input-button3{
+	border:none;
+	width:200px;
+	height:45px;
+	border-radius:10px;
+	background-color:#6699cc;
+	font-weight:bold;
+	color:white;
+	font-size:15px;
+	margin-left:160px;
+}
+/* faq faqForm.jsp
+---------------------------------*/
+form[id="faq_form"] ul li{
+	margin-bottom:11px;
+}
+#faq_form ul li label{
+	font-family:sans-serif;
+	font-size:15px;
+	font-weight:bold;
+}
+#faq_form{
+	margin-left:460px;
+	border:1px solid #d6d6d6;
+	width:767px;
+}
+.input-button4{
+	border:none;
+	width:200px;
+	height:45px;
+	border-radius:10px;
+	background-color:#6699cc;
+	font-weight:bold;
+	color:white;
+	font-size:15px;
+}
+	

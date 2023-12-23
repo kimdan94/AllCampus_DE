@@ -15,22 +15,24 @@
 <div class="page-main">
 	<div class="content-main">
 		<div class="board_listform">
-			<h1>자유게시판 신고</h1>	
+			<h2>자유게시판 신고</h2>	
+			<hr width="25%" class="board-underline1">
+			<br>
 			<c:if test="${count==0}">
 			<div class="result-display">
 				표시할 게시물이 없습니다.
 			</div>
 			</c:if>
 			<c:if test="${count > 0}">
-			<table style="width:600px;">
+			<table class="warn-table">
 			<c:forEach var="board" items="${list}" varStatus="status">
 				<tr>
 					<td>
-					<span style="font-weight:bold; font-size=10pt">${board.board_title}</span><br>
-					${board.board_content}
+					<span class="warn_title">${board.board_title}</span><br>
+					<span class="warn_content">${board.board_content}</span>
 					<div class="align-right">
-						${board.board_reg_date} | ${board.mem_id}
-						<input type="button" value="등급변경" id="auth_btn${status.count}">
+						<span class="warn_">${board.board_reg_date} | ${board.mem_id}</span>
+						<input type="button" value="등급변경" class="input-button1" id="auth_btn${status.count}">
 						<script type="text/javascript">
 						document.getElementById('auth_btn${status.count}').onclick=function(){
 							let choice = confirm('일반회원으로 변경하시겠습니까?');
@@ -39,7 +41,7 @@
 							}
 						};
 						</script>
-						<input type="button" value="삭제" id="delete_btn${status.count}">
+						<input type="button" value="삭제" class="input-button1" id="delete_btn${status.count}">
 						<script type="text/javascript">
 						document.getElementById('delete_btn${status.count}').onclick=function(){
 							let choice = confirm('신고된 글을 삭제하시겠습니까?')
@@ -48,7 +50,7 @@
 							}
 						}
 						</script>
-						<input type="button" value="복구" id="show_btn${status.count}">
+						<input type="button" value="복구" class="input-button1" id="show_btn${status.count}">
 						<script type="text/javascript">
 						document.getElementById('show_btn${status.count}').onclick=function(){
 							let choice = confirm('게시글 표시로 변경하시겠습니까?')
@@ -66,22 +68,24 @@
 			</c:if>
 		</div>
 		<div class="board_listform">
-			<h1>강의평 신고</h1>	
-			<c:if test="${count==0}">
+			<h2 class="header">강의평 신고</h2>	
+			<hr width="25%" class="board-underline1">
+			<br>
+			<c:if test="${count2==0}">
 			<div class="result-display">
 				표시할 게시물이 없습니다.
 			</div>
 			</c:if>
 			<c:if test="${count2 > 0}">
-			<table style="width:600px;">
+			<table class="warn-table">
 			<c:forEach var="course_eva" items="${list2}" varStatus="status">
 				<tr>
 					<td>
-					<span style="font-weight:bold; font-size=10pt">${course_eva.memberVO.mem_id}</span><br>
-					${course_eva.eva_content}
+					<span class="warn_title">${course_eva.memberVO.mem_id}</span><br>
+					<span class="warn_content">${course_eva.eva_content}</span>
 					<div class="align-right">
-						${course_eva.eva_reg_date} |
-						<input type="button" value="등급변경" id="auth_btn2${status.count}">
+						<span class="warn_">${course_eva.eva_reg_date}</span>
+						<input type="button" value="등급변경" class="input-button1" id="auth_btn2${status.count}">
 						<script type="text/javascript">
 						document.getElementById('auth_btn2${status.count}').onclick=function(){
 							let choice = confirm('일반회원으로 변경하시겠습니까?');
@@ -90,7 +94,7 @@
 							}
 						};    
 						</script>
-						<input type="button" value="삭제" id="delete_btn2${status.count}">
+						<input type="button" value="삭제" class="input-button1" id="delete_btn2${status.count}">
 						<script type="text/javascript">
 						document.getElementById('delete_btn2${status.count}').onclick=function(){
 							let choice = confirm('신고된 글을 삭제하시겠습니까?')
@@ -99,7 +103,7 @@
 							}
 						}
 						</script>
-						<input type="button" value="복구" id="show_btn2${status.count}">
+						<input type="button" value="복구" class="input-button1" id="show_btn2${status.count}">
 						<script type="text/javascript">
 						document.getElementById('show_btn2${status.count}').onclick=function(){
 							let choice = confirm('게시글 표시로 변경하시겠습니까?')
@@ -117,45 +121,47 @@
 			</c:if>
 		</div>
 		<div class="board_listform">
-			<h1>중고거래 신고</h1>	
-			<c:if test="${count==0}">
+			<h2>중고거래 신고</h2>
+			<hr width="25%" class="board-underline1">
+			<br>	
+			<c:if test="${count3==0}">
 			<div class="result-display">
 				표시할 게시물이 없습니다.
 			</div>
 			</c:if>
-			<c:if test="${count2 > 0}">
-			<table style="width:600px;">
+			<c:if test="${count3 > 0}">
+			<table class="warn-table">
 			<c:forEach var="secondhand" items="${list3}" varStatus="status">
 				<tr>
 					<td>
-					<span style="font-weight:bold; font-size=10pt">${course_eva.eva_num}</span><br>
-					${eva.eva_content}
+					<span class="warn_title">${secondhand.secondhand_num}</span><br>
+					<span class="warn_content">${secondhand.secondhand_content}</span>
 					<div class="align-right">
-						${course_eva.eva_reg_date} | ${course_eva.memberVO.mem_id}
-						<input type="button" value="등급변경" id="auth_btn3${status.count}">
+						<span class="warn_">${secondhand.secondhand_reg_date} | ${secondhand.secondhand_num}</span>
+						<input type="button" value="등급변경" class="input-button1" id="auth_btn3${status.count}">
 						<script type="text/javascript">
-						document.getElementById('auth_btn2${status.count}').onclick=function(){
+						document.getElementById('auth_btn3${status.count}').onclick=function(){
 							let choice = confirm('일반회원으로 변경하시겠습니까?');
 							if(choice) {
-								location.replace('courseauth.do?eva_num=${course_eva.eva_num}');
+								location.replace('secondauth.do?mem_num=${secondhand.mem_num}');
 							}
 						};
 						</script>
-						<input type="button" value="삭제" id="delete_btn3${status.count}">
+						<input type="button" value="삭제" class="input-button1" id="delete_btn3${status.count}">
 						<script type="text/javascript">
 						document.getElementById('delete_btn3${status.count}').onclick=function(){
 							let choice = confirm('신고된 글을 삭제하시겠습니까?')
 							if(choice) {
-								location.replace('coursedelete.do?eva_num=${course_eva.eva_num}')
+								location.replace('seconddelete.do?secondhand_num=${secondhand.secondhand_num}')
 							}
 						}
 						</script>
-						<input type="button" value="복구" id="show_btn3${status.count}">
+						<input type="button" value="복구" class="input-button1" id="show_btn3${status.count}">
 						<script type="text/javascript">
 						document.getElementById('show_btn3${status.count}').onclick=function(){
 							let choice = confirm('게시글 표시로 변경하시겠습니까?')
 							if(choice) {
-								location.replace('courseshow.do?eva_num=${course_eva.eva_num}')
+								location.replace('secondshow.do?secondhand_num=${secondhand.secondhand_num}')
 							}
 						}
 						</script>
@@ -164,7 +170,7 @@
 				</tr>
 			</c:forEach>
 			</table>
-			<div class="align-center" style="width:600px;">${page3}</div>
+			<div class="align-center">${page3}</div>
 			</c:if>
 		</div>
 	</div>

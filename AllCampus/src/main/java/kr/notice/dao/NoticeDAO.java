@@ -177,7 +177,7 @@ public class NoticeDAO {
 			//커넥션풀로부터 커넥션할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
-			sql = "UPDATE all_notice SET notice_title=?,notice_content=?,notice_modify_date=SYSDATE=?" + sub_sql + "WHERE notice_num=?";
+			sql = "UPDATE all_notice SET notice_title=?,notice_content=?,notice_modify_date=SYSDATE" + sub_sql + "WHERE notice_num=?";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
@@ -204,6 +204,7 @@ public class NoticeDAO {
 			//SQL문 작성
 			sql = "DELETE FROM all_notice WHERE notice_num=?";
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, notice_num);
 			pstmt.executeUpdate();
 		}catch(Exception e) {
 			throw new Exception(e);

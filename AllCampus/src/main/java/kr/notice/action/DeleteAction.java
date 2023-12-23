@@ -28,8 +28,6 @@ public class DeleteAction implements Action{
 		int notice_num = Integer.parseInt(request.getParameter("notice_num"));
 		
 		NoticeDAO dao = NoticeDAO.getinstance();
-		NoticeVO db_item = dao.getNotice(notice_num);
-		
 		//상품 삭제
 		dao.deleteNotice(notice_num);
 		

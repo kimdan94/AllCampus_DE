@@ -46,5 +46,6 @@ public class NoticeVO {
 	public void setNotice_modify_date(Date notice_modify_date) {
 		this.notice_modify_date = notice_modify_date;
 	}
+
 	
 }

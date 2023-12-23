@@ -36,7 +36,8 @@ window.onload=function(){
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<div class="page-main">
-		<h2 class="notice-title">공지사항</h2>
+		<h2 class="board-title">공지사항</h2>
+		<hr width="10%" class="board-underline">
 		<div class="free_title">
 		<form id="search_Form" action="list.do" method="get">
 				<ul class="search">
@@ -50,7 +51,7 @@ window.onload=function(){
 					<input type="search" size="16" name="keyword" id="keyword" value="${param.keyword}">
 				</li>
 				<li>
-					<input type="submit" value="검색">
+					<input type="submit" value="검색" class="input-button2">
 				</li>
 			</ul>
 		</form>

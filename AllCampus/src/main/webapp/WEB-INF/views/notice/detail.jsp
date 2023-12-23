@@ -15,8 +15,9 @@
 <div class="page-main">
 	<h2 class="board-title">공지사항 상세</h2>
 	<hr width="10%" class="board-underline">
-	<div class="content-main">
+	<div class="content-main" style="border:2px solid #d6d6d6;">
 		<h2>${notice.notice_title}</h2>
+		<br>
 		<img src="${pageContext.request.contextPath}/images/face.png" width="40" height="40">
 		<div>관리자</div>
 		<hr size="1" noshade="noshade" width="100%">
@@ -34,23 +35,25 @@
 					최근 수정일 : ${notice.notice_modify_date}
 				</c:if>
 				작성일 : ${notice.notice_reg_date}
-				<%-- 관리자로 로그인된 계정만
-					 수정,삭제 가능 (일반회원은 접근 불가)--%>
-				<c:if test="${user_auth == 9}">
-				<input type="button" value="수정" onclick="location.href='updateForm.do?notice_num=${notice.notice_num}'">
-				<input type="button" value="삭제" id="delete_btn">
-				<script type="text/javascript">
-					let delete_btn = document.getElementById('delete_btn');
-					//이벤트 연결
-					delete_btn.onclick=function(){
-						let choice = confirm('삭제하시겠습니까?');
-						if(choice){
-							location.replace('delete.do?notice_num=${notice.notice_num}');
-						}
-					};
-				</script>
-				</c:if>
 			</li>
 		</ul>
 	</div>
-</div>
+	<%-- 관리자로 로그인된 계정만
+					 수정,삭제 가능 (일반회원은 접근 불가)--%>
+		<c:if test="${user_auth == 9}">
+			<input type="button" value="수정"
+				onclick="location.href='updateForm.do?notice_num=${notice.notice_num}'">
+			<input type="button" value="삭제" id="delete_btn">
+			<script type="text/javascript">
+				let delete_btn = document.getElementById('delete_btn');
+				//이벤트 연결
+				delete_btn.onclick = function() {
+					let choice = confirm('삭제하시겠습니까?');
+					if (choice) {
+						location
+								.replace('delete.do?notice_num=${notice.notice_num}');
+					}
+				};
+			</script>
+		</c:if>
+	</div>

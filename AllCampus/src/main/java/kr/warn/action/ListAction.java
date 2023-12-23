@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import kr.board.vo.BoardVO;
 import kr.controller.Action;
 import kr.courseeva.vo.CourseEvaVO;
+import kr.secondhand.vo.SecondhandVO;
 import kr.util.PageUtil;
 import kr.warn.dao.WarnDAO;
 
@@ -49,6 +50,23 @@ public class ListAction implements Action{
 		request.setAttribute("list2", list2);
 		request.setAttribute("page2", page2.getPage());
 
+		//------------------------------------------------
+		
+		String pageNum3 = request.getParameter("pageNum"); //처음에는 페이지가 null이니까 1로 간주하게 됨
+		if(pageNum3 == null) pageNum3 = "1";
+		
+		int count3 = dao.getSecondWarnCount();
+		    
+		//페이지 처리
+		PageUtil page3 = new PageUtil(Integer.parseInt(pageNum3),count3,20,10,"list.do");
+		List<SecondhandVO> list3 = null;
+		if(count3 > 0 ) {
+		list3 = dao.getListSecond(page3.getStartRow(), page3.getEndRow());
+		}
+		request.setAttribute("count3", count3);
+		request.setAttribute("list3", list3);
+		request.setAttribute("page3", page3.getPage());
+		
 		//JSP 경로 반환
 		return "/WEB-INF/views/warn/list.jsp";
 	}

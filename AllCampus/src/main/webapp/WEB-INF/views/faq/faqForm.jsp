@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>직접 문의하기</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/yen.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -31,35 +32,40 @@ $(function(){
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-<div class="page-main">
-	<h2>문의하기</h2>
+<div class="page-main-custom">
+	<h2 class="board-title">문의하기</h2>
+	<hr width="10%" class="board-underline">
 	<form id="faq_form" action="faq.do" method="post" enctype="multipart/form-data">
 			<ul>
 				<li>    
 					<label for="question_title">제목</label>
-					<input type="text" name="question_title" id="question_title" class="input-check" maxlength="50">
+					<input type="text" name="question_title" id="question_title" 
+						placeholder="제목을 입력해주세요." size="40px" class="input-check" maxlength="50">
 				</li>
 				<li>
-					<label for="question_content">내용</label>
-					<textarea rows="5" cols="30"
+					<label for="question_content">내용</label><br>
+					<textarea rows="15" cols="100"
 						name="question_content" id="question_content" class="input-check"></textarea>
 				</li>
 				<li>
 					<label for="question_filename">파일</label>
 					<input type="file" name="question_filename"
-						id="question_filename" accept="image/gif,image/png,image/jpeg">
+						id="question_filename" accept="image/gif,image/png,image/jpeg" 
+						class="input-check">
+						<div class="file-guide">*3,072KB(3MB) 이하의 jpg, gif, png 파일만
+						첨부 가능</div>
 				</li>
 				<li>
 				<label for="question_board_email">email</label>
 				<input type="email" id="question_board_email" class="input-check"
 					 placeholder="example@email.com" required>
 				<li>
-				<label>개인정보 수집 동의</label>
+				<label>개인정보 수집 및 이용 동의(필수)</label>
 				<input type="checkbox" name="agree" value="checked">
 			</li>
 			</ul>
 			<div class="align-center">
- 			<input type="submit" value="전송">
+ 			<input type="submit" value="전송하기" class="input-button4">
  			</div>
 		</form>
 </div>

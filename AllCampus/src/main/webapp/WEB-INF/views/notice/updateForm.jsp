@@ -26,11 +26,13 @@
 						name="notice_content" id="notice_content">${notice.content}</textarea>
 				</li>
 			</ul>
+			<div class="align-right">
+			<input type="submit" value="수정">
+			<input type="button" value="목록" onclick="location.href='list.do'">
+			</div>
 		</form>
 		<br>
-		<div class="align-right">
-		<input type="button" value="목록" onclick="location.href='list.do'">
-		</div>
+		
 </div>
 </div>
 </body>

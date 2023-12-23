@@ -419,7 +419,7 @@ public class WarnDAO {
 		}
 
 		//중고거래 신고글 삭제
-		public void deleteSecond(int second_num) throws Exception {
+		public void deleteSecond(int secondhand_num) throws Exception {
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			String sql = null;
@@ -428,11 +428,11 @@ public class WarnDAO {
 				// 커넥션풀로부터 커넥션 할당
 				conn = DBUtil.getConnection();
 				// SQL문 작성
-				sql = "DELETE FROM all_eva_warn WHERE eva_num=?";
+				sql = "DELETE FROM all_secondhand_warn WHERE secondhand_num=?";
 				// PreparedStatement 객체 생성
 				pstmt = conn.prepareStatement(sql);
 				// ?에 데이터 바인딩
-				pstmt.setInt(1, second_num);
+				pstmt.setInt(1, secondhand_num);
 				// SQL문 실행
 				pstmt.executeUpdate();
 			} catch (Exception e) {
