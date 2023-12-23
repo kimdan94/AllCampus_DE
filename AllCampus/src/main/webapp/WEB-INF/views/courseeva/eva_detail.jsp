@@ -52,20 +52,17 @@ $(function(){
 	<div class="page-main">
 		<h2 class="board-title">강의평 상세</h2>
 		<hr width="10%" class="board-underline">
-		<div class="content-main">
+		<div class="evacontent-main">
 			<h2>${course_name}</h2>
 			
-			교수명 ${course_prof}<br>
+			<span class="prof">교수명 </span> : ${course_prof}<br>
 			
-			${totalgrade}<br><br>
+			<img src="${pageContext.request.contextPath}/images/star_icon2.png" class="star" width="18" height="18">
+			<span class="t-grade">${totalgrade}</span><br><br>
 			
 			<div class="align-right">
 				<input type="button" value="강의 평가하기" class="eva-writebtn1" onclick="location.href='evawriteForm.do'">
 				<input type="button" value="목록" class="eva-writebtn2" onclick="location.href='courseeva_list.do'">	
-				<!-- 등록순, 추천순 정렬 만들기 -->
-				
-				
-				
 			</div>
 			<c:if test="${count == 0}">
 				<div class="result-display2">
@@ -73,22 +70,21 @@ $(function(){
 				</div>	
 			</c:if>
 			<c:if test="${count > 0}">
-			
-			<table>
+			<table class="evadetail-table">
 				<c:forEach var="evadetail" items="${list}" varStatus="status">
 					<tr>
 						<td>
 							<img src="${pageContext.request.contextPath}/images/star_icon2.png" width="18" height="18">
        						<c:choose>
-								<c:when test="${evadetail.eva_star == 4.5}">A+</c:when>
-								<c:when test="${evadetail.eva_star == 4}">A</c:when>
-								<c:when test="${evadetail.eva_star == 3.5}">B+</c:when>
-								<c:when test="${evadetail.eva_star == 3}">B</c:when>
-								<c:when test="${evadetail.eva_star == 2.5}">C+</c:when>
-								<c:when test="${evadetail.eva_star == 2}">C</c:when>
-								<c:when test="${evadetail.eva_star == 1.5}">D+</c:when>
-								<c:when test="${evadetail.eva_star == 1}">D</c:when>
-								<c:when test="${evadetail.eva_star == 0}">F</c:when>
+								<c:when test="${evadetail.eva_star == 4.5}"><span class="starg">A+</span></c:when>
+								<c:when test="${evadetail.eva_star == 4}"><span class="starg">A</span></c:when>
+								<c:when test="${evadetail.eva_star == 3.5}"><span class="starg">B+</span></c:when>
+								<c:when test="${evadetail.eva_star == 3}"><span class="starg">B</span></c:when>
+								<c:when test="${evadetail.eva_star == 2.5}"><span class="starg">C+</span></c:when>
+								<c:when test="${evadetail.eva_star == 2}"><span class="starg">C</span></c:when>
+								<c:when test="${evadetail.eva_star == 1.5}"><span class="starg">D+</span></c:when>
+								<c:when test="${evadetail.eva_star == 1}"><span class="starg">D</span></c:when>
+								<c:when test="${evadetail.eva_star == 0}"><span class="starg">F</span></c:when>
 							</c:choose>
 							<div style="float:right">
 							<input type="button" value="추천" class="eva_fav_btn" id="output_eva_fav_${status.index}" data-num="${evadetail.eva_num}" data-index="${status.index}">

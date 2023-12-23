@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>학점계산기 - 올캠퍼스</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/jiwonstyle.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
@@ -18,9 +18,9 @@ $(document).ready(function () {
 	function selectTbody(){
 	    for (var i = 0; i < 7; i++) {
 	        tbody.append('<tr>' +
-	            '<td class="name"></td>' +
-	            '<td class="credit"></td>' +
-	            '<td class="grade"><select name="cal_grade">' +
+	            '<td class="names"></td>' +
+	            '<td class="credits"></td>' +
+	            '<td class="grades"><select name="cal_grade">' +
 	            '<option value="4.5">A+</option>' +
 	            '<option value="4.0">A</option>' +
 	            '<option value="3.5">B+</option>' +
@@ -33,7 +33,7 @@ $(document).ready(function () {
 	            '<option value="0">P</option>' +
 	            '<option value="0">NP</option>' +
 	            '</select></td>' +
-	            '<td class="major"><input type="checkbox" name="major_' + i + '"></td>' +
+	            '<td class="majors"><input type="checkbox" name="major_' + i + '"></td>' +
 	            '</tr>');
 	    }
 	}
@@ -47,11 +47,44 @@ $(document).ready(function () {
         if(data){//undefiend면 if문 밖으로 감
         	$('tbody').html('');
         	for(var i=0;i<data.table.length;i++){
+        		var grade = data.table[i].cal_grade;
+        		var major = data.table[i].cal_major;
+                var cal_Grade;
+                var cal_Major;
+                
+                if (grade == 4.5) {
+                	cal_Grade = 'A+';
+                } else if (grade == 4.0) {
+                	cal_Grade = 'A';
+                } else if (grade == 3.5) {
+                	cal_Grade = 'B+';
+                } else if (grade == 3.0) {
+                	cal_Grade = 'B';
+                } else if (grade == 2.5) {
+                	cal_Grade = 'C+';
+                } else if (grade == 2.0) {
+                	cal_Grade = 'C';
+                } else if (grade == 1.5) {
+                	cal_Grade = 'D+';
+                } else if (grade == 1.0) {
+                	cal_Grade = 'D';
+                } else {
+                	cal_Grade = 'F';
+                }
+        		
+        		if(major == 1){
+        			cal_Major='';
+        		}else if(major==2){
+        			cal_Major='전공';
+        		}else{
+        			cal_Major='오류';
+        		}
+                
         		tbody.append('<tr>' +
-                        '<td class="name">' + data.table[i].course_name + '</td>' +
-                        '<td class="credit">' + data.table[i].timetable_credit + '</td>' +
-                        '<td class="grade">' + data.table[i].cal_grade + '</td>' +
-                        '<td class="major">' + data.table[i].cal_major + '</td>' +
+                        '<td class="names">' + data.table[i].course_name + '</td>' +
+                        '<td class="credits">' + data.table[i].timetable_credit + '</td>' +
+                        '<td class="grades">' + cal_Grade + '</td>' +
+                        '<td class="majors">' + cal_Major + '</td>' +
                         '</tr>');
         	}
         	
@@ -108,11 +141,11 @@ $(document).ready(function () {
                     for (var i = 0; i < param.list.length && i < 7; i++) {
                         var course = param.list[i].timetableVO;
                         var newRow = '<tr>' +
-                            '<td class="name">' + course.timetable_course_name +
+                            '<td class="names">' + course.timetable_course_name +
                             '<input type="hidden" name="course_name_' + i + '" value="' + course.timetable_course_name + '"></td>' +
-                            '<td class="credit">' + course.timetable_credit +
+                            '<td class="credits">' + course.timetable_credit +
                             '<input type="hidden" name="timetable_credit_' + i + '" value="' + course.timetable_credit + '"></td>' +
-                            '<td class="grade"><select name="cal_grade_' + i + '">' +
+                            '<td class="grades"><select name="cal_grade_' + i + '">' +
                             '<option value="4.5">A+</option>' +
                             '<option value="4.0">A</option>' +
                             '<option value="3.5">B+</option>' +
@@ -125,7 +158,7 @@ $(document).ready(function () {
                             '<option value="0.1">P</option>' +
                             '<option value="0.2">NP</option>' +
                             '</select></td>' +
-                            '<td class="major"><input type="checkbox" name="major_' + i + '" value="2"></td>' +
+                            '<td class="majors"><input type="checkbox" name="major_' + i + '" value="2"></td>' +
                             '<input type="hidden" name="cal_major_' + i + '" value="1">' +
                             '</tr>';
 
@@ -270,7 +303,7 @@ $(document).ready(function () {
 	   if(sessionStorage.getItem(semester_index)){
 		   sessionStorage.removeItem(semester_index);
 		   let cal_semester = $('select[name="select_semester"] option').eq(semester_index).val();
-		   alert(cal_semester);
+		   //alert(cal_semester);
 		   alert('초기화 완료');
 		   
 		   //ajax통신
@@ -360,7 +393,7 @@ $(document).ready(function () {
 				</div>
 			</article>
 		</div>
-		<div>
+		<div class="select_ses">
 			<select name="select_semester">
 				<option disabled="disabled" selected>학기 선택</option>
 				<option>1학년 1학기</option>
@@ -429,7 +462,7 @@ $(document).ready(function () {
 			</div>
 		<form id="cal_count">
 		<table class="cal-table">
-		<thead>
+		<thead class="cal_thead">
 			<tr>
             	<th class="name">과목명</th>
            	 	<th class="credit">학점</th>
@@ -442,12 +475,6 @@ $(document).ready(function () {
 		
 		
 		</tbody>
-		<tfoot>
-          <tr>
-            <td colspan="4">
-            </td>
-          </tr>
-        </tfoot>
         
 		</table>
 		<input type="hidden" id="cal_semester" name="cal_semester" value="">

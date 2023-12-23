@@ -25,7 +25,7 @@ window.onload=function(){
 	myForm.onsubmit=function(){
 		let keyword = document.getElementById('keyword');
 		if(keyword.value.trim()==''){
-			alert('검색어를 입력하세요');
+			alert('검색어를 입력하세요!');
 			keyword.value = '';
 			keyword.focus();
 			return false;
@@ -65,7 +65,7 @@ window.onload=function(){
 		
 		<div class="board_listform">
 			<c:if test="${count==0}"> 
-			<div class="result-display">
+			<div class="result-display2">
 				표시할 게시물이 없습니다.
 			</div>
 			</c:if>

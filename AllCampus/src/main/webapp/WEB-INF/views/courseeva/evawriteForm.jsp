@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>강의평 작성 - 올캠퍼스</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/jiwonstyle.css">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -12,13 +12,13 @@
 function getSemesterLabel(semesterValue) {
     switch (semesterValue) {
         case 0:
-            return '1학기'; 
+            return ' 1학기'; 
         case 1:
-            return '여름';
+            return ' 여름';
         case 2:
-            return '2학기';
+            return ' 2학기';
         case 3:
-            return '겨울';
+            return ' 겨울';
         default:
             return 'Unknown Semester';
     }
@@ -36,6 +36,14 @@ $(document).ready(function () {
             keyword.focus();
             return false;
         }
+        
+        let courseList = document.getElementById('courseList');
+        if (courseList.value.trim() == '') {
+            alert('과목을 선택하세요!');
+            courseList.focus();
+            return false;
+        }
+        
     };
     
     $('#button').click(function () {

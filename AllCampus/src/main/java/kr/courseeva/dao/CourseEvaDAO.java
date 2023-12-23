@@ -244,7 +244,7 @@ public class CourseEvaDAO {
 			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT e.*, ac.course_name, ac.course_prof, ROW_NUMBER() OVER "
 				+ "(PARTITION BY ac.course_name, ac.course_prof ORDER BY e.eva_num DESC) as rnk FROM all_course_eva e "
 				+ "JOIN all_course ac ON e.course_num = ac.course_num WHERE (ac.course_name, ac.course_prof) IN (SELECT course_name, course_prof FROM all_course " + sub_sql 
-				+ ") AND e.eva_show = 2 ORDER BY ac.course_name, ac.course_prof, e.eva_num DESC) a WHERE a.rnk = 1) WHERE rnum >= ? AND rnum <= ?";
+				+ ") AND e.eva_show = 2 ORDER BY ac.course_name, ac.course_prof, e.eva_num DESC) a WHERE a.rnk = 1 ORDER BY a.eva_num DESC) WHERE rnum >= ? AND rnum <= ?";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			if(keyword != null && !"".equals(keyword)) {

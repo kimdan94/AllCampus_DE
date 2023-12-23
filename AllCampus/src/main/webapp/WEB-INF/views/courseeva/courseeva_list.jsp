@@ -42,7 +42,7 @@ window.onload = function(){
 					<input type="search" size="16" name="keyword" id="keyword" value="${param.keyword}">
 				</li>
 				<li>
-					<input type="submit" value="검색">
+					<input type="submit" value="검색" class="cal-btn2">
 				</li>
 			</ul>
 		</form>
@@ -53,7 +53,7 @@ window.onload = function(){
 			<input type="button" value="목록" class="eva-writebtn2" onclick="location.href='courseeva_list.do'">
 		</div>
 		<c:if test="${count == 0}">
-		<div class="result-display">
+		<div class="result-display2">
 			표시할 게시물이 없습니다. 
 		</div>
 		</c:if>
