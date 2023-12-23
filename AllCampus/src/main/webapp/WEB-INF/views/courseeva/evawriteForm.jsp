@@ -44,6 +44,24 @@ $(document).ready(function () {
             return false;
         }
         
+        let eva_star = document.getElementById('eva_star');
+        if(eva_star.value.trim()==''){
+        	alert('강의 등급을 선택하세요!');
+        	eva_star.focus();
+        	return false;
+        }
+        let eva_content = document.getElementById('eva_content');
+        if(eva_content.value.trim()==''){
+        	alert('내용을 입력하세요!');
+        	eva_content.focus();
+        	return false;
+        }
+        let evasemesterList = document.getElementById('evasemesterList');
+        if(evasemesterList.value.trim()==''){
+        	alert('수강학기를 선택하세요!');
+        	evasemesterList.focus();
+        	return false;
+        }
     };
     
     $('#button').click(function () {

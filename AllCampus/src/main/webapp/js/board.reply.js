@@ -40,9 +40,9 @@ $(function(){
 					output += '<p>' + item.re_content + '</p>';
 					
 					if(item.re_modifydate){
-						output += '<span class="modify-date">최근 수정일 : ' + item.re_modifydate + '</span>';
+						output += '<span class="modify-date" style="color:#808080;">최근 수정일 : ' + item.re_modifydate + '</span>';
 					}else{
-						output += '<span class="modify-date">등록일 : ' + item.re_date + '</span>';
+						output += '<span class="modify-date" style="color:#808080;">등록일 : ' + item.re_date + '</span>';
 					}
 					
 					//로그인한 회원번호와 작성자의 회원번호 일치 여부 체크
@@ -241,30 +241,37 @@ $(function(){
 	});
 	//댓글 삭제
 	$(document).on('click','.delete-btn',function(){
+		let choice = confirm('삭제하시겠습니까?');
 		//댓글 번호
 		let re_num = $(this).attr('data-renum');
 		
-		$.ajax({
-			url:'deleteReply.do',
-			type:'post',
-			data:{re_num:re_num},
-			dataType:'json',
-			success:function(param){
-				if(param.result == 'logout'){
-					alert('로그인해야 삭제할 수 있습니다.');
-				}else if(param.result == 'success'){
-					alert('삭제 완료');
-					selectList(1);
-				}else if(param.result == 'wrongAccess'){
-					alert('타인의 글을 삭제할 수 없습니다.');
-				}else{
-					alert('댓글 삭제 오류 발생');
+		if(choice){
+			
+			$.ajax({
+				url:'deleteReply.do',
+				type:'post',
+				data:{re_num:re_num},
+				dataType:'json',
+				success:function(param){
+					if(param.result == 'logout'){
+						alert('로그인해야 삭제할 수 있습니다.');
+					}else if(param.result == 'success'){
+						alert('삭제 완료');
+						selectList(1);
+					}else if(param.result == 'wrongAccess'){
+						alert('타인의 글을 삭제할 수 없습니다.');
+					}else{
+						alert('댓글 삭제 오류 발생');
+					}
+				},
+				error:function(){
+					alert('네트워크 오류 발생');
 				}
-			},
-			error:function(){
-				alert('네트워크 오류 발생');
-			}
-		});
+			});
+		}
+		
+		
+		
 	});
 	
 	//초기 데이터(목록) 호출

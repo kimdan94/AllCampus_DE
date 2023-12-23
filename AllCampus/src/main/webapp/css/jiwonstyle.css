@@ -61,12 +61,11 @@ textarea{
 
 table{
 	width:100%;
-	border:1px solid #000;
 	border-collapse:collapse;
 	margin-top:5px;
 }
 table td, table th{
-	border:1px solid #000;
+	border: 1px solid #d6d6d6;
 	padding:15px;
 }
 .board-table .board1-title{
@@ -103,19 +102,76 @@ table td, table th{
     border-collapse: collapse;
     margin-top: 5px;
     margin-left: 450px;
+   
+}
+
+
+.board-detail {
+	
+    padding: 10px;
+    border-radius: 10px;
+    position: relative;
+    border: 1px solid #d6d6d6;
+    
+}
+#output{
+	padding: 10px;
+}
+#reply_div{
+	padding: 10px;
+}
+.image-section {
+    float: left; /* Float the image to the left */
+    margin-right: 10px;
+}
+
+.detail-info {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow: hidden; /* Clear the float */
+}
+
+.info-line {
+    margin-bottom: 5px;
+    display: flex; /* Use flex display for horizontal arrangement */
+    align-items: center; /* Center align items vertically */
+}
+
+.labels {
+    margin-left: 10px;
+}
+/* 수정,삭제 위치 부분 */
+.detail-actions {
+   	list-style: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+
+.detail-info li {
+	list-style: none;
+ 	display: flex;
+  	justify-content: space-between;
+  	align-items: center;
+  	margin-right: 10px;
+}
+.detail-info li a {
+	float: right;
+}
+
+
+ul.detail-info{
+	margin-bottom:3px;
+	list-style: none;
+    padding: 0;
+    display: flex;
 	
 }
 
-.board-detail{
-	border: 1px solid #d6d6d6;
-    padding:10px;
-    border-radius: 10px;
-    position: relative;
-}
-ul.detail-info{
-	margin-bottom:3px;
-	
-}
 .board-detail h2{
 	margin-top:0px;
 	margin-bottom:0px;
@@ -125,30 +181,8 @@ ul.detail-info{
 	margin-top:2px;
 	margin-left:2px;
 }
-.detail-info {
-	list-style: none;
-    padding: 0;
-    margin: 0;
-}
-/* 수정,삭제 위치 부분 */
-.detail-actions {
-	list-style: none;
-    padding: 0;
-    margin: 0;
-    position: absolute;
-    top: 0;
-    right: 0;
-}
-.detail-info li {
-	list-style: none;
- 	display: flex;
-  	justify-content: space-between;
-  	align-items: center;
-}
-.detail-info li a {
-	float: right;
-	
-}
+
+
 
 .detail-actions li {
     float: right;
@@ -156,10 +190,33 @@ ul.detail-info{
     margin-top:5px;
 }
 
+.favstar-img{
+	margin-left: 5px;
+    padding-left: 0;
+    
+}
+.favstar-img li{
+	margin-left: 5px;
+    padding-left: 0;
+}
+#output_board_fcount{
+	color:red; 
+	font-size:15px;
+}
+#output_board_scrapcount{
+	color:#F9A825; 
+	font-size:16px;
+}
 
 .likeimage #output_board_fav {
-	margin-left:10px;
+	margin-left:4px;
 }
+
+.rep-content{
+	border: 1px solid #bdbebd;
+}
+
+
 
 /* 댓글 익명 버튼 위치 설정 */
 #re_first {
@@ -169,26 +226,52 @@ ul.detail-info{
     margin-top:0;
 }
 
-/* Adjust the margin as needed */
 #re_first .letter-count {
-    margin-right: 10px; /* Adjust the margin as needed */
+    margin-right: 10px; 
 }
 
-/* Remove list-style and padding for the ul element */
 #re_first ul {
     list-style: none;
     padding: 0;
 }
 
-/* Display li elements horizontally */
 #re_first li {
     display: inline-block;
-    margin-right: 10px; /* Adjust the margin as needed */
+    margin-right: 10px; 
 }
-
-
-
-
+.modify-btn{
+	border:1px solid #e1e6ed;
+	width:50px;
+	height:25px;
+	border-radius:5px;
+	color:black;
+	font-weight:bold;
+}
+.delete-btn{
+	border:1px solid #e1e6ed;
+	width:50px;
+	height:25px;
+	border-radius:5px;
+	color:black;
+	font-weight:bold;
+}
+.next-btn{
+	border:1px solid #e1e6ed;
+	width:100px;
+	height:25px;
+	border-radius:5px;
+	color:black;
+	font-weight:bold;
+	float:right;
+}
+.subm-btn{
+	border:1px solid #e1e6ed;
+	width:50px;
+	height:25px;
+	border-radius:5px;
+	color:black;
+	font-weight:bold;
+}
 
 
 /* 자유게시판 writeForm.jsp
@@ -292,7 +375,6 @@ ul.search li {
 }
 
 
-
 /* 강의평 evawriteForm.jsp
 ---------------------------------*/
 form#write_form{
@@ -392,10 +474,10 @@ form#write_form{
 }
 .prof{
 	font-weight:bold;
-	margin-left:10px;
+	margin-left:20px;
 }
 .star{
-	margin-left:10px;
+	margin-left:20px;
 }
 .t-grade{
 	 font-size: 19px;
@@ -403,6 +485,16 @@ form#write_form{
 .starg{
 	font-size: 18px;
 }
+.eva-dsemester{
+	color:#808080;
+	font-size: 15px;
+	
+}
+.course-names{
+	font-size:28px;
+	font-weight:bold;
+}
+
 /* 학점계산기 시작
 ---------------------------------*/
 #container{
@@ -411,8 +503,6 @@ form#write_form{
     padding: 0;
     border: none;
     margin-left: 450px;
-   
-   
 }
 
 

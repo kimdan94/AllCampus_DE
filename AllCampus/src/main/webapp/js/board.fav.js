@@ -39,16 +39,7 @@ $(function(){
 	});
 	//좋아요 표시
 	function displayFav(param){
-		/*
-		let output;
-		if(param.status=='yesFav'){//좋아요 선택
-			output ='../images/fav_image.png';
-		}else{//좋아요 미선택
-			output = '../images/fav_image.png';
-		}
-		*/
-		//문서 객체에 설정
-		//$('#output_fav').attr('src',output);
+		
 		$('#output_board_fcount').text(param.count);
 		
 	}

@@ -53,8 +53,8 @@ $(function(){
 		<h2 class="board-title">강의평 상세</h2>
 		<hr width="10%" class="board-underline">
 		<div class="evacontent-main">
-			<h2>${course_name}</h2>
-			
+			<span class="course-names">${course_name}</span>
+			<br>
 			<span class="prof">교수명 </span> : ${course_prof}<br>
 			
 			<img src="${pageContext.request.contextPath}/images/star_icon2.png" class="star" width="18" height="18">
@@ -93,8 +93,8 @@ $(function(){
 							</c:if>
 							</div><br>
        						
-       						${evadetail.eva_semester} 수강자
-							<img src="${pageContext.request.contextPath}/images/redfav.png" width="18">
+       						<span class="eva-dsemester">${evadetail.eva_semester} 수강자</span>
+							<img src="${pageContext.request.contextPath}/images/redfav.png" width="15">
 							<span style="color:red;" id="output_eva_count_${status.index}">${evadetail.eva_fav}</span>
 							<br>
 							${evadetail.eva_content}<br>

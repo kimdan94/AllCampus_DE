@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시판 상세 정보 - 올캠퍼스</title>
+<title>자유게시판 상세 - 올캠퍼스</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/jiwonstyle.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
@@ -55,27 +55,26 @@ $(function(){
 	<div class="board-content">
 	<div class="board_detail_form">
 		<div class="board-detail">
-		<ul class="detail-info">
-			<li>
-				<c:if test="${!empty board.mem_photo}">
+			<div class="image-section">
+			<c:if test="${!empty board.mem_photo}">
 				<img src="${pageContext.request.contextPath}/upload/${board.mem_photo}" width="40" height="40" class="my-photo">
-				</c:if>
-				<c:if test="${empty board.mem_photo}">
+			</c:if>
+			<c:if test="${empty board.mem_photo}">
 				<img src="${pageContext.request.contextPath}/images/face.png" width="40" height="40" class="my-photo">
-				</c:if>
-			</li>
-			<li>
+			</c:if>
+			</div>
+			<div class="detail-info">
+			<div class="info-line">
 				<!-- 익명 여부  1: 익명X   2: 익명 -->
 				<c:if test="${board.board_anonymous ==1}">${board.mem_id}</c:if>
 				<c:if test="${board.board_anonymous ==2}">익명</c:if>
-				
-				<!-- 아래 hit 지우고 몇분전 관련된거 넣기 !!!!!!! -->
-				${board.board_reg_date}
-			</li>
-			<li>
-			조회 : ${board.board_hit}
-			</li>
-		</ul>
+			</div>
+			<div class="info-line">	
+				<span>${board.board_reg_date}</span>
+				<span class="labels">조회:</span>
+            	<span>${board.board_hit}</span>
+			</div>
+		</div>
 		
 		<!-- 글 게시자가 아니면 신고버튼, 글 게시자는 수정,삭제 버튼이 보이게 만들기   -->
 		<ul class="detail-actions">
@@ -106,18 +105,18 @@ $(function(){
 		
 		<c:if test="${!empty board.board_filename}">
 		<div>
-			<img src="${pageContext.request.contextPath}/upload/${board.board_filename}" class="detail-img">
+			<img src="${pageContext.request.contextPath}/upload/${board.board_filename}" class="detail-img" width="750">
 		</div>
 		</c:if>
-		<ul>
-			<li>
-			<img src="${pageContext.request.contextPath}/images/redfav.png" width="20">
+		<div class="favstar-img">
+			
+			<img src="${pageContext.request.contextPath}/images/redfav.png" width="17">
 			<span id="output_board_fcount"></span>
 			
-			<img src="${pageContext.request.contextPath}/images/star_icon2.png" width="20">
+			<img src="${pageContext.request.contextPath}/images/star_icon2.png" width="18">
 			<span id="output_board_scrapcount"></span>
-			</li>
-		</ul>
+			
+		</div>
 		<div class="likeimage">
 		<input type="button" value="공감" id="output_board_fav" class="board-btn" data-num="${board.board_num}">
 		<input type="button" value="스크랩" id="output_board_scrap" class="board-btn" data-num="${board.board_num}">
@@ -126,12 +125,13 @@ $(function(){
 		<!-- 댓글 목록 출력 시작 -->
 		<div id="output"></div>
 		<div class="paging-button" style="display:none;">
-			<input type="button" value="다음글 보기">
+			<input type="button" value="다음글 보기" class="next-btn">
 		</div>
 		<div id="loading" style="display:none;">
 			<img src="${pageContext.request.contextPath}/images/loading.gif" width="50" height="50">
 		</div>
 		<!-- 댓글 목록 출력 끝 -->
+		<br>
 		<!-- 댓글 시작 -->
 		<div id="reply_div">
 			<span class="re-title">댓글 달기</span>
@@ -153,16 +153,13 @@ $(function(){
                     		<input type="checkbox" name="re_anonymous" id="re_anonymous" value="1">익명
                    		</li>
                     </ul>
-                
 				</div>
-				
 				<div id="re_second">
-					<input type="submit" value="전송">
+					<input type="submit" value="전송" class="subm-btn">
 				</div>
 				</c:if>
 			</form>
 		</div>
-		
 		<!-- 댓글 끝 -->
 	</div>
 	</div>
