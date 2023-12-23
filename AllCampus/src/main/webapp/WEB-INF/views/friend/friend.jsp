@@ -136,7 +136,7 @@ h2 {
 			
 			<!-- 친구 리스트 검색 --><!-- FriendListAction -->
 			<form action="friendList.do" method="get">
-			<h4>친구 이름을 검색하세요</h4>
+			<h4>친구 이름을 검색하세요&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/course/friendList.do"><img class="fit-picture" src="${pageContext.request.contextPath}/images/fresh.png" alt="새로고침" style="width:20px;"/></a></h4>
 			<div class="search-container">
 				<input type="search" size="30" name="search_friend" id="search_friend" class="search-box" placeholder="친구 이름을 검색하세요">
 				<input type="submit" class="search-button" value="친구 검색">
