@@ -18,7 +18,73 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/course.hover.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/timetable.add.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/hyun.css">
-<%-- <script type="text/javascript" src="${pageContext.request.contextPath}/js/timetable.print.js"></script> --%>
+<style type="text/css">
+/* 헤더 */
+.header-style {
+	height: 80px;
+	width: 1670px;
+	margin:15px 0 0 9px;
+	padding:10px;
+	vertical-align:middle;
+	border:1px solid #dcdfe3;
+	border-radius:10px;
+	background-color:#f2f6fa;
+}
+.header-style ul{
+	list-style:none;
+}
+.header-style li{
+	display:inline-block;
+	text-align:center;
+	vertical-align:middle;
+	margin-left:20px;
+	margin-right:83px;
+	margin-bottom:15px;
+}
+.home-logo{
+	float:left;
+	color:#6699cc;
+	font-weight:bold;
+	font-family:sans-serif;
+	font-size:17px;
+}
+/* a 태그
+------------------------------*/
+a {
+	text-decoration-line: none;
+	color: black;
+}
+a:hover {
+	color: gray;
+}
+a{
+	cursor:pointer;
+}
+/*-----------------------*/
+.friend-list-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border: 2px solid #6699cc;
+  color: #3498db;
+  background-color: #fff;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
+  float: right;
+}
+
+/* Hover effect for the button */
+.friend-list-btn:hover {
+  background-color: #6699cc;
+  color: #fff;
+}
+/*------------------------*/
+</style>
 <script type="text/javascript">
 $(function(){
 	/* $('.course_subject').on('click', (e) => {
@@ -75,7 +141,16 @@ $(function(){
 </head>
 <body>
 
-	<h2>시간표 출력</h2>${keyfield}
+<div class="header-style">
+	<ul>
+		<li class="myPage home-logo" style="font-family:sans-serif;">
+			<a href="${pageContext.request.contextPath}/mymember/myPage.do">
+				<img src="${pageContext.request.contextPath}/images/user.png" width="60" height="60" style="margin:0px 10px 0px 50px;">
+			</a>
+			<span style="font-size:17pt;">[<span>${user_id}</span>]의 시간표</span>
+		</li>
+	</ul>
+</div><br>
 
 	<!-- 
 	<form id="search_semester" action="course_list.do" method="get">
@@ -108,7 +183,7 @@ $(function(){
 	<div class="timetable-main">
 	
 	<a href="${pageContext.request.contextPath}/course/course_list.do"><img class="fit-picture" src="${pageContext.request.contextPath}/images/fresh.png" alt="새로고침" style="width:35px;"/></a>
-
+	&nbsp;
 	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal1" style="background-color:#6699cc; border:none;">
 	전공/영역:
 	<c:forEach var="course_subject" items="${course_subject}">
@@ -370,7 +445,7 @@ $(function(){
 <!-- ------------------------------------------------------------------------------------------------------------------ -->
 
 
-	<input type="button" value="친구목록" onclick="location.href='friendList.do'"> <br><br><br>
+	<input type="button" value="친구목록" class="friend-list-btn" onclick="location.href='friendList.do'"> <br><br><br>
 
 
 <!-- ------------------------------------------------------------------------------------------------------------------ -->
