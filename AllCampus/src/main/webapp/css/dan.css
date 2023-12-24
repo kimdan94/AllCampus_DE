@@ -178,6 +178,15 @@ input[type="submit"]{
 	background-color:#6699cc;
 	font-weight:bold;
 	color:white;
+}
+.modify{
+	border:1px solid #e1e6ed;
+	height:30px; 
+	width:70px;
+    border-radius:10px;
+	background-color:#6699cc;
+	font-weight:bold;
+	color:white;
 	margin-left:210px;
 }
 .nick{
@@ -288,5 +297,3 @@ table th{
 	font-size:15pt;
 	font-weight:bold;
 }
-
-

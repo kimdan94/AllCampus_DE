@@ -57,7 +57,7 @@
 			   class="input-check" style="height:30px; width:300px;">
 		<input type="button" value="닉네임 중복체크" id="mem_nick_check" class="nick" >
 		<span id="message_mem_nick"></span><br><br><br>
-		<input type="submit" value="수정" class="submit-btn">
+		<input type="submit" value="수정" class="modify">
 		</div>
 		</form>
 		<br>
@@ -76,7 +76,7 @@
 			placeholder="부전공을 입력하세요" class="input-check" style="height:30px; width:300px;">
 		</div>	
 		<div><br><br>
-			<input type="submit" value="수정" class="submit-btn">
+			<input type="submit" value="수정" class="modify">
 		</div>
 		</form>
 	</div>
