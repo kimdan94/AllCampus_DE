@@ -24,7 +24,7 @@ public class TimetablePrintAction implements Action {// -> js > timetable.print.
 			return "redirect:/member/loginForm.do";
 		}
 		int year = 2023;
-		int semester = 1;
+		int semester = 2;
 		String tmp_year = request.getParameter("year");
 		String tmp_semester = request.getParameter("semester");
 		if(tmp_year != null) {

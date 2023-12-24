@@ -13,7 +13,7 @@
 		</li>
 		<li class="clear">
 			<h2>
-			<a href="${pageContext.request.contextPath}/course/course_list.do">시간표</a>
+			<a href="${pageContext.request.contextPath}/course/course_list.do" target="blank">시간표</a>
 			</h2>
 		</li>
 		<li class="clear">

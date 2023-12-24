@@ -28,7 +28,7 @@ public class CourseFormAction implements Action {
 		String keyfield = request.getParameter("keyfield");
 		String keyfield_hidden = request.getParameter("keyfield_hidden");
 		Integer year = 2023;
-		Integer semester = 1;
+		Integer semester = 2;
 		if(keyfield != null) {
 			year = Integer.parseInt(keyfield.substring(0,4));
 			semester = Integer.parseInt(keyfield.substring(4));
