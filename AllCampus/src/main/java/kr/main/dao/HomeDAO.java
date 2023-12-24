@@ -119,7 +119,7 @@ public class HomeDAO {
 			//SQL문 작성
 			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
 					+ "(SELECT * FROM all_board WHERE board_hit >= ? AND board_show=2 "
-					+ "ORDER BY board_reg_date DESC)"
+					+ "ORDER BY board_hit DESC)"
 					+ "a) WHERE rnum >= ? AND rnum <= ?";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);

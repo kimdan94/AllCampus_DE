@@ -92,7 +92,7 @@
 		<table>
 			<c:forEach var="hot" items="${hotList}">
 			<tr>
-				<td class="list-margin2"><a href="${pageContext.request.contextPath}/board/detail.do?board_num=${board.board_num}">${hot.board_title}</a></td>
+				<td class="list-margin2"><a href="${pageContext.request.contextPath}/board/detail.do?board_num=${hot.board_num}">${hot.board_title}</a></td>
 				<td class="list-margin"><fmt:formatDate value="${hot.board_reg_date}" pattern="MM/dd HH:mm"/></td>
 			</tr>
 			</c:forEach>
