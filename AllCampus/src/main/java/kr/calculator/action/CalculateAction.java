@@ -48,56 +48,54 @@ public class CalculateAction implements Action{
 	            
 			    if (creditParam != null && gradeParam != null && majorParam != null) {
 			            
-			    		int cal_credit = Integer.parseInt(creditParam);
-			    		double cal_grade = Double.parseDouble(gradeParam);
-			    		int cal_major = Integer.parseInt(majorParam);
-			    		
-			    		//cal_grade = 0.1은 P
-			    		dao.insertCalculator(user_num, cal_semester, cal_course_name, cal_credit, cal_grade, cal_major);
-			    		if(cal_grade !=0 && cal_grade != 0.1 && cal_grade != 0.2) { //F,NP ,P는 제외하고 처리
-			    			double count = cal_credit * cal_grade ; //강의 학점 * 받은 성적   (ex) 3 * 4.0 
-					        tcount = tcount+ count;					//누적
-			    		}
-			    		 		//F				//NP
-				        if(cal_grade != 0 && cal_grade != 0.2 ) { //P는 학점 취득이 되어야한다
-				        	cal_acq = cal_acq + cal_credit;			//수강한 총 강의 학점  취득
-				        }
-				        		//P					//NP	
-				        if(cal_grade != 0.1 && cal_grade != 0.2) {//P,NP만 제외한 credit 더하기
-				        	cal_finclude_acq = cal_finclude_acq + cal_credit;  //F포함 강의 학점
-				        }
-				        //F학점인 cal_credit값도 포함해서 나눠야 한다 
-				        
-				        //tcount / finclude_acq 하면 평점 나온다
-				        cal_avgscore = tcount / (double)cal_finclude_acq;		//평점
-				        
-				        //전공일 때 학점 계산 
-				        if(cal_major == 2) {
-				        	int majorTimetableCredit = Integer.parseInt(request.getParameter("timetable_credit_" + i));//전공인 강의 학점
-				        	double majorCalGrade = Double.parseDouble(request.getParameter("cal_grade_" + i));	//전공일때 받은 성적
-				            //				F					P					NP
-				        	if(majorCalGrade !=0 && majorCalGrade != 0.1 && majorCalGrade != 0.2) {
-				        		double majorcount = majorTimetableCredit * majorCalGrade; // 전공 : 강의 학점 * 받은 성적 
-					            tmajor = tmajor+majorcount;		//누적
-				        	}
-				        	
-				            if(majorCalGrade != 0 && majorCalGrade != 0.2) {//P는 학점 취득이 되어야한다
-				            	 major_acq = major_acq + majorTimetableCredit;   //전공 수강한 총 강의 학점  (전공 취득)
-				            }
-				            if(majorCalGrade != 0.1 && majorCalGrade != 0.2) {
-				            	cal_majorf_acq = cal_majorf_acq + majorTimetableCredit;//F포함 강의 학점
-				            }
-				            if(cal_majorf_acq > 0) {
-				            	cal_majorscore = tmajor / cal_majorf_acq; //전공 평점
-				            }else {
-				            	//tmajor/major_acq 하면 cal_majorscore 나온다.
-					            cal_majorscore = 0; //전공 평점
-				            }
-				            
-				        }
+		    		int cal_credit = Integer.parseInt(creditParam);
+		    		double cal_grade = Double.parseDouble(gradeParam);
+		    		int cal_major = Integer.parseInt(majorParam);
+		    		
+		    		//cal_grade = 0.1은 P
+		    		dao.insertCalculator(user_num, cal_semester, cal_course_name, cal_credit, cal_grade, cal_major);
+		    		if(cal_grade !=0 && cal_grade != 0.1 && cal_grade != 0.2) { //F,NP ,P는 제외하고 처리
+		    			double count = cal_credit * cal_grade ; //강의 학점 * 받은 성적   (ex) 3 * 4.0 
+				        tcount = tcount+ count;					//누적
+		    		}
+		    		 		//F				//NP
+			        if(cal_grade != 0 && cal_grade != 0.2 ) { //P는 학점 취득이 되어야한다
+			        	cal_acq = cal_acq + cal_credit;			//수강한 총 강의 학점  취득
+			        }
+			        		//P					//NP	
+			        if(cal_grade != 0.1 && cal_grade != 0.2) {//P,NP만 제외한 credit 더하기
+			        	cal_finclude_acq = cal_finclude_acq + cal_credit;  //F포함 강의 학점
+			        }
+			        //F학점인 cal_credit값도 포함해서 나눠야 한다 
+			        
+			        //tcount / finclude_acq 하면 평점 나온다
+			        cal_avgscore = tcount / (double)cal_finclude_acq;		//평점
+			        
+			        //전공일 때 학점 계산 
+			        if(cal_major == 2) {
+			        	int majorTimetableCredit = Integer.parseInt(request.getParameter("timetable_credit_" + i));//전공인 강의 학점
+			        	double majorCalGrade = Double.parseDouble(request.getParameter("cal_grade_" + i));	//전공일때 받은 성적
+			            //				F					P					NP
+			        	if(majorCalGrade !=0 && majorCalGrade != 0.1 && majorCalGrade != 0.2) {
+			        		double majorcount = majorTimetableCredit * majorCalGrade; // 전공 : 강의 학점 * 받은 성적 
+				            tmajor = tmajor+majorcount;		//누적
+			        	}
+			        	
+			            if(majorCalGrade != 0 && majorCalGrade != 0.2) {//P는 학점 취득이 되어야한다
+			            	 major_acq = major_acq + majorTimetableCredit;   //전공 수강한 총 강의 학점  (전공 취득)
+			            }
+			            if(majorCalGrade != 0.1 && majorCalGrade != 0.2) {
+			            	cal_majorf_acq = cal_majorf_acq + majorTimetableCredit;//F포함 강의 학점
+			            }
+			            if(cal_majorf_acq > 0) {
+			            	cal_majorscore = tmajor / cal_majorf_acq; //전공 평점
+			            }else {
+			            	//tmajor/major_acq 하면 cal_majorscore 나온다.
+				            cal_majorscore = 0; //전공 평점
+			            }
+			            
+			        }
 			    }//end of if
-			  
-		        
 		    }//end of for
 			//테이블에 정보 저장
 			
@@ -130,28 +128,11 @@ public class CalculateAction implements Action{
 			
 			dao.totalScore(user_num, cal_total_avgscore, cal_total_majorscore, cal_total_acq);
 			
-			/*
-			double avgscore = dao.selectAvgscore();     //모든학기의 평점 합침
-			double majorscore = dao.selectMajorscore();	//모든 학기의 전공평점 합침
-			int semester_rowcount = dao.semesterCount();//semester테이블에 저장되어있는 행의 개수(학기의 개수)
-			int acqscore = dao.selectAcqscore();
-			
-			double cal_total_avgscore = avgscore/(double)semester_rowcount;	//전체 평점
-			double cal_total_majorscore = majorscore/(double)majorf_acq;	//전체 전공 평점
-			int cal_total_acq = acqscore;
-			
-			dao.totalScore(user_num, cal_total_avgscore, cal_total_majorscore, cal_total_acq);
-			
-			//전공 토탈 할 때 F 강의 학점 포함해서 나눠야한다
-			*/
-			
 			CalSemesterVO semesterscore=dao.getSemesterScore(cal_semester,user_num);
 			CalTotalVO totalscore = dao.totalScore(user_num);
 			mapAjax.put("totalscore", totalscore); 
 			mapAjax.put("semesterscore", semesterscore);
 			mapAjax.put("result", "success");
-			
-			
 		}//end of else
 		
 		//결과 JSON 문자열 생성
@@ -162,5 +143,4 @@ public class CalculateAction implements Action{
 		
 		return "/WEB-INF/views/common/ajax_view.jsp";
 	}
-
 }

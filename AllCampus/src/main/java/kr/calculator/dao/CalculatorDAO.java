@@ -313,8 +313,6 @@ public class CalculatorDAO {
 		}
 	}
 	
-	
-	
 	//전체 평점 가져오기 
 	public CalTotalVO totalScore(int mem_num)throws Exception{
 		Connection conn = null;
@@ -347,8 +345,6 @@ public class CalculatorDAO {
 		}
 		return totalscore;
 	}
-	
-	
 	
 	//학기당 평점 가져오기 
 	public CalSemesterVO getSemesterScore(String cal_semester, int mem_num)throws Exception{
@@ -434,31 +430,6 @@ public class CalculatorDAO {
 			DBUtil.executeClose(null, pstmt2, null);
 			DBUtil.executeClose(null, pstmt, conn);
 		}
-		
 	}
-	
 }
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	

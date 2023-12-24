@@ -36,7 +36,6 @@ public class SelectTimetableAction implements Action{
 			mapAjax.put("result", "success");
 		}
 		
-		
 		//결과 JSON 문자열 생성
 		ObjectMapper mapper = new ObjectMapper();
 		String ajaxData = mapper.writeValueAsString(mapAjax);
@@ -45,5 +44,4 @@ public class SelectTimetableAction implements Action{
 		
 		return "/WEB-INF/views/common/ajax_view.jsp";
 	}
-
 }

@@ -18,7 +18,7 @@ public class GetFavAction implements Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		//전송된 데이터 인코딩 처리
-		request.setCharacterEncoding("utf-8");
+		request.setCharacterEncoding("utf-8"); 
 		//전송된 데이터 반환
 		int board_num = Integer.parseInt(request.getParameter("board_num"));  
 		

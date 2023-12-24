@@ -340,150 +340,144 @@ $(document).ready(function () {
 		<h2 class="board-title">학점 계산기</h2>
 		<hr width="10%" class="board-underline">
 	</div> 
-<div id="container" class="calculator">
-	
-	<div class="section">
-		<div class="chart">
-			<article class="overview">
-				<div class="column gpa">
-					<h3>전체 평점</h3>
-					<p class="value">
-					<c:choose>
-						<c:when test="${totalscore.cal_total_avgscore!=null}" >
-							${totalscore.cal_total_avgscore}
-						</c:when>
-						<c:otherwise>
-                            0
-                        </c:otherwise>
-					</c:choose>
-					</p>
-					<p>/</p>
-					<p class="total">4.5</p>
-				</div>
-				<div class="column major">
-					<h3>전공 평점</h3>
-					
-					<p class="value">
-					<c:choose>
-						<c:when test="${totalscore.cal_total_avgscore!=null}" >
-							${totalscore.cal_total_majorscore}
-						</c:when>
-						<c:otherwise>
-                            0
-                        </c:otherwise>
-					</c:choose>
-					</p>
-					<p>/</p>
-					<p class="total">4.5</p>
-				</div>
-				<div class="column acquisition">
-					<h3>취득 학점</h3>
-					<p class="value">
-					<c:choose>
-						<c:when test="${totalscore.cal_total_acq!=null}" >
-							${totalscore.cal_total_acq}
-						</c:when>
-						<c:otherwise>
-                            0
-                        </c:otherwise>
-					</c:choose>
-					</p>
-					<p>/</p>
-					<p class="total" title="졸업 학점 설정">130</p>
-				</div>
-			</article>
-		</div>
-		<div class="select_ses">
-			<select name="select_semester">
-				<option disabled="disabled" selected>학기 선택</option>
-				<option>1학년 1학기</option>
-				<option>1학년 여름</option>
-				<option>1학년 2학기</option>
-				<option>1학년 겨울</option>
-				<option>2학년 1학기</option>
-				<option>2학년 여름</option>
-				<option>2학년 2학기</option>
-				<option>2학년 겨울</option>
-				<option>3학년 1학기</option>
-				<option>3학년 여름</option>
-				<option>3학년 2학기</option>
-				<option>3학년 겨울</option>
-				<option>4학년 1학기</option>
-				<option>4학년 여름</option>
-				<option>4학년 2학기</option>
-				<option>4학년 겨울</option>
-			</select>
-		</div>
-		<div>
-		
-		<div class="score_show">
-			<div class="column avgscore">
-				<h3>평점</h3>
-				<p class="value" id="avgscore">0</p>
+	<div id="container" class="calculator">
+		<div class="section">
+			<div class="chart">
+				<article class="overview">
+					<div class="column gpa">
+						<h3>전체 평점</h3>
+						<p class="value">
+							<c:choose>
+								<c:when test="${totalscore.cal_total_avgscore!=null}" >
+									${totalscore.cal_total_avgscore}
+								</c:when>
+								<c:otherwise>
+                   	      	   0
+                    	 	   </c:otherwise>
+							</c:choose>
+						</p>
+						<p>/</p>
+						<p class="total">4.5</p>
+					</div>
+					<div class="column major">
+						<h3>전공 평점</h3>
+						<p class="value">
+							<c:choose>
+							<c:when test="${totalscore.cal_total_avgscore!=null}" >
+								${totalscore.cal_total_majorscore}
+							</c:when>
+							<c:otherwise>
+                      	      0
+                     	   </c:otherwise>
+							</c:choose>
+						</p>
+						<p>/</p>
+						<p class="total">4.5</p>
+					</div>
+					<div class="column acquisition">
+						<h3>취득 학점</h3>
+						<p class="value">
+						<c:choose>
+							<c:when test="${totalscore.cal_total_acq!=null}" >
+								${totalscore.cal_total_acq}
+							</c:when>
+							<c:otherwise>
+                     	       0
+                    	    </c:otherwise>
+						</c:choose>
+						</p>
+						<p>/</p>
+						<p class="total" title="졸업 학점 설정">130</p>
+					</div>
+				</article>
 			</div>
-			<div class="column majorscore">
-				<h3>전공</h3>
-				<p class="value" id="majorscore">0</p>
+			<div class="select_ses">
+				<select name="select_semester">
+					<option disabled="disabled" selected>학기 선택</option>
+					<option>1학년 1학기</option>
+					<option>1학년 여름</option>
+					<option>1학년 2학기</option>
+					<option>1학년 겨울</option>
+					<option>2학년 1학기</option>
+					<option>2학년 여름</option>
+					<option>2학년 2학기</option>
+					<option>2학년 겨울</option>
+					<option>3학년 1학기</option>
+					<option>3학년 여름</option>
+					<option>3학년 2학기</option>
+					<option>3학년 겨울</option>
+					<option>4학년 1학기</option>
+					<option>4학년 여름</option>
+					<option>4학년 2학기</option>
+					<option>4학년 겨울</option>
+				</select>
 			</div>
-			<div class="column acq">
-				<h3>취득</h3>
-				<p class="value" id="acq">0</p>
-			</div>
-		</div>
-		<div class="button">
-		<button id="openModalBtn" class="cal-btn4">시간표 불러오기</button>
-		</div>
-			<div id="myModal" class="modal">
-				<div class="modal-content">
-					<span class="close" id="closeModalBtn">&times;</span>
-					<form id="importForm" class="modal-form">
-           				 <h2>내 시간표 가져오기</h2>
-           			 	<p>
-              				<label>시간표 선택</label>
-               				<select name="cal_timetable">
-                   			 	<option value="2024-0">2024년 1학기</option>
-        						<option value="2023-3">2023년 겨울</option>
-								<option value="2023-2">2023년 2학기</option>
-								<option value="2023-1">2023년 여름</option>
-								<option value="2023-0">2023년 1학기</option>
-								<option value="2022-2">2022년 2학기</option>
-								<option value="2022-0">2022년 1학기</option>
-								<option value="2021-2">2021년 2학기</option>
-								<option value="2021-0">2021년 1학기</option>
-								<option value="2020-2">2020년 2학기</option>
-								<option value="2020-0">2020년 1학기</option>
-								<option value="2019-2">2019년 2학기</option>
-								<option value="2019-0">2019년 1학기</option>
-							</select>
-           				</p>
-            			<input type="submit" value="가져오기" class="cal-btn4">
-       				</form>
+			<div>
+				<div class="score_show">
+					<div class="column avgscore">
+						<h3>평점</h3>
+						<p class="value" id="avgscore">0</p>
+					</div>
+					<div class="column majorscore">
+						<h3>전공</h3>
+						<p class="value" id="majorscore">0</p>
+					</div>
+					<div class="column acq">
+						<h3>취득</h3>
+						<p class="value" id="acq">0</p>
+					</div>
 				</div>
-			</div>
-		<form id="cal_count">
-		<table class="cal-table">
-		<thead class="cal_thead">
-			<tr>
-            	<th class="name">과목명</th>
-           	 	<th class="credit">학점</th>
-           	 	<th class="grade">성적</th>
-            	<th class="major">전공</th>
-          	</tr>
+				<div class="button">
+				<button id="openModalBtn" class="cal-btn4">시간표 불러오기</button>
+				</div>
+				<div id="myModal" class="modal">
+					<div class="modal-content">
+						<span class="close" id="closeModalBtn">&times;</span>
+						<form id="importForm" class="modal-form">
+      	    				<h2>내 시간표 가져오기</h2>
+      	    			 	<p>
+       		      				<label>시간표 선택</label>
+       		       				<select name="cal_timetable">
+           		       			 	<option value="2024-0">2024년 1학기</option>
+       								<option value="2023-3">2023년 겨울</option>
+									<option value="2023-2">2023년 2학기</option>
+									<option value="2023-1">2023년 여름</option>
+									<option value="2023-0">2023년 1학기</option>
+									<option value="2022-2">2022년 2학기</option>
+									<option value="2022-0">2022년 1학기</option>
+									<option value="2021-2">2021년 2학기</option>
+									<option value="2021-0">2021년 1학기</option>
+									<option value="2020-2">2020년 2학기</option>
+									<option value="2020-0">2020년 1학기</option>
+									<option value="2019-2">2019년 2학기</option>
+									<option value="2019-0">2019년 1학기</option>
+								</select>
+          					</p>
+           					<input type="submit" value="가져오기" class="cal-btn4">
+      					</form>
+					</div>
+				</div>
+				<form id="cal_count">
+					<table class="cal-table">
+						<thead class="cal_thead">
+							<tr>
+        			 		   	<th class="name">과목명</th>
+        			   		 	<th class="credit">학점</th>
+        			   		 	<th class="grade">성적</th>
+       		 		  		  	<th class="major">전공</th>
+       				 	  	</tr>
+						</thead>
+						<tbody>
 		
-		</thead>
-		<tbody>
-		
-		
-		</tbody>
-        
-		</table>
-		<input type="hidden" id="cal_semester" name="cal_semester" value="">
-		<input type="submit" value="계산하기" class="cal-btn4">
-		<input type="button" class="cal-btn4" id="reset" value="초기화">
-		</form>
-	</div> 
-</div>
-</div>
+						</tbody>
+					</table>
+					<input type="hidden" id="cal_semester" name="cal_semester" value="">
+					<input type="submit" value="계산하기" class="cal-btn4">
+					<input type="button" class="cal-btn4" id="reset" value="초기화">
+				</form>
+			</div> 
+		</div>
+	</div>
 </div>
 </body>
 </html>

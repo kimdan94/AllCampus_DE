@@ -18,7 +18,6 @@ public class CourseYearSemesterAction implements Action{
 	
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
 		Map<String,Object> mapAjax = new HashMap<String,Object>();
 		
 		HttpSession session = request.getSession(); 
@@ -41,8 +40,6 @@ public class CourseYearSemesterAction implements Action{
 		List<CourseVO> list1 = null;
 		list1 = dao.getCourseYearSemester(course_name,course_prof);
 		
-		 
-		
 		mapAjax.put("list1",list1);
 		
 		//JSON 문자열 생성
@@ -53,7 +50,5 @@ public class CourseYearSemesterAction implements Action{
 		
 		//로그인이 된 경우
 		return "/WEB-INF/views/common/ajax_view.jsp";
-		
 	}
-
 }

@@ -34,7 +34,6 @@ public class EvaWriteAction implements Action{
 		NumberFormat format = NumberFormat.getInstance();
 		
 		format.setGroupingUsed(false);
-		
 		 
 		CourseEvaVO courseeva = new CourseEvaVO();
 		courseeva.setCourse_num(Integer.parseInt(request.getParameter("course_num")));

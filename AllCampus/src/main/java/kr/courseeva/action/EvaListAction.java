@@ -19,7 +19,7 @@ public class EvaListAction implements Action{
 		Integer user_num = (Integer)session.getAttribute("user_num");
 		if(user_num == null) {//로그인이 되지 않은 경우
 			return "redirect:/member/loginForm.do"; 
-		}
+		} 
 		
 		//인증 회원과 관리자만 접근 가능
 		Integer user_auth = (Integer)session.getAttribute("user_auth");

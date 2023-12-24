@@ -64,7 +64,6 @@ public class EvaDetailAction implements Action{
 		return "/WEB-INF/views/courseeva/eva_detail.jsp";
 	}
 	
-	
 	private String calculateGrade(double totalEvaStarAverage) {
         if (totalEvaStarAverage > 4.5) {
             return "A+";
@@ -86,5 +85,4 @@ public class EvaDetailAction implements Action{
             return "F";
         }
     }
-
 }

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>강의평 리스트</title> 
+<title>강의평 - 올캠퍼스</title>  
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/jiwonstyle.css">
 <script type="text/javascript">
@@ -19,7 +19,7 @@ window.onload = function(){
 			keyword.value = '';
 			keyword.focus();
 			return false;
-		}
+		} 
 	};
 };
 </script>
@@ -31,7 +31,7 @@ window.onload = function(){
 	<hr width="10%" class="board-underline">
 	<div class="free_title">
 		<form id="search_Form" action="courseeva_list.do" method="get">
-				<ul class="search">
+			<ul class="search">
 				<li>
 					<select name="keyfield">
 						<option value="1" <c:if test="${param.keyfield==1}">selected</c:if>>과목명</option>

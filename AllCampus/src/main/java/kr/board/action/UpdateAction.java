@@ -29,7 +29,6 @@ public class UpdateAction implements Action{
 			return "/WEB-INF/views/common/alert_singleView.jsp";
 		}
 		
-		
 		MultipartRequest multi = FileUtil.createFile(request);
 		int board_num = Integer.parseInt(multi.getParameter("board_num"));
 		String filename = multi.getFilesystemName("board_filename");//시스템에서 읽어오는 경우 getFilesystemName이라고 해야한다.
@@ -43,7 +42,6 @@ public class UpdateAction implements Action{
 			FileUtil.removeFile(request, filename);//filename은 null이 와도 상관없다
 			return "/WEB-INF/views/common/notice.jsp";
 		}
-		
 		
 		//로그인한 회원번호와 작성자 회원번호가 일치
 		BoardVO board = new BoardVO();
@@ -64,21 +62,5 @@ public class UpdateAction implements Action{
 		}
 		return "redirect:/board/detail.do?board_num=" + board_num;
 	}
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

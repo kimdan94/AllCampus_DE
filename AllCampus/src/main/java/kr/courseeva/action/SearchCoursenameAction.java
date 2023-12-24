@@ -51,10 +51,8 @@ public class SearchCoursenameAction implements Action{
 		String ajaxData = mapper.writeValueAsString(mapAjax);
 		
 		request.setAttribute("ajaxData", ajaxData);
-
 		
 		//로그인이 된 경우
 		return "/WEB-INF/views/common/ajax_view.jsp";
 	}
-
 }

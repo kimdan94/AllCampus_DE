@@ -12,7 +12,6 @@ public class CalculatorVO {
 	
 	private TimetableVO timetableVO;    //시간표 VO
 	
-	
 	public int getMem_num() {
 		return mem_num;
 	}
@@ -55,6 +54,4 @@ public class CalculatorVO {
 	public void setTimetableVO(TimetableVO timetableVO) {
 		this.timetableVO = timetableVO;
 	}
-	
-	
 }

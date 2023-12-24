@@ -19,7 +19,6 @@ public class UpdateFormAction implements Action{
 		  if(user_num == null) {//로그인이 되지 않은 경우 
 			  return "redirect:/member/loginForm.do";
 		  }
-		 
 		
 		//인증 회원과 관리자만 접근 가능 
 		Integer user_auth = (Integer)session.getAttribute("user_auth");
@@ -34,15 +33,10 @@ public class UpdateFormAction implements Action{
 		BoardDAO dao = BoardDAO.getInstance();
 		BoardVO db_board = dao.getBoard(board_num);
 		
-		
-		
-		
-		
 		 // 로그인한 회원번호 작성자 회원번호 
 		if(user_num != db_board.getMem_num()) { //로그인한 회원번호와작성자 회원번호 불일치 
 			return "/WEB-INF/views/common/notice.jsp"; 
 		}
-		 
 		
 		/*
 		 *  큰 따옴표 처리(수정폼의 input 태그에만 명시)

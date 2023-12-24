@@ -51,6 +51,4 @@ public class CalSemesterVO {
 	public void setCal_majorf_acq(int cal_majorf_acq) {
 		this.cal_majorf_acq = cal_majorf_acq;
 	}
-	
-	
 }

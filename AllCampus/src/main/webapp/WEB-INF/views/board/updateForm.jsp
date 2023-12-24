@@ -3,35 +3,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>자유게시판 글 수정 폼</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/jiwonstyle.css">
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
-    <script type="text/javascript">
-        $(function(){
-            $('#update_Form').submit(function(){
-            	if($('#board_title').val().trim()==''){
-            		alert('글 제목을 입력하세요');
-            		$('#board_title').val('').focus();
-            		return false;
-            	}
-            	if($('#board_content').val().trim()==''){
-            		alert('글 내용을 입력하세요');
-            		$('#board_content').val('').focus();
-            		return false;
-            	}
-                // 익명 체크박스가 체크되어 있으면 값을 2로, 체크되어 있지 않으면 값을 1로 설정
-                if ($('#board_anonymous').is(':checked')) {
-                    $('#board_anonymous').val('2');
-                } else {
-                    $('#board_anonymous').val('1');
-                    // 체크가 되어 있지 않으면 hidden input에 값을 설정
-                    $('#update_Form').append('<input type="hidden" name="board_anonymous" value="1">');
-                }
-            });
-        });
-    </script>
+<meta charset="UTF-8">
+<title>게시판 글 수정 - 올캠퍼스</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/jiwonstyle.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+$(function(){
+    $('#update_Form').submit(function(){
+    	if($('#board_title').val().trim()==''){
+    		alert('글 제목을 입력하세요');
+    		$('#board_title').val('').focus();
+    		return false;
+    	}
+    	if($('#board_content').val().trim()==''){
+    		alert('글 내용을 입력하세요');
+    		$('#board_content').val('').focus();
+    		return false;
+    	}
+        // 익명 체크박스가 체크되어 있으면 값을 2로, 체크되어 있지 않으면 값을 1로 설정
+        if ($('#board_anonymous').is(':checked')) {
+            $('#board_anonymous').val('2');
+        }else {
+            $('#board_anonymous').val('1');
+            // 체크가 되어 있지 않으면 hidden input에 값을 설정
+            $('#update_Form').append('<input type="hidden" name="board_anonymous" value="1">');
+        }
+    });
+});
+</script>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>

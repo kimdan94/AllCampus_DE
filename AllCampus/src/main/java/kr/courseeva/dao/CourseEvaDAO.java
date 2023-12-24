@@ -378,7 +378,6 @@ public class CourseEvaDAO {
 			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
 			
-			
 			//all_eva_fav에 정보 등록
 			//SQL문 작성
 			sql = "INSERT INTO all_eva_fav (eva_num,mem_num) VALUES (?,?)";
@@ -389,9 +388,6 @@ public class CourseEvaDAO {
 			pstmt.setInt(2, courseevafavVO.getMem_num());
 			//SQL문 실행
 			pstmt.executeUpdate();
-			
-			
-			
 		}catch(Exception e) {
 			
 			throw new Exception(e);
@@ -405,7 +401,6 @@ public class CourseEvaDAO {
 		PreparedStatement pstmt = null; 
 		String sql = null;
 		
-		
 		try {
 			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
@@ -417,14 +412,12 @@ public class CourseEvaDAO {
 			pstmt.setInt(1, eva_num);
 			//SQL문 실행
 			pstmt.executeUpdate();
-			
 		}catch(Exception e) {
 			
 			throw new Exception(e);
 		}finally {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
-		
 	}
 	
 	//좋아요 개수
@@ -483,7 +476,6 @@ public class CourseEvaDAO {
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
 		return count; 
-		
 	}
 	
 	//회원번호와 게시물 번호를 이용한 좋아요 정보
@@ -519,7 +511,6 @@ public class CourseEvaDAO {
 		return fav;
 	}
 	
-	
 	//좋아요 삭제
 	public void deleteEvaFav(CourseEvaFavVO favVO)throws Exception{
 		Connection conn = null;
@@ -544,6 +535,8 @@ public class CourseEvaDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
+	
+	//좋아요 한 개 빼기
 	public void deleteEvaFav1(int eva_num)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null; 
@@ -567,7 +560,7 @@ public class CourseEvaDAO {
 		}
 	}
 	
-	///////////////////////신고 부분 ////
+	//-----------신고 부분 -------------
 	//신고 개수 업데이트(신고 클릭시 추가)
 	public void addEvaComplaintCount(int eva_num)throws Exception{
 		Connection conn = null;
@@ -703,5 +696,4 @@ public class CourseEvaDAO {
 		}
 		return evacomplaint;
 	}
-	
 }

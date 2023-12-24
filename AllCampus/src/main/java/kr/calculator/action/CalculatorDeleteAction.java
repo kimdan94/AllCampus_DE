@@ -55,7 +55,7 @@ public class CalculatorDeleteAction implements Action{
 			dao.totalScore(user_num, cal_total_avgscore, cal_total_majorscore, cal_total_acq);
 			
 			mapAjax.put("result", "success");
-		}
+		} 
 		//JSON 문자열 생성
 		ObjectMapper mapper = new ObjectMapper();
 		String ajaxData = mapper.writeValueAsString(mapAjax);

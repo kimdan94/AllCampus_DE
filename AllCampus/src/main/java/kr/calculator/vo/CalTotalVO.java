@@ -30,8 +30,4 @@ public class CalTotalVO {
 	public void setCal_total_acq(int cal_total_acq) {
 		this.cal_total_acq = cal_total_acq;
 	}
-	
-	
-	
-	
 }

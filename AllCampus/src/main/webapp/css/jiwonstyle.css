@@ -60,7 +60,6 @@ button{
 	font-weight:bold;
 }
 
-
 table{
 	width:100%;
 	border-collapse:collapse;
@@ -88,7 +87,6 @@ table td, table th{
 }
 .board-table .pipe{
 	color:#808080;	
-	
 }
 
 /* 
@@ -98,7 +96,6 @@ table td, table th{
 	border-width: 0 0 1px;
 }
 
-
 .board_detail_form{
 	width: 800px;
     border-collapse: collapse;
@@ -106,7 +103,6 @@ table td, table th{
     margin-left: 450px;
    
 }
-
 
 .board-detail {
 	
@@ -123,7 +119,7 @@ table td, table th{
 	padding: 10px;
 }
 .image-section {
-    float: left; /* Float the image to the left */
+    float: left; 
     margin-right: 10px;
 }
 
@@ -131,13 +127,13 @@ table td, table th{
     list-style: none;
     padding: 0;
     margin: 0;
-    overflow: hidden; /* Clear the float */
+    overflow: hidden; 
 }
 
 .info-line {
     margin-bottom: 5px;
-    display: flex; /* Use flex display for horizontal arrangement */
-    align-items: center; /* Center align items vertically */
+    display: flex;
+    align-items: center; 
 }
 
 .labels {
@@ -153,7 +149,6 @@ table td, table th{
     right: 0;
 }
 
-
 .detail-info li {
 	list-style: none;
  	display: flex;
@@ -164,7 +159,6 @@ table td, table th{
 .detail-info li a {
 	float: right;
 }
-
 
 ul.detail-info{
 	margin-bottom:3px;
@@ -183,8 +177,6 @@ ul.detail-info{
 	margin-top:2px;
 	margin-left:2px;
 }
-
-
 
 .detail-actions li {
     float: right;
@@ -217,8 +209,6 @@ ul.detail-info{
 .rep-content{
 	border: 1px solid #bdbebd;
 }
-
-
 
 /* 댓글 익명 버튼 위치 설정 */
 #re_first {
@@ -428,7 +418,6 @@ form#write_form{
 	
 }
 
-
 /* 강의평 eva_detail.jsp
 ---------------------------------*/
 .evacontent-main{
@@ -507,15 +496,12 @@ form#write_form{
     margin-left: 450px;
 }
 
-
 div.section {
     border: 1px solid #d6d6d6;
     background-color:#FAFAFA;
     border-radius: 5px;
     padding: 0 5px;
 }
-
-
 
 #container.calculator div.section div.chart article.overview {
     display: flex;
@@ -531,7 +517,6 @@ div.section {
     font-family:sans-serif;
 	font-weight:bold;
 }
-
 
 #container.calculator div.section div.score_show div.column h3 {
     margin-bottom: 10px;
@@ -552,8 +537,6 @@ div.section {
     font-weight: bold;
     line-height: 5px;
 }
-
-
 
 #container.calculator div.section div.chart article.overview div.column p.total {
     margin-left: 5px;
@@ -627,7 +610,6 @@ body {
     cursor: pointer;
 }
 
-
 .column {
     text-align: center;
     width: 12%;
@@ -636,8 +618,6 @@ body {
     
 }
 
-
-
 .score_show {
     display: flex;
     justify-content: flex-start;
@@ -645,12 +625,12 @@ body {
 
 .score_show .column {
     display: flex;
-    flex-direction: row; /* Keep items in each column side by side */
-    align-items: center; /* Align items vertically in the center */
+    flex-direction: row; 
+    align-items: center; 
 }
 
 .score_show .column h3 {
-    margin-right: 5px; /* Adjust as needed for spacing */
+    margin-right: 5px; 
     margin-bottom: 0;
 }
 

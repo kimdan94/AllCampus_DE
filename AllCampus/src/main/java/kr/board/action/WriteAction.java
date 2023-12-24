@@ -23,8 +23,6 @@ public class WriteAction implements Action{
 			return "redirect:/member/loginForm.do"; 
 		}
 		
-		 
-		
 		//인증 회원과 관리자만 접근 가능
 		Integer user_auth = (Integer)session.getAttribute("user_auth");
 		if(user_auth == 2) {
@@ -32,7 +30,6 @@ public class WriteAction implements Action{
 			request.setAttribute("notice_url", request.getContextPath()+"/main/home.do");
 			return "/WEB-INF/views/common/alert_singleView.jsp";
 		}
-		
 		
 		//로그인 된 경우
 		MultipartRequest multi = FileUtil.createFile(request);
@@ -43,10 +40,7 @@ public class WriteAction implements Action{
 		board.setBoard_filename(multi.getFilesystemName("board_filename"));
 		board.setBoard_anonymous(Integer.parseInt(multi.getParameter("board_anonymous")));
 		
-		
 		board.setMem_num(user_num);
-		
-		
 		
 		BoardDAO dao = BoardDAO.getInstance();
 		dao.insertBoard(board);
@@ -55,17 +49,5 @@ public class WriteAction implements Action{
 		return "/WEB-INF/views/board/write.jsp";
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 

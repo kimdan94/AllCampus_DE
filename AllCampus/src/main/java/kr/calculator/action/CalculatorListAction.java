@@ -20,7 +20,6 @@ public class CalculatorListAction implements Action{
 		CalTotalVO totalscore = dao.totalScore(user_num);
 		request.setAttribute("totalscore", totalscore);
 		
-		
 		return "/WEB-INF/views/calculator/calculator_list.jsp";
 	}
 }
