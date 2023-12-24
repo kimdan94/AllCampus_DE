@@ -80,7 +80,7 @@ window.onload=function(){
 					<span class="pipe">|</span>
 					<!-- 익명 여부  1: 익명X   2: 익명 -->
 					<span class="pipe">
-					<c:if test="${board.board_anonymous ==1}">${board.mem_id}</c:if>
+					<c:if test="${board.board_anonymous ==1}">${board.mem_nick}</c:if>
 					<c:if test="${board.board_anonymous ==2}">익명</c:if>
 					</span>
 					</td>

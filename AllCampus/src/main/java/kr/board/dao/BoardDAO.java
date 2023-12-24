@@ -134,6 +134,7 @@ public class BoardDAO {
 				board.setBoard_hit(rs.getInt("board_hit"));
 				board.setBoard_reg_date(rs.getDate("board_reg_date"));
 				board.setMem_id(rs.getString("mem_id"));
+				board.setMem_nick(rs.getString("mem_nick"));
 				
 				board.setBoard_anonymous(rs.getInt("board_anonymous"));  //익명 여부  1: 익명X 2: 익명
 				list.add(board);
@@ -183,9 +184,9 @@ public class BoardDAO {
 				board.setBoard_complaint(rs.getInt("board_complaint"));
 				board.setBoard_show(rs.getInt("board_show"));
 				
-				
 				board.setMem_num(rs.getInt("mem_num"));
 				board.setMem_id(rs.getString("mem_id"));
+				board.setMem_nick(rs.getString("mem_nick"));
 				board.setMem_photo(rs.getString("mem_photo"));
 			}
 		}catch(Exception e) {

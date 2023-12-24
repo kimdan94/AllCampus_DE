@@ -18,7 +18,8 @@ public class BoardVO {
 	
 	private String mem_id;			//회원 아이디
 	private String mem_photo;		//회원 프로필 사진
-
+	private String mem_nick;		//회워닉네임
+	
 	public int getBoard_num() {
 		return board_num;
 	}
@@ -102,5 +103,11 @@ public class BoardVO {
 	}
 	public void setMem_photo(String mem_photo) {
 		this.mem_photo = mem_photo;
+	}
+	public String getMem_nick() {
+		return mem_nick;
+	}
+	public void setMem_nick(String mem_nick) {
+		this.mem_nick = mem_nick;
 	}
 }

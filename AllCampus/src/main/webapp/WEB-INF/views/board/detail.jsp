@@ -66,13 +66,13 @@ $(function(){
 				<div class="detail-info">
 					<div class="info-line">
 					<!-- 익명 여부  1: 익명X   2: 익명 -->
-					<c:if test="${board.board_anonymous ==1}">${board.mem_id}</c:if>
+					<c:if test="${board.board_anonymous ==1}">${board.mem_nick}</c:if>
 					<c:if test="${board.board_anonymous ==2}">익명</c:if>
 					</div>
 					<div class="info-line">	
 						<span>${board.board_reg_date}</span>
 						<span class="labels">조회:</span>
-            			<span>${board.board_hit}</span>
+            			<span style="padding-top:3px;">${board.board_hit}</span>
 					</div>
 				</div>
 		

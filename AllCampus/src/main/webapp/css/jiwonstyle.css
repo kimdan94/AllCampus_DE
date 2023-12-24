@@ -463,13 +463,20 @@ form#write_form{
 	color:black;
 	font-weight:bold;
 }
+.style-prof{
+	padding-top:8px;
+}
 .prof{
 	font-weight:bold;
 	margin-left:20px;
 }
+.style-tgrade{
+	padding-top:5px;
+}
 .star{
 	margin-left:20px;
 }
+
 .t-grade{
 	 font-size: 19px;
 }

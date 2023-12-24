@@ -54,12 +54,13 @@ $(function(){
 	<hr width="10%" class="board-underline">
 	<div class="evacontent-main">
 		<span class="course-names">${course_name}</span>
-		<br>
-		<span class="prof">교수명 </span> : ${course_prof}<br>
-		
-		<img src="${pageContext.request.contextPath}/images/star_icon2.png" class="star" width="18" height="18">
-		<span class="t-grade">${totalgrade}</span><br><br>
-		
+		<div class="style-prof">
+			<span class="prof">교수명 </span> : ${course_prof}<br>
+		</div>
+		<div class="style-tgrade">
+			<img src="${pageContext.request.contextPath}/images/star_icon2.png" class="star" width="18" height="18">
+			<span class="t-grade">${totalgrade}</span><br><br>
+		</div>
 		<div class="align-right">
 			<input type="button" value="강의 평가하기" class="eva-writebtn1" onclick="location.href='evawriteForm.do'">
 			<input type="button" value="목록" class="eva-writebtn2" onclick="location.href='courseeva_list.do'">	
