@@ -16,6 +16,7 @@ $(document).ready(function () {
 	let list_length;
 	var tbody = $('tbody');
 	function selectTbody(){
+		//tobody에 표 만들기
 	    for (var i = 0; i < 7; i++) {
 	        tbody.append('<tr>' +
 	            '<td class="names"></td>' +
@@ -39,11 +40,13 @@ $(document).ready(function () {
 	}
     selectTbody();
 	
+    //계산 후 다시 학기 선택 시 저장된 데이터 보여진다
     //select_semester에서 선택된 값을 form의 hidden값에 넣어준다
     $('select[name="select_semester"]').change(function () {
     	semester_index = $('select[name="select_semester"] option').index($('select[name="select_semester"] option:selected'));
+    	//세션에서 데이터 가져오기
     	let data = $.parseJSON(sessionStorage.getItem(semester_index));
-        console.log(data);
+        //console.log(data);
         if(data){//undefiend면 if문 밖으로 감
         	$('tbody').html('');
         	for(var i=0;i<data.table.length;i++){
@@ -72,6 +75,7 @@ $(document).ready(function () {
                 	cal_Grade = 'F';
                 }
         		
+                //major 1:전공 X, 2:전공
         		if(major == 1){
         			cal_Major='';
         		}else if(major==2){
@@ -79,7 +83,7 @@ $(document).ready(function () {
         		}else{
         			cal_Major='오류';
         		}
-                
+                //저장된 데이터 tbody에 출력
         		tbody.append('<tr>' +
                         '<td class="names">' + data.table[i].course_name + '</td>' +
                         '<td class="credits">' + data.table[i].timetable_credit + '</td>' +
@@ -87,7 +91,6 @@ $(document).ready(function () {
                         '<td class="majors">' + cal_Major + '</td>' +
                         '</tr>');
         	}
-        	
         }else{
         	$('tbody').html('');
         	selectTbody();
@@ -98,15 +101,14 @@ $(document).ready(function () {
         $('.column.majorscore .value').text('0');
         $('.column.acq .value').text('0');
         
-        
         if(data){
 	        $('.column.avgscore .value').text(data.avgscore);
 			$('.column.majorscore .value').text(data.majorscore);
 		    $('.column.acq .value').text(data.acq);
         }
-        
     }); 
     
+    //모달 창 제출 시
     $('#importForm').submit(function (event) {
         event.preventDefault();
         
@@ -122,7 +124,8 @@ $(document).ready(function () {
         var semesterParts = selectedTimetable.split('-');
         var timetableYear = semesterParts[0];
         var timetableSemester = semesterParts[1];
-
+		
+        //시간표에서 데이터 가져오기
         $.ajax({
             url: 'select_timetable.do',
             type: 'post',
@@ -211,7 +214,6 @@ $(document).ready(function () {
     
     //계산하기 폼 제출 시 
     $('#cal_count').submit(function (event) {
-    	
     	event.preventDefault();
 	
         //배열 생성
@@ -281,9 +283,10 @@ $(document).ready(function () {
             		dataInSessionStorage += ',"acq":'+ $('.column.acq .value').text();
                     dataInSessionStorage += '}';
                     
+                    //세션에 데이터 넣기
                     sessionStorage.setItem(semester_index,dataInSessionStorage);
                     
-                    console.log(dataInSessionStorage);
+                    //console.log(dataInSessionStorage);
             		
         		}else{
         			alert('오류');
@@ -297,9 +300,9 @@ $(document).ready(function () {
     });
     //초기화
    $('#reset').click(function(){
-	   console.log('~~');
-	   console.log(semester_index);
-	   console.log(sessionStorage.getItem(semester_index));
+	   //console.log('~~');
+	   //console.log(semester_index);
+	   //console.log(sessionStorage.getItem(semester_index));
 	   if(sessionStorage.getItem(semester_index)){
 		   sessionStorage.removeItem(semester_index);
 		   let cal_semester = $('select[name="select_semester"] option').eq(semester_index).val();
@@ -328,7 +331,6 @@ $(document).ready(function () {
         		}
 			});//end of ajax
 	   }
-	   
    });
 });
 </script>
