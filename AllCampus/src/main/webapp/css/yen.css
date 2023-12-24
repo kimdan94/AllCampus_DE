@@ -19,17 +19,32 @@
 textarea{
 	resize:none;
 }
+input[type="button"]{
+	cursor:pointer;
+}
+input[type="submit"]{
+	cursor:pointer;
+}
+.result-display{
+	width:600px;
+	height:400px;
+	margin:200px 530px 0 530px;
+	border:1px solid #000;
+	align-items:center;
+	justify-content:center;
+	font-size:18pt;
+}
 /* 
 관리자 메뉴 버튼 admin_menu.jsp 부분
 ------------------------------*/
 .admin-btn{
-	border:1px solid #e1e6ed;
-	width:200px;
-	height:45px;
+	border:3px solid #e1e6ed;
+	width:500px;
+	height:100px;
 	border-radius:10px;
 	font-weight:bold;
 	color:black;
-	font-size:14px;
+	font-size:16px;
 }
 /* 
 신고 list.jsp 부분
@@ -54,7 +69,7 @@ textarea{
 }
 .warn-table .warn_{
 	color:#808080;
-	font-size: 14px;
+	font-size: 15px;
 }
 .input-button1{
 	border:none;
@@ -139,6 +154,7 @@ ul.search li {
 	display:flex;
 	align-items:center;
 	justify-content:center;
+	font-size:15pt;
 }
 
 .notice-table{
@@ -155,7 +171,10 @@ ul.search li {
 .notice-table .content{
 	font-size:15px;
 }
-
+.notice-table .reg_date{
+	color:#808080;
+	font-size: 15px;
+}
 .notice-table img{
 	color:yellow;
 }
@@ -181,11 +200,30 @@ ul.search li {
 
 /* 공지사항 notice_writeForm.jsp
 ---------------------------------*/
-form#write_Form{
+form[id="write_form"] ul li{
+	margin-bottom:11px;
+}
+#write_form ul li label{
+	font-family:sans-serif;
+	font-size:15px;
+	font-weight:bold;
+}
+#write_form{
 	margin-left:460px;
-	border:1px solid black;
+	border:1px solid #d6d6d6;
 	width:767px;
-	
+}
+.btn-margin2{
+	margin-left:187px;
+}
+.input-button5{
+	border:1px solid #e1e6ed;
+	width:200px;
+	height:45px;
+	border-radius:10px;
+	font-weight:bold;
+	color:gray;
+	font-size:15px;
 }
 /* 공지사항 notice_updateForm.jsp
 ---------------------------------*/
@@ -241,4 +279,7 @@ form[id="faq_form"] ul li{
 	color:white;
 	font-size:15px;
 }
-	
+.file-guide{
+	font-size:10px;
+	color:red;
+}	

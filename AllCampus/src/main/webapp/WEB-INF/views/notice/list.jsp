@@ -80,7 +80,7 @@ window.onload=function(){
 		</tr>
 	</c:forEach>
 	</table>
-	<div class="align-center">${page}</div>
+	<div style="margin-left:500px;">${page}</div>
 	</c:if>
 </div>
 </body>

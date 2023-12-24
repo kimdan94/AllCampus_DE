@@ -64,7 +64,7 @@
 				</tr>
 			</c:forEach>
 			</table>
-			<div class="align-center" style="width:600px;">${page}</div>
+			<div style="margin-left:350px;">${page}</div>
 			</c:if>
 		</div>
 		<div class="board_listform">
@@ -117,7 +117,7 @@
 				</tr>
 			</c:forEach>
 			</table>
-			<div class="align-center" style="width:600px;">${page2}</div>
+			<div style="margin-left:350px;">${page2}</div>
 			</c:if>
 		</div>
 		<div class="board_listform">
@@ -170,7 +170,7 @@
 				</tr>
 			</c:forEach>
 			</table>
-			<div class="align-center">${page3}</div>
+			<div style="margin-left:350px;">${page3}</div>
 			</c:if>
 		</div>
 	</div>

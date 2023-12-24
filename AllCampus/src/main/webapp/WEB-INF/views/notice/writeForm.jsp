@@ -27,30 +27,32 @@ $(function(){
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-<div class="page-main">
+<div class="page-main-custom">
 	<h2 class="board-title">공지사항 글쓰기</h2>
 	<hr width="10%" class="board-underline">
 	<form id="write_form" action="write.do" method="post" enctype="multipart/form-data">
 			<ul>
 				<li>
 					<label for="notice_title">제목</label>
-					<input type="text" name="notice_title" id="notice_title" class="input-check" maxlength="50">
+					<input type="text" name="notice_title" id="notice_title" 
+						placeholder="제목을 입력해주세요." class="input-check" maxlength="50" size="40px">
 				</li>
 				<li>
-					<label for="notice_content">내용</label>
-					<textarea rows="5" cols="30"
+					<label for="notice_content">내용</label><br>
+					<textarea rows="15" cols="100"
 						name="notice_content" id="notice_content" class="input-check"></textarea>
 				</li>
 				<li>
 					<label for="notice_filename">파일</label>
 					<input type="file" name="notice_filename"
-						id="notice_filename" accept="image/gif,image/png,image/jpeg">
+						id="notice_filename" accept="image/gif,image/png,image/jpeg" class="input-check">
+						<div class="file-guide">*3,072KB(3MB) 이하의 jpg, gif, png 파일만
+						첨부 가능</div>
 				</li>
 			</ul>    
-			<div class="align-right">
- 			<input type="submit" value="등록">
- 			<br>
- 			<input type="button" value="목록" onclick="location.href='list.do'">
+			<div class="btn-margin2">
+ 			<input type="submit" value="등록하기" class="input-button4">
+ 			<input type="button" value="목록으로" class="input-button5" onclick="location.href='list.do'">
 			</div>
 		</form>
 </div>

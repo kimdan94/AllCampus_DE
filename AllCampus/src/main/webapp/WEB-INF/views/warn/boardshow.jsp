@@ -12,16 +12,14 @@
 <body>    
 <jsp:include page="/WEB-INF/views/common/header.jsp"/><!-- header는 꼭 여기에 -->
 <div class="page-main">
-	<div class="content-main">
 		<div class="result-display">
 			<div class="align-center">
 				게시글 표시로 변경되었습니다.
 				<p>
-				<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/warn/list.do'">
+				<input type="button" value="홈으로" class="input-button4" onclick="location.href='${pageContext.request.contextPath}/warn/list.do'">
 				</p>
 			</div>
 		</div>
 	</div>
-</div>
 </body>
 </html>
