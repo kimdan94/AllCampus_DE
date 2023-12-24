@@ -170,8 +170,10 @@ $(document).ready(function () {
     	</ul>
     	<br>
     	<div class="notice-eva">
-			<span style="color:#808080;">※</span>
-			<span style="color:red;">수정 및 삭제가 불가능</span><span style="color:#808080;">하므로 신중히 작성해주세요.</span>
+			<span class="notice-icon">※</span>
+			<span style="color:red;">수정 및 삭제가 불가능</span><span class="notice1">하므로 신중히 작성해주세요.</span>
+			<br>
+			<span class="notice2">※ 허위, 중복, 저작권 침해, 성의없는 내용을 작성할 경우, 서비스 이용이 제한될 수 있습니다.</span>
 		</div>
 		<br>
     	<div class="align-center">

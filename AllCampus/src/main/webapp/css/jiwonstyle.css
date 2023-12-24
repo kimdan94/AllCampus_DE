@@ -422,6 +422,11 @@ form#write_form{
 	font-size: 15px;
 }
 
+.notice-icon,.notice1,.notice2{
+	color:#808080;
+}
+
+
 /* 강의평 eva_detail.jsp
 ---------------------------------*/
 .evacontent-main{
