@@ -771,6 +771,7 @@ public class BoardDAO {
 				reply.setBoard_num(rs.getInt("board_num"));
 				reply.setMem_num(rs.getInt("mem_num"));
 				reply.setMem_id(rs.getString("mem_id"));
+				reply.setMem_nick(rs.getString("mem_nick"));
 				
 				list.add(reply);
 			}

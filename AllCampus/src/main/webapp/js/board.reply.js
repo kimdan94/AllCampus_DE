@@ -30,7 +30,7 @@ $(function(){
 					let output = '<div class="item">';
 					//댓글 작성자 익명 여부 출력
 					if(item.re_anonymous==1){
-						output += '<h4>' + item.mem_id + '</h4>';
+						output += '<h4>' + item.mem_nick + '</h4>'; 
 					}else if(item.re_anonymous==2){
 						output += '<h4>익명</h4>';
 					}else{

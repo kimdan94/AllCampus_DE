@@ -58,6 +58,7 @@ $(function(){
 			<span class="prof">교수명 </span> : ${course_prof}<br>
 		</div>
 		<div class="style-tgrade">
+			<span>교수님이 받은 성적</span>
 			<img src="${pageContext.request.contextPath}/images/star_icon2.png" class="star" width="18" height="18">
 			<span class="t-grade">${totalgrade}</span><br><br>
 		</div>

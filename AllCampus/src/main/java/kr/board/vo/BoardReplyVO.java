@@ -10,6 +10,7 @@ public class BoardReplyVO {
 	private int board_num;			//게시판번호
 	private int mem_num;			//작성자 회원번호
 	private String mem_id;				//작성자 아이디
+	private String mem_nick;			//닉네임
 	
 	public int getRe_num() {
 		return re_num;
@@ -65,4 +66,11 @@ public class BoardReplyVO {
 	public void setMem_id(String mem_id) {
 		this.mem_id = mem_id;
 	}
+	public String getMem_nick() {
+		return mem_nick;
+	}
+	public void setMem_nick(String mem_nick) {
+		this.mem_nick = mem_nick;
+	}
+	
 }

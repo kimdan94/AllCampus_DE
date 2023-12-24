@@ -168,6 +168,12 @@ $(document).ready(function () {
         		</select>
         	</li>
     	</ul>
+    	<br>
+    	<div class="notice-eva">
+			<span style="color:#808080;">※</span>
+			<span style="color:red;">수정 및 삭제가 불가능</span><span style="color:#808080;">하므로 신중히 작성해주세요.</span>
+		</div>
+		<br>
     	<div class="align-center">
     	    <input type="submit" value="강의 평가하기" class="input-evabutton1"> <!--강의평가하기를 클릭시 courseeva_list.do로  -->
     	    <input type="button" value="목록" class="input-evabutton2" onclick="location.href='courseeva_list.do'">

@@ -417,6 +417,10 @@ form#write_form{
 	margin-top:10px;
 	
 }
+.notice-eva{
+	margin-left:39px;
+	font-size: 15px;
+}
 
 /* 강의평 eva_detail.jsp
 ---------------------------------*/
@@ -472,9 +476,10 @@ form#write_form{
 }
 .style-tgrade{
 	padding-top:5px;
+	margin-left:19px;
 }
 .star{
-	margin-left:20px;
+	margin-left:5px;
 }
 
 .t-grade{
