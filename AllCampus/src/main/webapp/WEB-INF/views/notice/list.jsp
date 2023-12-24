@@ -55,13 +55,15 @@ window.onload=function(){
 				</li>
 			</ul>
 		</form>
+		<%-- 관리자로 로그인된 계정만
+					 글쓰기 가능 (일반회원은 접근 불가)--%>
+		<c:if test="${user_auth == 9}">
 		<div class="list-space align-right">
 			<input type="button" value="글쓰기" class="notice-writebtn" onclick="location.href='writeForm.do'"
 			<c:if test="${empty user_num}">disabled="disabled"</c:if>
 			>
-
-			
 		</div>
+		</c:if>
 	</div>
 	<c:if test="${count==0}">
 	<div class="result-display">

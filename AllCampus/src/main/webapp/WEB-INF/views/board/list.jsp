@@ -69,7 +69,7 @@ window.onload=function(){
 			</div>
 			</c:if>
 			<c:if test="${count > 0}">
-			<table class="board-table">
+			<table class="faq-table">
 			<c:forEach var="board" items="${list}">
 				<tr data-href="detail.do?board_num=${board.board_num}">
 					<td>

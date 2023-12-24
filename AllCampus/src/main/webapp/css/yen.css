@@ -7,6 +7,11 @@
 	height:3px;
 	background:#6699cc;
 }
+.board-underline2{
+	margin-left:97x;
+	transform:scaleY(0.5);
+	background:#6699cc;
+}
 .board-title{
 	margin-left:95px;
 	color:#2b2b2b;
@@ -283,3 +288,23 @@ form[id="faq_form"] ul li{
 	font-size:10px;
 	color:red;
 }	
+/* faq faqDetail.jsp
+---------------------------------*/
+.faq_title{
+	font-weight: bold;
+	font-size:18px;
+}
+.faq_content{
+	font-size:18px;
+}
+.faq-table{
+	width: 130%;
+    border: 1px solid #444444;
+    border-collapse: collapse;
+}
+.faq-table tr td{
+	border-bottom: 1px solid #444444;
+	border-left: 1px solid #444444;
+    padding: 13px;
+    font-size: 13pt;
+}
