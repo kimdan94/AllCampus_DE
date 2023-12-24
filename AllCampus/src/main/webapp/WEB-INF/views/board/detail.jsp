@@ -105,7 +105,7 @@ $(function(){
 		
 				<c:if test="${!empty board.board_filename}">
 				<div>
-					<img src="${pageContext.request.contextPath}/upload/${board.board_filename}" class="detail-img" width="750">
+					<img src="${pageContext.request.contextPath}/upload/${board.board_filename}" class="detail-img" width="300">
 				</div>
 				</c:if>
 				<div class="favstar-img">
