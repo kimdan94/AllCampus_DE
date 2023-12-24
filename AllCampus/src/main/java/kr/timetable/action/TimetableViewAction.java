@@ -33,10 +33,8 @@ public class TimetableViewAction implements Action {
 		String unique = request.getParameter("unique"); 
 		if(unique.length() > 0) {
 			unique = unique.substring(1,unique.length());
-//			System.out.println("unique : " + unique);
 			TimetableDAO daoTime = TimetableDAO.getInstance();
 			
-			CourseDAO dao = CourseDAO.getInstance();
 			List<CourseVO> beforeDeleteView = daoTime.timetableView(unique);
 			mapAjax.put("beforeDeleteView", beforeDeleteView); // ajax success로 보내는 데이터
 			

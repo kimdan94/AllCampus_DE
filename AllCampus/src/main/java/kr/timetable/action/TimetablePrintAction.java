@@ -25,6 +25,7 @@ public class TimetablePrintAction implements Action {// -> js > timetable.print.
 		}
 		int year = 2023;
 		int semester = 2;
+		
 		String tmp_year = request.getParameter("year");
 		String tmp_semester = request.getParameter("semester");
 		if(tmp_year != null) {
@@ -33,9 +34,6 @@ public class TimetablePrintAction implements Action {// -> js > timetable.print.
 		if(tmp_semester != null) {
 			semester = Integer.parseInt(tmp_semester);
 		}
-		
-//		System.out.println("year : " + year);
-//		System.out.println("semster : " + semester);
 		
 		//-----------------------------------------------
 		String keyfield = request.getParameter("keyfield");

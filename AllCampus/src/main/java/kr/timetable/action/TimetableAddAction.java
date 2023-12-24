@@ -40,7 +40,7 @@ public class TimetableAddAction implements Action {
 		// 색상코드
 		String[] colorCode = {
 				"#f2e8e8","#dcf2e9","#ffe9e9","#dee8f6","#fff8cc",
-				"#ffedda","#f2e8e8","#dceef2","#eff9cc"
+				"#ffedda","#f2e8e8","#dceef2","#eff9cc", "#d1b4bb"
 		};
 		int idx = (int)((Math.random()*10000)%(colorCode.length-1));
 		

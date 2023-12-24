@@ -31,7 +31,6 @@ create table all_timetable(
  timetable_credit number not null,
  timetable_table_id varchar2(60) not null,
  timetable_color varchar2(60) default 'red' not null
- --constraint all_timetable_fk1 foreign key (mem_num) references all_member (mem_num)
 );
 create sequence all_timetable_seq; -- 삭제하기
 

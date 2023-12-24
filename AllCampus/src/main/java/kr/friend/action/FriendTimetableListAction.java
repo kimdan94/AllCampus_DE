@@ -27,15 +27,10 @@ public class FriendTimetableListAction implements Action {
 		Map<String, Object> mapAjax = new HashMap<String, Object>();
 		
 		Integer friend_num = Integer.parseInt(request.getParameter("friend_num"));
-//		System.out.println("친구 번호는? " + friend_num);
 		
+
+		//------------------------------------------------------------------
 		
-		FriendDAO daoFriend = FriendDAO.getInstance();
-		List<TimetableVO> friendTableList = daoFriend.getFriendTimetableList(friend_num, year, semester);
-		
-//		mapAjax.put("friendTableList", friendTableList); 
-		
-//------------------------------------------------------------------
 		TimetableDAO daoTime = TimetableDAO.getInstance();
 		List<TimetableVO> monList = daoTime.getListPrint(friend_num,year,semester,1); // 월
 		List<TimetableVO> tueList = daoTime.getListPrint(friend_num,year,semester,2); // 화
@@ -59,8 +54,7 @@ public class FriendTimetableListAction implements Action {
 		mapAjax.put("listTHUR", listTHUR);
 		mapAjax.put("listFRI", listFRI);
 		
-		
-//-----------------------------------------------------------------
+		//-----------------------------------------------------------------
 		
 		//JSON 문자열 생성
 		ObjectMapper mapper = new ObjectMapper();
