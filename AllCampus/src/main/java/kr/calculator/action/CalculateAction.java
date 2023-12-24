@@ -108,7 +108,7 @@ public class CalculateAction implements Action{
 			
 			//모든 학기의 cal_majorscore  * majorf_acq  합한 값
 			double fmajorscore = dao.selectfMajorscore(user_num);//cal_majorscore * cal_finclude_acq
-			int acqscore = dao.selectAcqscore();
+			int acqscore = dao.selectAcqscore(user_num);
 			
 			int sumfinclude_acq = dao.sumFinclude(user_num);	// cal_finclude_acq 합
 			int summajorf_acq = dao.sumMajorf(user_num);		//cal_majorf_acq 합

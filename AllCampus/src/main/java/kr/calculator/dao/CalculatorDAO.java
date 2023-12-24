@@ -249,8 +249,8 @@ public class CalculatorDAO {
 	}
 	
 	
-	//calculator_semester 행 개수  -  전체 평균 구하는데 필요 
-	public int selectAcqscore()throws Exception{
+	//calculator_semester                            행 개수  -  전체 평균 구하는데 필요 
+	public int selectAcqscore(int mem_num)throws Exception{
 		Connection conn = null;
 	    PreparedStatement pstmt = null;
 	    int acqscore=0;
@@ -261,9 +261,11 @@ public class CalculatorDAO {
 	    	//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
-			sql ="SELECT SUM(cal_acq) FROM all_calculator_semester";
+			sql ="SELECT SUM(cal_acq) FROM all_calculator_semester WHERE mem_num=?";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, mem_num);
 			//SQL문 실행
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
