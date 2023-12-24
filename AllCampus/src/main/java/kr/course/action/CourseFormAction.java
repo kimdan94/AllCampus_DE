@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
 import kr.course.dao.CourseDAO;
@@ -17,6 +18,12 @@ public class CourseFormAction implements Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
+		HttpSession session = request.getSession();
+		Integer user_univ = (Integer)session.getAttribute("user_univ");
+		if(user_univ == null) {
+			return "redirect:/member/loginForm.do";
+		}
+		
 		//학기 선택
 		String keyfield = request.getParameter("keyfield");
 		String keyfield_hidden = request.getParameter("keyfield_hidden");
@@ -78,9 +85,9 @@ public class CourseFormAction implements Action {
 		int[] timeList = {9,10,11,12,13,14,15,16,17};
 		
 		// CourseDAO // 강의 필터 결과 - 강의 목록
-		list = dao.getListCourse(year, semester, course_subject, keyword, course_category, course_credit);
+		list = dao.getListCourse(year, semester, course_subject, keyword, course_category, course_credit, user_univ);
 		// CourseDAO
-		list2 = dao.getRemoveDuplicateCourseList(year, semester, course_subject, keyword, course_category, course_credit);
+		list2 = dao.getRemoveDuplicateCourseList(year, semester, course_subject, keyword, course_category, course_credit, user_univ);
 		course_list = dao.getCourseList();
 		semester_list = dao.selectSemester();
 		

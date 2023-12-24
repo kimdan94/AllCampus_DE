@@ -71,7 +71,8 @@ public class CourseDAO {
 	}
 	
 	// 강의 필터 검색 - 필터링 기능 포함 -> 전공/영역, 검색, 구분, 학점
-	public List<CourseVO> getListCourse(int course_year, int course_semester, String[] course_subject, String keyword, String[] course_category, String[] course_credit) throws Exception {
+	// CourseFormAction
+	public List<CourseVO> getListCourse(int course_year, int course_semester, String[] course_subject, String keyword, String[] course_category, String[] course_credit, int univ_num) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -84,7 +85,7 @@ public class CourseDAO {
 		try {
 			conn = DBUtil.getConnection();
 			
-			sub_sql += " WHERE course_year=? AND course_semester=?";
+			sub_sql += " WHERE course_year=? AND course_semester=? AND univ_num=?";
 			// course_subject - 전공/영역 검색
 			if(course_subject != null) {
 				for(int i=0; i<course_subject.length; i++) {
@@ -137,6 +138,7 @@ public class CourseDAO {
 			//?에 데이터 바인딩
 			pstmt.setInt(++cnt, course_year);
 			pstmt.setInt(++cnt, course_semester);
+			pstmt.setInt(++cnt, univ_num);
 			
 			// course_subject - 전공/영역
 			if(course_subject != null) {
@@ -229,7 +231,7 @@ public class CourseDAO {
 	}
 	
 	// 강의 전체 검색 - (주의) 필터링 기능 없음
-	public List<CourseVO> getRemoveDuplicateCourseList(int course_year, int course_semester, String[] course_subject, String keyword, String[] course_category, String[] course_credit) throws Exception {
+	public List<CourseVO> getRemoveDuplicateCourseList(int course_year, int course_semester, String[] course_subject, String keyword, String[] course_category, String[] course_credit, int univ_num) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -242,7 +244,7 @@ public class CourseDAO {
 		try {
 			conn = DBUtil.getConnection();
 			
-			sub_sql += " AND course_year=? AND course_semester=?";
+			sub_sql += " AND course_year=? AND course_semester=? AND univ_num=?";
 			
 			// course_subject - 전공/영역 검색
 				if(course_subject != null) {
@@ -297,6 +299,7 @@ public class CourseDAO {
 			//?에 데이터 바인딩
 			pstmt.setInt(++cnt, course_year);
 			pstmt.setInt(++cnt, course_semester);
+			pstmt.setInt(++cnt, univ_num);
 			// course_subject - 전공/영역
 			if(course_subject != null) {
 				for(int i=0; i<course_subject.length; i++) {
