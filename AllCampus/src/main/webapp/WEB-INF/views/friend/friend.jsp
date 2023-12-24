@@ -10,6 +10,21 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/hyun.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/friend.table.js"></script>
+<script type="text/javascript">
+window.onload=function(){
+	let myForm = document.getElementById('myForm');
+	//이벤트 연결
+	myForm.onsubmit=function(){
+		let add_friend = document.getElementById('add_friend');
+		if(add_friend.value.trim()==''){
+			alert('id를 입력하세요!');
+			add_friend.value = '';
+			add_friend.focus();
+			return false;
+		}
+	};
+};
+</script>
 <style type="text/css">
 /* 공통 style */
 
@@ -115,15 +130,13 @@ a:hover {
 h2 {
 	margin: 10px;
 }
-
-
 </style>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/><br><br>
 	<div class="friend-search-area" style="margin-left:200px;">
 	<!-- 친구 검색 - 추가 -->
-	<form action="friendAdd.do" method="get">
+	<form id="myForm" action="friendAdd.do" method="get">
 	<h4>친구 id를 검색하세요</h4>
 	<div class="search-container">
 		<input type="search" size="30" name="add_friend" id="add_friend" class="search-box" placeholder="id를 검색하세요">

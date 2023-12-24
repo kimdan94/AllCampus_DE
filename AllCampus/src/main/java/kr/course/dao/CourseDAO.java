@@ -231,6 +231,7 @@ public class CourseDAO {
 	}
 	
 	// 강의 전체 검색 - (주의) 필터링 기능 없음
+	// CourseFormAction
 	public List<CourseVO> getRemoveDuplicateCourseList(int course_year, int course_semester, String[] course_subject, String keyword, String[] course_category, String[] course_credit, int univ_num) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
