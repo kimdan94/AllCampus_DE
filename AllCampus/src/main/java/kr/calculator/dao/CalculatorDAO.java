@@ -249,7 +249,7 @@ public class CalculatorDAO {
 	}
 	
 	
-	//calculator_semester                            행 개수  -  전체 평균 구하는데 필요 
+	//calculator_semester            
 	public int selectAcqscore(int mem_num)throws Exception{
 		Connection conn = null;
 	    PreparedStatement pstmt = null;
