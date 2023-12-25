@@ -15,7 +15,7 @@
 <div class="page-main">
 	<div class="content-main">
 	<hr width="135%" class="board-underline1">
-		<h2 style="font-size:22px;">${question.question_title}</h2>
+		<h2 style="font-size:22px;" class="h2">${question.question_title}</h2>
 		<hr width="135%" class="board-underline1">
 		<div class="faq_content" style="position: relative; left: 30px; top: 10px; width:670px;" >${question.question_content}</div>
 		<div class="align-center" style="padding-left: 180px">

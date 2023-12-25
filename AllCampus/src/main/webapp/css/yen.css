@@ -30,14 +30,15 @@ input[type="button"]{
 input[type="submit"]{
 	cursor:pointer;
 }
-.result-display{
-	width:600px;
-	height:400px;
-	margin:200px 530px 0 530px;
+.result-display1{
+	width:750px;
+	height:300px;
 	border:1px solid #000;
 	align-items:center;
 	justify-content:center;
-	font-size:18pt;
+	font-size:15pt;
+	text-align : center;
+	line-height : 300px;
 }
 /* 
 관리자 메뉴 버튼 admin_menu.jsp 부분
@@ -161,7 +162,6 @@ ul.search li {
 	justify-content:center;
 	font-size:15pt;
 }
-
 .notice-table{
 	width:800px;
 	border:1px solid gray;
@@ -318,4 +318,7 @@ form[id="faq_form"] ul li{
 	border-left: 1px solid #444444;
     padding: 13px;
     font-size: 13pt;
+}
+.h2{
+	width :750px;
 }

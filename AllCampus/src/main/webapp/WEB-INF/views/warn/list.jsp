@@ -19,7 +19,7 @@
 			<hr width="25%" class="board-underline1">
 			<br>
 			<c:if test="${count==0}">
-			<div class="result-display">
+			<div class="result-display1">
 				표시할 게시물이 없습니다.
 			</div>
 			</c:if>
@@ -72,7 +72,7 @@
 			<hr width="25%" class="board-underline1">
 			<br>
 			<c:if test="${count2==0}">
-			<div class="result-display">
+			<div class="result-display1">
 				표시할 게시물이 없습니다.
 			</div>
 			</c:if>
@@ -125,7 +125,7 @@
 			<hr width="25%" class="board-underline1">
 			<br>	
 			<c:if test="${count3==0}">
-			<div class="result-display">
+			<div class="result-display1">
 				표시할 게시물이 없습니다.
 			</div>
 			</c:if>
