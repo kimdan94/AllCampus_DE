@@ -197,7 +197,7 @@ public class CourseDAO {
 	
 	
 	// 강의 전체 검색 - (주의) 필터링 기능 없음
-	public List<CourseVO> getCourseList() throws Exception {
+	public List<CourseVO> getCourseList(int univ_num) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -208,9 +208,10 @@ public class CourseDAO {
 			conn = DBUtil.getConnection();
 			
 			// SQL문 작성
-			sql = "SELECT course_subject FROM all_course GROUP BY course_subject";
+			sql = "SELECT course_subject FROM all_course WHERE univ_num=? GROUP BY course_subject";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, univ_num);
 			
 			//SQL문 실행
 			rs = pstmt.executeQuery();

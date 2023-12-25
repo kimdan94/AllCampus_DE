@@ -13,7 +13,6 @@ create table all_course(
  course_credit number not null,
  course_classroom varchar2(20),
  course_code varchar2(60) not null,
- course_count number not null,
  univ_num number not null,
  constraint all_course_pk primary key(course_num),
  constraint all_course_fk1 foreign key (univ_num) references all_member_univ (univ_num)

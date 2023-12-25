@@ -88,7 +88,7 @@ public class CourseFormAction implements Action {
 		list = dao.getListCourse(year, semester, course_subject, keyword, course_category, course_credit, user_univ);
 		// CourseDAO
 		list2 = dao.getRemoveDuplicateCourseList(year, semester, course_subject, keyword, course_category, course_credit, user_univ);
-		course_list = dao.getCourseList();
+		course_list = dao.getCourseList(user_univ);
 		semester_list = dao.selectSemester();
 		
 		
