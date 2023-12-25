@@ -143,7 +143,6 @@ $(function() {
 				}
 				delete_body += '<input type="text" name="delete_course" id="delete_course" value="' + param.beforeDeleteView[0].course_code + '">';
 				
-				console.log(delete_body);
 				$('.delete_header').append(delete_header);
 				$('.delete_body').append(delete_body);
 
