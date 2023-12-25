@@ -45,7 +45,7 @@ $(function(){
                     <input type="text" name="board_title" id="board_title" style="width:300px;"maxlength="50" placeholder="글 제목">
                 </li>
                 <li>
-                    <textarea rows="10" cols="80" style="margin-top:10px;" name="board_content" id="board_content" maxlength="50" placeholder="글 내용"></textarea>
+                    <textarea rows="10" cols="80" style="margin-top:10px;" name="board_content" id="board_content" maxlength="300" placeholder="글 내용"></textarea>
                 </li>
                 <li>
                     <input type="file" name="board_filename" id="board_filename" accept="image/gif,image/png,image/jpeg">

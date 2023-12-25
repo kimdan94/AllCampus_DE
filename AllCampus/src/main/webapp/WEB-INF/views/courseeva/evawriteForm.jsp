@@ -157,7 +157,7 @@ $(document).ready(function () {
          		</select>
          	</li>
 			<li>
-				<textarea rows="10" cols="100" name="eva_content" id="eva_content" placeholder="이 강의에 대한 총평을 작성해주세요."></textarea>
+				<textarea rows="10" cols="300" name="eva_content" id="eva_content" placeholder="이 강의에 대한 총평을 작성해주세요."></textarea>
 			</li>            
          	<li>
          		<select name="course_num" id="evasemesterList">
