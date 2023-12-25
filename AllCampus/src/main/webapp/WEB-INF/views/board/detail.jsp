@@ -137,7 +137,7 @@ $(function(){
 					<input type="hidden" name="board_num" value="${board.board_num}" id="board_num">
 				
 					<!-- 로그인하면 활성화, 로그인 안하면 비활성화하게(disabled) -->
-					<textarea rows="3" cols="50" name="re_content" id="re_content" class="rep-content" 
+					<textarea rows="3" cols="111" name="re_content" id="re_content" class="rep-content" 
 					<c:if test="${empty user_num}">disabled="disabled"</c:if>><c:if test="${empty user_num}">로그인해야 작성할 수 있습니다.</c:if></textarea>
 				
 					<!--로그인 해야 보여지게  -->
