@@ -25,6 +25,7 @@
 			</table>
 			<br>
 			<div style="margin-left:350px;">${page}</div>
+			<br>
 			<div class="align-center">
 			<input type="button" style="WIDTH: 180pt; HEIGHT: 40pt" 
 				value="직접 문의하기" class="input-button3" onclick="location.href='${pageContext.request.contextPath}/faq/faqForm.do'">

@@ -104,8 +104,8 @@ public class WarnDAO {
 			try {
 				//커넥션풀로부터 커넥션 할당
 				conn = DBUtil.getConnection();
-				//SQL문 작성(auth=3:일반회원)
-				sql = "UPDATE all_member SET mem_auth = 3 WHERE mem_num=?";
+				//SQL문 작성(auth=1:정지회원)
+				sql = "UPDATE all_member SET mem_auth = 1 WHERE mem_num=?";
 				//PreparedStatement 객체 생성
 				pstmt = conn.prepareStatement(sql);
 				//?에 데이터 바인딩
@@ -254,8 +254,8 @@ public class WarnDAO {
 			try {
 				// 커넥션풀로부터 커넥션 할당
 				conn = DBUtil.getConnection();
-				// SQL문 작성(auth=3:일반회원)
-				sql = "UPDATE all_member SET mem_auth = 3 WHERE mem_num=?";
+				// SQL문 작성(auth=1:정지회원)
+				sql = "UPDATE all_member SET mem_auth = 1 WHERE mem_num=?";
 				// PreparedStatement 객체 생성
 				pstmt = conn.prepareStatement(sql);
 				// ?에 데이터 바인딩
@@ -364,7 +364,7 @@ public class WarnDAO {
 				// SQL문 작성
 				sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
 						+ "(SELECT secondhand_num,secondhand_content,secondhand_reg_date,mem_id FROM all_secondhand JOIN all_member USING(mem_num) JOIN (SELECT DISTINCT(secondhand_num) FROM all_secondhand_warn) USING (secondhand_num) "
-						+ " ORDER BY secondhand_num DESC)a) WHERE rnum >= ? AND rnum <= ?";
+						+ " ORDER BY secondhand_num DESC)a) WHERE rnum >= ? AND rnum <= ?" ;
 				// PreparedStatement 객체 생성
 				pstmt = conn.prepareStatement(sql);
 
@@ -402,8 +402,8 @@ public class WarnDAO {
 			try {
 				// 커넥션풀로부터 커넥션 할당
 				conn = DBUtil.getConnection();
-				// SQL문 작성(auth=3:일반회원)
-				sql = "UPDATE all_member SET mem_auth = 3 WHERE mem_num=?";
+				// SQL문 작성(auth=1:정지회원)
+				sql = "UPDATE all_member SET mem_auth = 1 WHERE mem_num=?";
 				// PreparedStatement 객체 생성
 				pstmt = conn.prepareStatement(sql);
 				// ?에 데이터 바인딩

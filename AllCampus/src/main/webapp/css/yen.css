@@ -298,6 +298,9 @@ form[id="faq_form"] ul li{
 .file-guide{
 	font-size:10px;
 	color:red;
+}
+.notice{
+	color:#808080;
 }	
 /* faq faqDetail.jsp
 ---------------------------------*/

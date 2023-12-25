@@ -51,11 +51,13 @@ $(function(){
 					<input type="text" name="question_title" id="question_title" 
 						placeholder="제목을 입력해주세요." size="40px" class="input-check" maxlength="50">
 				</li>
+				<br>
 				<li>
 					<label for="question_content">내용</label><br>
 					<textarea rows="15" cols="100"
 						name="question_content" id="question_content" class="input-check"></textarea>
 				</li>
+				<br>
 				<li>
 					<label for="question_filename">파일</label>
 					<input type="file" name="question_filename"
@@ -64,17 +66,22 @@ $(function(){
 						<div class="file-guide">*3,072KB(3MB) 이하의 jpg, gif, png 파일만
 						첨부 가능</div>
 				</li>
+				<br>
 				<li>
-				<label for="question_board_email">email</label>
+				<label for="question_board_email">연락받을 이메일</label>
 				<input type="email" id="question_board_email" class="input-check"
 					 placeholder="example@email.com" required>
 				<li>
-				<label>개인정보 수집 및 이용 동의(필수)</label>
-				<input type="checkbox" name="agree" value="checked">
+				<br>
+				<label>개인정보 수집 및 이용</label>
+				<br>
+				<div>개인정보 수집 및 이용 동의(필수)<input type="checkbox" name="agree" value="checked"></div><br>
+				<div style="color: gray; border: 1px solid gray; padding: 10px; width:550px;">문의 처리를 위해 이메일, 회원정보, 기기정보, 문의내용에 포함된 개인정보를 수집하며,개인정보
+				처리방침에 따라 3년 후 파기됩니다.</div>
 			</li>
 			</ul>
 			<div class="align-center">
- 			<input type="submit" value="전송하기" class="input-button4">
+ 			<input type="submit" value="문의 접수하기" class="input-button4">
  			</div>
 		</form>
 </div>

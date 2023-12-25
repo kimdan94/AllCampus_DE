@@ -6,7 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>안내</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/yen.css">
 </head>
 <body>
 <div class="page-main">
@@ -25,7 +26,7 @@
 			   onclick="location.href='${accessUrl}'">
 			</c:if>
 			<c:if test="${empty accessUrl}">
-				<input type="button" value="홈으로"
+				<input type="button" value="홈으로" class="input-button4"
 			       onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
 			</c:if>
 		</div>

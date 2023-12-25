@@ -35,7 +35,7 @@
 						<input type="button" value="등급변경" class="input-button1" id="auth_btn${status.count}">
 						<script type="text/javascript">
 						document.getElementById('auth_btn${status.count}').onclick=function(){
-							let choice = confirm('일반회원으로 변경하시겠습니까?');
+							let choice = confirm('정지회원으로 변경하시겠습니까?');
 							if(choice) {
 								location.replace('auth.do?mem_num=${board.mem_num}');
 							}
@@ -88,7 +88,7 @@
 						<input type="button" value="등급변경" class="input-button1" id="auth_btn2${status.count}">
 						<script type="text/javascript">
 						document.getElementById('auth_btn2${status.count}').onclick=function(){
-							let choice = confirm('일반회원으로 변경하시겠습니까?');
+							let choice = confirm('정지회원으로 변경하시겠습니까?');
 							if(choice) {
 								location.replace('courseauth.do?mem_num=${course_eva.mem_num}');
 							}
@@ -141,7 +141,7 @@
 						<input type="button" value="등급변경" class="input-button1" id="auth_btn3${status.count}">
 						<script type="text/javascript">
 						document.getElementById('auth_btn3${status.count}').onclick=function(){
-							let choice = confirm('일반회원으로 변경하시겠습니까?');
+							let choice = confirm('정지회원으로 변경하시겠습니까?');
 							if(choice) {
 								location.replace('secondauth.do?mem_num=${secondhand.mem_num}');
 							}
