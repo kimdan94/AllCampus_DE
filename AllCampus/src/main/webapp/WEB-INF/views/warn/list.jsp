@@ -84,7 +84,7 @@
 					<span class="warn_title">${course_eva.memberVO.mem_id}</span><br>
 					<span class="warn_content">${course_eva.eva_content}</span>
 					<div class="align-right">
-						<span class="warn_">${course_eva.eva_reg_date}</span>
+						<span class="warn_">${course_eva.eva_reg_date} | ${course_eva.memberVO.mem_id}</span>
 						<input type="button" value="등급변경" class="input-button1" id="auth_btn2${status.count}">
 						<script type="text/javascript">
 						document.getElementById('auth_btn2${status.count}').onclick=function(){
@@ -134,10 +134,10 @@
 			<c:forEach var="secondhand" items="${list3}" varStatus="status">
 				<tr>
 					<td>
-					<span class="warn_title">${secondhand.secondhand_num}</span><br>
+					<span class="warn_title">${secondhand.mem_id}</span><br>
 					<span class="warn_content">${secondhand.secondhand_content}</span>
 					<div class="align-right">
-						<span class="warn_">${secondhand.secondhand_reg_date} | ${secondhand.secondhand_num}</span>
+						<span class="warn_">${secondhand.secondhand_reg_date} | ${secondhand.mem_id}</span>
 						<input type="button" value="등급변경" class="input-button1" id="auth_btn3${status.count}">
 						<script type="text/javascript">
 						document.getElementById('auth_btn3${status.count}').onclick=function(){

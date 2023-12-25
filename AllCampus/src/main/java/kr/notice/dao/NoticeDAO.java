@@ -77,7 +77,7 @@ public class NoticeDAO {
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
-			DBUtil.getConnection();
+			DBUtil.executeClose(rs, pstmt, conn);
 		}
 		return count;
 	}
@@ -165,7 +165,6 @@ public class NoticeDAO {
 		
 		return notice;
 	}
-	//파일 삭제
 	//글 수정
 	public void updateNotice(NoticeVO notice)throws Exception{
 		Connection conn = null;
@@ -212,8 +211,4 @@ public class NoticeDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
-	//좋아요 등록
-	//좋아요 개수
-	
-	
 }

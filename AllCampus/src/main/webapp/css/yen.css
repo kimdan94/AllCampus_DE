@@ -202,7 +202,18 @@ ul.search li {
 	color:white;
 	font-size:9px;
 }
-
+.search-btn{
+	border:none;
+	width:90px;
+	height:25px;
+	border-radius:10px;
+	background-color:#6699cc;
+	font-weight:bold;
+	color:white;
+}
+.search-margin{
+	margin-top:-45px;
+}
 /* 공지사항 notice_writeForm.jsp
 ---------------------------------*/
 form[id="write_form"] ul li{
