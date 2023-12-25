@@ -10,6 +10,15 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(function(){
+	$('#question_filename').change(function(){
+		let newImg = this.files[0];
+		if(newImg.size > 3*1024*1024){
+			alert(Math.round(newImg.size/1024) + 'kbytes(3072kbytes까지만 업로드 가능)');
+			$(this).val('');//선택한 파일의 경로 정보 삭제
+			return;
+		}
+	});//end of change
+	
 	$('#faq_form').submit(function(){
 		let items = document.querySelectorAll('.input-check');
 		for(let i=0;i<items.length;i++){

@@ -14,7 +14,7 @@
 <div class="page-main">
 	<h2 class="board-title">자주 묻는 질문</h2>
 	<hr width="10%" class="board-underline">
-	<div class="content-main">
+	<div class="content-main" style="margin-left: 475px;">
 		<div class="board_listform">
 			<table class="faq-table">
 			<c:forEach var="question" items="${list}">

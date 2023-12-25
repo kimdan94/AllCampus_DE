@@ -11,7 +11,7 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>    
-<div class="page-main">
+<div class="page-main" >
 		<div class="result-display">
 			<div class="align-center">
 				공지사항 글삭제가 완료되었습니다.

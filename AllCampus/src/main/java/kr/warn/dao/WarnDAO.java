@@ -142,7 +142,7 @@ public class WarnDAO {
 				DBUtil.executeClose(null, pstmt, conn);
 			}
 		}
-		//자유게시판 신고글 표시(복구 default = 1)
+		//자유게시판 신고글 표시
 		public void complaintUpdateShow(int board_num)throws Exception {
 			Connection conn = null;
 			PreparedStatement pstmt = null;
@@ -152,7 +152,7 @@ public class WarnDAO {
 				//커넥션풀로부터 커넥션 할당
 				conn = DBUtil.getConnection();
 				//SQL문 작성
-				sql = "UPDATE all_board SET board_show=1 WHERE board_num=?";
+				sql = "UPDATE all_board SET board_show=2 WHERE board_num=?";
 				//PreparedStatement 객체 생성
 				pstmt = conn.prepareStatement(sql);
 				//?에 데이터 바인딩
@@ -294,7 +294,7 @@ public class WarnDAO {
 			}
 		}
 
-		//강의평 신고글 표시(복구 default = 0)
+		//강의평 신고글 표시
 		public void CourseUpdateShow(int eva_num) throws Exception {
 			Connection conn = null;
 			PreparedStatement pstmt = null;
@@ -304,7 +304,7 @@ public class WarnDAO {
 				// 커넥션풀로부터 커넥션 할당
 				conn = DBUtil.getConnection();
 				// SQL문 작성
-				sql = "UPDATE all_course_eva SET eva_show=1 WHERE eva_num=?";
+				sql = "UPDATE all_course_eva SET eva_show=2 WHERE eva_num=?";
 				// PreparedStatement 객체 생성
 				pstmt = conn.prepareStatement(sql);
 				// ?에 데이터 바인딩
@@ -442,7 +442,7 @@ public class WarnDAO {
 			}
 		}
 
-		//강의평 신고글 표시(복구 default = 0)
+		//중고거래 신고글 표시
 		public void SecondUpdateShow(int secondhand_num) throws Exception {
 			Connection conn = null;
 			PreparedStatement pstmt = null;
@@ -452,7 +452,7 @@ public class WarnDAO {
 				// 커넥션풀로부터 커넥션 할당
 				conn = DBUtil.getConnection();
 				// SQL문 작성
-				sql = "UPDATE all_secondhand SET secondhand_show=1 WHERE secondhand_num=?";
+				sql = "UPDATE all_secondhand SET secondhand_show=2 WHERE secondhand_num=?";
 				// PreparedStatement 객체 생성
 				pstmt = conn.prepareStatement(sql);
 				// ?에 데이터 바인딩

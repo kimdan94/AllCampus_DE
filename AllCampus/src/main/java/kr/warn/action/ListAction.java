@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import kr.board.vo.BoardVO;
 import kr.controller.Action;
@@ -17,6 +18,17 @@ public class ListAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		HttpSession session = request.getSession();
+		Integer user_num = (Integer)session.getAttribute("user_num");
+		if(user_num == null) {//로그인이 되지 않은 경우
+			return "redirect:/member/loginForm.do";
+		}
+		  
+		Integer user_auth = (Integer)session.getAttribute("user_auth");
+		if(user_auth != 9) {//관리자로 로그인하지 않은 경우
+			return "/WEB-INF/views/common/notice.jsp";
+		}
+		
 		String pageNum = request.getParameter("pageNum"); //처음에는 페이지가 null이니까 1로 간주하게 됨
 		if(pageNum == null) pageNum = "1";
 

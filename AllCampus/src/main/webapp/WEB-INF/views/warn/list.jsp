@@ -13,7 +13,7 @@
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-	<div class="content-main">
+	<div class="content-main" style="margin-left: 475px;">
 		<div class="board_listform">
 			<h2>자유게시판 신고</h2>	
 			<hr width="25%" class="board-underline1">
