@@ -33,7 +33,7 @@ input[type="submit"]{
 .result-display1{
 	width:750px;
 	height:300px;
-	border:1px solid #000;
+	border:1px solid #d6d6d6;
 	align-items:center;
 	justify-content:center;
 	font-size:15pt;
@@ -62,7 +62,7 @@ input[type="submit"]{
 }
 .warn-table{
 	width:750px;
-	border:1px solid gray;
+	border:1px solid #d6d6d6;
 	border-collapse:collapse;
 	margin-top:5px;
 }
@@ -89,12 +89,12 @@ input[type="submit"]{
 }
 table{
 	width:100%;
-	border:1px solid #000;
+	border:1px solid #d6d6d6;
 	border-collapse:collapse;
 	margin-top:5px;
 }
 table td, table th{
-	border:1px solid #000;
+	border:1px solid #d6d6d6;
 	padding:5px;
 }
 .content-main{
@@ -117,14 +117,14 @@ table td, table th{
 ---------------------------------*/
 .notice-table{
     width: 800px;
-    border: 1px solid gray;
+    border: 1px solid #d6d6d6;
     border-collapse: collapse;
     margin-top: 5px;
     margin-left: 450px;
 }
 
 form#search_Form {
-    border: none;
+    border: none #d6d6d6;
     margin-left:110px;
     margin-right: 0; /* 조정할 오른쪽 여백 크기 */
     margin-top: 10px; /* 조정할 상단 여백 크기 */
@@ -156,7 +156,7 @@ ul.search li {
 	width:600px;
 	height:400px;
 	margin:50px 530px;
-	border:1px solid #000;
+	border:1px solid #d6d6d6;
 	display:flex;
 	align-items:center;
 	justify-content:center;
@@ -164,21 +164,22 @@ ul.search li {
 }
 .notice-table{
 	width:800px;
-	border:1px solid gray;
+	height: 480px;
+	border:1px solid #d6d6d6;
 	border-collapse:collapse;
 	margin-top:5px;
 	margin-left:450px;
 }
 .notice-table .title{
 	font-weight: bold;
-	font-size:20px;
+	font-size:19px;
 }
 .notice-table .content{
-	font-size:15px;
+	font-size:17px;
 }
 .notice-table .reg_date{
 	color:#808080;
-	font-size: 15px;
+	font-size: 12px;
 }
 .notice-table img{
 	color:yellow;
@@ -245,17 +246,16 @@ form[id="write_form"] ul li{
 ---------------------------------*/
 form#update_Form{
 	margin-left:460px;
-	border:1px solid black;
+	border:1px solid #d6d6d6;
 	width:767px;
 }
 /* 공지사항 notice_detail.jsp
 ---------------------------------*/
-
 /* faq faq.jsp
 ---------------------------------*/
 .faq-table {
 	width:750px;
-	border:1px solid gray;
+	border:1px solid #d6d6d6;
 	border-collapse:collapse;
 	margin-top:5px;
 }
@@ -310,12 +310,12 @@ form[id="faq_form"] ul li{
 }
 .faq-table{
 	width: 130%;
-    border: 1px solid #444444;
+    border: 1px solid #d6d6d6;
     border-collapse: collapse;
 }
 .faq-table tr td{
-	border-bottom: 1px solid #444444;
-	border-left: 1px solid #444444;
+	border-bottom: 1px solid #d6d6d6;
+	border-left: 1px solid #d6d6d6;
     padding: 13px;
     font-size: 13pt;
 }

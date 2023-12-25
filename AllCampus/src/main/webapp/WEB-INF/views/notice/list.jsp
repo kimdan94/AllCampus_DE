@@ -75,14 +75,14 @@ window.onload=function(){
 	<c:forEach var="notice" items="${list}">
 		<tr>
 			<td>
-			<span class="title"><a href="detail.do?notice_num=${notice.notice_num}">${notice.notice_title}</a></span><br>
-			<span class="content">${notice.notice_content}</span><br>
-			<span class="reg_date">${notice.notice_reg_date}</span><br>
+			<span class="title"><a href="detail.do?notice_num=${notice.notice_num}"> ${notice.notice_title}</a></span><br>
+			<span class="content"> ${notice.notice_content}</span><br>
+			<span class="reg_date"> ${notice.notice_reg_date} | 관리자</span>
 			</td>
 		</tr>
 	</c:forEach>
 	</table>
-	<div style="margin-left:500px;">${page}</div>
+	<div class="align-center">${page}</div>
 	</c:if>
 </div>
 </body>

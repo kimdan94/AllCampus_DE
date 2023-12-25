@@ -30,13 +30,8 @@
 		</c:if>
 		<h1>제목 : ${notice.notice_title}</h1>
 			<div style="font-size:20px">${notice.notice_content}</div>
-			
-		<%-- 관리자로 로그인된 계정만
-					 수정,삭제 가능 (일반회원은 접근 불가)--%>
-		<c:if test="${user_auth == 9}">
-		<div class="align-center">
+			<div class="align-center">
 			<input type="button" value="삭제" class="input-button4" id="delete_btn">
-			</div>
 			<script type="text/javascript">
 				let delete_btn = document.getElementById('delete_btn');
 				//이벤트 연결
@@ -48,6 +43,11 @@
 					}
 				};
 			</script>
+			</div>
+		</div>
+		<%-- 관리자로 로그인된 계정만
+					 수정,삭제 가능 (일반회원은 접근 불가)--%>
+		<c:if test="${user_auth == 9}">
 		</c:if>
 		</div>
-	</div>
+		

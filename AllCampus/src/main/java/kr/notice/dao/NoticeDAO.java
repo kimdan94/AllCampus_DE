@@ -58,8 +58,9 @@ public class NoticeDAO {
 		try {
 			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
-			if(keyword!=null && !"".equals(keyword)) {
-				if(keyfield.equals("1")) sub_sql += "WHERE notice_title LIKE ?";
+			if(keyword!=null && !"".equals(keyword)) {//null도 아니고 비어있지도 않아야한다
+				//검색 처리
+				if(keyfield.equals("1")) sub_sql += "WHERE notice_title LIKE ?"; //keyfield가 1일 경우에 title
 				else if(keyfield.equals("2")) sub_sql += "WHERE notice_content LIKE ?";
 			}
 			//SQL문 작성
