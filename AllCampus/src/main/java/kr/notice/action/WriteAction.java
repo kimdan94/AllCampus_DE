@@ -24,7 +24,7 @@ public class WriteAction implements Action{
 	//로그인 된 경우
 	MultipartRequest multi = FileUtil.createFile(request);
 	NoticeVO notice = new NoticeVO();
-	notice.setNotice_filename(multi.getParameter("notice_filename"));
+	notice.setNotice_filename(multi.getFilesystemName("notice_filename"));
 	notice.setNotice_title(multi.getParameter("notice_title"));
 	notice.setNotice_content(multi.getParameter("notice_content"));
 	

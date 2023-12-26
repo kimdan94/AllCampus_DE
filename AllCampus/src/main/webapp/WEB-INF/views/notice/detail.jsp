@@ -25,7 +25,7 @@
 		<hr size="1" noshade="noshade" width="100%">
 		<c:if test="${!empty notice.notice_filename}">
 		<div>
-			<img src="${pageContext.request.contextPath}/upload/${notice.notice_filename}" class="detail-img">
+			<img src="${pageContext.request.contextPath}/upload/${notice.notice_filename}" style="max-width:500px;">
 		</div>
 		</c:if>
 		<h1>제목 : ${notice.notice_title}</h1>
