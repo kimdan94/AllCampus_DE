@@ -7,7 +7,7 @@ import kr.controller.Action;
 import kr.notice.dao.NoticeDAO;
 import kr.notice.vo.NoticeVO;
 import kr.util.StringUtil;
-
+  
 public class DetailAction implements Action {
       
 	@Override
@@ -17,6 +17,8 @@ public class DetailAction implements Action {
 
 		NoticeDAO dao = NoticeDAO.getinstance();
 		NoticeVO notice = dao.getNotice(notice_num);
+		notice.setNotice_content(StringUtil.useBrHtml(notice.getNotice_content()));
+		
 		request.setAttribute("notice", notice);
 
 		return "/WEB-INF/views/notice/detail.jsp";
