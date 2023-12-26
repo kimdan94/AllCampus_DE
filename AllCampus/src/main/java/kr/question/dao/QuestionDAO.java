@@ -51,7 +51,7 @@ public class QuestionDAO {
 			}catch(Exception e) {
 				throw new Exception(e);
 			}finally {
-				DBUtil.getConnection();
+				DBUtil.executeClose(rs, pstmt, conn);
 			}
 			return count;
 		}
@@ -98,7 +98,7 @@ public class QuestionDAO {
 			}catch(Exception e) {
 				throw new Exception(e);
 			}finally {
-				DBUtil.getConnection();
+				DBUtil.executeClose(rs, pstmt, conn);
 			}
 			return list;
 		}
@@ -164,4 +164,4 @@ public class QuestionDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
-	}
+}

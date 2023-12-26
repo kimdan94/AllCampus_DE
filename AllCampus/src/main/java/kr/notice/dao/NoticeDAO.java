@@ -126,7 +126,7 @@ public class NoticeDAO {
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
-			DBUtil.getConnection();
+			DBUtil.executeClose(rs, pstmt, conn);
 		}
 		return list;
 	}
@@ -189,7 +189,7 @@ public class NoticeDAO {
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
-			DBUtil.getConnection();
+			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
 	//글 삭제

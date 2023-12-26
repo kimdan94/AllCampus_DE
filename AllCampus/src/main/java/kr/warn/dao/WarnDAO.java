@@ -65,7 +65,7 @@ public class WarnDAO {
 				conn = DBUtil.getConnection();
 				//SQL문 작성
 				sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
-						+ "(SELECT board_num,board_title,board_content,board_reg_date,mem_num,mem_id FROM all_board JOIN all_member USING(mem_num) JOIN (SELECT DISTINCT(board_num) FROM all_board_warn) USING (board_num) "
+						+ "(SELECT board_num,board_title,board_content,board_reg_date,mem_num,mem_id FROM all_board JOIN all_member USING(mem_num) "
 						+ "  WHERE board_complaint >= 3 ORDER BY board_num DESC)a) WHERE rnum >= ? AND rnum <= ?";
 				//PreparedStatement 객체 생성
 				pstmt = conn.prepareStatement(sql);
@@ -123,11 +123,16 @@ public class WarnDAO {
 		public void deleteBoard(int board_num)throws Exception{
 			Connection conn = null;
 			PreparedStatement pstmt = null;
+			PreparedStatement pstmt2 = null;
+			PreparedStatement pstmt3 = null;
+			PreparedStatement pstmt4 = null;
+			PreparedStatement pstmt5 = null;
 			String sql = null;
 			
 			try {
 				//커넥션풀로부터 커넥션 할당
 				conn = DBUtil.getConnection();
+				conn.setAutoCommit(false);
 				//SQL문 작성
 				sql = "DELETE FROM all_board_warn WHERE board_num=?";
 				//PreparedStatement 객체 생성
@@ -136,7 +141,46 @@ public class WarnDAO {
 				pstmt.setInt(1, board_num);
 				//SQL문 실행 
 				pstmt.executeUpdate();
+				
+				//SQL문 작성
+				sql = "DELETE FROM all_board_fav WHERE board_num=?";
+				//PreparedStatement 객체 생성
+				pstmt2 = conn.prepareStatement(sql);
+				//?에 데이터 바인딩
+				pstmt2.setInt(1, board_num);
+				//SQL문 실행 
+				pstmt2.executeUpdate();
+				
+				//SQL문 작성
+				sql = "DELETE FROM all_board_reply WHERE board_num=?";
+				//PreparedStatement 객체 생성
+				pstmt3 = conn.prepareStatement(sql);
+				//?에 데이터 바인딩
+				pstmt3.setInt(1, board_num);
+				//SQL문 실행 
+				pstmt3.executeUpdate();
+				
+				//SQL문 작성
+				sql = "DELETE FROM all_board_scrap WHERE board_num=?";
+				//PreparedStatement 객체 생성
+				pstmt4 = conn.prepareStatement(sql);
+				//?에 데이터 바인딩
+				pstmt4.setInt(1, board_num);
+				//SQL문 실행 
+				pstmt4.executeUpdate();
+				
+				//SQL문 작성
+				sql = "DELETE FROM all_board WHERE board_num=?";
+				//PreparedStatement 객체 생성
+				pstmt5 = conn.prepareStatement(sql);
+				//?에 데이터 바인딩
+				pstmt5.setInt(1, board_num);
+				//SQL문 실행 
+				pstmt5.executeUpdate();
+				
+				conn.commit();
 			}catch(Exception e) {
+				conn.rollback();
 				throw new Exception(e);
 			}finally {
 				DBUtil.executeClose(null, pstmt, conn);
@@ -146,20 +190,34 @@ public class WarnDAO {
 		public void complaintUpdateShow(int board_num)throws Exception {
 			Connection conn = null;
 			PreparedStatement pstmt = null;
+			PreparedStatement pstmt2 = null;
 			String sql = null;
 			
 			try {
 				//커넥션풀로부터 커넥션 할당
 				conn = DBUtil.getConnection();
+				conn.setAutoCommit(false);
 				//SQL문 작성
-				sql = "UPDATE all_board SET board_show=2 WHERE board_num=?";
+				sql = "UPDATE all_board SET board_complaint=0,board_show=2 WHERE board_num=?";
 				//PreparedStatement 객체 생성
 				pstmt = conn.prepareStatement(sql);
 				//?에 데이터 바인딩
 				pstmt.setInt(1, board_num);
 				//SQL문 실행
 				pstmt.executeUpdate();
+				
+				//SQL문 작성
+				sql = "DELETE FROM all_board_warn WHERE board_num=?";
+				//PreparedStatement 객체 생성
+				pstmt2 = conn.prepareStatement(sql);
+				//?에 데이터 바인딩
+				pstmt2.setInt(1, board_num);
+				//SQL문 실행
+				pstmt2.executeUpdate(); 
+				conn.commit();
+				
 			}catch(Exception e) {
+				conn.rollback();
 				throw new Exception(e);
 			}finally {
 				DBUtil.executeClose(null, pstmt, conn);
@@ -274,11 +332,14 @@ public class WarnDAO {
 		public void deleteCourse(int eva_num) throws Exception {
 			Connection conn = null;
 			PreparedStatement pstmt = null;
+			PreparedStatement pstmt2 = null;
+			PreparedStatement pstmt3 = null;
 			String sql = null;
 
 			try {
 				// 커넥션풀로부터 커넥션 할당
 				conn = DBUtil.getConnection();
+				conn.setAutoCommit(false);
 				// SQL문 작성
 				sql = "DELETE FROM all_eva_warn WHERE eva_num=?";
 				// PreparedStatement 객체 생성
@@ -287,7 +348,28 @@ public class WarnDAO {
 				pstmt.setInt(1, eva_num);
 				// SQL문 실행
 				pstmt.executeUpdate();
+				
+				// SQL문 작성
+				sql = "DELETE FROM all_eva_fav WHERE eva_num=?";
+				// PreparedStatement 객체 생성
+				pstmt2 = conn.prepareStatement(sql);
+				// ?에 데이터 바인딩
+				pstmt2.setInt(1, eva_num);
+				// SQL문 실행
+				pstmt2.executeUpdate();
+				
+				//SQL문 작성
+				sql = "DELETE FROM all_course_eva WHERE eva_num=?";
+				//PreparedStatement 객체 생성
+				pstmt3 = conn.prepareStatement(sql);
+				//?에 데이터 바인딩
+				pstmt3.setInt(1, eva_num);
+				//SQL문 실행 
+				pstmt3.executeUpdate();
+				
+				conn.commit();
 			} catch (Exception e) {
+				conn.rollback();
 				throw new Exception(e);
 			} finally {
 				DBUtil.executeClose(null, pstmt, conn);
@@ -298,20 +380,34 @@ public class WarnDAO {
 		public void CourseUpdateShow(int eva_num) throws Exception {
 			Connection conn = null;
 			PreparedStatement pstmt = null;
+			PreparedStatement pstmt2 = null;
 			String sql = null;
 
 			try {
 				// 커넥션풀로부터 커넥션 할당
 				conn = DBUtil.getConnection();
+				conn.setAutoCommit(false);
 				// SQL문 작성
-				sql = "UPDATE all_course_eva SET eva_show=2 WHERE eva_num=?";
+				sql = "UPDATE all_course_eva SET eva_complaint=0,eva_show=2 WHERE eva_num=?";
 				// PreparedStatement 객체 생성
 				pstmt = conn.prepareStatement(sql);
 				// ?에 데이터 바인딩
 				pstmt.setInt(1, eva_num);
 				// SQL문 실행
 				pstmt.executeUpdate();
+				
+				//SQL문 작성
+				sql = "DELETE FROM all_eva_warn WHERE eva_num=?";
+				//PreparedStatement 객체 생성
+				pstmt2 = conn.prepareStatement(sql);
+				//?에 데이터 바인딩
+				pstmt2.setInt(1, eva_num);
+				//SQL문 실행
+				pstmt2.executeUpdate(); 
+				conn.commit();
+		
 			} catch (Exception e) {
+				conn.rollback();
 				throw new Exception(e);
 			} finally {
 				DBUtil.executeClose(null, pstmt, conn);
@@ -423,11 +519,13 @@ public class WarnDAO {
 		public void deleteSecond(int secondhand_num) throws Exception {
 			Connection conn = null;
 			PreparedStatement pstmt = null;
+			PreparedStatement pstmt2 = null;
 			String sql = null;
 
 			try {
 				// 커넥션풀로부터 커넥션 할당
 				conn = DBUtil.getConnection();
+				conn.setAutoCommit(false);
 				// SQL문 작성
 				sql = "DELETE FROM all_secondhand_warn WHERE secondhand_num=?";
 				// PreparedStatement 객체 생성
@@ -436,7 +534,18 @@ public class WarnDAO {
 				pstmt.setInt(1, secondhand_num);
 				// SQL문 실행
 				pstmt.executeUpdate();
+				
+				//SQL문 작성
+				sql = "DELETE FROM all_secondhand WHERE secondhand_num=?";
+				//PreparedStatement 객체 생성
+				pstmt2 = conn.prepareStatement(sql);
+				//?에 데이터 바인딩
+				pstmt2.setInt(1, secondhand_num);
+				//SQL문 실행 
+				pstmt2.executeUpdate();
+				conn.commit();
 			} catch (Exception e) {
+				conn.rollback();
 				throw new Exception(e);
 			} finally {
 				DBUtil.executeClose(null, pstmt, conn);
@@ -447,20 +556,34 @@ public class WarnDAO {
 		public void SecondUpdateShow(int secondhand_num) throws Exception {
 			Connection conn = null;
 			PreparedStatement pstmt = null;
+			PreparedStatement pstmt2 = null;
 			String sql = null;
 
 			try {
 				// 커넥션풀로부터 커넥션 할당
 				conn = DBUtil.getConnection();
+				conn.setAutoCommit(false);
 				// SQL문 작성
-				sql = "UPDATE all_secondhand SET secondhand_show=2 WHERE secondhand_num=?";
+				sql = "UPDATE all_secondhand SET secondhand_complaint=0,secondhand_show=2 WHERE secondhand_num=?";
 				// PreparedStatement 객체 생성
 				pstmt = conn.prepareStatement(sql);
 				// ?에 데이터 바인딩
 				pstmt.setInt(1, secondhand_num);
 				// SQL문 실행
 				pstmt.executeUpdate();
+				
+				//SQL문 작성
+				sql = "DELETE FROM all_secondhand_warn WHERE secondhand_num=?";
+				//PreparedStatement 객체 생성
+				pstmt2 = conn.prepareStatement(sql);
+				//?에 데이터 바인딩
+				pstmt2.setInt(1, secondhand_num);
+				//SQL문 실행
+				pstmt2.executeUpdate(); 
+				conn.commit();
+				
 			} catch (Exception e) {
+				conn.rollback();
 				throw new Exception(e);
 			} finally {
 				DBUtil.executeClose(null, pstmt, conn);

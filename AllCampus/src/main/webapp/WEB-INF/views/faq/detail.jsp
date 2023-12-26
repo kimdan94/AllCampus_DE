@@ -13,7 +13,7 @@
 <body>    
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-	<div class="content-main" style="margin-left: 460px;">
+	<div class="content-main" style="margin-left: 430px;">
 	<hr width="135%" class="board-underline1">
 		<h2 style="font-size:22px;" class="h2">${question.question_title}</h2>
 		<hr width="135%" class="board-underline1">

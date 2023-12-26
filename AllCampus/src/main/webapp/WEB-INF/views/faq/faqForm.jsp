@@ -76,9 +76,10 @@ $(function(){
 				<label>개인정보 수집 및 이용</label>
 				<br>
 				<div>개인정보 수집 및 이용 동의(필수)<input type="checkbox" name="agree" value="checked"></div><br>
-				<div style="color: gray; border: 1px solid gray; padding: 10px; width:550px;">문의 처리를 위해 이메일, 회원정보, 기기정보, 문의내용에 포함된 개인정보를 수집하며,개인정보
+				<div style="color: gray; border: 1px solid gray; padding: 10px; width:570px;">문의 처리를 위해 이메일, 회원정보, 기기정보, 문의내용에 포함된 개인정보를 수집하며,개인정보
 				처리방침에 따라 3년 후 파기됩니다.</div>
 			</li>
+			<br>
 			</ul>
 			<div class="align-center">
  			<input type="submit" value="문의 접수하기" class="input-button4">

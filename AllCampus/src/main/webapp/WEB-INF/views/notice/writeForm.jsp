@@ -46,11 +46,13 @@ $(function(){
 					<input type="text" name="notice_title" id="notice_title" 
 						placeholder="제목을 입력해주세요." class="input-check" maxlength="50" size="40px">
 				</li>
+				<br>
 				<li>
 					<label for="notice_content">내용</label><br>
 					<textarea rows="15" cols="100"
 						name="notice_content" id="notice_content" class="input-check"></textarea>
 				</li>
+				<br>
 				<li>
 					<label for="notice_filename">파일</label>
 					<input type="file" name="notice_filename"
@@ -58,6 +60,7 @@ $(function(){
 						<div class="file-guide">*3,072KB(3MB) 이하의 jpg, gif, png 파일만
 						첨부 가능</div>
 				</li>
+				<br>
 			</ul>    
 			<div class="btn-margin2">
  			<input type="submit" value="등록하기" class="input-button4">
