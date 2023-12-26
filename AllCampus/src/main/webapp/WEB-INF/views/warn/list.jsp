@@ -65,8 +65,10 @@
 			</c:forEach>
 			</table>
 			<div style="margin-left:350px;">${page}</div>
+			<br>
 			</c:if>
 		</div>
+		<br>
 		<div class="board_listform">
 			<h2 class="header">강의평 신고</h2>	
 			<hr width="25%" class="board-underline1">
@@ -118,8 +120,10 @@
 			</c:forEach>
 			</table>
 			<div style="margin-left:350px;">${page2}</div>
+			<br>
 			</c:if>
 		</div>
+		<br>
 		<div class="board_listform">
 			<h2>중고거래 신고</h2>
 			<hr width="25%" class="board-underline1">
@@ -171,6 +175,7 @@
 			</c:forEach>
 			</table>
 			<div style="margin-left:350px;">${page3}</div>
+			<br>
 			</c:if>
 		</div>
 	</div>

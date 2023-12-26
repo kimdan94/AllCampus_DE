@@ -35,7 +35,7 @@ public class WarnDAO {
 				//커넥션풀로부터 커넥션 할당
 				conn = DBUtil.getConnection();
 				//SQL문 작성
-				sql = "SELECT COUNT(*) FROM all_board JOIN (SELECT DISTINCT(board_num) FROM all_board_warn) USING (board_num)";
+				sql = "SELECT COUNT(*) FROM all_board WHERE board_complaint >= 3 ";
 				//PreparedStatement 객체 생성
 				pstmt = conn.prepareStatement(sql);
 				//SQL문 실행
@@ -66,7 +66,7 @@ public class WarnDAO {
 				//SQL문 작성
 				sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
 						+ "(SELECT board_num,board_title,board_content,board_reg_date,mem_num,mem_id FROM all_board JOIN all_member USING(mem_num) JOIN (SELECT DISTINCT(board_num) FROM all_board_warn) USING (board_num) "
-						+ " ORDER BY board_num DESC)a) WHERE rnum >= ? AND rnum <= ?";
+						+ "  WHERE board_complaint >= 3 ORDER BY board_num DESC)a) WHERE rnum >= ? AND rnum <= ?";
 				//PreparedStatement 객체 생성
 				pstmt = conn.prepareStatement(sql);
 				
@@ -181,7 +181,7 @@ public class WarnDAO {
 				// 커넥션풀로부터 커넥션 할당
 				conn = DBUtil.getConnection();
 				// SQL문 작성
-				sql = "SELECT COUNT(*) FROM all_course_eva JOIN (SELECT DISTINCT(eva_num) FROM all_eva_warn) USING (eva_num)";
+				sql = "SELECT COUNT(*) FROM all_course_eva WHERE eva_complaint >= 3";
 				// PreparedStatement 객체 생성
 				pstmt = conn.prepareStatement(sql);
 				// SQL문 실행
@@ -212,8 +212,8 @@ public class WarnDAO {
 				conn = DBUtil.getConnection();
 				// SQL문 작성
 				sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
-						+ "(SELECT eva_num,eva_content,eva_reg_date,mem_id FROM all_course_eva JOIN all_member USING(mem_num) JOIN (SELECT DISTINCT(eva_num) FROM all_eva_warn) USING (eva_num) "
-						+ " ORDER BY eva_num DESC)a) WHERE rnum >= ? AND rnum <= ?";
+						+ "(SELECT eva_num,eva_content,eva_reg_date,mem_id FROM all_course_eva JOIN all_member USING(mem_num) "
+						+ " WHERE eva_complaint >= 3 ORDER BY eva_num DESC)a) WHERE rnum >= ? AND rnum <= ?";
 				// PreparedStatement 객체 생성
 				pstmt = conn.prepareStatement(sql);
 
@@ -332,7 +332,7 @@ public class WarnDAO {
 				// 커넥션풀로부터 커넥션 할당
 				conn = DBUtil.getConnection();
 				// SQL문 작성
-				sql = "SELECT COUNT(*) FROM all_secondhand JOIN (SELECT DISTINCT(secondhand_num) FROM all_secondhand_warn) USING (secondhand_num)";
+				sql = "SELECT COUNT(*) FROM all_secondhand WHERE secondhand_complaint >= 3";
 				// PreparedStatement 객체 생성
 				pstmt = conn.prepareStatement(sql);
 				// SQL문 실행
@@ -363,8 +363,8 @@ public class WarnDAO {
 				conn = DBUtil.getConnection();
 				// SQL문 작성
 				sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
-						+ "(SELECT secondhand_num,secondhand_content,secondhand_reg_date,mem_id FROM all_secondhand JOIN all_member USING(mem_num) JOIN (SELECT DISTINCT(secondhand_num) FROM all_secondhand_warn) USING (secondhand_num) "
-						+ " ORDER BY secondhand_num DESC)a) WHERE rnum >= ? AND rnum <= ?" ;
+						+ "(SELECT secondhand_num,secondhand_content,secondhand_reg_date,mem_id,mem_num FROM all_secondhand JOIN all_member USING(mem_num) "
+						+ " WHERE secondhand_complaint >= 3 ORDER BY secondhand_num DESC)a) WHERE rnum >= ? AND rnum <= ?" ;
 				// PreparedStatement 객체 생성
 				pstmt = conn.prepareStatement(sql);
 
@@ -381,6 +381,7 @@ public class WarnDAO {
 					secondhand.setSecondhand_content(StringUtil.useNoHtml(rs.getString("Secondhand_content")));
 					secondhand.setSecondhand_reg_date(rs.getDate("Secondhand_reg_date"));
 					secondhand.setMem_id(rs.getString("mem_id"));
+					secondhand.setMem_num(rs.getInt("mem_num"));
 					
 					list.add(secondhand);
 					
