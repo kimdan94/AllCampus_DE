@@ -13,7 +13,7 @@
 <body>    
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-	<h2 class="board-title">공지사항 상세</h2>
+	<h2 class="board-title">공지사항 상세</h2> 
 	<hr width="10%" class="board-underline">
 	<div class="content-main" style="border:2px solid #d6d6d6; width:750px; margin-left: 475px;  ">
 	<img src="${pageContext.request.contextPath}/images/face.png" width="40" height="40"><div style="font-size:16px">[관리자 전용]</div>
