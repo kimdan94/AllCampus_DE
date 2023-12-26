@@ -21,15 +21,23 @@ public class FriendAddAction implements Action {
 		
 		FriendDAO friendDao = FriendDAO.getInstance();
 		
-		int count = friendDao.getFriendCount(user_num, add_friend);
-		if(count == 0) {
-			friendDao.searchFriend(user_num, add_friend);
-			request.setAttribute("notice_msg", add_friend + "가 추가되었습니다");
+		int isCount = friendDao.isFriendId(add_friend);
+		if(isCount == 0) {
+			request.setAttribute("notice_msg", "아이디가 잘못되었습니다");
+			request.setAttribute("notice_url", request.getContextPath()+"/course/friendList.do");
+			
+			return "/WEB-INF/views/common/alert_singleView.jsp";
 		} else {
-			request.setAttribute("notice_msg", add_friend + "는 이미 친구입니다");
+			int count = friendDao.getFriendCount(user_num, add_friend);
+			if(count == 0) {
+				friendDao.searchFriend(user_num, add_friend);
+				request.setAttribute("notice_msg", add_friend + "가 추가되었습니다");
+			} else {
+				request.setAttribute("notice_msg", add_friend + "는 이미 친구입니다");
+			}
+			
+			request.setAttribute("notice_url", request.getContextPath()+"/course/friendList.do");
 		}
-		
-		request.setAttribute("notice_url", request.getContextPath()+"/course/friendList.do");
 		
 		return "/WEB-INF/views/common/alert_singleView.jsp";
 	}

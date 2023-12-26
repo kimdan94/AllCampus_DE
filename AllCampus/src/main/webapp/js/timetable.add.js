@@ -56,6 +56,7 @@ $(function() {
 			}
 			
 			// 시간표 중복 처리
+			//--------------> 중복 처리 제대로 안됨 ----> 중복 처리 제대로 하고 함수를 만들어서 중복처리 된다음 함수 안에 ajax를 넣고 중복처리된 값을 넣기
 			for(var p=0; p<param.slist.length; p++){
 				if(item.course_year == param.slist[p].timetable_year && item.course_semester ==param.slist[p].timetable_semester){
 					if(timetable_table_id.indexOf(param.slist[p].timetable_table_id) != -1){
@@ -141,7 +142,7 @@ $(function() {
 					' ' + param.beforeDeleteView[y].course_start_time +
 					' ' + param.beforeDeleteView[y].course_end_time + '</div>';
 				}
-				delete_body += '<input type="text" name="delete_course" id="delete_course" value="' + param.beforeDeleteView[0].course_code + '">';
+				delete_body += '<input type="text" name="delete_course" readonly id="delete_course" value="' + param.beforeDeleteView[0].course_code + '">';
 				
 				$('.delete_header').append(delete_header);
 				$('.delete_body').append(delete_body);

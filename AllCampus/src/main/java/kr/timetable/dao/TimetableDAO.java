@@ -296,6 +296,8 @@ public class TimetableDAO {
 		}
 	}
 	
+	
+	
 	// TimetableAddAction에서 year이랑 semester 구하기
 	public List<String> selectYearAndSemester(String course_code) throws Exception {
 		Connection conn = null;
