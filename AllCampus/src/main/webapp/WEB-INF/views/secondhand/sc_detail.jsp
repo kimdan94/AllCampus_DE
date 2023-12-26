@@ -127,7 +127,9 @@ $(function(){
 		</table>
 	</div>
 	<div class="align-right" style="margin-top:10px;">
-		<a href="#" id="secondhand_complaint"><b>[신고하기]</b></a>
+		<c:if test="${user_num != mem_num}">
+			<a href="#" id="secondhand_complaint"><b>[신고하기]</b></a>
+		</c:if>	
 	</div>
 </div>
 </div>

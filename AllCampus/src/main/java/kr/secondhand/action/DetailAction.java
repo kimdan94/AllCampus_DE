@@ -47,7 +47,12 @@ public class DetailAction implements Action{
 		//내용 - HTML을 허용하지 않으면서 줄바꿈 처리
 		sc.setSecondhand_content(StringUtil.useBrNoHtml(sc.getSecondhand_content()));
 		
+		//mem_num request에 따로 저장
+		int mem_num = sc.getMem_num();
+		
 		request.setAttribute("sc", sc);
+		request.setAttribute("mem_num", mem_num);
+		
 		
 		return "/WEB-INF/views/secondhand/sc_detail.jsp";
 	}
