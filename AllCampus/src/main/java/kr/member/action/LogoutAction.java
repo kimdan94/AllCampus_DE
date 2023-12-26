@@ -16,7 +16,7 @@ public class LogoutAction implements Action{
 		session.invalidate();
 		
 		//JSP 경로 반환
-		return "redirect:/main/main.do";
+		return "/WEB-INF/views/member/logout.jsp";
 	}
 
 }
