@@ -33,10 +33,10 @@
 
 
 ## 개발환경
-+ eclipse
-+ oracle
-+ java version 17
-+ Apache Tomcat v9.0
++ IDE : eclipse
++ Database : oracle
++ Language : java version 17
++ Server : Apache Tomcat v9.0
 
 
 ## 라이브러리
