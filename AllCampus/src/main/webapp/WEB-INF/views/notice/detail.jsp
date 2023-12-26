@@ -17,7 +17,7 @@
 	<hr width="10%" class="board-underline">
 	<div class="content-main" style="border:2px solid #d6d6d6; width:750px; margin-left: 475px;  ">
 	<img src="${pageContext.request.contextPath}/images/face.png" width="40" height="40"><div style="font-size:16px">[관리자 전용]</div>
-		<h1>제목 : ${notice.notice_title}</h1>
+		<h1>${notice.notice_title}</h1>
 		<hr size="1" noshade="noshade" width="100%">
 		<div style="font-size:16px"> 
 				<p style="text-align:right" style="color:Grey;">최근 수정일 : ${notice.notice_modify_date}
@@ -25,9 +25,10 @@
 			</div>
 		<c:if test="${!empty notice.notice_filename}">
 		<div>
-			<img src="${pageContext.request.contextPath}/upload/${notice.notice_filename}" style="max-width:500px;">
+			<img src="${pageContext.request.contextPath}/upload/${notice.notice_filename}" style="max-width:750px;">
 		</div>
 		</c:if>
+		<br>
 			<div style="font-size:20px">${notice.notice_content}</div>
 			<br><br>
 			<div class="align-center">

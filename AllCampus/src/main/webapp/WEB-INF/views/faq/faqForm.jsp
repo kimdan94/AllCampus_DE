@@ -61,8 +61,7 @@ $(function(){
 				<li>
 					<label for="question_filename">파일</label>
 					<input type="file" name="question_filename"
-						id="question_filename" accept="image/gif,image/png,image/jpeg" 
-						class="input-check">
+						id="question_filename" accept="image/gif,image/png,image/jpeg" >
 						<div class="file-guide">*3,072KB(3MB) 이하의 jpg, gif, png 파일만
 						첨부 가능</div>
 				</li>
