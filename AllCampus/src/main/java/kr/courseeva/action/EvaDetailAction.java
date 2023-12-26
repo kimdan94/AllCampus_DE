@@ -65,21 +65,21 @@ public class EvaDetailAction implements Action{
 	}
 	
 	private String calculateGrade(double totalEvaStarAverage) {
-        if (totalEvaStarAverage > 4.5) {
+        if (totalEvaStarAverage >= 4.5) {
             return "A+";
-        } else if (totalEvaStarAverage > 4) {
+        } else if (totalEvaStarAverage >= 4) {
             return "A";
-        } else if (totalEvaStarAverage > 3.5) {
+        } else if (totalEvaStarAverage >= 3.5) {
             return "B+";
-        } else if (totalEvaStarAverage > 3) {
+        } else if (totalEvaStarAverage >= 3) {
             return "B";
-        } else if (totalEvaStarAverage > 2.5) {
+        } else if (totalEvaStarAverage >= 2.5) {
             return "C+";
-        } else if (totalEvaStarAverage > 2) {
+        } else if (totalEvaStarAverage >= 2) {
             return "C";
-        } else if (totalEvaStarAverage > 1.5) {
+        } else if (totalEvaStarAverage >= 1.5) {
             return "D+";
-        } else if (totalEvaStarAverage > 1) {
+        } else if (totalEvaStarAverage >= 1) {
             return "D";
         } else {
             return "F";
