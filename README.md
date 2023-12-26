@@ -7,14 +7,24 @@
 ## :raised_hands: 프로젝트 역할 분담
 :dart: dan 
 + https://github.com/kimdan94
+
+
 :dart: jy
 + https://github.com/febCho
+
+
 :dart: jiwon
 + https://github.com/zentle7270
+
+
 :dart: hyun
 + https://github.com/Nahyun-K
+
+
 :dart: yen
 + https://github.com/Yeeun8742
+
+
 
 ## 요구사항 정의서
 
