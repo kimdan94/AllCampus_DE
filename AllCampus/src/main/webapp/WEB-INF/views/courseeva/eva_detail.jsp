@@ -67,7 +67,7 @@ $(function(){
 			<input type="button" value="목록" class="eva-writebtn2" onclick="location.href='courseeva_list.do'">	
 		</div>
 		<c:if test="${count == 0}">
-		<div class="result-display2">
+		<div class="result-display3">
 			표시할 게시물이 없습니다.
 		</div>	
 		</c:if>
