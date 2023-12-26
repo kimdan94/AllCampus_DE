@@ -270,7 +270,7 @@ public class WarnDAO {
 				conn = DBUtil.getConnection();
 				// SQL문 작성
 				sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
-						+ "(SELECT eva_num,eva_content,eva_reg_date,mem_id FROM all_course_eva JOIN all_member USING(mem_num) "
+						+ "(SELECT eva_num,eva_content,eva_reg_date,mem_id,mem_num FROM all_course_eva JOIN all_member USING(mem_num) "
 						+ " WHERE eva_complaint >= 3 ORDER BY eva_num DESC)a) WHERE rnum >= ? AND rnum <= ?";
 				// PreparedStatement 객체 생성
 				pstmt = conn.prepareStatement(sql);
@@ -287,6 +287,7 @@ public class WarnDAO {
 					// HTML를 허용하지 않음
 					courseeva.setEva_content(StringUtil.useNoHtml(rs.getString("eva_content")));
 					courseeva.setEva_reg_date(rs.getDate("eva_reg_date"));
+					courseeva.setMem_num(rs.getInt("mem_num"));
 
 					MemberVO memberVO = new MemberVO();
 					memberVO.setMem_id(rs.getString("mem_id"));

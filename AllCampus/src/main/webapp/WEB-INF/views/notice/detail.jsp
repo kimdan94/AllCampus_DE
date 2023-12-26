@@ -30,6 +30,7 @@
 		</c:if>
 		<h1>제목 : ${notice.notice_title}</h1>
 			<div style="font-size:20px">${notice.notice_content}</div>
+			<br>
 			<div class="align-center">
 			<%-- 관리자로 로그인된 계정만
 					 수정,삭제 가능 (일반회원은 접근 불가)--%>
