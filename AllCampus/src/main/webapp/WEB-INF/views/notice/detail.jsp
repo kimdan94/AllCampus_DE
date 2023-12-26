@@ -19,7 +19,7 @@
 	<img src="${pageContext.request.contextPath}/images/face.png" width="40" height="40"><div style="font-size:16px">[관리자 전용]</div>
 		<h1>제목 : ${notice.notice_title}</h1>
 		<hr size="1" noshade="noshade" width="100%">
-		<div style="font-size:16px">
+		<div style="font-size:16px"> 
 				<p style="text-align:right" style="color:Grey;">최근 수정일 : ${notice.notice_modify_date}
 				작성일 : ${notice.notice_reg_date}</p>
 			</div>
