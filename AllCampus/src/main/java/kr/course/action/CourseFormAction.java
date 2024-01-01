@@ -77,8 +77,8 @@ public class CourseFormAction implements Action {
 			TimetableDAO daoTime = TimetableDAO.getInstance();
 			HashSet<String> hashSet = new HashSet<>(Arrays.asList(arr));        
 			String[] delete_course = hashSet.toArray(new String[0]);
-			
-			daoTime.deleteCourse(delete_course);
+
+			daoTime.deleteCourse(user_num, delete_course);
 		}
 		 
 		CourseDAO dao = CourseDAO.getInstance();

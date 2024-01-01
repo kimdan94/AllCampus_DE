@@ -267,7 +267,7 @@ public class TimetableDAO {
 	
 	
 	// 시간표에서 삭제하고 싶은 강의 클릭 -> 모달창에서 강의 삭제 시 -> 강의 삭제됨
-	public void deleteCourse(String[] code) throws Exception {
+	public void deleteCourse(int mem_num, String[] code) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
@@ -276,16 +276,19 @@ public class TimetableDAO {
 			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
-			sql = "DELETE FROM all_timetable WHERE course_code=?"; // 삭제 X 업데이트 O
+			sql = "DELETE FROM all_timetable WHERE mem_num=? AND course_code=?"; // 삭제 X 업데이트 O
 			//PreparedStatment 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
 			for(int i=0; i<code.length-1; i++) {
 				sql += " OR course_code=?";
 			}
+
+			pstmt.setInt(1, mem_num);
 			for(int i=0; i<code.length; i++) {
-				pstmt.setString(i+1, code[i]);
+				pstmt.setString(i+2, code[i]);
 			}
+			
 			//SQL문 실행
 			pstmt.executeUpdate();
 			
