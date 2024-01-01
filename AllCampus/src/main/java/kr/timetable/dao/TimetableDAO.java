@@ -271,6 +271,7 @@ public class TimetableDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
+		int count = 0;
 		
 		try {
 			//커넥션풀로부터 커넥션 할당
@@ -284,9 +285,9 @@ public class TimetableDAO {
 				sql += " OR course_code=?";
 			}
 
-			pstmt.setInt(1, mem_num);
+			pstmt.setInt(++count, mem_num);
 			for(int i=0; i<code.length; i++) {
-				pstmt.setString(i+2, code[i]);
+				pstmt.setString(++count, code[i]);
 			}
 			
 			//SQL문 실행
