@@ -24,7 +24,7 @@ public class HomeAction implements Action{
 			return "redirect:/member/loginForm.do";
 		}
 		
-		//로그인이 된 경우 home.jsp에 출력할 학교명 구하기
+		//학교명
 		Integer user_univ = (Integer)session.getAttribute("user_univ");
 		int univ_num = (int)user_univ;
 		MemberDAO dao = MemberDAO.getinstance();
@@ -54,7 +54,6 @@ public class HomeAction implements Action{
 		List<SecondhandVO> scList = homeDao.getListSecondhand(1, 6);
 		request.setAttribute("scList", scList);
 		
-		//JSP 경로 반환
 		return "/WEB-INF/views/main/home.jsp";
 	}
 
