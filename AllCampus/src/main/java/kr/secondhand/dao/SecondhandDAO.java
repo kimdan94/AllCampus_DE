@@ -12,7 +12,7 @@ import kr.util.DBUtil;
 import kr.util.StringUtil;
 
 public class SecondhandDAO {
-	//싱글턴 패턴
+	
 	private static SecondhandDAO instance = new SecondhandDAO();
 	
 	public static SecondhandDAO getInstance() {
@@ -28,7 +28,6 @@ public class SecondhandDAO {
 		String sql = null;
 		
 		try {
-			//커넥션풀로부터 커넥션을 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
 			sql = "INSERT INTO all_secondhand (secondhand_num,secondhand_name,"
@@ -36,9 +35,7 @@ public class SecondhandDAO {
 					+ "secondhand_price,secondhand_way,secondhand_status,secondhand_filename,"
 					+ "secondhand_openchat,secondhand_ip,mem_num) "
 					+ "VALUES (all_secondhand_seq.nextval,?,?,?,?,?,?,?,?,?,?,?)";
-			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
-			//?에 데이터 바인딩
 			pstmt.setString(1, sc.getSecondhand_name());
 			
 			//저자명 가공
@@ -77,7 +74,6 @@ public class SecondhandDAO {
 		int count = 0;
 		
 		try {
-			//커넥션풀로부터 커넥션을 할당
 			conn = DBUtil.getConnection();
 			
 			if(keyword!=null && !"".equals(keyword)) {
@@ -88,7 +84,6 @@ public class SecondhandDAO {
 			
 			//SQL문 작성
 			sql = "SELECT COUNT(*) FROM all_secondhand JOIN all_member USING(mem_num) WHERE secondhand_show=2 "+ sub_sql;
-			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			if(keyword!=null && !"".equals(keyword)) {
 				pstmt.setString(1, "%"+keyword+"%");
@@ -117,7 +112,6 @@ public class SecondhandDAO {
 		int cnt = 0;
 		
 		try {
-			//커넥션풀로부터 커넥션을 할당
 			conn = DBUtil.getConnection();
 			
 			if(keyword!=null && !"".equals(keyword)) {
@@ -130,7 +124,6 @@ public class SecondhandDAO {
 			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
 					+ "(SELECT * FROM all_secondhand JOIN all_member USING(mem_num) WHERE secondhand_show=2 " + sub_sql
 					+ " ORDER BY secondhand_num DESC)a) WHERE rnum >= ? AND rnum <= ?";
-			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			if(keyword!=null && !"".equals(keyword)) {
 				pstmt.setString(++cnt, "%"+keyword+"%");
@@ -171,15 +164,12 @@ public class SecondhandDAO {
 		String sql = null;
 		
 		try {
-			//커넥션풀로부터 커넥션을 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
 			sql = "SELECT * FROM all_secondhand JOIN all_member USING(mem_num) "
 					+ "LEFT OUTER JOIN all_member_detail USING(mem_num) "
 					+ "WHERE secondhand_num=?";
-			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
-			//?에 데이터 바인딩
 			pstmt.setInt(1, secondhand_num);
 			//SQL문 실행
 			rs = pstmt.executeQuery();
@@ -218,7 +208,6 @@ public class SecondhandDAO {
 		int cnt = 0;
 		
 		try {
-			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
 			
 			if(sc.getSecondhand_filename()!=null) {
@@ -229,9 +218,7 @@ public class SecondhandDAO {
 					+ "secondhand_content=?,secondhand_price=?,secondhand_way=?,secondhand_status=?" + sub_sql
 					+ ",secondhand_openchat=?,secondhand_modifydate=SYSDATE,secondhand_ip=?"
 					+ " WHERE secondhand_num=?";
-			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
-			//?에 데이터 바인딩
 			pstmt.setString(++cnt, sc.getSecondhand_name());
 			
 			//저자명 가공
@@ -272,7 +259,6 @@ public class SecondhandDAO {
 		String sql = null;
 		
 		try {
-			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
 			//오토 커밋 해제
 			conn.setAutoCommit(false);
@@ -306,7 +292,6 @@ public class SecondhandDAO {
 		String sql = null;
 		
 		try {
-			//커넥션풀로부터 커넥션을 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
 			
@@ -315,9 +300,7 @@ public class SecondhandDAO {
 			}else {
 				sql = "UPDATE all_secondhand SET secondhand_sell=2 WHERE secondhand_num=?";
 			}
-			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
-			//?에 데이터 바인딩
 			pstmt.setInt(1, sc.getSecondhand_num());
 			//SQL문 실행
 			pstmt.executeUpdate();
@@ -336,13 +319,10 @@ public class SecondhandDAO {
 		int checkSell = 0;
 		
 		try {
-			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
 			sql = "SELECT * FROM all_secondhand WHERE secondhand_num=?";
-			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
-			//?에 데이터 바인딩
 			pstmt.setInt(1, secondhand_num);
 			//SQL문 실행
 			rs = pstmt.executeQuery();
@@ -363,13 +343,10 @@ public class SecondhandDAO {
 		String sql = null;
 		
 		try {
-			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
 			sql = "UPDATE all_secondhand SET secondhand_complaint=secondhand_complaint+1 WHERE secondhand_num=?";
-			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
-			//?에 데이터 바인딩
 			pstmt.setInt(1, secondhand_num);
 			//SQL문 실행
 			pstmt.executeUpdate();
@@ -386,13 +363,10 @@ public class SecondhandDAO {
 		String sql = null;
 		
 		try {
-			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
 			sql = "INSERT INTO all_secondhand_warn (secondhand_num,mem_num) VALUES (?,?)";
-			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
-			//?에 데이터 바인딩
 			pstmt.setInt(1, warn.getSecondhand_num());
 			pstmt.setInt(2, warn.getMem_num());
 			//SQL문 실행
@@ -412,13 +386,10 @@ public class SecondhandDAO {
 		int count = 0;
 		
 		try {
-			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
 			sql = "SELECT COUNT(*) FROM all_secondhand_warn WHERE secondhand_num=? AND mem_num=?";
-			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
-			//?에 데이터 바인딩
 			pstmt.setInt(1, secondhand_num);
 			pstmt.setInt(2, mem_num);
 			//SQL문 실행
@@ -441,13 +412,10 @@ public class SecondhandDAO {
 		String sql = null;
 		
 		try {
-			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
 			sql = "UPDATE all_secondhand SET secondhand_show=1 WHERE secondhand_complaint >= 3 AND secondhand_num=?";
-			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
-			//?에 데이터 바인딩
 			pstmt.setInt(1, secondhand_num);
 			//SQL문 실행
 			pstmt.executeUpdate();
