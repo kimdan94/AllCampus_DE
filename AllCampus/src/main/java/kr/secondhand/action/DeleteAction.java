@@ -42,7 +42,7 @@ public class DeleteAction implements Action{
 			return "/WEB-INF/views/common/notice.jsp";
 		}
 		
-		//로그인한 회원번호와 작섲아 회원번호가 일치
+		//로그인한 회원번호와 작성자 회원번호가 일치
 		dao.deleteSecondhand(secondhand_num);
 		//파일 삭제
 		FileUtil.removeFile(request, db_sc.getSecondhand_filename());

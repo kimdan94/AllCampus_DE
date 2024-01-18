@@ -48,8 +48,6 @@ public class WriteAction implements Action{
 		SecondhandDAO dao = SecondhandDAO.getInstance();
 		dao.insertSC(sc);
 		
-		//JSP 경로 반환
 		return "/WEB-INF/views/secondhand/sc_write.jsp";
 	}
-
 }

@@ -16,9 +16,9 @@ public class GetSellAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		//전송된 데이터 인코딩 처리
+		
 		request.setCharacterEncoding("utf-8");
-		//전송된 데이터를 반환
+		//전송된 데이터 반환
 		int secondhand_num = Integer.parseInt(request.getParameter("secondhand_num"));
 		
 		Map<String,String> mapAjax = new HashMap<String,String>();

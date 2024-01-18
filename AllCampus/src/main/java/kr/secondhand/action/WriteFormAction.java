@@ -27,5 +27,4 @@ public class WriteFormAction implements Action{
 		//로그인이 제대로 된 경우
 		return "/WEB-INF/views/secondhand/sc_writeForm.jsp";
 	}
-
 }

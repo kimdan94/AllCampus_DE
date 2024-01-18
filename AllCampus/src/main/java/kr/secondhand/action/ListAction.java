@@ -51,8 +51,6 @@ public class ListAction implements Action{
 		request.setAttribute("list", list);
 		request.setAttribute("page", page.getPage());
 		
-		//JSP 경로 반환
 		return "/WEB-INF/views/secondhand/sc_list.jsp";
 	}
-
 }

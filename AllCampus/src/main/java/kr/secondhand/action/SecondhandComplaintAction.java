@@ -33,7 +33,7 @@ public class SecondhandComplaintAction implements Action{
 				mapAjax.put("status", "noCertify");
 			}else {//로그인이 되었고 학교 인증 회원 or 관리자라면
 				
-				//신고 정보를 자바빈에 담음
+				//신고 정보 자바빈 담기
 				SecondhandWarnVO warn = new SecondhandWarnVO();
 				warn.setSecondhand_num(secondhand_num);
 				warn.setMem_num(user_num);
