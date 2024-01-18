@@ -10,7 +10,7 @@ public class CheckPwAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		//전송된 데이터 인코딩 처리
+		
 		request.setCharacterEncoding("utf-8");
 		
 		String id = request.getParameter("id");
@@ -23,6 +23,7 @@ public class CheckPwAction implements Action{
 			request.setAttribute("check_id", id);
 			request.setAttribute("check_email", email);
 			
+			//길이에 따라 비밀번호 가공
 			if(user_passwd.length() >= 13) {
 				secret_pw += user_passwd.substring(0,8);
 				secret_pw += "*".repeat(user_passwd.length() -8);

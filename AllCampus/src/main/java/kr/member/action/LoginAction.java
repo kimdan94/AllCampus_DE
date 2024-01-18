@@ -12,8 +12,9 @@ public class LoginAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		//전송된 데이터 인코딩 처리
+		
 		request.setCharacterEncoding("utf-8");
+		
 		//전송된 데이터 반환
 		String id = request.getParameter("id");
 		String passwd = request.getParameter("passwd");
@@ -38,13 +39,10 @@ public class LoginAction implements Action{
 			session.setAttribute("user_email", vo.getMem_email());
 			session.setAttribute("user_univ", vo.getUniv_num());
 			
-			//홈으로 리다이렉트
 			return "redirect:/main/home.do";
 		}
 		
 		//인증 실패
 		return "/WEB-INF/views/member/login.jsp";
 	}
-
 }
-  

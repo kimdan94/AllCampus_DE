@@ -12,7 +12,6 @@ public class RegisterUserAction implements Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		//전송된 데이터 인코딩 처리
 		request.setCharacterEncoding("utf-8");
 		
 		//자바빈(VO) 생성
@@ -29,7 +28,6 @@ public class RegisterUserAction implements Action{
 		MemberDAO dao = MemberDAO.getinstance();
 		dao.insertMember(vo);
 		
-		//JSP 경로 반환
 		return "/WEB-INF/views/member/registerUser.jsp";
 	}
 
