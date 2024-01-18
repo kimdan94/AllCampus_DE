@@ -11,7 +11,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(function(){
-	let idChecked = 0;//0 : 중복 체크 미실행 또는 중복, 1 : 미중복
+	let idChecked = 0;
 	let emailChecked = 0;
 	let nickChecked = 0;
 	let emailAt = /[@]/;
@@ -22,7 +22,6 @@ $(function(){
 			$('#id').val('').focus();
 			return;
 		} 
-		//서버와 통신
 	 	$.ajax({
 			url:'checkDuplicated.do',
 			type:'post',
@@ -46,15 +45,14 @@ $(function(){
 				alert('네트워크 오류 발생');
 			}
 		});
-	});//end of click - id
+	});
 	
 	//이메일 중복 체크
 	$('#email_check').click(function(){
 		if(!emailAt.test($('#email').val())){
 			alert('이메일 주소에 @를 포함해주세요.');
 			return;
-		}
-		//서버와 통신
+		}		
 		$.ajax({
 			url:'checkDuplicated.do',
 			type:'post',
@@ -78,7 +76,7 @@ $(function(){
 				alert('네트워크 오류 발생');
 			}
 		});
-	});//end of click - email
+	});
 	
 	//닉네임 중복 체크
 	$('#nick_check').click(function(){
@@ -87,7 +85,6 @@ $(function(){
 			$('#nick').val('').focus();
 			return;
 		}
-		//서버와 통신
 		$.ajax({
 			url:'checkDuplicated.do',
 			type:'post',
@@ -111,25 +108,25 @@ $(function(){
 				alert('네트워크 오류 발생');
 			}
 		});
-	});//end of click - nick
+	});
 	
 	//아이디 중복 안내 및 아이디 중복 값 초기화
 	$('#register_form #id').keydown(function(){
 		idChecked = 0;
 		document.getElementById('id_check').removeAttribute("disabled");
-	});//end of keydown - id
+	});
 	
 	//이메일 중복 안내 및 이메일 중복 값 초기화
 	$('#register_form #email').keydown(function(){
 		emailChecked = 0;
 		document.getElementById('email_check').removeAttribute("disabled");
-	});//end of keydown - email
+	});
 	
 	//닉네임 중복 안내 및 닉네임 중복 값 초기화
 	$('#register_form #nick').keydown(function(){
 		nickChecked = 0;
 		document.getElementById('nick_check').removeAttribute("disabled");
-	});//end of keydown - nick
+	});
 
 	//회원정보 등록 유효성 체크
 	$('#register_form').submit(function(){
@@ -151,7 +148,7 @@ $(function(){
 				return false;
 			}//end of if
 			
-			//정규 표현식에 맞는지 한 번 더 체크 - 학번, 아이디, 비밀번호, 닉네임
+			//정규 표현식 체크
 			if(items[i].id == 'univNum' && !/[0-9]{7,9}/.test($('#univNum').val())){
 				alert('학번은 7~9자리 숫자만 입력 가능합니다.');
 				$('#univNum').val('').focus();
@@ -191,14 +188,14 @@ $(function(){
 				alert('닉네임 중복 체크는 필수입니다.');
 				return false;
 			}	
-		}//end of for
+		}
 		
 		//약관 동의 체크 여부
 		if($('input[type="checkbox"]:checked').length < 1){
 			alert('약관 미동의 시 가입이 불가합니다.');
 			return false;
 		}
-	});//end of submit
+	});
 });
 </script>
 </head>

@@ -43,7 +43,3 @@
 		location.href='loginForm.do';
 	</script>
 </c:if>
-
-
-
-

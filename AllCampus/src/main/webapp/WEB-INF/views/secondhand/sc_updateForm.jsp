@@ -22,13 +22,13 @@ $(function(){
 		//사이즈 체크
 		if(newImg.size > 3*1024*1024){
 			alert(Math.round(newImg.size/1024) + 'kbytes(3072kbytes까지만 업로드 가능)');
-			$(this).val('');//선택한 파일의 경로 정보 삭제
+			$(this).val('');
 			return;
 		}
 		
 		//새로운 파일 선택 시 이전 파일 안내 문구 숨기기
 		$('.file-detail').hide();
-	});//end of change
+	});
 	
 	$('#update_form').submit(function(){
 		let items = document.querySelectorAll('.input-check');
@@ -40,8 +40,8 @@ $(function(){
 				items[i].focus();
 				return false;
 			}
-		}//end of for
-	});//end of submit
+		}
+	});
 });	
 </script>
 </head>
