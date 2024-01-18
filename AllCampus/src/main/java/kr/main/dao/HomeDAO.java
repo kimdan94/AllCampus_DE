@@ -13,7 +13,6 @@ import kr.secondhand.vo.SecondhandVO;
 import kr.util.DBUtil;
 
 public class HomeDAO {
-	//싱글턴 패턴
 	private static HomeDAO instance = new HomeDAO();
 	public static HomeDAO getInstance() {
 		return instance;
@@ -29,15 +28,12 @@ public class HomeDAO {
 		String sql = null;
 		
 		try{
-			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
 			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
 					+ "(SELECT * FROM all_notice ORDER BY notice_reg_date DESC)a) "
 					+ "WHERE rnum >= ? AND rnum <= ?";
-			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
-			//?에 데이터 바인딩
 			pstmt.setInt(1, start);
 			pstmt.setInt(2, end);
 			//SQL문 실행
@@ -76,15 +72,12 @@ public class HomeDAO {
 		String sql = null;
 		
 		try {
-			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
 			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
 					+ "(SELECT * FROM all_question ORDER BY question_num ASC)a) "
 					+ "WHERE rnum >= ? AND rnum <= ?";
-			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
-			//?에 데이터 바인딩
 			pstmt.setInt(1, start);
 			pstmt.setInt(2, end);
 			//SQL문 실행
@@ -114,16 +107,13 @@ public class HomeDAO {
 		String sql = null;
 		
 		try {
-			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
 			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
 					+ "(SELECT * FROM all_board WHERE board_hit >= ? AND board_show=2 "
 					+ "ORDER BY board_hit DESC)"
 					+ "a) WHERE rnum >= ? AND rnum <= ?";
-			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
-			//?에 데이터 바인딩
 			pstmt.setInt(1, hit);
 			pstmt.setInt(2, start);
 			pstmt.setInt(3, end);
@@ -163,16 +153,13 @@ public class HomeDAO {
 		String sql = null;
 		
 		try {
-			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
 			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
 					+ "(SELECT * FROM all_board WHERE board_show=2 "
 					+ "ORDER BY board_reg_date DESC)a) "
 					+ "WHERE rnum >= ? AND rnum <= ?";
-			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
-			//?에 데이터 바인딩
 			pstmt.setInt(1, start);
 			pstmt.setInt(2, end);
 			//SQL문 실행
@@ -212,16 +199,13 @@ public class HomeDAO {
 		String sql = null;
 		
 		try {
-			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
 			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
 					+ "(SELECT * FROM all_secondhand WHERE secondhand_show=2 "
 					+ "ORDER BY secondhand_reg_date DESC)a) "
 					+ "WHERE rnum >= ? AND rnum <= ?";
-			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
-			//?에 데이터 바인딩
 			pstmt.setInt(1, start);
 			pstmt.setInt(2, end);
 			//SQL문 실행
