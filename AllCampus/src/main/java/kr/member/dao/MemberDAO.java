@@ -11,7 +11,7 @@ import kr.member.vo.MemberVO;
 import kr.util.DBUtil;
 
 public class MemberDAO {
-	//싱글턴 패턴
+	
 	private static MemberDAO instance = new MemberDAO();
 	public static MemberDAO getinstance() {
 		return instance;
@@ -27,13 +27,10 @@ public class MemberDAO {
 		String univName = null;
 		
 		try {
-			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
 			sql = "SELECT univ_name FROM all_member_univ WHERE univ_num=?";
-			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
-			//?에 데이터 바인딩
 			pstmt.setInt(1, univNum);
 			//SQL문 실행
 			rs = pstmt.executeQuery();
@@ -58,7 +55,6 @@ public class MemberDAO {
 		int num = 0;//시퀀스 번호 저장
 		
 		try {
-			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
 			//오토 커밋 해제
 			conn.setAutoCommit(false);
@@ -114,13 +110,10 @@ public class MemberDAO {
 		String sql = null;
 		
 		try {
-			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
 			sql = "SELECT * FROM all_member LEFT OUTER JOIN all_member_detail USING(mem_num) WHERE mem_id=?";
-			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
-			//?에 데이터 바인딩
 			pstmt.setString(1, userId);
 			//SQL문 실행
 			rs = pstmt.executeQuery();
@@ -151,13 +144,10 @@ public class MemberDAO {
 		String nick = null;
 		
 		try {
-			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
 			sql = "SELECT * FROM all_member LEFT OUTER JOIN all_member_detail USING(mem_num) WHERE mem_nick=?";
-			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
-			//?에 데이터 바인딩
 			pstmt.setString(1, userNick);
 			//SQL문 실행
 			rs = pstmt.executeQuery();
@@ -180,13 +170,10 @@ public class MemberDAO {
 		String email = null;
 		
 		try {
-			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
 			sql = "SELECT * FROM all_member LEFT OUTER JOIN all_member_detail USING(mem_num) WHERE mem_email=?";
-			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
-			//?에 데이터 바인딩
 			pstmt.setString(1, userEmail);
 			//SQL문 실행
 			rs = pstmt.executeQuery();
@@ -210,11 +197,9 @@ public class MemberDAO {
 		List<MemberUnivVO> list = null;
 		
 		try {
-			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
 			sql = "SELECT * FROM all_member_univ ORDER BY univ_name ASC";
-			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//SQL문 실행
 			rs = pstmt.executeQuery();
@@ -242,14 +227,11 @@ public class MemberDAO {
 		String user_id = null;
 		
 		try {
-			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
 			sql = "SELECT mem_id FROM all_member LEFT OUTER JOIN all_member_detail "
 					+ "USING(mem_num) WHERE mem_email = ?";
-			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
-			//?에 데이터 바인딩
 			pstmt.setString(1, user_email);
 			//SQL문 실행
 			rs = pstmt.executeQuery();
@@ -272,14 +254,11 @@ public class MemberDAO {
 		String user_pw = null;
 		
 		try {
-			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
 			sql = "SELECT mem_passwd FROM all_member LEFT OUTER JOIN all_member_detail "
 					+ "USING(mem_num) WHERE mem_email = ? AND mem_id=?";
-			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
-			//?에 데이터 바인딩
 			pstmt.setString(1, user_email);
 			pstmt.setString(2, user_id);
 			//SQL문 실행
@@ -295,5 +274,3 @@ public class MemberDAO {
 		return user_pw;
 	}	
 }
-
-
