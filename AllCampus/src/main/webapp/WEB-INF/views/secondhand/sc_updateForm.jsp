@@ -13,7 +13,6 @@
 $(function(){
 	$('#bookImage').change(function(){
 		let newImg = this.files[0];
-		//파일을 선택하려다 취소한다면 안내 문구 유지
 		if(!newImg){
 			$('.file-detail').show();
 			return;
@@ -26,7 +25,6 @@ $(function(){
 			return;
 		}
 		
-		//새로운 파일 선택 시 이전 파일 안내 문구 숨기기
 		$('.file-detail').hide();
 	});
 	

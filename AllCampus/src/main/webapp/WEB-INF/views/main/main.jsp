@@ -11,27 +11,27 @@
 </head>
 <body style="overflow: hidden;">
 <div class="row">
-<!-- 올캠퍼스 사이트 소개 시작 -->
+<!-- 사이트 소개 시작 -->
 <div class="container col-md-9">
 	<div id="carouselExample" class="carousel slide" 
 	                          data-bs-ride="carousel">
 	     <div class="carousel-inner">
-	     	<!-- 0 이미지 시작 -->
+	     	<%-- 0 이미지 시작 --%>
 	     	<div class="carousel-item active">
 	     		<img src="${pageContext.request.contextPath}/images/carousel-1.png" 
 	     			class="d-block w-100" data-bs-interval="1000">
 	     	</div>
-	     	<!-- 0 이미지 끝 -->
-	     	<!-- 1 이미지 시작 -->
+	     	<%-- 0 이미지 끝 --%>
+	     	<%-- 1 이미지 시작 --%>
 	     	<div class="carousel-item">
 	     		<img src="${pageContext.request.contextPath}/images/carousel-2.png" 
 	     			class="d-block w-100" data-bs-interval="1000">
 	     	</div>
-	     	<!-- 1 이미지 끝 -->
-	     </div><!-- end of .carousel-inner -->
+	     	<%-- 1 이미지 끝 --%>
+	     </div>
 	</div>     
 </div>
-<!-- 올캠퍼스 사이트 소개 끝 -->
+<!-- 사이트 소개 끝 -->
 <div class="align-center col-md-3 main-style">
 	<img src="${pageContext.request.contextPath}/images/logo_symbol_231208.png" width="100">
 <p><p>

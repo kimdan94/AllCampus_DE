@@ -146,7 +146,7 @@ $(function(){
 				items[i].value = '';
 				items[i].focus();
 				return false;
-			}//end of if
+			}
 			
 			//정규 표현식 체크
 			if(items[i].id == 'univNum' && !/[0-9]{7,9}/.test($('#univNum').val())){
